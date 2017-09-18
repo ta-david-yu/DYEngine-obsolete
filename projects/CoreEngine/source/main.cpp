@@ -6,6 +6,7 @@ using namespace DYE;
 
 int main()
 {
+	IEntity ent0;
 	IEntity ent;
 	IComponent* comp = ent.AddComponent<DummyComponent>();
 
