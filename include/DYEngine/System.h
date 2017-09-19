@@ -13,7 +13,7 @@
 
 namespace DYE
 {
-	class IEntity;
+	class Entity;
 	class IComponent;
 	class SystemManager;
 

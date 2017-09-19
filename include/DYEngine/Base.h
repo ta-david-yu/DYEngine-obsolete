@@ -46,16 +46,16 @@ namespace DYE
 		//	method
 		//==========================================
 		static void Destroy(Base* _pBase);					// Mark this and its component to be destroyed at the end of the frame (delayed destruction)
-		static Base* Instantiate(const Base* _pOriginal);	// 
+		static Base* Instantiate(const Base* _pOriginal);	// TO DO: instantiate object (copy)
 		template <class Type>
-		static Base* FindObjectOfType()						// Return a Base object of type Type
+		static Base* FindObjectOfType()						// TO DO: Return a Base object of type Type
 		{
-
+			return nullptr;
 		}
 		template <class Type>
-		static std::vector<Base*> FindObjectsOfType()		// Return all Base objects of type Type TO DO
+		static std::vector<Base*> FindObjectsOfType()		// TO DO: Return all Base objects of type Type TO DO
 		{
-
+			return nullptr;
 		}
 	protected:
 		virtual void release() = 0;							// Need to be implemented for derived class, called on destruction loop

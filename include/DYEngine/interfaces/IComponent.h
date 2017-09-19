@@ -4,12 +4,15 @@
 
 #include <vector>
 #include <map>
+#include <list>
 #include <typeinfo>
 #include <typeindex>
 
 namespace DYE
 {
-	class IEntity;
+	class Base;
+	class Entity;
+	class Transform;
 	class ISystem;
 
 	//====================================================================================
@@ -17,7 +20,7 @@ namespace DYE
 	//====================================================================================
 	class IComponent : public Base
 	{
-		friend class IEntity;
+		friend class Entity;
 		friend class ISystem;
 		//==========================================
 		//	memeber/variable
@@ -25,7 +28,7 @@ namespace DYE
 	private:
 		ISystem* m_pSystem;
 	protected:
-		IEntity* m_pEntity;
+		Entity* m_pEntity;
 		//==========================================
 		//	flag
 		//==========================================
@@ -35,7 +38,7 @@ namespace DYE
 		//	procedure
 		//==========================================
 		// Must be call after creation, to be hide
-		virtual void Init() {}
+		virtual void Init() = 0;
 
 		// Call by System
 		// TO DO: reimplement
@@ -56,11 +59,12 @@ namespace DYE
 	private:
 		using Base::SetName;								// Move to private so the name cant be changed
 	public:
-		void AttachTo(IEntity* _pEnt) { m_pEntity = _pEnt; }
+		void AttachTo(Entity* _pEnt) { m_pEntity = _pEnt; }
 		//==========================================
 		//	getter
 		//==========================================
-		IEntity* GetEntity() const;
+		Entity* GetEntity() const;
+		Transform* GetTransform() const;
 		std::string GetName() const;
 		template <class TComp>
 		TComp* GetComponent() const 
@@ -87,7 +91,9 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-
+	private:
+		Transform* m_pParent = nullptr;
+		std::list<Transform*> m_ChildrenList;
 		//==========================================
 		//	flag
 		//==========================================
@@ -95,20 +101,25 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
+	public:
+		virtual void Init() {}
 		virtual void Update() {}
 
 		//==========================================
 		//	method
 		//==========================================
-
+	private:
+		void removeChildren(Transform* _child);
+		void addChildren(Transform* _child);
 		//==========================================
 		//	getter
 		//==========================================
-
+	public:
+		Transform* GetParent() const;
 		//==========================================
 		//	setter
 		//==========================================
-
+		void SetParent(Transform* _parent);
 		//==========================================
 		//	constructor/destructor
 		//==========================================
@@ -119,11 +130,66 @@ namespace DYE
 	};
 
 	//====================================================================================
+	//	IReusable: Resuable base class that can be managed by ReusablePool
+	//====================================================================================
+	class IReusableComponent : public IComponent
+	{
+		friend class ReusablePool;
+	private:
+		bool m_IsInUse = false;
+		void setInUse(bool _set);
+		virtual void releaseToPool() = 0;
+	public:
+		bool IsInUse() const { return m_IsInUse; }
+		void ReleaseToPool();
+	};
+
+	//====================================================================================
+	//	ReusablePool: Reusable Entity Management
+	//====================================================================================
+	class ReusablePool : public IComponent
+	{
+	private:
+		std::size_t m_MaxSize = 32;
+		std::size_t m_IncrementSize = 4;
+		std::vector<IReusableComponent*> m_Pool;
+	public:
+		//==========================================
+		//	memeber/variable
+		//==========================================
+		IReusableComponent* m_Prefab;
+		//==========================================
+		//	procedure
+		//==========================================
+		virtual void Init(std::size_t _initSize = 32, std::size_t _initIncre = 4) 
+		{ 
+			m_MaxSize = _initSize;
+			m_IncrementSize = _initIncre;
+		}
+		virtual void Start() { expandPool(m_MaxSize); }
+		virtual void Update() {}
+		//==========================================
+		//	method
+		//==========================================
+	public:
+		IReusableComponent* AcquireReusable();			// Return a not used object
+		void ResizePool(std::size_t _size);				// Allocate pool count based on the number (if is smaller than max, ignore)
+	private:
+		void expandPool(std::size_t _incre);			// Add number of objs to pool
+		//==========================================
+		//	setter
+		//==========================================
+	public:
+		void SetIncrementSize(std::size_t _size) { m_IncrementSize = _size; }
+	};
+
+	//====================================================================================
 	//	DummyComponent: Test Component
 	//====================================================================================
 	class DummyComponent : public IComponent
 	{
 	public:
+		virtual void Init() {}
 		virtual void Update() {}
 	};
 }

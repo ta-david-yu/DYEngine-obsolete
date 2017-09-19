@@ -82,9 +82,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Base.cpp" />
+    <ClCompile Include="..\..\src\Entity.cpp" />
     <ClCompile Include="..\..\src\glad.c" />
     <ClCompile Include="..\..\src\IComponent.cpp" />
-    <ClCompile Include="..\..\src\IEntity.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
