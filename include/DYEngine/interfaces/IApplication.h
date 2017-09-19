@@ -13,4 +13,14 @@ namespace DYE
 	private:
 
 	};
+
+	class BaseApplication : public IApplication
+	{
+	public:
+		BaseApplication();
+		~BaseApplication();
+
+	private:
+
+	};
 }
