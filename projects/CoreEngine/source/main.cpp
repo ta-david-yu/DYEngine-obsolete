@@ -6,9 +6,9 @@ using namespace DYE;
 
 int main()
 {
-	IEntity ent0;
-	IEntity ent1;
-	IEntity ent;
+	Entity ent;
+	Entity ent1;
+	ent.SetName("Obj8");
 	IComponent* comp = ent.AddComponent<DummyComponent>();
 
 	if (SYSTEM_MGR->HasSystem<Transform>())
@@ -24,6 +24,14 @@ int main()
 	if (comp->GetComponent<DYE::Transform>() != nullptr)
 		printf("PUS\n");
 	
+	std::cout << comp->GetTransform()->GetName() << std::endl;
+
+	if (ent.GetTransform() != ent1.GetTransform())
+		printf("is not equal\n");
+
+	if (ent1.GetTransform() == comp->GetTransform())
+		printf("is equal\n");
+
 	system("PAUSE");
 	return 0;
 }

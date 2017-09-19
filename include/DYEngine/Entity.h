@@ -18,9 +18,9 @@ namespace DYE
 	class SystemManager;
 
 	//====================================================================================
-	//	IEntity: Base Entity class as game object
+	//	Entity: Base Entity class as game object
 	//====================================================================================
-	class IEntity : public Base
+	class Entity : public Base
 	{
 	public:
 		typedef std::multimap<std::type_index, std::unique_ptr<IComponent>> ComponentMap;
@@ -88,8 +88,8 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		IEntity();							// Initialize with a tranform component
-		IEntity(const std::string& _name);
-		~IEntity();
+		Entity();							// Initialize with a tranform component
+		Entity(const std::string& _name);
+		~Entity();
 	};
 }

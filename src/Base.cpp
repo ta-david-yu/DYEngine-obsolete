@@ -36,7 +36,6 @@ namespace DYE
 		s_toBeDestryoedList.push_back(_pBase);
 	}
 
-	// TO DO:
 	Base* Base::Instantiate(const Base* _pOriginal)
 	{
 		printf("TO BE IMPLEMENTED.");

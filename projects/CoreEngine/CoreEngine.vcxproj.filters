@@ -30,10 +30,10 @@
     <ClCompile Include="..\..\src\IComponent.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IEntity.cpp">
+    <ClCompile Include="..\..\src\System.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\System.cpp">
+    <ClCompile Include="..\..\src\Entity.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
   </ItemGroup>
