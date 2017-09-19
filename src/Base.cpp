@@ -8,6 +8,7 @@ namespace DYE
 {
 	int Base::s_nextInstantiateID = 0;
 	std::set<Base*> Base::s_instancesSet;
+	std::list<Base*> Base::s_toBeDestryoedList;
 
 	Base::Base()
 	{
@@ -20,11 +21,19 @@ namespace DYE
 		s_instancesSet.erase(this);
 	}
 
-	// TO DO:
+	void Base::DestructionUpdate()
+	{
+		for (auto const &base : s_toBeDestryoedList)
+		{
+			base->release();
+		}
+		s_toBeDestryoedList.clear();
+	}
+
 	void Base::Destroy(Base* _pBase)
 	{
-		printf("TO BE IMPLEMENTED.");
 		_pBase->m_IsToBeDestroyed = true;
+		s_toBeDestryoedList.push_back(_pBase);
 	}
 
 	// TO DO:

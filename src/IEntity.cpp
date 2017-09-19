@@ -6,6 +6,11 @@ namespace DYE
 	{
 		return this->m_Transform;
 	}
+
+	void IEntity::release()								// TO DO: destroy from objectMgr (erased from vector), 
+	{
+
+	}
 	
 	IEntity::IEntity() 
 	{

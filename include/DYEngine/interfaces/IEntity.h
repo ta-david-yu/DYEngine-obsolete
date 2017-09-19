@@ -63,6 +63,8 @@ namespace DYE
 
 			return ptr;
 		}
+	protected:
+		void release() override;
 		//==========================================
 		//	getter
 		//==========================================
@@ -70,7 +72,7 @@ namespace DYE
 		Transform* GetTransform() const;
 
 		template <class TComp>
-		TComp* GetComponent() const
+		TComp* GetComponent() const										// TO DO: use dynamic cast
 		{
 			ComponentMapConstItr itr = m_Components.find(typeid(TComp));
 			if (itr == m_Components.end())

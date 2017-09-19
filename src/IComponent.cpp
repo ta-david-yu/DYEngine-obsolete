@@ -12,8 +12,19 @@ namespace DYE
 		m_pSystem->unregisterComponent(this); 
 	}
 
+	IEntity* IComponent::GetEntity() const 
+	{ 
+		return m_pEntity; 
+	}
+
 	std::string IComponent::GetName() const 
 	{ 
 		return m_pEntity->GetName(); 
 	}
+
+	void IComponent::release()						// TO DO: destroy from object (erased from map)
+	{
+
+	}
+
 }

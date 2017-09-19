@@ -52,13 +52,15 @@ namespace DYE
 		//	method
 		//==========================================
 	protected:
-		void SetName(const std::string& _name) = delete;
+		void release() override;
+	private:
+		using Base::SetName;								// Move to private so the name cant be changed
 	public:
 		void AttachTo(IEntity* _pEnt) { m_pEntity = _pEnt; }
 		//==========================================
 		//	getter
 		//==========================================
-		IEntity* GetEntity() const { return m_pEntity; }
+		IEntity* GetEntity() const;
 		std::string GetName() const;
 		template <class TComp>
 		TComp* GetComponent() const 
