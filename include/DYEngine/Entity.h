@@ -23,7 +23,7 @@ namespace DYE
 	class Entity : public Base
 	{
 	public:
-		typedef std::multimap<std::type_index, std::unique_ptr<IComponent>> ComponentMap;
+		typedef std::multimap<std::type_index, std::unique_ptr<IComponent>> ComponentMap;		// TO DO: swap to vector (since map is overhead on cache)
 		typedef ComponentMap::iterator ComponentMapItr;
 		typedef ComponentMap::const_iterator ComponentMapConstItr;
 

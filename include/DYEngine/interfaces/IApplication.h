@@ -10,6 +10,15 @@ namespace DYE
 		IApplication();
 		~IApplication();
 
+		virtual void Run();
+
+	protected:
+		void init();
+		void gameLoop();			// main game loop
+		void release();
+
+		virtual void createScene() = 0;		// setup scene
+
 	private:
 
 	};

@@ -9,6 +9,8 @@ namespace DYE
 {
 	class Base;
 
+	typedef int InstanceID;
+
 	//====================================================================================
 	//	NonCopyable: Restrict copy constructor and assign operator
 	//====================================================================================
@@ -29,11 +31,11 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		static int s_nextInstantiateID;
+		static InstanceID s_nextInstantiateID;
 		static std::set<Base*> s_instancesSet;
-		static std::list<Base*> s_toBeDestryoedList;
+		static std::vector<Base*> s_toBeDestryoedList;
 
-		int m_InstanceID;
+		InstanceID m_InstanceID;
 		std::string m_Name;
 		bool m_IsToBeDestroyed = false;
 	public:

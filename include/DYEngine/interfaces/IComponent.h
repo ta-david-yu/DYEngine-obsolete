@@ -7,6 +7,7 @@
 #include <list>
 #include <typeinfo>
 #include <typeindex>
+#include <tuple>
 
 namespace DYE
 {
@@ -22,6 +23,7 @@ namespace DYE
 	{
 		friend class Entity;
 		friend class ISystem;
+	public:
 		//==========================================
 		//	memeber/variable
 		//==========================================
@@ -149,6 +151,7 @@ namespace DYE
 	//====================================================================================
 	class ReusablePool : public IComponent
 	{
+	public:
 	private:
 		std::size_t m_MaxSize = 32;
 		std::size_t m_IncrementSize = 4;
@@ -165,6 +168,7 @@ namespace DYE
 		{ 
 			m_MaxSize = _initSize;
 			m_IncrementSize = _initIncre;
+
 		}
 		virtual void Start() { expandPool(m_MaxSize); }
 		virtual void Update() {}

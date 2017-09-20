@@ -6,9 +6,9 @@
 
 namespace DYE
 {
-	int Base::s_nextInstantiateID = 0;
+	InstanceID Base::s_nextInstantiateID = 0;
 	std::set<Base*> Base::s_instancesSet;
-	std::list<Base*> Base::s_toBeDestryoedList;
+	std::vector<Base*> Base::s_toBeDestryoedList;
 
 	Base::Base()
 	{

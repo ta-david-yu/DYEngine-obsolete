@@ -8,8 +8,10 @@
 #include <typeinfo>
 #include <typeindex>
 #include <memory>
+#include <algorithm>
 
 #define SYSTEM_MGR DYE::SystemManager::GetInstance()
+#define MAX_COMPONENT_SYSTEM 1024;
 
 namespace DYE
 {
@@ -25,14 +27,15 @@ namespace DYE
 		friend class IComponent;
 		friend class SystemManager;
 	public:
-		typedef std::map<int, IComponent*> ComponentMap;
-		typedef std::pair<int, IComponent*> ComponentMapPair;
+		typedef std::pair<InstanceID, IComponent*> ComponentListPair;
+		typedef std::vector<ComponentListPair> ComponentList;
 
 	protected:
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		ComponentMap m_ComponentsList;
+		std::size_t m_SystemID;
+		ComponentList m_ComponentsList;
 	public:
 		//==========================================
 		//	procedure
@@ -65,16 +68,18 @@ namespace DYE
 	class SystemManager
 	{
 	public:
-		typedef std::map<std::type_index, std::unique_ptr<ISystem>> SystemMap;
-		typedef SystemMap::iterator SystemMapItr;
-		typedef SystemMap::const_iterator SystemMapConstItr;
+		typedef std::pair<std::type_index, std::unique_ptr<ISystem>> SystemListPair;
+		typedef std::vector<SystemListPair> SystemList;
+		typedef SystemList::iterator SystemListItr;
+		typedef SystemList::const_iterator SystemListConstItr;
 
 	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		static SystemManager* s_pInstance;
-		SystemMap m_SystemMap;
+		static std::size_t s_nextSystemID;
+		SystemList m_SystemList;
 
 	public:
 		static SystemManager* GetInstance();
@@ -86,15 +91,17 @@ namespace DYE
 		virtual void Update();
 		virtual void LateUpdate();
 
-		virtual void FixedUpdate() {}	// TO DO: to be implement
+		virtual void FixedUpdate() {}			// TO DO: to be implement
 
 		//==========================================
 		//	method
 		//==========================================
 		template <class TComp>
-		bool HasSystem() const				// Return true if system of type TComp has already been added
+		bool HasSystem() const					// Return true if system of type TComp has already been added
 		{
-			return !(m_SystemMap.find(typeid(TComp)) == m_SystemMap.end());
+			auto itr = std::find_if(m_SystemList.begin(), m_SystemList.end(),
+				[](const SystemListPair& element) { return element.first == typeid(TComp); });
+			return !(itr == m_SystemList.end());
 		}
 
 		template <class TComp>
@@ -111,17 +118,20 @@ namespace DYE
 			std::type_index typeId = typeid(TComp);
 
 			if (!HasSystem<TComp>())
-				m_SystemMap.insert(std::pair<std::type_index, std::unique_ptr<ISystem>>(typeId, std::make_unique<ISystem>()));
+				m_SystemList.push_back(SystemListPair(typeId, std::make_unique<ISystem>()));
 
-			return m_SystemMap[typeId].get();
+			ISystem* system = m_SystemList.back().second.get();
+			system->m_SystemID = s_nextSystemID++;
+
+			return system;
 		}
 
 		template <class TComp>
 		void releaseSystem()				// Release system of type TComp
 		{
-			SystemMapItr itr = m_SystemMap.find(typeid(TComp));
-			if (itr != m_SystemMap.end())
-				m_SystemMap.erase(itr);
+			SystemListItr itr = m_SystemList.find(typeid(TComp));
+			if (itr != m_SystemList.end())
+				m_SystemList.erase(itr);
 		}
 		void releaseAllSystems();			// Release all systems in the list
 	public:
@@ -131,11 +141,9 @@ namespace DYE
 		template <class TComp>
 		ISystem* GetSystem() const
 		{
-			SystemMapConstItr itr = m_SystemMap.find(typeid(TComp));
-			if (itr == m_SystemMap.end())
-				return nullptr;
-			else
-				return itr->second.get();
+			auto itr = std::find_if(m_SystemList.begin(), m_SystemList.end(),
+				[](const SystemListPair& element) { return element.first == typeid(TComp); });
+			return (itr == m_SystemList.end()) ? nullptr : *itr;
 		}
 		//==========================================
 		//	setter

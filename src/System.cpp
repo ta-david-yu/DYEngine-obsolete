@@ -1,22 +1,31 @@
 #include <DYEngine\System.h>
 
 #include <cassert>
+#include <algorithm>
 
 namespace DYE
 {
 	void ISystem::registerComponent(IComponent* _pComp)
 	{
-		m_ComponentsList.insert(ComponentMapPair(_pComp->GetInstanceID(), _pComp));
+		m_ComponentsList.push_back(ComponentListPair(_pComp->GetInstanceID(), _pComp));
 		_pComp->m_pSystem = this;
 	}
+
 	void ISystem::unregisterComponent(IComponent* _pComp)
 	{
-		m_ComponentsList.erase(_pComp->GetInstanceID());
+		InstanceID id = _pComp->GetInstanceID();
+		auto itr = std::find_if(m_ComponentsList.begin(), m_ComponentsList.end(),
+			[id](const ComponentListPair& element) { return element.first == id; });
+
+		if (itr != m_ComponentsList.end())
+			m_ComponentsList.erase(itr);
+
 		_pComp->m_pSystem = nullptr;
 	}
 
 
 	SystemManager* SystemManager::s_pInstance = nullptr;
+	std::size_t SystemManager::s_nextSystemID = 0;
 
 	SystemManager* SystemManager::GetInstance()
 	{
@@ -30,7 +39,7 @@ namespace DYE
 
 	void SystemManager::Awake()
 	{
-		for (auto const &sysPair : m_SystemMap)
+		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
 			auto const &sys = sysPair.second;
@@ -41,7 +50,7 @@ namespace DYE
 
 	void SystemManager::Start()
 	{
-		for (auto const &sysPair : m_SystemMap)
+		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
 			auto const &sys = sysPair.second;
@@ -52,7 +61,7 @@ namespace DYE
 
 	void SystemManager::Update()
 	{
-		for (auto const &sysPair : m_SystemMap)
+		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
 			auto const &sys = sysPair.second;
@@ -63,7 +72,7 @@ namespace DYE
 
 	void SystemManager::LateUpdate()
 	{
-		for (auto const &sysPair : m_SystemMap)
+		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
 			auto const &sys = sysPair.second;
@@ -74,6 +83,6 @@ namespace DYE
 
 	void SystemManager::releaseAllSystems()
 	{
-		m_SystemMap.clear();
+		m_SystemList.clear();
 	}
 }
