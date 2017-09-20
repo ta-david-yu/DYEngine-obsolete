@@ -6,6 +6,10 @@
 
 namespace DYE
 {
+	//====================================================================================
+	//	Base: Base class that component and entity are derived from
+	//====================================================================================
+
 	InstanceID Base::s_nextInstantiateID = 0;
 	std::set<Base*> Base::s_instancesSet;
 	std::vector<Base*> Base::s_toBeDestryoedList;

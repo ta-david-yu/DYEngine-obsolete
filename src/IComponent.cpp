@@ -5,6 +5,7 @@ namespace DYE
 	//====================================================================================
 	//	IComponent
 	//====================================================================================
+
 	IComponent::IComponent()
 	{
 
@@ -38,6 +39,7 @@ namespace DYE
 	//====================================================================================
 	//	Transform: Basic component for every entity
 	//====================================================================================
+
 	Transform* Transform::GetParent() const
 	{
 		return m_pParent;
@@ -71,6 +73,7 @@ namespace DYE
 	//====================================================================================
 	//	IReusable: Resuable base class that can be managed by ReusablePool
 	//====================================================================================
+
 	void IReusableComponent::setInUse(bool _set)
 	{
 		m_IsInUse = _set;
@@ -99,6 +102,7 @@ namespace DYE
 	//====================================================================================
 	//	ReusablePool: Reusable Entity Management
 	//====================================================================================
+
 	void ReusablePool::ResizePool(std::size_t _size)
 	{
 		int diff = _size - m_MaxSize;

@@ -9,6 +9,8 @@
 #include <memory>
 #include <string>
 
+#define DEFAULT_NAME ""
+
 namespace DYE
 {
 	class Base;
@@ -16,12 +18,14 @@ namespace DYE
 	class Transform;
 	class ISystem;
 	class SystemManager;
+	class Scene;
 
 	//====================================================================================
 	//	Entity: Base Entity class as game object
 	//====================================================================================
 	class Entity : public Base
 	{
+		friend Scene;
 	public:
 		typedef std::multimap<std::type_index, std::unique_ptr<IComponent>> ComponentMap;		// TO DO: swap to vector (since map is overhead on cache)
 		typedef ComponentMap::iterator ComponentMapItr;
@@ -31,8 +35,9 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
+		Scene* m_pScene;
+		Transform* m_pTransform;
 		ComponentMap m_Components;
-		Transform* m_Transform;
 		//==========================================
 		//	flag
 		//==========================================
@@ -88,8 +93,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		Entity();							// Initialize with a tranform component
-		Entity(const std::string& _name);
+		Entity(Scene* _scene = nullptr, const std::string& _name = DEFAULT_NAME);						// Initialize with a tranform component
 		~Entity();
 	};
 }

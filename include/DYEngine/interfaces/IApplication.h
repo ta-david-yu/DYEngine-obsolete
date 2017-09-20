@@ -4,13 +4,24 @@
 
 namespace DYE
 {
+	class Core;
+
 	class IApplication
 	{
 	public:
-		IApplication();
-		~IApplication();
+		//==========================================
+		//	memeber/variable
+		//==========================================
+	protected:
+		Core* m_pCore;
+		//==========================================
+		//	flag
+		//==========================================
 
-		virtual void Run();
+		//==========================================
+		//	procedure
+		//==========================================
+		virtual void Run();								// init -> gameLoop(createScene -> Core->Init) -> release
 
 	protected:
 		void init();
@@ -18,9 +29,24 @@ namespace DYE
 		void release();
 
 		virtual void createScene() = 0;		// setup scene
+		//==========================================
+		//	method
+		//==========================================
 
-	private:
+		//==========================================
+		//	getter
+		//==========================================
 
+		//==========================================
+		//	setter
+		//==========================================
+
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+	public:
+		IApplication();
+		~IApplication();
 	};
 
 	class BaseApplication : public IApplication
