@@ -1,10 +1,11 @@
 #include <DYEngine\Main.h>
 
 #include <iostream>
+#include <cassert>
 
 using namespace DYE;
 
-int main()
+void test()
 {
 	Scene* scene00 = new Scene();
 	Entity* ent00 = scene00->CreateEntity("Obj00");
@@ -12,28 +13,18 @@ int main()
 	ReusablePool* pool = dynamic_cast<ReusablePool*>(comp00);
 	pool->Init();
 
-	if (SYSTEM_MGR->HasSystem<Transform>())
-		printf("HAS TRANS\n");
-	else
-		printf("NO TRANS\n");
+	assert(SYSTEM_MGR->HasSystem<ReusablePool>());
 
-	if (SYSTEM_MGR->HasSystem<DummyComponent>())
-		printf("HAS TRANS\n");
-	else
-		printf("NO TRANS\n");
+	assert(SYSTEM_MGR->HasSystem<Transform>());
 
-	if (comp00->GetComponent<Transform>() != nullptr)
-		printf("HAS TRANS\n");
-	else
-		printf("NO TRANS\n");
-	
-	std::cout << comp00->GetTransform()->GetName() << std::endl;
+	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
 
-	if (ent00->GetTransform() != comp00->GetTransform())
-		printf("is not equal\n");
-	else
-		printf("is equal\n");
+	assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
+}
 
+int main()
+{
+	test();
 	system("PAUSE");
 	return 0;
 }
