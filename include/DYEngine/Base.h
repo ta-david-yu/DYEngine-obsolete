@@ -35,9 +35,9 @@ namespace DYE
 		static std::set<Base*> s_instancesSet;
 		static std::vector<Base*> s_toBeDestryoedList;
 
+		bool m_IsToBeDestroyed = false;
 		InstanceID m_InstanceID;
 		std::string m_Name;
-		bool m_IsToBeDestroyed = false;
 	public:
 		//==========================================
 		//	procedure

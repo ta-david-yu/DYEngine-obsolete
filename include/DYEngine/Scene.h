@@ -35,6 +35,7 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	public:
 		Entity* CreateEntity();
 		Entity* CreateEntity(const std::string& _name);
 		//==========================================

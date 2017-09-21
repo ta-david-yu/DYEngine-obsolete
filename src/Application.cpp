@@ -2,5 +2,8 @@
 
 namespace DYE
 {
-
+	void IApplication::init()
+	{
+		m_pCore = new Core();
+	}
 }

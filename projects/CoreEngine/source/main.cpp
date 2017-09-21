@@ -6,10 +6,11 @@ using namespace DYE;
 
 int main()
 {
-	Entity ent;
-	Entity ent1;
-	ent.SetName("Obj8");
-	IComponent* comp = ent.AddComponent<DummyComponent>();
+	Scene* scene00 = new Scene();
+	Entity* ent00 = scene00->CreateEntity("Obj00");
+	IComponent* comp00 = ent00->AddComponent<ReusablePool>();
+	ReusablePool* pool = dynamic_cast<ReusablePool*>(comp00);
+	pool->Init();
 
 	if (SYSTEM_MGR->HasSystem<Transform>())
 		printf("HAS TRANS\n");
@@ -21,15 +22,16 @@ int main()
 	else
 		printf("NO TRANS\n");
 
-	if (comp->GetComponent<DYE::Transform>() != nullptr)
-		printf("PUS\n");
+	if (comp00->GetComponent<Transform>() != nullptr)
+		printf("HAS TRANS\n");
+	else
+		printf("NO TRANS\n");
 	
-	std::cout << comp->GetTransform()->GetName() << std::endl;
+	std::cout << comp00->GetTransform()->GetName() << std::endl;
 
-	if (ent.GetTransform() != ent1.GetTransform())
+	if (ent00->GetTransform() != comp00->GetTransform())
 		printf("is not equal\n");
-
-	if (ent1.GetTransform() == comp->GetTransform())
+	else
 		printf("is equal\n");
 
 	system("PAUSE");

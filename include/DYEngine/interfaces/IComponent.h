@@ -156,7 +156,6 @@ namespace DYE
 		std::size_t m_MaxSize = 32;
 		std::size_t m_IncrementSize = 4;
 		std::vector<IReusableComponent*> m_Pool;
-	public:
 		//==========================================
 		//	memeber/variable
 		//==========================================
@@ -164,11 +163,15 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-		virtual void Init(std::size_t _initSize = 32, std::size_t _initIncre = 4) 
+	public:
+		virtual void Init()
+		{
+			Init(32, 4);
+		}
+		virtual void Init(std::size_t _initSize, std::size_t _initIncre) 
 		{ 
 			m_MaxSize = _initSize;
 			m_IncrementSize = _initIncre;
-
 		}
 		virtual void Start() { expandPool(m_MaxSize); }
 		virtual void Update() {}
