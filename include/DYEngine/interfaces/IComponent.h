@@ -27,7 +27,6 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		std::vector<int> tst_vector;
 	private:
 		ISystem* m_pSystem;
 	protected:

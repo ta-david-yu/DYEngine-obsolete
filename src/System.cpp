@@ -61,7 +61,6 @@ namespace DYE
 
 	void SystemManager::Update()
 	{
-		printf("UPDATE\n");
 		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
