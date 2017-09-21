@@ -58,8 +58,8 @@ namespace DYE
 		//==========================================
 	private:
 		void release() override;
-	private:
-		using Base::SetName;								// Move to private so the name cant be changed
+	public:
+		virtual void SetName(const std::string& _name);
 	public:
 		void AttachTo(Entity* _pEnt) { m_pEntity = _pEnt; }
 		//==========================================
@@ -67,7 +67,7 @@ namespace DYE
 		//==========================================
 		Entity* GetEntity() const;
 		Transform* GetTransform() const;
-		std::string GetName() const;
+		virtual std::string GetName() const;
 		template <class TComp>
 		TComp* GetComponent() const 
 		{ 

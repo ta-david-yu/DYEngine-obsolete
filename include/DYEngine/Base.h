@@ -66,15 +66,16 @@ namespace DYE
 		//	getter
 		//==========================================
 		int GetInstanceID() const { return m_InstanceID; }
-		std::string GetName() const { return m_Name; }
+		virtual std::string GetName() const { return m_Name; }
 
 		//==========================================
 		//	setter
 		//==========================================
-		void SetName(const std::string& _name) { m_Name = _name; }
+		virtual void SetName(const std::string& _name) { m_Name = _name; }
 		//==========================================
 		//	opeartor
 		//==========================================
+	public:
 		inline bool operator==(const Base& other) const
 		{
 			return (other.m_InstanceID == this->m_InstanceID);

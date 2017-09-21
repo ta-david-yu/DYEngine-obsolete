@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 
-#define DEFAULT_NAME ""
+#define DEFAULT_NAME "ENTITY_NAME"
 
 namespace DYE
 {

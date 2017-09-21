@@ -8,7 +8,7 @@ using namespace DYE;
 void test()
 {
 	Scene* scene00 = new Scene();
-	Entity* ent00 = scene00->CreateEntity("Obj00");
+	Entity* ent00 = scene00->CreateEntity();
 	IComponent* comp00 = ent00->AddComponent<ReusablePool>();
 	ReusablePool* pool = dynamic_cast<ReusablePool*>(comp00);
 	pool->Init();
@@ -20,6 +20,22 @@ void test()
 	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
 
 	assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
+
+	ent00->SetName("Obj00_v1");
+	assert(comp00->GetName() == "Obj00_v1");
+	assert(ent00->GetName() == "Obj00_v1");
+
+	comp00->SetName("Obj00_v2");
+	assert(comp00->GetName() == "Obj00_v2");
+	assert(ent00->GetName() == "Obj00_v2");
+
+	ent00->SetName("Obj00_v3");
+	assert(comp00->GetName() == "Obj00_v3");
+	assert(ent00->GetName() == "Obj00_v3");
+
+	comp00->SetName("Obj00_v4");
+	assert(comp00->GetName() == "Obj00_v4");
+	assert(ent00->GetName() == "Obj00_v4");
 
 	SYSTEM_MGR->Awake();
 	SYSTEM_MGR->Start();

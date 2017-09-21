@@ -31,6 +31,11 @@ namespace DYE
 		return m_pEntity->GetName(); 
 	}
 
+	void IComponent::SetName(const std::string& _name)
+	{
+		m_pEntity->SetName(_name);
+	}
+
 	void IComponent::release()						// called by  (Destroy Loop)
 	{
 		m_pEntity->removeComponent(GetInstanceID());
