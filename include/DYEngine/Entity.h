@@ -25,11 +25,13 @@ namespace DYE
 	//====================================================================================
 	class Entity : public Base
 	{
+		friend IComponent;
 		friend Scene;
 	public:
-		typedef std::multimap<std::type_index, std::unique_ptr<IComponent>> ComponentMap;		// TO DO: swap to vector (since map is overhead on cache)
-		typedef ComponentMap::iterator ComponentMapItr;
-		typedef ComponentMap::const_iterator ComponentMapConstItr;
+		typedef std::pair<InstanceID, std::unique_ptr<IComponent>> ComponentListPair;
+		typedef std::vector<ComponentListPair> ComponentList;
+		typedef ComponentList::iterator ComponentItr;
+		typedef ComponentList::const_iterator ComponentConstItr;
 
 	protected:
 		//==========================================
@@ -37,7 +39,7 @@ namespace DYE
 		//==========================================
 		Scene* m_pScene;
 		Transform* m_pTransform;
-		ComponentMap m_Components;
+		ComponentList m_Components;
 		//==========================================
 		//	flag
 		//==========================================
@@ -50,6 +52,9 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	private:
+		void removeComponent(InstanceID _id);				// called by component release (Destroy)
+	public:
 		template <class TComp>
 		TComp* AddComponent()
 		{
@@ -64,7 +69,9 @@ namespace DYE
 
 			// Move unique component ptr to object list
 			std::type_index typeId = typeid(TComp);
-			m_Components.insert( std::pair<std::type_index, std::unique_ptr<TComp>>(typeId, std::move(uniPtr)) );
+			
+			m_Components.push_back(ComponentListPair(ptr->GetInstanceID(), std::move(uniPtr)));
+			//m_Components.insert( std::pair<std::type_index, std::unique_ptr<TComp>>(typeId, std::move(uniPtr)) );
 
 			return ptr;
 		}
@@ -77,13 +84,15 @@ namespace DYE
 		Transform* GetTransform() const;
 
 		template <class TComp>
-		TComp* GetComponent() const										// TO DO: use dynamic cast
+		TComp* GetComponent() const
 		{
-			ComponentMapConstItr itr = m_Components.find(typeid(TComp));
-			if (itr == m_Components.end())
-				return nullptr;
-			else
-				return dynamic_cast<TComp*>( itr->second.get() );
+			for (auto const& comp : m_Components)
+			{
+				TComp* _ret = dynamic_cast<TComp*>(comp.second.get());
+				if (_ret != nullptr)
+					return _ret;
+			}
+			return nullptr;
 		}
 		//==========================================
 		//	setter

@@ -20,6 +20,16 @@ void test()
 	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
 
 	assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
+
+	SYSTEM_MGR->Awake();
+	SYSTEM_MGR->Start();
+
+	while (1)
+	{
+		SYSTEM_MGR->Update();
+		SYSTEM_MGR->LateUpdate();
+		SYSTEM_MGR->FixedUpdate();
+	}
 }
 
 int main()

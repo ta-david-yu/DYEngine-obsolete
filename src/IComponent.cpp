@@ -31,9 +31,9 @@ namespace DYE
 		return m_pEntity->GetName(); 
 	}
 
-	void IComponent::release()						// TO DO: destroy from object (erased from map)
+	void IComponent::release()						// called by  (Destroy Loop)
 	{
-
+		m_pEntity->removeComponent(GetInstanceID());
 	}
 
 	//====================================================================================

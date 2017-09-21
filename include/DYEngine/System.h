@@ -46,14 +46,14 @@ namespace DYE
 		virtual void Start() {}
 		virtual void Update() {}
 		virtual void LateUpdate() {}
+		virtual void FixedUpdate() {}
 		//==========================================
 		//	method
 		//==========================================
 	private:
-		void registerComponent(IComponent* _pComp);
-		void unregisterComponent(IComponent* _pComp);
-	protected:
-	public: // temp TO DO:
+		void registerComponent(IComponent* _pComp);			// called by entity addComponent, to register component pointer to the System
+		void unregisterComponent(IComponent* _pComp);		// called by component destructor, to unregister component pointer in the System
+	public:
 		//==========================================
 		//	constructor/destructor
 		//==========================================
@@ -91,7 +91,7 @@ namespace DYE
 		virtual void Update();
 		virtual void LateUpdate();
 
-		virtual void FixedUpdate() {}			// TO DO: to be implement
+		virtual void FixedUpdate();
 
 		//==========================================
 		//	method

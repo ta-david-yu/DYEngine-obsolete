@@ -27,6 +27,7 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
+		std::vector<int> tst_vector;
 	private:
 		ISystem* m_pSystem;
 	protected:
@@ -56,7 +57,7 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
-	protected:
+	private:
 		void release() override;
 	private:
 		using Base::SetName;								// Move to private so the name cant be changed

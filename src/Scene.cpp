@@ -36,6 +36,18 @@ namespace DYE
 		return m_SceneName;
 	}
 
+	void Scene::removeEntity(InstanceID _id)
+	{
+		auto itr = std::find_if(m_EntityList.begin(), m_EntityList.end(), 
+			[_id](const EntityListPair& element) { return element.first == _id; });
+
+		if (itr != m_EntityList.end())
+		{
+			itr->second.reset();		// release entity
+			m_EntityList.erase(itr);	// erase entry
+		}
+	}
+
 	Scene::Scene()
 	{
 

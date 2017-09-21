@@ -61,6 +61,7 @@ namespace DYE
 
 	void SystemManager::Update()
 	{
+		printf("UPDATE\n");
 		for (auto const &sysPair : m_SystemList)
 		{
 			auto const &id = sysPair.first;
@@ -78,6 +79,17 @@ namespace DYE
 			auto const &sys = sysPair.second;
 
 			sys->LateUpdate();
+		}
+	}
+
+	void SystemManager::FixedUpdate()
+	{
+		for (auto const &sysPair : m_SystemList)
+		{
+			auto const &id = sysPair.first;
+			auto const &sys = sysPair.second;
+
+			sys->FixedUpdate();
 		}
 	}
 

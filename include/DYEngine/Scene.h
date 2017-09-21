@@ -14,6 +14,8 @@ namespace DYE
 	//====================================================================================
 	class Scene
 	{
+		friend class Entity;
+
 		typedef std::pair<InstanceID, std::unique_ptr<Entity>> EntityListPair;
 		typedef std::vector<EntityListPair> EntityList;
 
@@ -35,6 +37,8 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	private:
+		void removeEntity(InstanceID _id);
 	public:
 		Entity* CreateEntity();
 		Entity* CreateEntity(const std::string& _name);
