@@ -45,5 +45,8 @@
     <ClCompile Include="..\..\src\Scene.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\SpriteComponent.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

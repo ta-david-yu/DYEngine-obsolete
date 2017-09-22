@@ -1,6 +1,7 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\interfaces\IComponent.h>
+#include <DYEngine\Entity.h>
 
 #include <vector>
 #include <list>

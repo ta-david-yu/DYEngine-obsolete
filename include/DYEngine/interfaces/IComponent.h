@@ -1,6 +1,7 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\Base.h>
+#include <DYEngine\Entity.h>
 
 #include <vector>
 #include <map>
@@ -40,7 +41,7 @@ namespace DYE
 		//	procedure
 		//==========================================
 		// Must be call after creation, to be hide
-		virtual void Init() = 0;
+		virtual void Init() = 0;					// used to load assets
 
 		// Call by System
 		// TO DO: reimplement

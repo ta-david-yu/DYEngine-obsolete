@@ -1,12 +1,15 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\Scene.h>
+#include <DYEngine\interfaces\IApplication.h>
 
 #define CORE Core::GetInstance()
 
 namespace DYE
 {
+	class Scene;
 	class IApplication;
+
 	//====================================================================================
 	//	Core: core class for managing scenes and systems
 	//====================================================================================

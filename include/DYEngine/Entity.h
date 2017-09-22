@@ -1,6 +1,9 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\Base.h>
+#include <DYEngine\interfaces\IComponent.h>
+#include <DYEngine\System.h>
+#include <DYEngine\Scene.h>
 
 #include <vector>
 #include <map>

@@ -37,6 +37,8 @@ void test()
 	assert(comp00->GetName() == "Obj00_v4");
 	assert(ent00->GetName() == "Obj00_v4");
 
+	printf("test passed!");
+
 	SYSTEM_MGR->Awake();
 	SYSTEM_MGR->Start();
 

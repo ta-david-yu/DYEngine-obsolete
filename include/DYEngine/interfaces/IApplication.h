@@ -51,9 +51,10 @@ namespace DYE
 
 	class BaseApplication : public IApplication
 	{
+		// TO DO:
 	public:
-		BaseApplication();
-		~BaseApplication();
+		BaseApplication() {}
+		~BaseApplication() {}
 
 	private:
 

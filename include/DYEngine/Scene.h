@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\Entity.h>
 
 #include <vector>
 #include <string>
@@ -8,6 +8,8 @@
 
 namespace DYE
 {
+	class Entity;
+
 	typedef unsigned int SceneID;
 	//====================================================================================
 	//	Scene: managing objects
