@@ -9,7 +9,7 @@ namespace DYE
 {
 	class Base;
 
-	typedef int InstanceID;
+	typedef unsigned int InstanceID;
 
 	//====================================================================================
 	//	NonCopyable: Restrict copy constructor and assign operator
