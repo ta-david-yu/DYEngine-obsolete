@@ -14,9 +14,8 @@ namespace DYE
 	std::set<Base*> Base::s_instancesSet;
 	std::vector<Base*> Base::s_toBeDestryoedList;
 
-	Base::Base()
+	Base::Base() : m_InstanceID(s_nextInstantiateID++)
 	{
-		m_InstanceID = s_nextInstantiateID++;
 		s_instancesSet.insert(this);
 	}
 
