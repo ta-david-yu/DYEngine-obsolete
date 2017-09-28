@@ -2,6 +2,7 @@
 
 #include <DYEngine\Base.h>
 #include <DYEngine\Entity.h>
+#include <DYEngine\utilities\Vector.h>
 
 #include <vector>
 #include <map>
@@ -90,10 +91,12 @@ namespace DYE
 	//====================================================================================
 	class Transform : public IComponent
 	{
-		// TO DO: add pos, rot...
 		//==========================================
 		//	memeber/variable
 		//==========================================
+		Vector3f m_Position;
+		Vector3f m_Scale;
+		Quaternion m_Rotation;
 	private:
 		Transform* m_pParent = nullptr;
 		std::list<Transform*> m_ChildrenList;
@@ -119,10 +122,19 @@ namespace DYE
 		//==========================================
 	public:
 		Transform* GetParent() const;
+		Vector3f GetPosition() const;
+		Quaternion GetRotation() const;
+		Vector3f GetScale() const;
+		Vector3f Up() const;
+		Vector3f Right() const;
+		Vector3f Forward() const;
 		//==========================================
 		//	setter
 		//==========================================
 		void SetParent(Transform* _parent);
+		void SetPosition(const Vector3f& _vec);
+		void SetRotation(const Quaternion& _vec);
+		void SetScale(const Vector3f& _vec);
 		//==========================================
 		//	constructor/destructor
 		//==========================================

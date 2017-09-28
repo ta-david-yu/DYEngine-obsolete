@@ -37,17 +37,35 @@ void test()
 	assert(comp00->GetName() == "Obj00_v4");
 	assert(ent00->GetName() == "Obj00_v4");
 
-	printf("test passed!");
+	printf("test passed!\n");
 
 	SYSTEM_MGR->Awake();
 	SYSTEM_MGR->Start();
 
+	Transform* trans = ent00->GetTransform();
+	trans->SetPosition(Vector3f(0, 1876, 0));
+	Vector3f pos = trans->GetPosition();
+	printf("POS: %f %f %f\n", pos.x(), pos.y(), pos.z());
+
+	/*
+	Resource<int>* intRrc = static_cast<Resource<int>*>(RESOURCE_MGR->Load<int>("", 0, nullptr));
+	int* IntPtr = intRrc->GetValue();
+	assert((*IntPtr) == 0);
+	(*IntPtr) = 20;
+	assert((*IntPtr) == 20);
+	assert( *intRrc->GetValue() == 20);
+	*/
+	Resource<Mesh>* RMesh = RESOURCE_MGR->Load<Mesh>("", 0, nullptr);
+	Mesh* mesh = RMesh->GetValue();
+	
+	
+/*
 	while (1)
 	{
 		SYSTEM_MGR->Update();
 		SYSTEM_MGR->LateUpdate();
 		SYSTEM_MGR->FixedUpdate();
-	}
+	}*/
 }
 
 int main()

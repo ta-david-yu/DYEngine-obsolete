@@ -8,7 +8,7 @@ namespace DYE
 	class Base;
 	class IComponent;
 
-	class SpriteComponent : public IComponent
+	class Sprite : public IComponent
 	{		
 		// TO DO:
 		//==========================================
@@ -44,8 +44,8 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		SpriteComponent();
-		~SpriteComponent();
+		Sprite();
+		~Sprite();
 		
 	};
 }

@@ -1,7 +1,9 @@
 #pragma once
 
-#include <DYEngine\Base.h>
+#include <DYEngine\Utility.h>
+#include <DYEngine\Resource.h>
 #include <DYEngine\Time.h>
+#include <DYEngine\Base.h>
 #include <DYEngine\Interface.h>
 #include <DYEngine\System.h>
 #include <DYEngine\Entity.h>

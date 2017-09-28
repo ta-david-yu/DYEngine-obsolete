@@ -50,6 +50,36 @@ namespace DYE
 		return m_pParent;
 	}
 
+	Vector3f Transform::GetPosition() const
+	{
+		return m_Position;
+	}
+
+	Quaternion Transform::GetRotation() const
+	{
+		return m_Rotation;
+	}
+
+	Vector3f Transform::GetScale() const
+	{
+		return m_Scale;
+	}
+
+	Vector3f Transform::Up() const
+	{
+		return m_Rotation.operator*(Vector3f::UnitY());
+	}
+
+	Vector3f Transform::Right() const
+	{
+		return m_Rotation.operator*(Vector3f::UnitX());
+	}
+
+	Vector3f Transform::Forward() const
+	{
+		return m_Rotation.operator*(Vector3f::UnitZ());
+	}
+
 	void Transform::SetParent(Transform* _parent)
 	{
 		if (m_pParent != nullptr)
@@ -63,6 +93,21 @@ namespace DYE
 		{
 			m_pParent->addChildren(this);
 		}
+	}
+
+	void Transform::SetPosition(const Vector3f& _vec)
+	{
+		m_Position = _vec;
+	}
+
+	void Transform::SetRotation(const Quaternion& _vec)
+	{
+		m_Rotation = _vec;
+	}
+
+	void Transform::SetScale(const Vector3f& _vec)
+	{
+		m_Scale = _vec;
 	}
 
 	void Transform::removeChildren(Transform* _child)
