@@ -58,6 +58,9 @@ void test()
 	Resource<Mesh>* RMesh = RESOURCE_MGR->Load<Mesh>("", 0, nullptr);
 	Mesh* mesh = RMesh->GetValue();
 	
+	std::size_t  size = sizeof(Vector3f);
+	printf("%d\n", size);
+	
 	
 /*
 	while (1)
