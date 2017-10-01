@@ -57,5 +57,11 @@
     <ClCompile Include="..\..\src\Mesh.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Uniform.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Shader.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

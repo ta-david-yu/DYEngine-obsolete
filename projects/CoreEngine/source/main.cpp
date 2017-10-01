@@ -59,7 +59,7 @@ void test()
 	Mesh* mesh = RMesh->GetValue();
 	
 	std::size_t  size = sizeof(Vector3f);
-	printf("%d\n", size);
+	printf("Vector3 Size: %d\n", size);
 	
 	
 /*

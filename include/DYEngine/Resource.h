@@ -32,6 +32,7 @@ namespace DYE
 	{
 		friend class ResourceBase;
 	protected:
+		// TO DO: check if file exists
 		virtual void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) = 0;
 	};
 
@@ -167,14 +168,6 @@ namespace DYE
 	private:
 
 		//==========================================
-		//	flag
-		//==========================================
-
-		//==========================================
-		//	procedure
-		//==========================================
-
-		//==========================================
 		//	method
 		//==========================================
 
@@ -191,6 +184,8 @@ namespace DYE
 		//==========================================
 	};
 
+	// TO DO: Resource specialization (Text, Material, Mesh, Shader, Texture)
+	// Manager keeps seperate list
 	template <class T>
 	Resource<T>* ResourceManager::Load(const std::string& filename, int argc, void *args)
 	{

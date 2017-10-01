@@ -2,6 +2,7 @@
 
 #include <DYEngine\Resource.h>
 #include <DYEngine\Utility.h>
+#include <DYEngine\graphics\RenderUnit.h>
 
 namespace DYE
 {
@@ -11,6 +12,7 @@ namespace DYE
 	class Mesh : public IResourceValue
 	{
 		friend class Resource<Mesh>;
+		friend struct RenderUnit;
 		//==========================================
 		//	memeber/variable
 		//==========================================

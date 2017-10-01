@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
 	<order value="1000"/>
-	<vert>
-		// type is defined by shader
+	<shader>
+		<attr />
+		
+		// a program may contain a vert, geom and frag shaders
+		<vert name="vert.vs"/>
+		<geom name="geom.gs"/>
+		<frag name="frag.fs"/>
+		
+		// set each uniform value
 		<uniform name="aFloat" type="float" value="1"/>
 		<uniform name="aVec4" type="vec4" value="1 1 1 1"/>
 		<uniform name="aVec3" type="vec3" value="1 1 1"/>
 		<uniform name="aVec2" type="vec2" value="1 1"/>
 		<uniform name="aTex2d" type="tex2d" value="texture.png"/>
 		<uniform name="aMat4x4" type="mat4x4" value="1"/>
-		<shader name="vert.shader"/>
-	</vert>
-	<frag>
-	</frag>
+		
+	</shader>
 </material>
+
+every <RenderUnit> is composed of one <Material> and one <Mesh>.
+
+each Render has one <Material> and one <Mesh>
+
+For SpriteRenderer, <Material> is a Texture2D of rect, mesh is also a rect.
+
+<Material> has a shader program, Material has a list of Uniform for shaders.
+
+read Material 
+-> load ShaderProgram(Two shader) 
+-> create Uniforms from Material file 
+-> attach Uniforms to ShaderProgram (get location from program)
+
+each render Loop
+-> RenderUnit
+	-> Mesh
+		-> Bind VBO, VAO, ELEMENT
+	-> Material
+		-> Bind ShaderProgram
+		-> Bind Uniform
