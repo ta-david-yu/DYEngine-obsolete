@@ -44,7 +44,8 @@ namespace DYE
 		void Init(const std::string& filename, ShaderType type);
 	private:
 		void createShader();
-		void destroyShader();
+	public:
+		void DestroyShader();	// called by program after being linked
 	private:
 		std::string loadSource(const std::string& filename);
 		void compileShaderFromSource(const std::string& source);

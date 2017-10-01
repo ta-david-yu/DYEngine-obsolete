@@ -37,7 +37,7 @@ namespace DYE
 		}
 	}
 
-	void Shader::destroyShader()
+	void Shader::DestroyShader()
 	{
 		glDeleteShader(m_ShaderID);
 	}
@@ -92,7 +92,7 @@ namespace DYE
 
 	Shader::~Shader()
 	{
-		destroyShader();
+
 	}
 
 
@@ -145,6 +145,7 @@ namespace DYE
 
 	void ShaderProgram::linkShaders()
 	{
+		// link shader to program
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{
 			Shader* shader = m_Shaders[i];
@@ -153,6 +154,14 @@ namespace DYE
 		}
 
 		glLinkProgram(m_ProgramID);
+
+		// release shader
+		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
+		{
+			Shader* shader = m_Shaders[i];
+			if (shader != nullptr)
+				shader->DestroyShader();
+		}
 	}
 
 	void ShaderProgram::destroyShaderProgram()
