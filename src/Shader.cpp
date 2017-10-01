@@ -166,6 +166,13 @@ namespace DYE
 
 	void ShaderProgram::destroyShaderProgram()
 	{
+		// ensure this program is not being used before deletion
+		if (GetCurrentShaderProgram() == this)
+		{
+			s_pCurrentShaderProgram = nullptr;
+			glUseProgram(0);
+		}
+
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{
 			Shader* shader = m_Shaders[i];
