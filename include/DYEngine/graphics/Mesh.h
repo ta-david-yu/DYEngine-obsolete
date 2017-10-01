@@ -1,6 +1,7 @@
 #pragma once
 
 #include <DYEngine\Resource.h>
+#include <DYEngine\Utility.h>
 
 namespace DYE
 {
@@ -14,13 +15,15 @@ namespace DYE
 		//	memeber/variable
 		//==========================================
 	protected:
+		std::vector<Vector3f> m_Vertices;
+		std::vector<Vector3f> m_Normals;
+		std::vector<Vector3f> m_Colors;
+		std::vector<Vector2f> m_UVCoords;
+		std::vector<uint32_t> m_Triangles;
+	protected:
 		void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override; // TO DO:
 		//==========================================
 		//	flag
-		//==========================================
-
-		//==========================================
-		//	procedure
 		//==========================================
 
 		//==========================================

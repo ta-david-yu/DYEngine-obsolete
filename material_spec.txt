@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material>
+	<order value="1000"/>
+	<vert>
+		// type is defined by shader
+		<uniform name="aFloat" type="float" value="1"/>
+		<uniform name="aVec4" type="vec4" value="1 1 1 1"/>
+		<uniform name="aVec3" type="vec3" value="1 1 1"/>
+		<uniform name="aVec2" type="vec2" value="1 1"/>
+		<uniform name="aTex2d" type="tex2d" value="texture.png"/>
+		<uniform name="aMat4x4" type="mat4x4" value="1"/>
+		<shader name="vert.shader"/>
+	</vert>
+	<frag>
+	</frag>
+</material>
