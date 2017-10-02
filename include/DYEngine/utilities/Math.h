@@ -57,6 +57,10 @@ namespace DYE
 
 		static Vector2f Zero();
 
+		static Vector2f Lerp(const Vector2f& a, const Vector2f& b, const float t);
+		static Vector2f Scale(Vector2f& lhs, Vector2f& rhs);
+		static float Dot(const Vector2f& lhs, const Vector2f& rhs);
+
 		//==========================================
 		//	constructor
 		//==========================================
@@ -108,6 +112,11 @@ namespace DYE
 		static Vector3f UnitY();
 
 		static Vector3f UnitZ();
+
+		static Vector3f Lerp(const Vector3f& a, const Vector3f& b, const float t);
+		static Vector3f Scale(Vector3f& lhs, Vector3f& rhs);
+		static float Dot(const Vector3f& lhs, const Vector3f& rhs);
+		static Vector3f Cross(const Vector3f& lhs, const Vector3f& rhs);
 
 		//==========================================
 		//	constructor
@@ -165,6 +174,10 @@ namespace DYE
 		static Vector4f UnitZ();
 
 		static Vector4f UnitW();
+
+		static Vector4f Lerp(const Vector4f& a, const Vector4f& b, const float t);
+		static Vector4f Scale(Vector4f& lhs, Vector4f& rhs);
+		static float Dot(const Vector4f& lhs, const Vector4f& rhs);
 
 		//==========================================
 		//	constructor

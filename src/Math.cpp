@@ -68,6 +68,21 @@ namespace DYE
 		return Vector2f(0, 0);
 	}
 
+	Vector2f Vector2f::Lerp(const Vector2f& a, const Vector2f& b, const float t)
+	{
+		return glm::mix(a.main, b.main, t);
+	}
+
+	Vector2f Vector2f::Scale(Vector2f& lhs, Vector2f& rhs)
+	{
+		return Vector2f(lhs.x() * rhs.x(), lhs.y() * rhs.y());
+	}
+
+	float Vector2f::Dot(const Vector2f& lhs, const Vector2f& rhs)
+	{
+		return glm::dot(lhs.main, rhs.main);
+	}
+
 	Vector2f::Vector2f() : main(0, 0) {}
 	Vector2f::Vector2f(float x, float y) : main(x, y) {}
 	Vector2f::Vector2f(const Vector2f& vec) : main(vec.main) {}
@@ -157,6 +172,26 @@ namespace DYE
 	Vector3f Vector3f::UnitZ()
 	{
 		return Vector3f(0, 0, 1);
+	}
+
+	Vector3f Vector3f::Lerp(const Vector3f& a, const Vector3f& b, const float t)
+	{
+		return glm::mix(a.main, b.main, t);
+	}
+
+	Vector3f Vector3f::Scale(Vector3f& lhs, Vector3f& rhs)
+	{
+		return Vector3f(lhs.x() * rhs.x(), lhs.y() * rhs.y(), lhs.z() * rhs.z());
+	}
+
+	float Vector3f::Dot(const Vector3f& lhs, const Vector3f& rhs)
+	{
+		return glm::dot(lhs.main, rhs.main);
+	}
+
+	Vector3f Vector3f::Cross(const Vector3f& lhs, const Vector3f& rhs)
+	{
+		return glm::cross(lhs.main, rhs.main);
 	}
 
 	Vector3f::Vector3f() : main(0, 0, 0) {}
@@ -257,6 +292,21 @@ namespace DYE
 	Vector4f Vector4f::UnitW()
 	{
 		return Vector4f(0, 0, 1, 1);
+	}
+
+	Vector4f Vector4f::Lerp(const Vector4f& a, const Vector4f& b, const float t)
+	{
+		return glm::mix(a.main, b.main, t);
+	}
+
+	Vector4f Vector4f::Scale(Vector4f& lhs, Vector4f& rhs)
+	{
+		return Vector4f(lhs.x() * rhs.x(), lhs.y() * rhs.y(), lhs.z() * rhs.z(), lhs.w() * rhs.w());
+	}
+
+	float Vector4f::Dot(const Vector4f& lhs, const Vector4f& rhs)
+	{
+		return glm::dot(lhs.main, rhs.main);
 	}
 
 	Vector4f::Vector4f() : main(0, 0, 0, 0) {}

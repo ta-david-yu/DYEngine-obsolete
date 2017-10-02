@@ -17,8 +17,8 @@ Global
 		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.Debug|Win32.Build.0 = Debug|Win32
 		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Debug|Win32.ActiveCfg = dll_Debug|Win32
 		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Debug|Win32.Build.0 = dll_Debug|Win32
-		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Release|Win32.ActiveCfg = dll_Debug|Win32
-		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Release|Win32.Build.0 = dll_Debug|Win32
+		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Release|Win32.ActiveCfg = dll_Release|Win32
+		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.dll_Release|Win32.Build.0 = dll_Release|Win32
 		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.Release|Win32.ActiveCfg = Release|Win32
 		{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
