@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Base.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
@@ -62,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\Shader.cpp">
       <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

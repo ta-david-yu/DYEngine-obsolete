@@ -1,5 +1,6 @@
 #include <DYEngine\Base.h>
-#include <DYEngine\Main.h>
+#include <DYEngine\Entity.h>
+#include <DYEngine\interfaces\IComponent.h>
 
 #include <typeinfo>
 #include <typeindex>
@@ -41,7 +42,34 @@ namespace DYE
 
 	Base* Base::Instantiate(const Base* _pOriginal)
 	{
-		printf("TO BE IMPLEMENTED.");
+		const Entity* ent = dynamic_cast<const Entity*>(_pOriginal);
+		if (ent != nullptr)
+		{
+			// is entity, copy entity
+			Scene* scene = ent->m_pScene;
+
+			Entity* newEnt = scene->CreateEntity(ent->GetName());
+			newEnt->copyFrom(ent);
+		}
+		else
+		{
+			const IComponent* comp = dynamic_cast<const IComponent*>(_pOriginal);
+			if (comp != nullptr)
+			{
+				// is component, copy its entity
+				ent = comp->GetEntity();
+				Scene* scene = ent->m_pScene;
+
+				Entity* newEnt = scene->CreateEntity(ent->GetName());
+				newEnt->copyFrom(ent);
+			}
+			else
+			{
+				// TO DO: error log
+				printf("ERROR BASE OBJECT CASTING\n");
+			}
+		}
+
 		return nullptr;
 	}
 

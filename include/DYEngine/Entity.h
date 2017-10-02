@@ -30,6 +30,7 @@ namespace DYE
 	{
 		friend IComponent;
 		friend Scene;
+		friend class Base;
 	public:
 		typedef std::pair<InstanceID, std::unique_ptr<IComponent>> ComponentListPair;
 		typedef std::vector<ComponentListPair> ComponentList;
@@ -43,6 +44,7 @@ namespace DYE
 		Scene* m_pScene;
 		Transform* m_pTransform;
 		ComponentList m_Components;
+		std::unique_ptr<Transform> m_uniqueTransform;
 		//==========================================
 		//	flag
 		//==========================================
@@ -55,6 +57,8 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	protected:
+		virtual void copyFrom(const Entity* other);
 	private:
 		void removeComponent(InstanceID _id);				// called by component release (Destroy)
 	public:
@@ -80,6 +84,7 @@ namespace DYE
 		}
 	protected:
 		void release() override;
+
 		//==========================================
 		//	getter
 		//==========================================
@@ -108,4 +113,18 @@ namespace DYE
 		Entity(Scene* _scene = nullptr, const std::string& _name = DEFAULT_NAME);						// Initialize with a tranform component
 		~Entity();
 	};
+
+	//====================================================================================
+	//	Explicit specialization declaration
+	//====================================================================================
+
+	template <>
+	IComponent* Entity::AddComponent<IComponent>();
+
+	template <>
+	Transform* Entity::AddComponent<Transform>();
+
+	template <>
+	Transform* Entity::GetComponent<Transform>() const;
+
 }

@@ -41,6 +41,11 @@ namespace DYE
 		m_pEntity->removeComponent(GetInstanceID());
 	}
 
+	void IComponent::copyFrom(const IComponent* other)
+	{
+		this->m_IsEnabled = other->m_IsEnabled;
+	}
+
 	//====================================================================================
 	//	Transform: Basic component for every entity
 	//====================================================================================
@@ -118,6 +123,29 @@ namespace DYE
 	void Transform::addChildren(Transform* _child)
 	{
 		m_ChildrenList.push_back(_child);
+	}
+
+	void Transform::copyFrom(const IComponent* other)
+	{
+		IComponent::copyFrom(other);
+		
+		const Transform* otherTrans = dynamic_cast<const Transform*>(other);
+
+		this->m_Position = otherTrans->m_Position;
+		this->m_Rotation = otherTrans->m_Rotation;
+		this->m_Scale = otherTrans->m_Scale;
+
+		this->m_pParent = otherTrans->m_pParent;
+
+		// loop through target entity's children
+		for (const auto& child : otherTrans->m_ChildrenList)
+		{
+			// clone target entity child
+			Entity* cloneChild = dynamic_cast<Entity*>( Instantiate(child) );
+			// set clone's parent to this
+			cloneChild->GetTransform()->SetParent(this);
+		}
+
 	}
 
 	//====================================================================================

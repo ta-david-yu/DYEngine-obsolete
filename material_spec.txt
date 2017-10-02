@@ -35,8 +35,9 @@ read Material
 
 each render Loop
 -> RenderUnit
-	-> Mesh
-		-> Bind VBO, VAO, ELEMENT
 	-> Material
 		-> Bind ShaderProgram
 		-> Bind Uniform
+		-> Setup Render settings (BLEND, ALPHA, STENCIL, DEPTH TEST)
+	-> Mesh
+		-> Bind VBO, VAO, ELEMENT

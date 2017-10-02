@@ -1,7 +1,6 @@
 #pragma once
 
 #include <DYEngine\Scene.h>
-#include <DYEngine\interfaces\IApplication.h>
 
 #define CORE Core::GetInstance()
 

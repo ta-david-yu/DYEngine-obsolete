@@ -37,6 +37,38 @@ void test()
 	assert(comp00->GetName() == "Obj00_v4");
 	assert(ent00->GetName() == "Obj00_v4");
 
+	Vector3f unitX = Vector3f::UnitX();
+	Vector3f unitY = Vector3f::UnitY();
+
+	Vector3f normX = unitX.Normalized();
+	Vector3f normY = unitY.Normalized();
+
+	Vector3f x(1, 0, 0);
+	Vector3f y(0, 1, 0);
+
+	float value = 25;
+	Vector3f bigX(value, 0, 0);
+	Vector3f bigY(0, value, 0);
+	Vector3f bigXY(value, value, 0);
+
+	assert(unitX == normX);
+	assert(unitY == normY);
+	assert(x == normX);
+	assert(y == normY);
+	assert(unitX != normY);
+	assert(unitY != normX);
+	assert(x != normY);
+	assert(y != normX);
+	assert(x == bigX.Normalized());
+	assert(y == bigY.Normalized());
+
+	assert(Math::IsEqual(bigX.Magnitude(), bigY.Magnitude()));
+	assert(bigXY == (bigX + bigY));
+
+	Vector2f x2 = Vector2f::UnitX();
+	Vector2f x2_0 = Vector2f::UnitX();
+	assert(x2 == x2_0);
+
 	printf("test passed!\n");
 
 	SYSTEM_MGR->Awake();
@@ -47,28 +79,11 @@ void test()
 	Vector3f pos = trans->GetPosition();
 	printf("POS: %f %f %f\n", pos.x(), pos.y(), pos.z());
 
-	/*
-	Resource<int>* intRrc = static_cast<Resource<int>*>(RESOURCE_MGR->Load<int>("", 0, nullptr));
-	int* IntPtr = intRrc->GetValue();
-	assert((*IntPtr) == 0);
-	(*IntPtr) = 20;
-	assert((*IntPtr) == 20);
-	assert( *intRrc->GetValue() == 20);
-	*/
 	Resource<Mesh>* RMesh = RESOURCE_MGR->Load<Mesh>("", 0, nullptr);
 	Mesh* mesh = RMesh->GetValue();
 	
 	std::size_t  size = sizeof(Vector3f);
 	printf("Vector3 Size: %d\n", size);
-	
-	
-/*
-	while (1)
-	{
-		SYSTEM_MGR->Update();
-		SYSTEM_MGR->LateUpdate();
-		SYSTEM_MGR->FixedUpdate();
-	}*/
 }
 
 int main()

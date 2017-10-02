@@ -45,6 +45,7 @@ namespace DYE
 	std::string Shader::loadSource(const std::string& filename)
 	{
 		// TO DO: load file
+		return std::string();
 	}
 
 	void Shader::compileShaderFromSource(const std::string& source)

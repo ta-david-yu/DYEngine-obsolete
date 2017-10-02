@@ -2,7 +2,7 @@
 
 #include <DYEngine\Base.h>
 #include <DYEngine\Entity.h>
-#include <DYEngine\utilities\Vector.h>
+#include <DYEngine\utilities\Math.h>
 
 #include <vector>
 #include <map>
@@ -17,6 +17,10 @@ namespace DYE
 	class Entity;
 	class Transform;
 	class ISystem;
+	struct Vector2f;
+	struct Vector3f;
+	struct Vector4f;
+	struct Quaternion;
 
 	//====================================================================================
 	//	IComponent
@@ -60,6 +64,10 @@ namespace DYE
 		//==========================================
 	private:
 		void release() override;
+	protected:
+		// called by instantiate, use to copy data (notice that the component has to be created using add component)
+		// therefore, m_pSystem and m_pEntity are handled. Derived class's copyFrom must call base.copyFrom(IComponent* _other)
+		virtual void copyFrom(const IComponent* _other);		
 	public:
 		virtual void SetName(const std::string& _name);
 	public:
@@ -91,6 +99,7 @@ namespace DYE
 	//====================================================================================
 	class Transform : public IComponent
 	{
+		friend class Entity;
 		//==========================================
 		//	memeber/variable
 		//==========================================
@@ -114,6 +123,8 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	protected:
+		virtual void copyFrom(const IComponent* _other);
 	private:
 		void removeChildren(Transform* _child);
 		void addChildren(Transform* _child);

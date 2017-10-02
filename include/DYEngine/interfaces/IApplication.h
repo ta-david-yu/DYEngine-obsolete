@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine/Main.h>
+#include <DYEngine\Core.h>
 
 namespace DYE
 {
