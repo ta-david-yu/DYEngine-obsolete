@@ -22,7 +22,7 @@ namespace DYE
 
 	void IUniform::AttachToShader(GLuint programID)
 	{
-		// TO DO:
+		// TO DO: get location, program id
 	}
 
 	//====================================================================================

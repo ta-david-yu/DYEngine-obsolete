@@ -2,11 +2,26 @@
 
 #include <type_traits>
 
+#define ACTIVE_SIGN "[@]"
+#define INACTIVE_SIGN "[ ]"
+#define INDIVIDUAL true
+
 namespace DYE
 {
 	//====================================================================================
 	//	Entity: Base Entity class as game object
 	//====================================================================================
+
+	bool Entity::IsActive() const
+	{
+		return GetTransform()->IsEnabled();
+	}
+
+	void Entity::SetActive(bool set)
+	{
+		GetTransform()->m_IsLocalEnabled = set;
+		GetTransform()->m_IsDirtyLocalEnabled = true;
+	}
 
 	Transform* Entity::GetTransform() const
 	{
@@ -33,6 +48,7 @@ namespace DYE
 	Entity::Entity(Scene* _scene, const std::string& _name)
 	{
 		m_pTransform = this->AddComponent<Transform>();
+		m_pTransform->Init();
 		m_pScene = _scene;
 		SetName(_name);
 	}
@@ -50,14 +66,29 @@ namespace DYE
 	std::string Entity::toStringSuccessor(std::string prefix) const
 	{
 		std::string ret;
+		std::string activeSign;
 
-		ret += prefix + "____(" + std::to_string(GetInstanceID()) + ") " + this->GetName() + "\n";
+		if (INDIVIDUAL)
+			activeSign = (GetTransform()->m_IsLocalEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
+		else
+			activeSign = (IsActive()) ? ACTIVE_SIGN : INACTIVE_SIGN;
+
+		ret += activeSign + prefix + "____" + "(" + std::to_string(GetInstanceID()) + ") " + this->GetName() + "\n";
 
 		// print component list
-		ret += prefix + "________(" + std::to_string(this->GetTransform()->GetInstanceID()) + ") " + this->GetTransform()->ToString() + "\n";
+		if (INDIVIDUAL)
+			activeSign = (GetTransform()->m_IsLocalEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
+		else
+			activeSign = (IsActive()) ? ACTIVE_SIGN : INACTIVE_SIGN;
+
+		ret += activeSign + prefix + "________" + "(" + std::to_string(this->GetTransform()->GetInstanceID()) + ") " + this->GetTransform()->ToString() + "\n";
 		for (auto const& comp : this->m_Components)
 		{
-			ret += prefix + "________(" + std::to_string(comp.second->GetInstanceID()) + ") " + comp.second->ToString() + "\n";
+			if (INDIVIDUAL)
+				activeSign = (comp.second->m_IsEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
+			else
+				activeSign = (comp.second->IsEnabled())? ACTIVE_SIGN : INACTIVE_SIGN;
+			ret += activeSign + prefix + "________" + "(" + std::to_string(comp.second->GetInstanceID()) + ") " + comp.second->ToString() + "\n";
 		}
 
 		// print children
@@ -71,8 +102,7 @@ namespace DYE
 
 	void Entity::copyFrom(const Entity* other)
 	{
-		// TO DO: set other states (layers, tags...)
-		this->m_IsActive = other->m_IsActive;					// copy state flag
+		// TO DO: set other states (layers, tags...), (evil)
 		this->GetTransform()->copyFrom(other->GetTransform());	// copy transform state
 		for (auto const& comp : other->m_Components)			// copy component state
 		{
@@ -94,7 +124,7 @@ namespace DYE
 	template <>
 	IComponent* Entity::AddComponent<IComponent>()
 	{
-		// TO DO: error log
+		// TO DO: error log evil
 		printf("ADDING ILLEGAL COMPONENT\n");
 		assert(false);
 		return nullptr;

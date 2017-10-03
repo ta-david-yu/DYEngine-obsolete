@@ -19,6 +19,8 @@ namespace DYE
 	class Entity;
 	class IComponent;
 	class SystemManager;
+	class Transform;
+	class TransformSystem;
 
 	//====================================================================================
 	//	ISystem: manage all components
@@ -43,15 +45,16 @@ namespace DYE
 		//==========================================
 		// Run through each component in the list
 		// TO DO: reimplement
-		virtual void Awake() {}
-		virtual void Start() {}
-		virtual void Update() {}
-		virtual void LateUpdate() {}
-		virtual void FixedUpdate() {}
+		virtual void Awake();
+		virtual void Start();
+		virtual void EarlyUpdate();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void FixedUpdate();
 		//==========================================
 		//	method
 		//==========================================
-	private:
+	protected:
 		void registerComponent(IComponent* _pComp);			// called by entity addComponent, to register component pointer to the System
 		void unregisterComponent(IComponent* _pComp);		// called by component destructor, to unregister component pointer in the System
 	public:
@@ -82,6 +85,12 @@ namespace DYE
 		static std::size_t s_nextSystemID;
 		SystemList m_SystemList;
 
+		//==========================================
+		//	specialized system
+		//==========================================
+		std::unique_ptr<TransformSystem> m_uniqueTransformSystem;
+		TransformSystem* m_pTransformSystem;
+
 	public:
 		static SystemManager* GetInstance();
 		//==========================================
@@ -90,8 +99,8 @@ namespace DYE
 		virtual void Awake();
 		virtual void Start();
 		virtual void Update();
+		virtual void EarlyUpdate();
 		virtual void LateUpdate();
-
 		virtual void FixedUpdate();
 
 		//==========================================
@@ -154,7 +163,50 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		SystemManager() {} // TO DO
+		SystemManager(); // TO DO
 		~SystemManager() {} // TO DO
+	};
+
+	//====================================================================================
+	//	Explicit specialization declaration
+	//====================================================================================
+	template <>
+	void SystemManager::RegisterComponent<Transform>(Transform* _pComp);	// Register a component
+
+	template <>
+	ISystem* SystemManager::addSystem<Transform>();
+
+	template <>
+	bool SystemManager::HasSystem<Transform>() const;
+
+	//====================================================================================
+	//	TransformSystem: 
+	//====================================================================================
+	class TransformSystem : public ISystem
+	{
+		friend class Transform;
+		friend class SystemManager;
+		//==========================================
+		//	memeber/variable
+		//==========================================
+	protected:
+		static Transform* s_pRoot;
+
+	public:
+		//==========================================
+		//	procedure
+		//==========================================
+		virtual void EarlyUpdate();
+
+		//==========================================
+		//	getter/setter
+		//==========================================
+		static Transform* GetRoot();
+	public:
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+		TransformSystem();
+		~TransformSystem();
 	};
 }

@@ -54,7 +54,7 @@ namespace DYE
 
 	bool ResourceManager::Unload(const std::string& filename)
 	{
-		// TO DO: do error handling
+		// TO DO: do file error handling
 		ResourceMapItr itr = m_ResourceMap.find(filename);
 		if (itr != m_ResourceMap.end())
 		{

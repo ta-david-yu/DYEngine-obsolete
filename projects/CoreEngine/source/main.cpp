@@ -109,13 +109,14 @@ void testInstantiate()
 		// prototype
 		Entity* root = scene->CreateEntity("Root");
 		root->GetTransform()->SetPosition(Vector3f(0, 0, 0));
-		root->GetTransform()->SetScale(Vector3f(0, 0, 0));
+		root->GetTransform()->SetLocalScale(Vector3f(0, 0, 0));
 
 		Entity* ent0 = scene->CreateEntity("Nod0");
 		ent0->GetTransform()->SetParent(root->GetTransform());
 		ent0->GetTransform()->SetPosition(Vector3f(1, 1, 1));
-		ent0->GetTransform()->SetScale(Vector3f(0, 90, 0));
+		ent0->GetTransform()->SetLocalScale(Vector3f(0, 90, 0));
 
+		ent0->SetActive(false);
 		/*
 		Entity* ent1 = scene->CreateEntity("Nod1");
 		ent1->GetTransform()->SetParent(ent0->GetTransform());
@@ -127,7 +128,6 @@ void testInstantiate()
 
 		for (int i = 0; i < 4; i++)
 		{
-			printf("%i\n", i);
 			cEnt[i] = dynamic_cast<Entity*>(Base::Instantiate(root));
 			cEnt[i]->GetTransform()->SetParent(ent0->GetTransform());
 		}
@@ -136,6 +136,10 @@ void testInstantiate()
 
 		printf("%s\n", root->ToString());
 
+		SYSTEM_MGR->EarlyUpdate();
+
+		printf("\n%s\n", root->ToString());
+		
 
 	}
 }

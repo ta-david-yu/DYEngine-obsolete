@@ -228,6 +228,16 @@ namespace DYE
 		return glm::normalize(main);
 	}
 
+	Mat4x4 Vector3f::ToTranslateMatrix() const
+	{
+		return glm::translate(main);
+	}
+
+	Mat4x4 Vector3f::ToScaleMatrix() const
+	{
+		return glm::scale(main);
+	}
+
 	std::string Vector3f::ToString() const
 	{
 		return std::string("(" + std::to_string(main.x) + ", " + std::to_string(main.y) + ", " + std::to_string(main.z) + ")");
@@ -322,7 +332,7 @@ namespace DYE
 	Vector4f::Vector4f() : main(0, 0, 0, 0) {}
 	Vector4f::Vector4f(float x, float y, float z, float w) : main(x, y, z, w) {}
 	Vector4f::Vector4f(const Vector4f& vec) : main(vec.main) {}
-	Vector4f::Vector4f(const Vector3f& vec) : main(vec.main.x, vec.main.y, vec.main.z, 0) {}
+	Vector4f::Vector4f(const Vector3f& vec, float w) : main(vec.main.x, vec.main.y, vec.main.z, w) {}
 	Vector4f::Vector4f(const Vector2f& vec) : main(vec.main.x, vec.main.y, 0, 0) {}
 	Vector4f::Vector4f(const glm::vec4& vec) : main(vec) {}
 
@@ -445,6 +455,17 @@ namespace DYE
 		return *this;
 	}
 
+	Mat2x2 Mat2x2::operator*(const Mat2x2& other)
+	{
+		return main * other.main;
+	}
+
+	Vector2f Mat2x2::operator*(const Vector2f& other)
+	{
+		return main * other.main;
+	}
+
+
 	Mat2x2::operator glm::mat2() const
 	{
 		return main;
@@ -506,6 +527,16 @@ namespace DYE
 	{
 		this->main = other.main;
 		return *this;
+	}
+
+	Mat3x3 Mat3x3::operator*(const Mat3x3& other)
+	{
+		return main * other.main;
+	}
+
+	Vector3f Mat3x3::operator*(const Vector3f& other)
+	{
+		return main * other.main;
 	}
 
 	Mat3x3::operator glm::mat3() const
@@ -572,6 +603,16 @@ namespace DYE
 	{
 		this->main = other.main;
 		return *this;
+	}
+
+	Mat4x4 Mat4x4::operator*(const Mat4x4& other)
+	{
+		return main * other.main;
+	}
+
+	Vector4f Mat4x4::operator*(const Vector4f& other)
+	{
+		return main * other.main;
 	}
 
 	Mat4x4::operator glm::mat4() const

@@ -4,6 +4,7 @@
 #include <glm\gtc\quaternion.hpp>
 #include <glm\gtx\quaternion.hpp>
 #include <glm\gtc\epsilon.hpp>
+#include <glm\gtx\transform.hpp>
 
 #include <string>
 
@@ -146,6 +147,8 @@ namespace DYE
 		float Magnitude() const;
 		float SqrMagnitude() const;
 		Vector3f Normalized() const;
+		Mat4x4 ToTranslateMatrix() const;
+		Mat4x4 ToScaleMatrix() const;
 
 		std::string ToString() const;
 
@@ -192,7 +195,7 @@ namespace DYE
 		Vector4f();
 		Vector4f(float x, float y, float z, float w);
 		Vector4f(const Vector4f& vec);
-		Vector4f(const Vector3f& vec);
+		Vector4f(const Vector3f& vec, float w = 0);
 		Vector4f(const Vector2f& vec);
 		Vector4f(const glm::vec4& vec);
 
@@ -265,6 +268,8 @@ namespace DYE
 		float Determinant() const;
 
 		Mat2x2& operator=(const Mat2x2& other);
+		Mat2x2 operator*(const Mat2x2& other);
+		Vector2f operator*(const Vector2f& other);
 
 		operator glm::mat2() const;
 
@@ -313,6 +318,8 @@ namespace DYE
 		float Determinant() const;
 
 		Mat3x3& operator=(const Mat3x3& other);
+		Mat3x3 operator*(const Mat3x3& other);
+		Vector3f operator*(const Vector3f& other);
 
 		operator glm::mat3() const;
 
@@ -362,6 +369,9 @@ namespace DYE
 		float Determinant() const;
 
 		Mat4x4& operator=(const Mat4x4& other);
+		Mat4x4 operator*(const Mat4x4& other);
+		Vector4f operator*(const Vector4f& other);
+
 
 		operator glm::mat4() const;
 

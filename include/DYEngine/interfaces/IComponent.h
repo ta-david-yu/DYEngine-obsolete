@@ -47,12 +47,6 @@ namespace DYE
 	
 		friend class Entity;
 		friend class ISystem;
-		/*
-		virtual std::string ToString() const
-		{
-			using Type = std::remove_pointer_t<decltype(this)>;
-			return std::string(typeid(Type).name());
-		}*/
 
 	public:
 		//==========================================
@@ -77,6 +71,7 @@ namespace DYE
 		// TO DO: reimplement
 		virtual void Awake() {}
 		virtual void Start() {}
+		virtual void EarlyUpdate() {}
 		virtual void Update() = 0;
 		virtual void LateUpdate() {}
 
@@ -92,7 +87,7 @@ namespace DYE
 	protected:
 		// called by instantiate, use to copy data (notice that the component has to be created using add component)
 		// therefore, m_pSystem and m_pEntity are handled. Derived class's copyFrom must call base.copyFrom(IComponent* _other)
-		virtual void copyFrom(const IComponent* _other);		
+		virtual void copyFrom(IComponent* _other);		
 	public:
 		virtual void SetName(const std::string& _name);
 	public:
@@ -103,6 +98,8 @@ namespace DYE
 		Entity* GetEntity() const;
 		Transform* GetTransform() const;
 		virtual std::string GetName() const;
+		virtual bool IsEnabled() const;
+		virtual void SetEnabled(bool set);
 		template <class TComp>
 		TComp* GetComponent() const 
 		{ 
@@ -129,6 +126,7 @@ namespace DYE
 		DYE_COMPONENT_TOSTRING
 
 		friend class Entity;
+		friend class TransformSystem;
 		//==========================================
 		//	memeber/variable
 		//==========================================
@@ -136,25 +134,39 @@ namespace DYE
 		Vector3f m_Position;
 		Vector3f m_Scale;
 		Quaternion m_Rotation;
+
+		Vector3f m_LocalPosition;
+		Vector3f m_LocalScale;
+		Quaternion m_LocalRotation;
+
+		bool m_IsLocalEnabled;
 	private:
 		Transform* m_pParent = nullptr;
 		std::list<Transform*> m_ChildrenList;
 		//==========================================
 		//	flag
 		//==========================================
+		bool m_IsDirtyLocalPosition = false;				// need to be setup after changing attributes
+		bool m_IsDirtyLocalRotation = false;				// need to be setup after changing attributes
+		bool m_IsDirtyLocalScale = false;					// need to be setup after changing attributes
+		bool m_IsDirtyPosition = false;						// need to be setup after changing attributes
+		bool m_IsDirtyRotation = false;						// need to be setup after changing attributes
+
+		bool m_IsDirtyLocalEnabled = false;
 
 		//==========================================
 		//	procedure
 		//==========================================
 	public:
-		virtual void Init() {}
+		virtual void Init();
+		virtual void EarlyUpdate();		// deferred update
 		virtual void Update() {}
 
 		//==========================================
 		//	method
 		//==========================================
 	protected:
-		virtual void copyFrom(const IComponent* _other);
+		virtual void copyFrom(IComponent* _other);
 	private:
 		void removeChildren(Transform* _child);
 		void addChildren(Transform* _child);
@@ -164,27 +176,40 @@ namespace DYE
 		//==========================================
 	public:
 		// TO DO: local, global operation
-		Transform* GetParent() const;
+		Transform* GetParent();
+		const Transform* GetParent() const;
+		Transform* GetRoot();
+
 		Vector3f GetPosition() const;
 		Quaternion GetRotation() const;
 		Vector3f GetScale() const;
+		Vector3f GetLocalPosition() const;
+		Quaternion GetLocalRotation() const;
+		Vector3f GetLocalScale() const;
+		Mat4x4 GetModelMatrix() const;// return a model matrix for an object converting from this space to global space
+
 		Vector3f Up() const;
 		Vector3f Right() const;
 		Vector3f Forward() const;
+	
+		virtual bool IsEnabled() const { return m_IsEnabled; }
 		//==========================================
 		//	setter
 		//==========================================
 		void SetParent(Transform* _parent);
 		void SetPosition(const Vector3f& _vec);
 		void SetRotation(const Quaternion& _vec);
-		void SetScale(const Vector3f& _vec);
+		void SetLocalPosition(const Vector3f& _vec);
+		void SetLocalRotation(const Quaternion& _vec);
+		void SetLocalScale(const Vector3f& _vec);
+
+		virtual void SetEnabled(bool set) const { /* DO NOTHING */ }
 		//==========================================
 		//	constructor/destructor
 		//==========================================
 	public:
-		Transform() : m_pParent(nullptr) {}
+		Transform();
 		~Transform() {}
-
 	};
 
 	//====================================================================================

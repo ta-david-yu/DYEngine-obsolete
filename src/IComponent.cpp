@@ -33,6 +33,22 @@ namespace DYE
 		return m_pEntity->GetName(); 
 	}
 
+	bool IComponent::IsEnabled() const
+	{
+		// check if transform enabled
+		return m_pEntity->IsActive() & m_IsEnabled;
+	}
+
+	void IComponent::SetEnabled(bool set)
+	{
+		this->m_IsEnabled = set;
+
+		if (set)
+			OnEnable();
+		else
+			OnDisable();
+	}
+
 	void IComponent::SetName(const std::string& _name)
 	{
 		m_pEntity->SetName(_name);
@@ -43,7 +59,7 @@ namespace DYE
 		m_pEntity->removeComponent(GetInstanceID());
 	}
 
-	void IComponent::copyFrom(const IComponent* other)
+	void IComponent::copyFrom(IComponent* other)
 	{
 		this->m_IsEnabled = other->m_IsEnabled;
 	}
@@ -51,10 +67,68 @@ namespace DYE
 	//====================================================================================
 	//	Transform: Basic component for every entity
 	//====================================================================================
-
-	Transform* Transform::GetParent() const
+	void Transform::Init()
 	{
-		return m_pParent;
+		m_IsLocalEnabled = true;
+		m_IsEnabled = true;
+
+		// reset dirty flag
+		m_IsDirtyLocalPosition = false;
+		m_IsDirtyLocalRotation = false;
+		m_IsDirtyLocalScale = false;
+		m_IsDirtyPosition = false;
+		m_IsDirtyRotation = false;
+		m_IsDirtyLocalEnabled = false;
+	}
+
+	void Transform::EarlyUpdate()
+	{
+		// and change children global enabled
+		if (m_IsDirtyLocalEnabled)
+		{
+			this->m_IsEnabled = m_pParent->m_IsEnabled && this->m_IsLocalEnabled;
+			for (auto const & child : m_ChildrenList)
+			{
+				// child->m_IsEnabled = this->m_IsEnabled && child->m_IsLocalEnabled;
+				child->m_IsDirtyLocalEnabled = true;
+			}
+		}
+
+		// TO DO: deferred update, update state according to parent position, flag
+
+		// reset dirty flag
+		m_IsDirtyLocalPosition = false;
+		m_IsDirtyLocalRotation = false;
+		m_IsDirtyLocalScale = false;
+		m_IsDirtyPosition = false;
+		m_IsDirtyRotation = false;
+		m_IsDirtyLocalEnabled = false;
+	}
+
+
+	Transform* Transform::GetParent()
+	{
+		return (m_pParent == TransformSystem::GetRoot())? nullptr : m_pParent;
+	}
+
+	const Transform* Transform::GetParent() const
+	{
+		return (m_pParent == TransformSystem::GetRoot()) ? nullptr : m_pParent;
+	}
+
+	Transform* Transform::GetRoot()
+	{
+		Transform* temp = this->GetParent();
+		if (temp == nullptr)
+		{
+			return this;
+		}
+
+		while (temp->GetParent() != nullptr)
+		{
+			temp = temp->GetParent();
+		}
+		return temp;
 	}
 
 	Vector3f Transform::GetPosition() const
@@ -70,6 +144,34 @@ namespace DYE
 	Vector3f Transform::GetScale() const
 	{
 		return m_Scale;
+	}
+
+	Vector3f Transform::GetLocalPosition() const
+	{
+		return m_LocalPosition;
+	}
+
+	Quaternion Transform::GetLocalRotation() const
+	{
+		return m_LocalRotation;
+	}
+
+	Vector3f Transform::GetLocalScale() const
+	{
+		return m_LocalScale;
+	}
+
+	Mat4x4 Transform::GetModelMatrix() const
+	{
+		// Translate * Rotation * Scale
+		auto pos = this->GetPosition();
+		auto scale = this->GetScale();
+		auto rot = this->GetRotation();
+
+		Mat4x4 modelMatrix = 
+			pos.ToTranslateMatrix() * rot.ToMat4x4() * scale.ToScaleMatrix();
+
+		return modelMatrix;
 	}
 
 	Vector3f Transform::Up() const
@@ -89,7 +191,7 @@ namespace DYE
 
 	void Transform::SetParent(Transform* _parent)
 	{
-		if (m_pParent != nullptr)
+		if (this->GetParent() != nullptr)
 		{
 			m_pParent->removeChildren(this);
 		}
@@ -111,16 +213,31 @@ namespace DYE
 	void Transform::SetPosition(const Vector3f& _vec)
 	{
 		m_Position = _vec;
+		m_IsDirtyPosition = true;
 	}
 
 	void Transform::SetRotation(const Quaternion& _vec)
 	{
 		m_Rotation = _vec;
+		m_IsDirtyRotation = true;
 	}
 
-	void Transform::SetScale(const Vector3f& _vec)
+	void Transform::SetLocalPosition(const Vector3f& _vec)
+	{
+		m_LocalPosition = _vec;
+		m_IsDirtyLocalPosition = true;
+	}
+
+	void Transform::SetLocalRotation(const Quaternion& _vec)
+	{
+		m_LocalRotation = _vec;
+		m_IsDirtyLocalRotation = true;
+	}
+
+	void Transform::SetLocalScale(const Vector3f& _vec)
 	{
 		m_Scale = _vec;
+		m_IsDirtyLocalScale = true;
 	}
 
 	void Transform::removeChildren(Transform* _child)
@@ -138,15 +255,20 @@ namespace DYE
 		return std::find(m_ChildrenList.begin(), m_ChildrenList.end(), _child) != m_ChildrenList.end();
 	}
 
-	void Transform::copyFrom(const IComponent* other)
+	void Transform::copyFrom(IComponent* other)
 	{
 		IComponent::copyFrom(other);
 		
-		const Transform* otherTrans = dynamic_cast<const Transform*>(other);
+		Transform* otherTrans = dynamic_cast<Transform*>(other);
+
+		this->m_IsLocalEnabled = otherTrans->m_IsLocalEnabled;
 
 		this->SetPosition(otherTrans->GetPosition());
+		this->SetPosition(otherTrans->GetLocalPosition());
 		this->SetRotation(otherTrans->GetRotation());
-		this->SetScale(otherTrans->GetScale());
+		this->SetLocalRotation(otherTrans->GetLocalRotation());
+		this->SetLocalScale(otherTrans->GetLocalScale());
+
 		this->SetParent(otherTrans->GetParent());
 
 		this->m_pParent = otherTrans->m_pParent;
@@ -159,6 +281,11 @@ namespace DYE
 			// set clone's parent to this
 			cloneChild->GetTransform()->SetParent(this);
 		}
+
+	}
+
+	Transform::Transform() : m_pParent(nullptr)
+	{
 
 	}
 
