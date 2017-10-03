@@ -5,6 +5,8 @@
 #include <glm\gtx\quaternion.hpp>
 #include <glm\gtc\epsilon.hpp>
 
+#include <string>
+
 #define GLM_FORCE_RADIANS
 
 namespace DYE
@@ -83,6 +85,8 @@ namespace DYE
 		float SqrMagnitude() const;
 		Vector2f Normalized() const;
 
+		std::string ToString() const;
+
 		float& operator[](std::size_t i);
 		Vector2f& operator=(const Vector2f& other);
 		Vector2f operator*(const float& scalar) const;
@@ -142,6 +146,8 @@ namespace DYE
 		float Magnitude() const;
 		float SqrMagnitude() const;
 		Vector3f Normalized() const;
+
+		std::string ToString() const;
 
 		float& operator[](std::size_t i);
 		Vector3f& operator=(const Vector3f& other);
@@ -207,6 +213,8 @@ namespace DYE
 		float SqrMagnitude() const;
 		Vector4f Normalized() const;
 
+		std::string ToString() const;
+
 		float& operator[](std::size_t i);
 		Vector4f& operator=(const Vector4f& other);
 		Vector4f operator*(const float& scalar) const;
@@ -216,7 +224,6 @@ namespace DYE
 		Vector4f operator-(const Vector4f& other) const;
 
 		operator glm::vec4() const;
-
 		operator glm::vec4();
 	};
 
@@ -233,53 +240,35 @@ namespace DYE
 		//==========================================
 		//	static method
 		//==========================================
-		static Mat2x2 Inverse(const Mat2x2& mat)
-		{
-			return mat.Inverse();
-		}
+		static Mat2x2 Inverse(const Mat2x2& mat);
 
-		static float Determinant(const Mat2x2& mat)
-		{
-			return mat.Determinant();
-		}
+		static float Determinant(const Mat2x2& mat);
+
 		//==========================================
 		//	constructor
 		//==========================================
-		Mat2x2() : main() {}
-		Mat2x2(const Mat2x2& other) : main(other.main) {}
-		Mat2x2(const glm::mat2& other) : main(other) {}
-		Mat2x2(const float& scalar) : main(scalar) {}
+		Mat2x2();
+		Mat2x2(const Mat2x2& other);
+		Mat2x2(const glm::mat2& other);
+		Mat2x2(const float& scalar);
 		Mat2x2(const float& a1, const float& a2,
-			const float& a3, const float& a4) : main(a1, a2, a3, a4) {}
-		Mat2x2(const float ary[4]) : main(ary[0], ary[1], ary[2], ary[3]) {}
+			const float& a3, const float& a4);
+		Mat2x2(const float ary[4]);
+
 		//==========================================
 		//	method/operator
 		//==========================================
-		Mat2x2 Inverse() const
-		{
-			return glm::inverse(main);
-		}
+		Mat2x2 Transpose() const;
 
-		float Determinant() const
-		{
-			return glm::determinant(main);
-		}
+		Mat2x2 Inverse() const;
 
-		Mat2x2& operator=(const Mat2x2& other)
-		{
-			this->main = other.main;
-			return *this;
-		}
+		float Determinant() const;
 
-		operator glm::mat2() const
-		{
-			return main;
-		}
+		Mat2x2& operator=(const Mat2x2& other);
 
-		operator glm::mat2()
-		{
-			return main;
-		}
+		operator glm::mat2() const;
+
+		operator glm::mat2();
 	};
 
 	//====================================================================================
@@ -291,68 +280,43 @@ namespace DYE
 		//	memeber/variable
 		//==========================================
 		glm::mat3 main;
+
 		//==========================================
 		//	static method
 		//==========================================
-		static Mat3x3 Inverse(const Mat3x3& mat)
-		{
-			return mat.Inverse();
-		}
+		static Mat3x3 Inverse(const Mat3x3& mat);
 
-		static float Determinant(const Mat3x3& mat)
-		{
-			return mat.Determinant();
-		}
+		static float Determinant(const Mat3x3& mat);
 
 		//==========================================
 		//	constructor
 		//==========================================
-		Mat3x3() : main() {}
+		Mat3x3();
 
-		Mat3x3(const Mat3x3& other) : main(other.main) {}
-		Mat3x3(const glm::mat3& other) : main(other) {}
-		Mat3x3(const float& scalar) : main(scalar) {}
+		Mat3x3(const Mat3x3& other);
+		Mat3x3(const glm::mat3& other);
+		Mat3x3(const float& scalar);
 
 		Mat3x3(const float& a1, const float& a2, const float& a3,
 			const float& a4, const float& a5, const float& a6,
-			const float& a7, const float& a8, const float& a9) :
-			main(a1, a2, a3, a4, a5, a6, a7, a8, a9) {}
+			const float& a7, const float& a8, const float& a9);
 
-		Mat3x3(const float ary[9]) :
-			main(
-			ary[0], ary[1], ary[2],
-			ary[3], ary[4], ary[5],
-			ary[6], ary[7], ary[8]
-			) {}
+		Mat3x3(const float ary[9]);
 
 		//==========================================
 		//	method/operator
 		//==========================================
-		Mat3x3 Inverse() const
-		{
-			return glm::inverse(main);
-		}
+		Mat3x3 Transpose() const;
 
-		float Determinant() const
-		{
-			return glm::determinant(main);
-		}
+		Mat3x3 Inverse() const;
 
-		Mat3x3& operator=(const Mat3x3& other)
-		{
-			this->main = other.main;
-			return *this;
-		}
+		float Determinant() const;
 
-		operator glm::mat3() const
-		{
-			return main;
-		}
+		Mat3x3& operator=(const Mat3x3& other);
 
-		operator glm::mat3()
-		{
-			return main;
-		}
+		operator glm::mat3() const;
+
+		operator glm::mat3();
 	};
 
 	//====================================================================================
@@ -368,68 +332,40 @@ namespace DYE
 		//==========================================
 		//	static method
 		//==========================================
-		static Mat4x4 Inverse(const Mat4x4& mat)
-		{
-			return mat.Inverse();
-		}
-
-		static float Determinant(const Mat4x4& mat)
-		{
-			return mat.Determinant();
-		}
+		static Mat4x4 Inverse(const Mat4x4& mat);
+		static float Determinant(const Mat4x4& mat);
 
 		//==========================================
 		//	constructor
 		//==========================================
-		Mat4x4() : main() {}
+		Mat4x4();
 
-		Mat4x4(const Mat4x4& other) : main(other.main) {}
-		Mat4x4(const glm::mat4& other) : main(other) {}
-		Mat4x4(const float& scalar) : main(scalar) {}
+		Mat4x4(const Mat4x4& other);
+		Mat4x4(const glm::mat4& other);
+		Mat4x4(const float& scalar);
 
 		Mat4x4(
 			const float& a1, const float& a2, const float& a3, const float& a4,
 			const float& a5, const float& a6, const float& a7, const float& a8,
 			const float& a9, const float& a10, const float& a11, const float& a12,
-			const float& a13, const float& a14, const float& a15, const float& a16) :
-			main(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16) {}
+			const float& a13, const float& a14, const float& a15, const float& a16);
 
-		Mat4x4(const float ary[16]) :
-			main(
-			ary[0], ary[1], ary[2], ary[3],
-			ary[4], ary[5], ary[6], ary[7],
-			ary[8], ary[9], ary[10], ary[11],
-			ary[12], ary[13], ary[14], ary[15]
-			) {}
+		Mat4x4(const float ary[16]);
 
 		//==========================================
 		//	method/operator
 		//==========================================
-		Mat4x4 Inverse() const
-		{
-			return glm::inverse(main);
-		}
+		Mat4x4 Transpose() const;
 
-		float Determinant() const
-		{
-			return glm::determinant(main);
-		}
+		Mat4x4 Inverse() const;
 
-		Mat4x4& operator=(const Mat4x4& other)
-		{
-			this->main = other.main;
-			return *this;
-		}
+		float Determinant() const;
 
-		operator glm::mat4() const
-		{
-			return main;
-		}
+		Mat4x4& operator=(const Mat4x4& other);
 
-		operator glm::mat4()
-		{
-			return main;
-		}
+		operator glm::mat4() const;
+
+		operator glm::mat4();
 	};
 
 	//====================================================================================
@@ -445,107 +381,49 @@ namespace DYE
 		//==========================================
 		//	static method
 		//==========================================
-		static Quaternion Identity()
-		{
-			return Quaternion();
-		}
+		static Quaternion Identity();
 
-		static Vector3f EulerAngles(const Quaternion& q)
-		{
-			return q.GetEulerAngles();
-		}
+		static Vector3f EulerAngles(const Quaternion& q);
 
-		static Quaternion Slerp(const Quaternion& lhs, const Quaternion& rhs, float value)
-		{
-			return glm::slerp(lhs.main, rhs.main, value);
-		}
+		static Quaternion Slerp(const Quaternion& lhs, const Quaternion& rhs, float value);
 
-		static Quaternion RotationBetweenVectors(const Vector3f& from, const Vector3f to)
-		{
-			// TO DO:
-		}
+		static Quaternion RotationBetweenVectors(const Vector3f& from, const Vector3f to);
 		//==========================================
 		//	constructor
 		//==========================================
-		Quaternion() : main(glm::vec3(0, 0, 0)) {}
-		Quaternion(const Quaternion& q) : main(q.main) {}
-		Quaternion(const glm::quat& q) : main(q) {}
-		Quaternion(Vector3f& euler)
-		{
-			glm::vec3 rad(glm::radians(euler.x()), glm::radians(euler.y()), glm::radians(euler.z()));
-			main = glm::quat(rad);
-		}
-
-		Quaternion(const Mat3x3& _mat3)
-		{
-			main = glm::toQuat(glm::mat3(_mat3));
-		}
-
-		Quaternion(const Mat4x4& _mat4)
-		{
-			main = glm::toQuat(glm::mat4(_mat4));
-		}
+		Quaternion();
+		Quaternion(const Quaternion& q);
+		Quaternion(const glm::quat& q);
+		Quaternion(Vector3f& euler);
+		Quaternion(const Mat3x3& _mat3);
+		Quaternion(const Mat4x4& _mat4);
 
 		//==========================================
 		//	method/operator
 		//==========================================
 
-		Vector3f GetEulerAnglesInRad() const
-		{
-			return glm::eulerAngles(main);
-		}
+		Vector3f GetEulerAnglesInRad() const;
 
-		void SetEulerAnglesInRad(const Vector3f& _euler)
-		{
-			main = glm::quat(_euler);
-		}
+		void SetEulerAnglesInRad(const Vector3f& _euler);
 
 		// return in degree
-		Vector3f GetEulerAngles() const
-		{
-			return GetEulerAnglesInRad()/* * Math::Rad2Degf*/;
-		}
+		Vector3f GetEulerAngles() const;
 
 		// set with degree
-		void SetEulerAngles(const Vector3f& _euler)
-		{
-			SetEulerAnglesInRad(_euler/* * Math::Deg2Radf*/);
-		}
+		void SetEulerAngles(const Vector3f& _euler);
 
-		Mat4x4 GetMat3x3() const
-		{
-			return glm::toMat3(main);
-		}
+		Mat3x3 ToMat3x3() const;
 
-		Mat4x4 GetMat4x4() const
-		{
-			return glm::toMat4(main);
-		}
+		Mat4x4 ToMat4x4() const;
 
-		Quaternion& operator=(const Quaternion& other)
-		{
-			this->main = other.main;
-			return *this;
-		}
+		Quaternion& operator=(const Quaternion& other);
 		
-		Vector3f operator*(const Vector3f& vec) const
-		{
-			return glm::rotate(main, vec.main);
-		}
+		Vector3f operator*(const Vector3f& vec) const;
 
-		Quaternion operator*(const Quaternion& other) const
-		{
-			return main * other.main;
-		}
+		Quaternion operator*(const Quaternion& other) const;
 
-		operator glm::quat() const 
-		{ 
-			return main; 
-		}
+		operator glm::quat() const;
 
-		operator glm::quat()
-		{
-			return main;
-		}
+		operator glm::quat();
 	};
 }

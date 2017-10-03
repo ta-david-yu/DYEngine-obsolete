@@ -42,14 +42,18 @@ namespace DYE
 
 	Base* Base::Instantiate(const Base* _pOriginal)
 	{
+		// assert(false);
+		// TO DO: this is evil, still need some tweaking
+
+		Entity* clone = nullptr;
 		const Entity* ent = dynamic_cast<const Entity*>(_pOriginal);
 		if (ent != nullptr)
 		{
 			// is entity, copy entity
 			Scene* scene = ent->m_pScene;
 
-			Entity* newEnt = scene->CreateEntity(ent->GetName());
-			newEnt->copyFrom(ent);
+			clone = scene->CreateEntity(ent->GetName());
+			clone->copyFrom(ent);
 		}
 		else
 		{
@@ -60,8 +64,8 @@ namespace DYE
 				ent = comp->GetEntity();
 				Scene* scene = ent->m_pScene;
 
-				Entity* newEnt = scene->CreateEntity(ent->GetName());
-				newEnt->copyFrom(ent);
+				clone = scene->CreateEntity(ent->GetName());
+				clone->copyFrom(ent);
 			}
 			else
 			{
@@ -70,7 +74,7 @@ namespace DYE
 			}
 		}
 
-		return nullptr;
+		return clone;
 	}
 
 }

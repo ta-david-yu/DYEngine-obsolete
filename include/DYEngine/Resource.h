@@ -93,12 +93,12 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		RType* m_ResourceObject;
+		RType* m_pResourceObject;
 		//==========================================
 		//	getter
 		//==========================================
 	public:
-		RType* GetValue() const { return m_ResourceObject; }
+		RType* GetValue() const { return m_pResourceObject; }
 	
 	protected:
 		Resource(const std::string& filename, int argc = 0, void *args = nullptr) : ResourceBase(filename, argc, args)
@@ -106,8 +106,8 @@ namespace DYE
 			// TO DO: new RType, 
 			// bool isTypeValue = std::is_base_of<IResourceValue, RType>::value;
 			// assert(isTypeValue);
-			m_ResourceObject = new RType();
-			m_ResourceObject->loadFromFile(filename);
+			m_pResourceObject = new RType();
+			m_pResourceObject->loadFromFile(filename);
 		}
 	};
 

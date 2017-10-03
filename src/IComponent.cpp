@@ -1,5 +1,7 @@
 #include <DYEngine\interfaces\IComponent.h>
 
+#include <type_traits>
+
 namespace DYE
 {
 	//====================================================================================
@@ -92,10 +94,16 @@ namespace DYE
 			m_pParent->removeChildren(this);
 		}
 
-		m_pParent = _parent;
-
-		if (m_pParent != nullptr)
+		if (_parent != nullptr)
 		{
+			// if it is a child of this, swap position
+			if (_parent->GetParent() == this)
+			{
+				_parent->SetParent(this->GetParent());
+			}
+
+			m_pParent = _parent;
+
 			m_pParent->addChildren(this);
 		}
 	}
@@ -125,15 +133,21 @@ namespace DYE
 		m_ChildrenList.push_back(_child);
 	}
 
+	bool Transform::hasChildren(const Transform* _child) const
+	{
+		return std::find(m_ChildrenList.begin(), m_ChildrenList.end(), _child) != m_ChildrenList.end();
+	}
+
 	void Transform::copyFrom(const IComponent* other)
 	{
 		IComponent::copyFrom(other);
 		
 		const Transform* otherTrans = dynamic_cast<const Transform*>(other);
 
-		this->m_Position = otherTrans->m_Position;
-		this->m_Rotation = otherTrans->m_Rotation;
-		this->m_Scale = otherTrans->m_Scale;
+		this->SetPosition(otherTrans->GetPosition());
+		this->SetRotation(otherTrans->GetRotation());
+		this->SetScale(otherTrans->GetScale());
+		this->SetParent(otherTrans->GetParent());
 
 		this->m_pParent = otherTrans->m_pParent;
 

@@ -57,6 +57,10 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	public:
+		std::string ToString() const;						// print scene graph including component
+	private:
+		std::string toStringSuccessor(std::string prefix) const;
 	protected:
 		virtual void copyFrom(const Entity* other);
 	private:

@@ -5,38 +5,9 @@
 
 using namespace DYE;
 
-void test()
+void testMathType()
 {
-	Scene* scene00 = new Scene();
-	Entity* ent00 = scene00->CreateEntity();
-	IComponent* comp00 = ent00->AddComponent<ReusablePool>();
-	ReusablePool* pool = dynamic_cast<ReusablePool*>(comp00);
-	pool->Init();
-
-	assert(SYSTEM_MGR->HasSystem<ReusablePool>());
-
-	assert(SYSTEM_MGR->HasSystem<Transform>());
-
-	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
-
-	assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
-
-	ent00->SetName("Obj00_v1");
-	assert(comp00->GetName() == "Obj00_v1");
-	assert(ent00->GetName() == "Obj00_v1");
-
-	comp00->SetName("Obj00_v2");
-	assert(comp00->GetName() == "Obj00_v2");
-	assert(ent00->GetName() == "Obj00_v2");
-
-	ent00->SetName("Obj00_v3");
-	assert(comp00->GetName() == "Obj00_v3");
-	assert(ent00->GetName() == "Obj00_v3");
-
-	comp00->SetName("Obj00_v4");
-	assert(comp00->GetName() == "Obj00_v4");
-	assert(ent00->GetName() == "Obj00_v4");
-
+	//-------------Test Math Type-------------//
 	Vector3f unitX = Vector3f::UnitX();
 	Vector3f unitY = Vector3f::UnitY();
 
@@ -75,32 +46,107 @@ void test()
 
 	Vector3f rotRight = fToR * forward;
 
-	printf("ori: %f %f %f\n", right.x(), right.y(), right.z());
-	printf("rot: %f %f %f\n", rotRight.x(), rotRight.y(), rotRight.z());
+	printf("ori: %s\n", right.ToString());
+	printf("rot: %s\n", rotRight.ToString());
 	assert(rotRight == right);
 
-
-
 	printf("test passed!\n");
+}
+
+void testSceneOperation()
+{
+	//-------------Test Scene Operation-------------//
+	Scene* scene00 = new Scene();
+	Entity* ent00 = scene00->CreateEntity();
+	IComponent* comp00 = ent00->AddComponent<ReusablePool>();
+	ReusablePool* pool = dynamic_cast<ReusablePool*>(comp00);
+	pool->Init();
+
+	assert(SYSTEM_MGR->HasSystem<ReusablePool>());
+
+	assert(SYSTEM_MGR->HasSystem<Transform>());
+
+	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
+
+	assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
+
+	ent00->SetName("Obj00_v1");
+	assert(comp00->GetName() == "Obj00_v1");
+	assert(ent00->GetName() == "Obj00_v1");
+
+	comp00->SetName("Obj00_v2");
+	assert(comp00->GetName() == "Obj00_v2");
+	assert(ent00->GetName() == "Obj00_v2");
+
+	ent00->SetName("Obj00_v3");
+	assert(comp00->GetName() == "Obj00_v3");
+	assert(ent00->GetName() == "Obj00_v3");
+
+	comp00->SetName("Obj00_v4");
+	assert(comp00->GetName() == "Obj00_v4");
+	assert(ent00->GetName() == "Obj00_v4");
 
 	SYSTEM_MGR->Awake();
 	SYSTEM_MGR->Start();
 
-	Transform* trans = ent00->GetTransform();
-	trans->SetPosition(Vector3f(0, 1876, 0));
-	Vector3f pos = trans->GetPosition();
-	printf("POS: %f %f %f\n", pos.x(), pos.y(), pos.z());
+	printf("test passed!\n");
+}
 
+void testResource()
+{
 	Resource<Mesh>* RMesh = RESOURCE_MGR->Load<Mesh>("", 0, nullptr);
 	Mesh* mesh = RMesh->GetValue();
-	
-	std::size_t  size = sizeof(Vector3f);
-	printf("Vector3 Size: %d\n", size);
+
+	printf("test passed!\n");
+}
+
+void testInstantiate()
+{
+	Scene* scene = new Scene();
+
+	//-------------Test Entity Instantiate Operation-------------//
+	{
+		// prototype
+		Entity* root = scene->CreateEntity("Root");
+		root->GetTransform()->SetPosition(Vector3f(0, 0, 0));
+		root->GetTransform()->SetScale(Vector3f(0, 0, 0));
+
+		Entity* ent0 = scene->CreateEntity("Nod0");
+		ent0->GetTransform()->SetParent(root->GetTransform());
+		ent0->GetTransform()->SetPosition(Vector3f(1, 1, 1));
+		ent0->GetTransform()->SetScale(Vector3f(0, 90, 0));
+
+		/*
+		Entity* ent1 = scene->CreateEntity("Nod1");
+		ent1->GetTransform()->SetParent(ent0->GetTransform());
+		ent1->GetTransform()->SetPosition(Vector3f(2, 2, 2));
+		ent1->GetTransform()->SetScale(Vector3f(0, 180, 0));
+		*/
+		// clone
+		Entity* cEnt[4];
+
+		for (int i = 0; i < 4; i++)
+		{
+			printf("%i\n", i);
+			cEnt[i] = dynamic_cast<Entity*>(Base::Instantiate(root));
+			cEnt[i]->GetTransform()->SetParent(ent0->GetTransform());
+		}
+
+		cEnt[2]->GetTransform()->SetParent(cEnt[3]->GetTransform());
+
+		printf("%s\n", root->ToString());
+
+
+	}
 }
 
 int main()
 {
-	test();
+	testMathType();
+	testSceneOperation();
+	testResource();
+	testInstantiate();
+
 	system("PAUSE");
 	return 0;
 }

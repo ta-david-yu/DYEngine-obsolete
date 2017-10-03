@@ -9,7 +9,21 @@
 #include <list>
 #include <typeinfo>
 #include <typeindex>
+#include <type_traits>
 #include <tuple>
+
+#define DYE_COMPONENT_DYNAMICCAST(T) virtual T& DynamicCast()				\
+		{																	\
+		return *this;														\
+		}
+
+#define DYE_COMPONENT_TOSTRING virtual std::string ToString() const			\
+		{																	\
+		using Type = std::remove_pointer_t<decltype(this)>;					\
+		return std::string(typeid(Type).name());							\
+		}
+
+// using ComponentType = std::remove_pointer_t< decltype(comp.second.get()) >;
 
 namespace DYE
 {
@@ -27,8 +41,19 @@ namespace DYE
 	//====================================================================================
 	class IComponent : public Base
 	{
+	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
+	
 		friend class Entity;
 		friend class ISystem;
+		/*
+		virtual std::string ToString() const
+		{
+			using Type = std::remove_pointer_t<decltype(this)>;
+			return std::string(typeid(Type).name());
+		}*/
+
 	public:
 		//==========================================
 		//	memeber/variable
@@ -99,10 +124,15 @@ namespace DYE
 	//====================================================================================
 	class Transform : public IComponent
 	{
+	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
+
 		friend class Entity;
 		//==========================================
 		//	memeber/variable
 		//==========================================
+	private:
 		Vector3f m_Position;
 		Vector3f m_Scale;
 		Quaternion m_Rotation;
@@ -128,10 +158,12 @@ namespace DYE
 	private:
 		void removeChildren(Transform* _child);
 		void addChildren(Transform* _child);
+		bool hasChildren(const Transform* _child) const;
 		//==========================================
 		//	getter
 		//==========================================
 	public:
+		// TO DO: local, global operation
 		Transform* GetParent() const;
 		Vector3f GetPosition() const;
 		Quaternion GetRotation() const;
@@ -150,7 +182,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	public:
-		Transform() {}
+		Transform() : m_pParent(nullptr) {}
 		~Transform() {}
 
 	};
@@ -160,6 +192,10 @@ namespace DYE
 	//====================================================================================
 	class IReusableComponent : public IComponent
 	{
+	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
+
 		friend class ReusablePool;
 	private:
 		bool m_IsInUse = false;
@@ -176,6 +212,8 @@ namespace DYE
 	class ReusablePool : public IComponent
 	{
 	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
 	private:
 		std::size_t m_MaxSize = 32;
 		std::size_t m_IncrementSize = 4;
@@ -219,6 +257,9 @@ namespace DYE
 	//====================================================================================
 	class DummyComponent : public IComponent
 	{
+	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
 	public:
 		virtual void Init() {}
 		virtual void Update() {}

@@ -42,6 +42,33 @@ namespace DYE
 
 	}
 
+	std::string Entity::ToString() const
+	{
+		return toStringSuccessor("");
+	}
+
+	std::string Entity::toStringSuccessor(std::string prefix) const
+	{
+		std::string ret;
+
+		ret += prefix + "____(" + std::to_string(GetInstanceID()) + ") " + this->GetName() + "\n";
+
+		// print component list
+		ret += prefix + "________(" + std::to_string(this->GetTransform()->GetInstanceID()) + ") " + this->GetTransform()->ToString() + "\n";
+		for (auto const& comp : this->m_Components)
+		{
+			ret += prefix + "________(" + std::to_string(comp.second->GetInstanceID()) + ") " + comp.second->ToString() + "\n";
+		}
+
+		// print children
+		for (auto const& child : this->GetTransform()->m_ChildrenList)
+		{
+			ret += child->GetEntity()->toStringSuccessor(prefix + "__");
+		}
+
+		return ret;
+	}
+
 	void Entity::copyFrom(const Entity* other)
 	{
 		// TO DO: set other states (layers, tags...)
@@ -49,10 +76,15 @@ namespace DYE
 		this->GetTransform()->copyFrom(other->GetTransform());	// copy transform state
 		for (auto const& comp : other->m_Components)			// copy component state
 		{
+			// TO DO: fix auto dynamic type casting
+			/*
 			// add comp, copy comp
-			using ComponentType = std::remove_pointer_t< decltype(comp.second.get()) >;
+			using ComponentType = std::remove_reference_t< decltype(comp.second.get()->DynamicCast()) >;
+
+			printf("copying component %s\n", typeid(ComponentType).name());
 			ComponentType* newComp = this->AddComponent<ComponentType>();
-			newComp->copyFrom(comp.second.get());
+			newComp->copyFrom(dynamic_cast<ComponentType*>(comp.second.get()));
+			*/
 		}
 	}
 
@@ -63,7 +95,8 @@ namespace DYE
 	IComponent* Entity::AddComponent<IComponent>()
 	{
 		// TO DO: error log
-		printf("ADDING ILLEGAL COMPONENT");
+		printf("ADDING ILLEGAL COMPONENT\n");
+		assert(false);
 		return nullptr;
 	}
 
