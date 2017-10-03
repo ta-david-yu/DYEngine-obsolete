@@ -69,6 +69,18 @@ void test()
 	Vector2f x2_0 = Vector2f::UnitX();
 	assert(x2 == x2_0);
 
+	Vector3f forward = Vector3f::UnitZ();
+	Vector3f right = Vector3f::UnitX();
+	Quaternion fToR = Quaternion(Vector3f(0, 90, 0));
+
+	Vector3f rotRight = fToR * forward;
+
+	printf("ori: %f %f %f\n", right.x(), right.y(), right.z());
+	printf("rot: %f %f %f\n", rotRight.x(), rotRight.y(), rotRight.z());
+	assert(rotRight == right);
+
+
+
 	printf("test passed!\n");
 
 	SYSTEM_MGR->Awake();

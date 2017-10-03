@@ -3,6 +3,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\quaternion.hpp>
 #include <glm\gtx\quaternion.hpp>
+#include <glm\gtc\epsilon.hpp>
 
 #define GLM_FORCE_RADIANS
 

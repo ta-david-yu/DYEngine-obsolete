@@ -101,7 +101,7 @@ namespace DYE
 
 	float Vector2f::SqrMagnitude() const
 	{
-		return main.x * main.x + main.y * main.y;
+		return glm::length2(main);
 	}
 
 	Vector2f Vector2f::Normalized() const
@@ -127,7 +127,7 @@ namespace DYE
 
 	bool Vector2f::operator==(const Vector2f& other) const
 	{
-		auto vec2bool = glm::equal(this->main, other.main);
+		auto vec2bool = glm::epsilonEqual(this->main, other.main, Math::Elipsonf);
 		return vec2bool.x & vec2bool.y;
 	}
 
@@ -215,7 +215,7 @@ namespace DYE
 
 	float Vector3f::SqrMagnitude() const
 	{
-		return main.x * main.x + main.y * main.y + main.z * main.z;
+		return glm::length2(main);
 	}
 
 	Vector3f Vector3f::Normalized() const
@@ -241,7 +241,7 @@ namespace DYE
 
 	bool Vector3f::operator==(const Vector3f& other) const
 	{
-		auto vec3bool = glm::equal(this->main, other.main);
+		auto vec3bool = glm::epsilonEqual(this->main, other.main, Math::Elipsonf);
 		return vec3bool.x & vec3bool.y & vec3bool.z;
 	}
 
@@ -333,7 +333,7 @@ namespace DYE
 
 	float Vector4f::SqrMagnitude() const
 	{
-		return main.x * main.x + main.y * main.y + main.z * main.z + main.w * main.w;
+		return glm::length2(main);
 	}
 
 	Vector4f Vector4f::Normalized() const
@@ -359,7 +359,7 @@ namespace DYE
 
 	bool Vector4f::operator==(const Vector4f& other) const
 	{
-		auto vec4bool = glm::equal(this->main, other.main);
+		auto vec4bool = glm::epsilonEqual(this->main, other.main, Math::Elipsonf);
 		return vec4bool.x & vec4bool.y & vec4bool.z & vec4bool.w;
 	}
 
