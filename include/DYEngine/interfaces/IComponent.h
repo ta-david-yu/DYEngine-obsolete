@@ -36,6 +36,13 @@ namespace DYE
 	struct Vector4f;
 	struct Quaternion;
 
+	enum DirtyState
+	{
+		Clean,
+		Local,
+		Global
+	};
+
 	//====================================================================================
 	//	IComponent
 	//====================================================================================
@@ -146,11 +153,9 @@ namespace DYE
 		//==========================================
 		//	flag
 		//==========================================
-		bool m_IsDirtyLocalPosition = false;				// need to be setup after changing attributes
-		bool m_IsDirtyLocalRotation = false;				// need to be setup after changing attributes
-		bool m_IsDirtyLocalScale = false;					// need to be setup after changing attributes
-		bool m_IsDirtyPosition = false;						// need to be setup after changing attributes
-		bool m_IsDirtyRotation = false;						// need to be setup after changing attributes
+		DirtyState m_PositionDirtyState = DirtyState::Clean;
+		DirtyState m_RotationDirtyState = DirtyState::Clean;
+		DirtyState m_ScaleDirtyState = DirtyState::Clean;
 
 		bool m_IsDirtyLocalEnabled = false;
 
@@ -171,6 +176,7 @@ namespace DYE
 		void removeChildren(Transform* _child);
 		void addChildren(Transform* _child);
 		bool hasChildren(const Transform* _child) const;
+		void resetDirtyState();
 		//==========================================
 		//	getter
 		//==========================================

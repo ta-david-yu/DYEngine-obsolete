@@ -73,12 +73,7 @@ namespace DYE
 		m_IsEnabled = true;
 
 		// reset dirty flag
-		m_IsDirtyLocalPosition = false;
-		m_IsDirtyLocalRotation = false;
-		m_IsDirtyLocalScale = false;
-		m_IsDirtyPosition = false;
-		m_IsDirtyRotation = false;
-		m_IsDirtyLocalEnabled = false;
+		resetDirtyState();
 	}
 
 	void Transform::EarlyUpdate()
@@ -97,12 +92,7 @@ namespace DYE
 		// TO DO: deferred update, update state according to parent position, flag
 
 		// reset dirty flag
-		m_IsDirtyLocalPosition = false;
-		m_IsDirtyLocalRotation = false;
-		m_IsDirtyLocalScale = false;
-		m_IsDirtyPosition = false;
-		m_IsDirtyRotation = false;
-		m_IsDirtyLocalEnabled = false;
+		resetDirtyState();
 	}
 
 
@@ -213,31 +203,31 @@ namespace DYE
 	void Transform::SetPosition(const Vector3f& _vec)
 	{
 		m_Position = _vec;
-		m_IsDirtyPosition = true;
+		m_PositionDirtyState = Global;
 	}
 
 	void Transform::SetRotation(const Quaternion& _vec)
 	{
 		m_Rotation = _vec;
-		m_IsDirtyRotation = true;
+		m_RotationDirtyState = Global;
 	}
 
 	void Transform::SetLocalPosition(const Vector3f& _vec)
 	{
 		m_LocalPosition = _vec;
-		m_IsDirtyLocalPosition = true;
+		m_PositionDirtyState = Local;
 	}
 
 	void Transform::SetLocalRotation(const Quaternion& _vec)
 	{
 		m_LocalRotation = _vec;
-		m_IsDirtyLocalRotation = true;
+		m_RotationDirtyState = Local;
 	}
 
 	void Transform::SetLocalScale(const Vector3f& _vec)
 	{
 		m_Scale = _vec;
-		m_IsDirtyLocalScale = true;
+		m_ScaleDirtyState = Local;
 	}
 
 	void Transform::removeChildren(Transform* _child)
@@ -253,6 +243,15 @@ namespace DYE
 	bool Transform::hasChildren(const Transform* _child) const
 	{
 		return std::find(m_ChildrenList.begin(), m_ChildrenList.end(), _child) != m_ChildrenList.end();
+	}
+
+	void Transform::resetDirtyState()
+	{
+		m_PositionDirtyState = DirtyState::Clean;
+		m_RotationDirtyState = DirtyState::Clean;
+		m_ScaleDirtyState = DirtyState::Clean;
+
+		m_IsDirtyLocalEnabled = false;
 	}
 
 	void Transform::copyFrom(IComponent* other)

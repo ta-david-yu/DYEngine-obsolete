@@ -107,8 +107,9 @@ namespace DYE
 		for (auto const& comp : other->m_Components)			// copy component state
 		{
 			// TO DO: fix auto dynamic type casting
-			/*
+			
 			// add comp, copy comp
+			/*
 			using ComponentType = std::remove_reference_t< decltype(comp.second.get()->DynamicCast()) >;
 
 			printf("copying component %s\n", typeid(ComponentType).name());
@@ -116,6 +117,11 @@ namespace DYE
 			newComp->copyFrom(dynamic_cast<ComponentType*>(comp.second.get()));
 			*/
 		}
+	}
+
+	IComponent* Entity::AddComponent(IComponent* comp)
+	{
+		// std::unique_ptr<IComponent> uniPtr{ new IComp }
 	}
 
 	//====================================================================================

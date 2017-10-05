@@ -85,6 +85,8 @@ namespace DYE
 
 			return ptr;
 		}
+
+		IComponent* AddComponent(IComponent* comp);		// copy a same component from the input
 	protected:
 		void release() override;
 
