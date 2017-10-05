@@ -181,23 +181,34 @@ namespace DYE
 
 	void Transform::SetParent(Transform* _parent)
 	{
-		if (this->GetParent() != nullptr)
+		if (this == TransformSystem::GetRoot())
 		{
+			// cant set the parent of Root node
+			assert(false);
+			return;
+		}
+
+		if (_parent == nullptr)
+		{
+			_parent = TransformSystem::GetRoot();
+		}
+
+		if (m_pParent != nullptr)
+		{
+			// remove from original parent's children list
 			m_pParent->removeChildren(this);
 		}
 
-		if (_parent != nullptr)
+		// if it is a child of this, swap position
+		if (_parent->m_pParent == this)
 		{
-			// if it is a child of this, swap position
-			if (_parent->GetParent() == this)
-			{
-				_parent->SetParent(this->GetParent());
-			}
-
-			m_pParent = _parent;
-
-			m_pParent->addChildren(this);
+			_parent->SetParent(this->m_pParent);
 		}
+
+		// set new parent
+		m_pParent = _parent;
+
+		m_pParent->addChildren(this);
 	}
 
 	void Transform::SetPosition(const Vector3f& _vec)
@@ -281,6 +292,32 @@ namespace DYE
 			cloneChild->GetTransform()->SetParent(this);
 		}
 
+	}
+
+	IComponent* Transform::clone()
+	{
+		Transform* trans = new Transform();
+
+		trans->m_IsEnabled = this->m_IsEnabled;
+		trans->m_IsLocalEnabled = this->m_IsLocalEnabled;
+
+		trans->SetPosition(this->GetPosition());
+		trans->SetPosition(this->GetLocalPosition());
+		trans->SetRotation(this->GetRotation());
+		trans->SetLocalRotation(this->GetLocalRotation());
+		trans->SetLocalScale(this->GetLocalScale());
+
+		trans->SetParent(this->GetParent());
+
+		// loop through target entity's children
+		for (const auto& child : this->m_ChildrenList)
+		{
+			// clone target entity child
+			Entity* cloneChild = dynamic_cast<Entity*>(Instantiate(child));
+			// set clone's parent to this
+			cloneChild->GetTransform()->SetParent(trans);
+		}
+		return trans;
 	}
 
 	Transform::Transform() : m_pParent(nullptr)

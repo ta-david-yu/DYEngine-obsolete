@@ -6,7 +6,7 @@ namespace DYE
 {
 	Core* Core::s_pInstance = nullptr;
 
-	Core::Core()
+	Core::Core(IApp* app) : m_pApplication(app)
 	{
 		if (s_pInstance != nullptr)
 			s_pInstance = this;

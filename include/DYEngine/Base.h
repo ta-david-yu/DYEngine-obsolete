@@ -72,6 +72,7 @@ namespace DYE
 		//	setter
 		//==========================================
 		virtual void SetName(const std::string& _name) { m_Name = _name; }
+
 		//==========================================
 		//	opeartor
 		//==========================================

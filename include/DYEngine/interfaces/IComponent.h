@@ -94,7 +94,9 @@ namespace DYE
 	protected:
 		// called by instantiate, use to copy data (notice that the component has to be created using add component)
 		// therefore, m_pSystem and m_pEntity are handled. Derived class's copyFrom must call base.copyFrom(IComponent* _other)
-		virtual void copyFrom(IComponent* _other);		
+		virtual void copyFrom(IComponent* _other);
+		// called by AddComponent(IComp), return an identical component pointer.
+		virtual IComponent* clone() { assert(false); return nullptr; }		// TO DO: to abstract
 	public:
 		virtual void SetName(const std::string& _name);
 	public:
@@ -172,6 +174,7 @@ namespace DYE
 		//==========================================
 	protected:
 		virtual void copyFrom(IComponent* _other);
+		virtual IComponent* clone();
 	private:
 		void removeChildren(Transform* _child);
 		void addChildren(Transform* _child);

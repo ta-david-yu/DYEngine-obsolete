@@ -15,11 +15,22 @@ namespace DYE
 	class Core
 	{
 		friend class IApplication;
+		friend class Scene;
+	public:
+		using SceneListPair = std::pair<SceneID, Scene*>;
+		using SceneList = std::vector<SceneListPair>;
+
 	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
+		IApp* m_pApplication;
+
 		static Core* s_pInstance;
+		SceneList m_Scenes;
+
+		SceneID m_CurrScene = 0;
+		SceneID m_NextScene = -1;
 		//==========================================
 		//	flag
 		//==========================================
@@ -34,7 +45,8 @@ namespace DYE
 		//==========================================
 		static Core* GetInstance();
 	private:
-		Scene* createScene();
+		Scene* createScene();				// create a ptr to scene and add it to the list
+		Scene* loadScene(SceneID);			// instant load scene
 		//==========================================
 		//	getter
 		//==========================================
@@ -47,7 +59,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	private:
-		Core();
+		Core(IApp* app);
 		~Core();
 	};
 }

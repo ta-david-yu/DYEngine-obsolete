@@ -121,6 +121,11 @@ namespace DYE
 
 	IComponent* Entity::AddComponent(IComponent* comp)
 	{
+		IComponent* clone = comp->clone();
+		clone->AttachTo(this);
+
+		// TO DO: evil
+		// SystemManager
 		// std::unique_ptr<IComponent> uniPtr{ new IComp }
 	}
 

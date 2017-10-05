@@ -1,5 +1,7 @@
 #include <DYEngine\Scene.h>
 
+#include <functional>
+
 namespace DYE
 {
 	//====================================================================================
@@ -36,6 +38,21 @@ namespace DYE
 		return m_SceneName;
 	}
 
+	void Scene::load()
+	{
+		// build scene out of build function
+		m_pBuildFunction(*CORE->m_pApplication, this);
+
+		m_IsLoaded = true;
+	}
+
+	void Scene::release()
+	{
+		m_EntityList.clear();
+
+		m_IsLoaded = false;
+	}
+
 	void Scene::removeEntity(InstanceID _id)
 	{
 		auto itr = std::find_if(m_EntityList.begin(), m_EntityList.end(), 
@@ -55,6 +72,6 @@ namespace DYE
 
 	Scene::~Scene()
 	{
-
+		release();
 	}
 }

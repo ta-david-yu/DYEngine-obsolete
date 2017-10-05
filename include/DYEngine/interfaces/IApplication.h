@@ -6,6 +6,9 @@ namespace DYE
 {
 	class Core;
 
+	//====================================================================================
+	//	IApp: user interface for game engine
+	//====================================================================================
 	class IApplication
 	{
 	public:
@@ -25,7 +28,7 @@ namespace DYE
 
 	protected:
 		void init();
-		void gameLoop();			// main game loop
+		void gameLoop();					// main game loop
 		void release();
 
 		virtual void createScene() = 0;		// setup scene
