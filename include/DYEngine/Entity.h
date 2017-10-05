@@ -21,15 +21,15 @@ namespace DYE
 	class Transform;
 	class ISystem;
 	class SystemManager;
-	class Scene;
+	class IScene;
 
 	//====================================================================================
 	//	Entity: Base Entity class as game object
 	//====================================================================================
 	class Entity : public Base
 	{
-		friend IComponent;
-		friend Scene;
+		friend class IComponent;
+		friend class IScene;
 		friend class Base;
 	public:
 		typedef std::pair<InstanceID, std::unique_ptr<IComponent>> ComponentListPair;
@@ -41,7 +41,7 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		Scene* m_pScene;
+		IScene* m_pScene;
 		Transform* m_pTransform;
 		ComponentList m_Components;
 		std::unique_ptr<Transform> m_uniqueTransform;
@@ -117,7 +117,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		Entity(Scene* _scene = nullptr, const std::string& _name = DEFAULT_NAME);						// Initialize with a tranform component
+		Entity(IScene* _scene = nullptr, const std::string& _name = DEFAULT_NAME);						// Initialize with a tranform component
 		~Entity();
 	};
 

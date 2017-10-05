@@ -2,6 +2,7 @@
 
 #include <DYEngine\Entity.h>
 #include <DYEngine\Core.h>
+#include <DYEngine\utilities\Delegate.h>
 
 #include <vector>
 #include <string>
@@ -11,17 +12,18 @@
 namespace DYE
 {
 	class Entity;
-	class IApp;
+	class IApplication;
 
 	using SceneID = int;
-	using BuildSceneFunc = std::function<void(IApp const&, Scene*)>;
+	using BuildSceneFunc = Delegate<void, IScene*>;
 	//====================================================================================
 	//	Scene: managing objects
 	//====================================================================================
-	class Scene
+	class IScene
 	{
 		friend class Entity;
-		friend class IApp;
+		friend class IApplication;
+		friend class Core;
 
 		typedef std::pair<InstanceID, std::unique_ptr<Entity>> EntityListPair;
 		typedef std::vector<EntityListPair> EntityList;
@@ -29,9 +31,8 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-	private:
+	protected:
 		bool m_IsLoaded = false;
-		BuildSceneFunc m_pBuildFunction;
 		SceneID m_SceneID;
 		std::string m_SceneName;
 		EntityList m_EntityList;
@@ -42,7 +43,7 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-		void load();									// create object and comps, call build function
+		virtual void load() = 0;						// create object and comps, call build function
 		void release();									// called when destroyed
 		//==========================================
 		//	method
@@ -58,6 +59,7 @@ namespace DYE
 	public:
 		SceneID GetSceneID() const;
 		std::string GetSceneName() const;
+		bool IsLoaded() const;
 		//==========================================
 		//	setter
 		//==========================================
@@ -65,7 +67,36 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		Scene();
-		~Scene();
+		IScene(SceneID id = 0);
+		~IScene();
+	};
+
+	//====================================================================================
+	//	Scene: managing objects
+	//====================================================================================
+	template <typename TApp>
+	class Scene : public IScene
+	{
+		friend class Core;
+	private:
+		BuildSceneFunc m_BuildFunction;
+
+	protected:
+		virtual void load()
+		{
+			// build scene out of the build function
+			m_BuildFunction(this);
+
+			m_IsLoaded = true;
+		}
+	public:
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+		Scene(SceneID id, TApp* owner,void (TApp::*buildFunc)(IScene*)) : IScene(id), m_BuildFunction(owner, buildFunc)
+		{ }
+
+		~Scene()
+		{ }
 	};
 }

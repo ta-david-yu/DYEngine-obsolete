@@ -8,7 +8,7 @@ namespace DYE
 	//	Scene: managing objects
 	//====================================================================================
 
-	Entity* Scene::CreateEntity()
+	Entity* IScene::CreateEntity()
 	{
 		std::unique_ptr<Entity> uniPtr = std::make_unique<Entity>(this);
 		Entity* ptr = uniPtr.get();
@@ -18,7 +18,7 @@ namespace DYE
 		return ptr;
 	}
 
-	Entity* Scene::CreateEntity(const std::string& _name)
+	Entity* IScene::CreateEntity(const std::string& _name)
 	{
 		std::unique_ptr<Entity> uniPtr = std::make_unique<Entity>(this, _name);
 		Entity* ptr = uniPtr.get();
@@ -28,32 +28,29 @@ namespace DYE
 		return ptr;
 	}
 
-	SceneID Scene::GetSceneID() const
+	SceneID IScene::GetSceneID() const
 	{
 		return m_SceneID;
 	}
 
-	std::string Scene::GetSceneName() const
+	std::string IScene::GetSceneName() const
 	{
 		return m_SceneName;
 	}
 
-	void Scene::load()
+	bool IScene::IsLoaded() const
 	{
-		// build scene out of build function
-		m_pBuildFunction(*CORE->m_pApplication, this);
-
-		m_IsLoaded = true;
+		return m_IsLoaded;
 	}
 
-	void Scene::release()
+	void IScene::release()
 	{
 		m_EntityList.clear();
 
 		m_IsLoaded = false;
 	}
 
-	void Scene::removeEntity(InstanceID _id)
+	void IScene::removeEntity(InstanceID _id)
 	{
 		auto itr = std::find_if(m_EntityList.begin(), m_EntityList.end(), 
 			[_id](const EntityListPair& element) { return element.first == _id; });
@@ -65,12 +62,12 @@ namespace DYE
 		}
 	}
 
-	Scene::Scene()
+	IScene::IScene(SceneID id) : m_SceneID(id)
 	{
 
 	}
 
-	Scene::~Scene()
+	IScene::~IScene()
 	{
 		release();
 	}

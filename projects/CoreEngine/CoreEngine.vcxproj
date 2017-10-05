@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\src\Application.cpp" />
     <ClCompile Include="..\..\src\Base.cpp" />
     <ClCompile Include="..\..\src\Core.cpp" />
+    <ClCompile Include="..\..\src\Delegate.cpp" />
     <ClCompile Include="..\..\src\Entity.cpp" />
     <ClCompile Include="..\..\src\glad.c" />
     <ClCompile Include="..\..\src\IComponent.cpp" />

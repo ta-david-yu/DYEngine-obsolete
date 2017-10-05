@@ -24,17 +24,27 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
+	public:
 		virtual void Run();								// init -> gameLoop(createScene -> Core->Init) -> release
 
 	protected:
+
 		void init();
 		void gameLoop();					// main game loop
 		void release();
 
-		virtual void createScene() = 0;		// setup scene
+		virtual void setupScenes() = 0;		// setup scene, need to implement
+
 		//==========================================
 		//	method
 		//==========================================
+		template <typename TApp>
+		IScene* createScene(void (TApp::*buildFunc)(IScene*))
+		{
+			return m_pCore->createScene(buildFunc);
+		}
+
+		void loadScene(int id);
 
 		//==========================================
 		//	getter
@@ -52,6 +62,9 @@ namespace DYE
 		~IApplication();
 	};
 
+	//====================================================================================
+	//	BaseApp: example application
+	//====================================================================================
 	class BaseApplication : public IApplication
 	{
 		// TO DO:
@@ -60,6 +73,18 @@ namespace DYE
 		~BaseApplication() {}
 
 	private:
+		// user define function
 
+		IScene* m_pTutScene;
+		IScene* m_pTestScene0;
+		IScene* m_pTestScene1;
+
+		virtual void setupScenes();
+
+		void buildTutScene(IScene* scene);
+
+		void buildTestScene0(IScene* scene);
+
+		void buildTestScene1(IScene* scene);
 	};
 }

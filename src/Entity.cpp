@@ -45,7 +45,7 @@ namespace DYE
 		}
 	}
 
-	Entity::Entity(Scene* _scene, const std::string& _name)
+	Entity::Entity(IScene* _scene, const std::string& _name)
 	{
 		m_pTransform = this->AddComponent<Transform>();
 		m_pTransform->Init();
@@ -127,6 +127,9 @@ namespace DYE
 		// TO DO: evil
 		// SystemManager
 		// std::unique_ptr<IComponent> uniPtr{ new IComp }
+
+		assert(false);
+		return nullptr;
 	}
 
 	//====================================================================================

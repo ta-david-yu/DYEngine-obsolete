@@ -50,7 +50,7 @@ namespace DYE
 		if (ent != nullptr)
 		{
 			// is entity, copy entity
-			Scene* scene = ent->m_pScene;
+			IScene* scene = ent->m_pScene;
 
 			clone = scene->CreateEntity(ent->GetName());
 			clone->copyFrom(ent);
@@ -62,7 +62,7 @@ namespace DYE
 			{
 				// is component, copy its entity
 				ent = comp->GetEntity();
-				Scene* scene = ent->m_pScene;
+				IScene* scene = ent->m_pScene;
 
 				clone = scene->CreateEntity(ent->GetName());
 				clone->copyFrom(ent);

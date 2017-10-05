@@ -66,5 +66,8 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Delegate.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
