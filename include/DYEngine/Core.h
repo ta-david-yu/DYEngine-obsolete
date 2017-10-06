@@ -32,6 +32,7 @@ namespace DYE
 		IApplication* m_pApplication;
 
 		static Core* s_pInstance;
+
 		SceneList m_Scenes;
 
 		SceneID m_SceneIDCounter = 0;
@@ -45,12 +46,15 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-	public:
-		void Init();
+
 		//==========================================
 		//	method
 		//==========================================
+	public:
 		static Core* GetInstance();
+
+		void LoadScene(SceneID id);
+		
 	private:
 
 		template <typename TApp>
