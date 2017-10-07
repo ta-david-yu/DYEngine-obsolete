@@ -93,6 +93,8 @@ namespace DYE
 
 		// reset dirty flag
 		resetDirtyState();
+
+		return;
 	}
 
 

@@ -21,6 +21,7 @@ namespace DYE
 	class SystemManager;
 	class Transform;
 	class TransformSystem;
+	class IApplication;
 
 	//====================================================================================
 	//	ISystem: manage all components
@@ -71,20 +72,25 @@ namespace DYE
 	//====================================================================================
 	class SystemManager
 	{
+		friend class IApplication;
+		friend class Core;
+
 	public:
-		typedef std::pair<std::type_index, std::unique_ptr<ISystem>> SystemListPair;
-		typedef std::vector<SystemListPair> SystemList;
-		typedef SystemList::iterator SystemListItr;
-		typedef SystemList::const_iterator SystemListConstItr;
+		using SystemListPair = std::pair<std::type_index, std::unique_ptr<ISystem>>;
+		using SystemList = std::vector<SystemListPair>;
+		using SystemListItr = SystemList::iterator;
+		using SystemListConstItr = SystemList::const_iterator;
 
 	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		static SystemManager* s_pInstance;
-		static std::size_t s_nextSystemID;
-		SystemList m_SystemList;
 
+		IApplication* m_pApplication;
+
+		SystemList m_SystemList;
+		std::size_t m_NextSystemIDCounter;
 		//==========================================
 		//	specialized system
 		//==========================================
@@ -131,7 +137,7 @@ namespace DYE
 				m_SystemList.push_back(SystemListPair(typeId, std::make_unique<ISystem>()));
 
 			ISystem* system = m_SystemList.back().second.get();
-			system->m_SystemID = s_nextSystemID++;
+			system->m_SystemID = m_NextSystemIDCounter++;
 
 			return system;
 		}
@@ -163,8 +169,8 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		SystemManager(); // TO DO
-		~SystemManager() {} // TO DO
+		SystemManager(IApplication* _app); // TO DO
+		~SystemManager();				   // TO DO
 	};
 
 	//====================================================================================

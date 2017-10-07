@@ -1,23 +1,68 @@
 #pragma once
 
-#include <DYEngine\Main.h>
+#include <DYEngine\interfaces\IApplication.h>
+
+#include <chrono>
+#include <thread>
+#include <ctime>
+
+#define TIME DYE::Time::GetInstance()
 
 namespace DYE
 {
+	//====================================================================================
+	//	Time: global Time updator
+	//====================================================================================
 	class Time
 	{
-		static float unScaledDeltaTime;
+		friend class IApplication;
 
-		static float unScaledFixedDeltaTime;
+		using TimePoint =
+			std::chrono::steady_clock::time_point;
+			// std::chrono::time_point<std::chrono::system_clock, std::chrono::duration<double>>;
 
-		static float realTimeSinceStart;
+		using TimeDuration =
+			std::chrono::duration<double>;
+	private:
+		//==========================================
+		//	memeber/variable
+		//==========================================
+		static Time* s_pInstance;
 
-		static float scale;
+		double m_UnScaledDeltaTime;
+		double m_UnScaledFixedDeltaTime;
 
-		static float DeltaTime() { return scale * unScaledDeltaTime; }
+		double m_RealTimeSinceStart = 0.0f;
+		double m_TimeScale = 1.0f;
 
-		static float FixedDeltaTime() { return scale * unScaledFixedDeltaTime; }
+		//==========================================
+		//	state
+		//==========================================
+		TimePoint m_frameStartTimePoint;
+		TimeDuration m_deltaDuration;
+
+		//==========================================
+		//	procedure
+		//==========================================
+		void tickInit(float dt = 1.0f / 60.0f, float fixedDt = 1.0f / 60.0f);
+		void tickUpdate();
+
+		//==========================================
+		//	method
+		//==========================================
+		double frameDuration() const;
+
+	public:
+		static Time* GetInstance();
+
+		float DeltaTime() const;
+
+		float FixedDeltaTime() const;
+
+		float UnScaled_DeltaTime() const;
+
+		float UnScaled_FixedDeltaTime() const;
+
+		void SetTimeScale(float _scale);
 	};
-
-
 }

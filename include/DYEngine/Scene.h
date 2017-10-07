@@ -9,6 +9,8 @@
 #include <memory>
 #include <functional>
 
+#define SCENE_MGR DYE::SceneManager::GetInstance()
+
 namespace DYE
 {
 	class Entity;
@@ -23,7 +25,7 @@ namespace DYE
 	{
 		friend class Entity;
 		friend class IApplication;
-		friend class Core;
+		friend class SceneManager;
 
 		typedef std::pair<InstanceID, std::unique_ptr<Entity>> EntityListPair;
 		typedef std::vector<EntityListPair> EntityList;
@@ -50,6 +52,7 @@ namespace DYE
 		//==========================================
 	private:
 		void removeEntity(InstanceID _id);				// called by entity release <- DestructionUpdate
+
 	public:
 		Entity* CreateEntity();
 		Entity* CreateEntity(const std::string& _name);
@@ -77,7 +80,7 @@ namespace DYE
 	template <typename TApp>
 	class Scene : public IScene
 	{
-		friend class Core;
+		friend class SceneManager;
 	private:
 		BuildSceneFunc m_BuildFunction;
 
@@ -103,4 +106,76 @@ namespace DYE
 	//====================================================================================
 	//	SceneManager: Used to manage scene operation
 	//====================================================================================
+	class SceneManager
+	{
+		friend class IApplication;
+		friend class Core;
+
+	public:
+		using SceneListPair = std::pair<SceneID, std::unique_ptr<IScene>>;
+		using SceneList = std::vector<SceneListPair>;
+
+	private:
+		//==========================================
+		//	memeber/variable
+		//==========================================
+		static SceneManager* s_pInstance;
+
+		SceneID m_SceneIDCounter = 0;
+		SceneID m_CurrSceneID = 0;
+		SceneID m_NextSceneID = -1;
+		bool m_IsLoadingNextScene = false;
+
+		IApplication* m_pApplication;
+
+		SceneList m_Scenes;
+		//==========================================
+		//	flag
+		//==========================================
+
+		//==========================================
+		//	procedure
+		//==========================================
+		void loadNextScene();
+
+		//==========================================
+		//	method
+		//==========================================
+	public:
+		static SceneManager* GetInstance();
+
+		void LoadScene(SceneID id);									// delay load for gmae logic
+
+	private:
+		template <typename TApp>
+		IScene* createScene(void (TApp::*buildFunc)(IScene*))		// create a ptr to scene and add it to the list
+		{
+			IScene* ptr = new Scene<TApp>(m_SceneIDCounter, dynamic_cast<TApp*>(m_pApplication), buildFunc);
+
+			m_Scenes.push_back(SceneListPair(m_SceneIDCounter, std::unique_ptr<IScene>(ptr)));
+
+			m_SceneIDCounter++;
+
+			return m_Scenes.back().second.get();
+		}
+
+		IScene* loadScene(SceneID id);								// instant load scene
+		//==========================================
+		//	getter
+		//==========================================
+		IScene* getScene(SceneID id) const;
+
+	public:
+		bool IsLoadingNextScene() const;
+		//==========================================
+		//	setter
+		//==========================================
+
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+	private:
+		SceneManager(IApplication* app);
+		~SceneManager();
+	};
 }

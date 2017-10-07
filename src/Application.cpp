@@ -1,4 +1,5 @@
 #include <DYEngine\interfaces\IApplication.h>
+#include <DYEngine\Time.h>
 
 namespace DYE
 {
@@ -13,6 +14,7 @@ namespace DYE
 	void IApplication::init()
 	{
 		m_pCore = new Core(this);
+		m_pCore->init();
 	}
 
 	void IApplication::gameLoop()
@@ -20,26 +22,73 @@ namespace DYE
 		// create scene, load scene function into each scene
 		setupScenes();
 
-		// notice that the scene SceneID == 0 is always the first loaded scene
-		CORE->loadScene(0);
+		TIME->tickInit();
 
-		// TO DO: game loop
-		/*
-		while (1)
+		// notice that the scene SceneID == 0 is always the first loaded scene
+		SCENE_MGR->loadScene(0);
+
+		// system loop block
 		{
-			
+			while (true)
+			{
+				SYSTEM_MGR->Awake();
+
+				SYSTEM_MGR->Start();
+
+				double fixedUpdateLag = 0.0f;
+
+				int framesCounter = 0;
+				std::clock_t start = std::clock();
+
+				do
+				{
+					// printf("%f\n", TIME->DeltaTime());
+					// std::cout << "frame: " << TIME->DeltaTime() << std::endl;
+					framesCounter++;
+					auto timepassed = (std::clock() - start) / (double) CLOCKS_PER_SEC;
+					if (timepassed > 0.25f)
+					{
+						std::cout << "frame:" << framesCounter << std::endl;
+						std::cout << "passed: " << timepassed << std::endl;
+
+						double fps = (double) framesCounter / timepassed;
+						start = std::clock();
+						framesCounter = 0;
+						std::cout << fps << std::endl;
+					}
+
+					// std::cout << "FPS: " << 1 / TIME->DeltaTime() << std::endl;
+
+					SYSTEM_MGR->EarlyUpdate();			// EarlyUpdate
+
+					fixedUpdateLag += TIME->frameDuration();
+
+					while (fixedUpdateLag >= TIME->UnScaled_FixedDeltaTime())
+					{
+						SYSTEM_MGR->FixedUpdate();		// FixedUpdate
+						fixedUpdateLag -= TIME->UnScaled_FixedDeltaTime();
+					}
+
+					SYSTEM_MGR->Update();				// Update
+						
+					SYSTEM_MGR->LateUpdate();			// LateUpdate
+
+					// TO DO: Render Update
+
+					Base::DestructionUpdate();			// Delay Destruction for Base Object (Entity, Component...)
+
+					TIME->tickUpdate();
+
+				} while (!SCENE_MGR->IsLoadingNextScene());
+
+				SCENE_MGR->loadNextScene();
+			}
 		}
-		*/
 	}
 
 	void IApplication::release()
 	{
 
-	}
-
-	void IApplication::loadScene(SceneID id)
-	{
-		CORE->loadScene(id);
 	}
 
 	IApplication::IApplication()

@@ -40,7 +40,7 @@ namespace DYE
 
 	void ISystem::Start() 
 	{
-
+		
 	}
 
 	void ISystem::EarlyUpdate() 
@@ -67,14 +67,9 @@ namespace DYE
 	//	SystemManager: manage all components
 	//====================================================================================
 	SystemManager* SystemManager::s_pInstance = nullptr;
-	std::size_t SystemManager::s_nextSystemID = 0;
 
 	SystemManager* SystemManager::GetInstance()
 	{
-		if (s_pInstance == nullptr)
-		{
-			s_pInstance = new SystemManager();
-		}
 		assert(s_pInstance != nullptr);
 		return s_pInstance;
 	}
@@ -158,9 +153,18 @@ namespace DYE
 		m_SystemList.clear();
 	}
 
-	SystemManager::SystemManager()
+	SystemManager::SystemManager(IApplication* _app) : m_pApplication(_app), m_NextSystemIDCounter(0)
 	{
+		if (s_pInstance == nullptr)
+			s_pInstance = this;
+
 		m_pTransformSystem = nullptr;
+	}
+
+	SystemManager::~SystemManager()
+	{
+		if (s_pInstance == this)
+			s_pInstance = nullptr;
 	}
 
 	//====================================================================================

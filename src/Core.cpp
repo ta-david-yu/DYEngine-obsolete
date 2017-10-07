@@ -7,6 +7,12 @@ namespace DYE
 {
 	Core* Core::s_pInstance = nullptr;
 
+	void Core::init()
+	{
+		m_pSceneManager = new SceneManager(m_pApplication);
+		m_pSystemManager = new SystemManager(m_pApplication);
+	}
+
 	Core::Core(IApplication* app) : m_pApplication(app)
 	{
 		if (s_pInstance == nullptr)
@@ -21,28 +27,7 @@ namespace DYE
 
 	Core* Core::GetInstance()
 	{
-		// assert(s_pInstance != nullptr);
+		assert(s_pInstance != nullptr);
 		return s_pInstance;
-	}
-
-	IScene* Core::loadScene(SceneID id)
-	{
-		IScene* currScene = getScene(m_CurrSceneID);
-		if (currScene->IsLoaded())
-			currScene->release();
-
-		IScene* nextScene = getScene(id);
-		nextScene->load();
-
-		m_CurrSceneID = id;
-
-		return nextScene;
-	}
-
-	IScene* Core::getScene(SceneID id) const
-	{
-		assert(id < m_SceneIDCounter);
-
-		return m_Scenes[id].second.get();
 	}
 }

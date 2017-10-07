@@ -165,6 +165,7 @@
     <ClCompile Include="..\..\src\Shader.cpp" />
     <ClCompile Include="..\..\src\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
+    <ClCompile Include="..\..\src\Time.cpp" />
     <ClCompile Include="..\..\src\Uniform.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>

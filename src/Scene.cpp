@@ -71,4 +71,65 @@ namespace DYE
 	{
 		release();
 	}
+
+	//====================================================================================
+	//	SceneManager: Used to manage scene operation
+	//====================================================================================
+	SceneManager* SceneManager::s_pInstance = nullptr;
+
+	SceneManager* SceneManager::GetInstance()
+	{
+		assert(s_pInstance != nullptr);
+		return s_pInstance;
+	}
+
+	void SceneManager::LoadScene(SceneID id)
+	{
+		m_NextSceneID = id;
+		m_IsLoadingNextScene = true;
+	}
+
+	void SceneManager::loadNextScene()
+	{
+		loadScene(m_NextSceneID);
+		m_IsLoadingNextScene = false;
+	}
+
+	IScene* SceneManager::loadScene(SceneID id)
+	{
+		IScene* currScene = getScene(m_CurrSceneID);
+		if (currScene->IsLoaded())
+			currScene->release();
+
+		IScene* nextScene = getScene(id);
+		nextScene->load();
+
+		m_CurrSceneID = id;
+
+		return nextScene;
+	}
+
+	IScene* SceneManager::getScene(SceneID id) const
+	{
+		assert(id < m_SceneIDCounter);
+
+		return m_Scenes[id].second.get();
+	}
+
+	bool SceneManager::IsLoadingNextScene() const
+	{
+		return m_IsLoadingNextScene;
+	}
+
+	SceneManager::SceneManager(IApplication* app)
+	{
+		if (s_pInstance == nullptr)
+			s_pInstance = this;
+	}
+
+	SceneManager::~SceneManager()
+	{
+		if (s_pInstance == this)
+			s_pInstance = nullptr;
+	}
 }

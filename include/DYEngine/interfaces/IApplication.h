@@ -1,6 +1,9 @@
 #pragma once
 
 #include <DYEngine\Core.h>
+#include <DYEngine\Time.h>
+
+#include <iostream>
 
 namespace DYE
 {
@@ -27,12 +30,12 @@ namespace DYE
 	public:
 		virtual void Run();								// init -> gameLoop(createScene -> Core->Init) -> release
 
-	protected:
-
+	private:
 		void init();
 		void gameLoop();					// main game loop
 		void release();
 
+	protected:
 		virtual void setupScenes() = 0;		// setup scene, need to implement
 
 		//==========================================
@@ -41,10 +44,8 @@ namespace DYE
 		template <typename TApp>
 		IScene* createScene(void (TApp::*buildFunc)(IScene*))
 		{
-			return m_pCore->createScene(buildFunc);
+			return m_pCore->m_pSceneManager->createScene(buildFunc);
 		}
-
-		void loadScene(int id);
 
 		//==========================================
 		//	getter
@@ -67,14 +68,12 @@ namespace DYE
 	//====================================================================================
 	class BaseApplication : public IApplication
 	{
-		// TO DO:
 	public:
 		BaseApplication() {}
 		~BaseApplication() {}
 
 	private:
 		// user define function
-
 		IScene* m_pTutScene;
 		IScene* m_pTestScene0;
 		IScene* m_pTestScene1;
