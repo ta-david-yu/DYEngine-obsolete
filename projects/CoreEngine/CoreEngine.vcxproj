@@ -21,6 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8FFB59FF-DC39-4D07-A6A5-EFEB91D7ED2F}</ProjectGuid>
     <RootNamespace>CoreEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -68,30 +69,30 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)output\$(Configuration)\bin\</OutDir>
     <IntDir>$(ProjectDir)output\$(Configuration)\build\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)($(Configuration))</TargetName>
-    <LibraryPath>$(UniversalCRT_LibraryPath_x86);$(UniversalCRT_LibraryPath_x64);$(UniversalCRT_LibraryPath_arm);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dll_Debug|Win32'">
     <OutDir>$(ProjectDir)output\$(Configuration)\bin\</OutDir>
     <IntDir>$(ProjectDir)output\$(Configuration)\build\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)($(Configuration))</TargetName>
-    <LibraryPath>$(UniversalCRT_LibraryPath_x86);$(UniversalCRT_LibraryPath_x64);$(UniversalCRT_LibraryPath_arm);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)output\$(Configuration)\bin\</OutDir>
     <IntDir>$(ProjectDir)output\$(Configuration)\build\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)($(Configuration))</TargetName>
-    <LibraryPath>$(UniversalCRT_LibraryPath_x86);$(UniversalCRT_LibraryPath_x64);$(UniversalCRT_LibraryPath_arm);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dll_Release|Win32'">
     <OutDir>$(ProjectDir)output\$(Configuration)\bin\</OutDir>
     <IntDir>$(ProjectDir)output\$(Configuration)\build\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)($(Configuration))</TargetName>
-    <LibraryPath>$(UniversalCRT_LibraryPath_x86);$(UniversalCRT_LibraryPath_x64);$(UniversalCRT_LibraryPath_arm);C:\Program Files (x86)\Windows Kits\10\Lib\10.0.10150.0\ucrt\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
