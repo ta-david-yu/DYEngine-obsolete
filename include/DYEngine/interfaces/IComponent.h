@@ -66,7 +66,7 @@ namespace DYE
 		//==========================================
 		//	flag
 		//==========================================
-		bool m_IsEnabled;
+		bool m_IsEnabled = true;
 	public:
 		//==========================================
 		//	procedure
@@ -289,13 +289,24 @@ namespace DYE
 	//====================================================================================
 	//	DummyComponent: Test Component
 	//====================================================================================
-	class DummyComponent : public IComponent
+	class DebugCPUComponent : public IComponent
 	{
 	public:
 		// must added macro
 		DYE_COMPONENT_TOSTRING
 	public:
+		int LoopCount = 400;
+	public:
 		virtual void Init() {}
-		virtual void Update() {}
+		virtual void Update() 
+		{
+			int c = LoopCount;
+			while (c--)
+			{
+				int t = c;
+				while (t--)
+					printf("");
+			}
+		}
 	};
 }

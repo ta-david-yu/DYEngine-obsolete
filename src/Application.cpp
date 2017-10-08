@@ -38,26 +38,22 @@ namespace DYE
 				double fixedUpdateLag = 0.0f;
 
 				int framesCounter = 0;
-				std::clock_t start = std::clock();
+				double timeAccumulator = 0;
 
 				do
 				{
-					// printf("%f\n", TIME->DeltaTime());
-					// std::cout << "frame: " << TIME->DeltaTime() << std::endl;
+					////// FPS //////
 					framesCounter++;
-					auto timepassed = (std::clock() - start) / (double) CLOCKS_PER_SEC;
-					if (timepassed > 0.25f)
+					timeAccumulator += TIME->frameDuration();
+					if (timeAccumulator > 1.0f)
 					{
-						std::cout << "frame:" << framesCounter << std::endl;
-						std::cout << "passed: " << timepassed << std::endl;
+						double fps = framesCounter / timeAccumulator;
+						printf("FPS: %f  %f\n", fps, timeAccumulator);
 
-						double fps = (double) framesCounter / timepassed;
-						start = std::clock();
+						timeAccumulator = 0;
 						framesCounter = 0;
-						std::cout << fps << std::endl;
 					}
-
-					// std::cout << "FPS: " << 1 / TIME->DeltaTime() << std::endl;
+					////// FPS //////
 
 					SYSTEM_MGR->EarlyUpdate();			// EarlyUpdate
 
@@ -125,7 +121,7 @@ namespace DYE
 
 		assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
 
-		assert(!SYSTEM_MGR->HasSystem<DummyComponent>());
+		assert(!SYSTEM_MGR->HasSystem<DebugCPUComponent>());
 
 		ent00->SetName("Obj00_v1");
 		assert(comp00->GetName() == "Obj00_v1");
@@ -198,8 +194,10 @@ namespace DYE
 	{
 		// prototype
 		Entity* root = scene->CreateEntity("Root");
+		root->AddComponent<DebugCPUComponent>()->Init();
 		root->GetTransform()->SetPosition(Vector3f(0, 0, 0));
 		root->GetTransform()->SetLocalScale(Vector3f(0, 0, 0));
+		
 
 		Entity* ent0 = scene->CreateEntity("Nod0");
 		ent0->GetTransform()->SetParent(root->GetTransform());

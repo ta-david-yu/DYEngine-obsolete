@@ -45,12 +45,22 @@ namespace DYE
 
 	void ISystem::EarlyUpdate() 
 	{
-
+		// TO DO:
+		for (auto const& comp : m_ComponentsList)
+		{
+			IComponent* ptr = comp.second;
+		}
 	}
 
 	void ISystem::Update() 
 	{
-
+		// TO DO:
+		for (auto const& comp : m_ComponentsList)
+		{
+			IComponent* ptr = comp.second;
+			if (ptr->IsEnabled())
+				ptr->Update();
+		}
 	}
 
 	void ISystem::LateUpdate() 

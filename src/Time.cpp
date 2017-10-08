@@ -23,7 +23,7 @@ namespace DYE
 
 		m_deltaDuration = TimeDuration(dt);
 
-		// m_frameStartTimePoint = std::chrono::system_clock::now();
+		m_frameStartTimePoint = std::chrono::steady_clock::now();
 	}
 
 	void Time::tickUpdate()
@@ -36,8 +36,8 @@ namespace DYE
 		//std::this_thread::sleep_for(std::chrono::seconds(sleepTime));
 		// TO DO: sleep
 
-		/*
-		TimePoint now(std::chrono::system_clock::now());
+		
+		TimePoint now(std::chrono::steady_clock::now());
 
 		m_deltaDuration = now - m_frameStartTimePoint;
 
@@ -45,7 +45,7 @@ namespace DYE
 		m_UnScaledDeltaTime = m_deltaDuration.count();
 
 		m_frameStartTimePoint = now;
-		*/
+		
 	}
 
 	double Time::frameDuration() const { return m_deltaDuration.count(); }
