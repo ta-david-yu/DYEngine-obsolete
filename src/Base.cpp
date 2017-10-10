@@ -17,7 +17,9 @@ namespace DYE
 
 	Base::Base() : m_InstanceID(s_nextInstantiateID++)
 	{
+		printf("ID: %d \n", s_nextInstantiateID - 1);
 		s_instancesSet.insert(this);
+		
 	}
 
 	Base::~Base()

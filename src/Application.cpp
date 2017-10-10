@@ -73,7 +73,7 @@ namespace DYE
 
 					Base::DestructionUpdate();			// Delay Destruction for Base Object (Entity, Component...)
 
-					TIME->tickUpdate();
+					TIME->tickUpdate();					// Update timer
 
 				} while (!SCENE_MGR->IsLoadingNextScene());
 
