@@ -22,6 +22,9 @@ namespace DYE
 	class ISystem;
 	class SystemManager;
 	class IScene;
+	class Renderer;
+	class SpriteRenderer;
+	class MeshRenderer;
 
 	//====================================================================================
 	//	Entity: Base Entity class as game object
@@ -86,7 +89,7 @@ namespace DYE
 			return ptr;
 		}
 
-		IComponent* AddComponent(IComponent* comp);		// copy a same component from the input
+		IComponent* AddComponent(IComponent* comp);		// copy a same component from the input, TO DO
 	protected:
 		void release() override;
 
@@ -130,6 +133,15 @@ namespace DYE
 
 	template <>
 	Transform* Entity::AddComponent<Transform>();
+
+	template <>
+	Renderer* Entity::AddComponent<Renderer>();
+
+	template <>
+	MeshRenderer* Entity::AddComponent<MeshRenderer>();
+
+	template <>
+	SpriteRenderer* Entity::AddComponent<SpriteRenderer>();
 
 	template <>
 	Transform* Entity::GetComponent<Transform>() const;

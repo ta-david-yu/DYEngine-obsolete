@@ -164,6 +164,9 @@
     <ClCompile Include="..\..\src\IComponent.cpp" />
     <ClCompile Include="..\..\src\Math.cpp" />
     <ClCompile Include="..\..\src\Mesh.cpp" />
+    <ClCompile Include="..\..\src\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\Renderer.cpp" />
+    <ClCompile Include="..\..\src\RendererSystem.cpp" />
     <ClCompile Include="..\..\src\RenderUnit.cpp" />
     <ClCompile Include="..\..\src\Resource.cpp" />
     <ClCompile Include="..\..\src\Scene.cpp" />

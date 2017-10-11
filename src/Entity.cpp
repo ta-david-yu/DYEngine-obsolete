@@ -1,5 +1,9 @@
 #include <DYEngine\Entity.h>
 
+#include <DYEngine\graphics\Renderer.h>
+#include <DYEngine\graphics\SpriteRenderer.h>
+#include <DYEngine\graphics\MeshRenderer.h>
+
 #include <type_traits>
 
 #define ACTIVE_SIGN "[@]"
@@ -156,12 +160,54 @@ namespace DYE
 		// Insert component ptr to system list
 		SystemManager::GetInstance()->RegisterComponent<Transform>(ptr);
 
-		// Move unique component ptr to object list
-		std::type_index typeId = typeid(Transform);
-
 		m_uniqueTransform = std::move(uniPtr);
 		// m_Components.push_back(ComponentListPair(ptr->GetInstanceID(), std::move(uniPtr)));
 		//m_Components.insert( std::pair<std::type_index, std::unique_ptr<TComp>>(typeId, std::move(uniPtr)) );
+
+		return ptr;
+	}
+
+	template <>
+	Renderer* Entity::AddComponent<Renderer>()
+	{
+		// Create unique component ptr and initialize
+		std::unique_ptr<Renderer> uniPtr = std::make_unique<Renderer>();
+		Renderer* ptr = uniPtr.get();
+
+		ptr->AttachTo(this);
+
+		// Insert component ptr to system list
+		SystemManager::GetInstance()->RegisterComponent<Renderer>(ptr);
+
+		return ptr;
+	}
+
+	template <>
+	MeshRenderer* Entity::AddComponent<MeshRenderer>()
+	{
+		// Create unique component ptr and initialize
+		std::unique_ptr<MeshRenderer> uniPtr = std::make_unique<MeshRenderer>();
+		MeshRenderer* ptr = uniPtr.get();
+
+		ptr->AttachTo(this);
+
+		// Insert component ptr to system list
+		SystemManager::GetInstance()->RegisterComponent<Renderer>(ptr);
+
+		return ptr;
+	}
+
+	template <>
+	SpriteRenderer* Entity::AddComponent<SpriteRenderer>()
+	{
+		// Create unique component ptr and initialize
+		std::unique_ptr<SpriteRenderer> uniPtr = std::make_unique<SpriteRenderer>();
+		SpriteRenderer* ptr = uniPtr.get();
+
+		ptr->AttachTo(this);
+
+		// Insert component ptr to system list
+		SystemManager::GetInstance()->RegisterComponent<Renderer>(ptr);
 
 		return ptr;
 	}

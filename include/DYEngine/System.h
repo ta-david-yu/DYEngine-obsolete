@@ -22,6 +22,8 @@ namespace DYE
 	class Transform;
 	class TransformSystem;
 	class IApplication;
+	class RendererSystem;
+	class Renderer;
 
 	//====================================================================================
 	//	ISystem: manage all components
@@ -52,6 +54,7 @@ namespace DYE
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void FixedUpdate();
+
 		//==========================================
 		//	method
 		//==========================================
@@ -91,23 +94,30 @@ namespace DYE
 
 		SystemList m_SystemList;
 		std::size_t m_NextSystemIDCounter;
+
 		//==========================================
 		//	specialized system
 		//==========================================
 		std::unique_ptr<TransformSystem> m_uniqueTransformSystem;
 		TransformSystem* m_pTransformSystem;
 
+		std::unique_ptr<RendererSystem> m_uniqueRendererSystem;
+		RendererSystem* m_pRendererSystem;
+
 	public:
 		static SystemManager* GetInstance();
 		//==========================================
 		//	procedure
 		//==========================================
-		virtual void Awake();
-		virtual void Start();
-		virtual void Update();
-		virtual void EarlyUpdate();
-		virtual void LateUpdate();
-		virtual void FixedUpdate();
+		void init();					// allocate specialized system (transform, graphics, physics, audio...)
+
+		void Awake();
+		void Start();
+		void Update();
+		void EarlyUpdate();
+		void LateUpdate();
+		void FixedUpdate();
+		void RegisterRenderer();
 
 		//==========================================
 		//	method
@@ -169,8 +179,8 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		SystemManager(IApplication* _app); // TO DO
-		~SystemManager();				   // TO DO
+		SystemManager(IApplication* _app);
+		~SystemManager();				   
 	};
 
 	//====================================================================================
@@ -180,10 +190,13 @@ namespace DYE
 	void SystemManager::RegisterComponent<Transform>(Transform* _pComp);	// Register a component
 
 	template <>
-	ISystem* SystemManager::addSystem<Transform>();
+	bool SystemManager::HasSystem<Transform>() const;
 
 	template <>
-	bool SystemManager::HasSystem<Transform>() const;
+	void SystemManager::RegisterComponent<Renderer>(Renderer* _pComp);	// Register a component
+
+	template <>
+	bool SystemManager::HasSystem<Renderer>() const;
 
 	//====================================================================================
 	//	TransformSystem: 

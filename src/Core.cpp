@@ -10,7 +10,9 @@ namespace DYE
 	void Core::init()
 	{
 		m_pSceneManager = new SceneManager(m_pApplication);
+		m_pSceneManager->init();
 		m_pSystemManager = new SystemManager(m_pApplication);
+		m_pSystemManager->init();
 	}
 
 	Core::Core(IApplication* app) : m_pApplication(app)

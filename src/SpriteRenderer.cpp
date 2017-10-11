@@ -2,53 +2,23 @@
 
 namespace DYE
 {
-	Sprite::Sprite()
+	SpriteRenderer::SpriteRenderer()
 	{
 
 	}
 
-	Sprite::~Sprite()
+	SpriteRenderer::~SpriteRenderer()
 	{
 
 	}
 
-	void Sprite::Init()
+	void SpriteRenderer::Init()
 	{
 
 	}
 
-	void Sprite::Awake()
+	void SpriteRenderer::RegisterRenderer()
 	{
-
-	}
-
-	void Sprite::Start()
-	{
-
-	}
-
-	void Sprite::Update()
-	{
-
-	}
-
-	void Sprite::LateUpdate()
-	{
-
-	}
-
-	void Sprite::OnEnable()
-	{
-
-	}
-
-	void Sprite::OnDisable()
-	{
-
-	}
-
-	void Sprite::OnDestroy()
-	{
-
+		// TO DO:
 	}
 }

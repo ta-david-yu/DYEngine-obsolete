@@ -1,33 +1,24 @@
 #pragma once
 
-#include <DYEngine\interfaces\IComponent.h>
+#include <DYEngine\graphics\Renderer.h>
 
 namespace DYE
 {
-	class NonCopyable;
-	class Base;
-	class IComponent;
+	class Renderer;
 
-	class Sprite : public IComponent
-	{		
-		// TO DO:
-		//==========================================
-		//	memeber/variable
-		//==========================================
+	//====================================================================================
+	//	SpriteRenderer: 3d renderer component, take a material, drawn as rect
+	//====================================================================================
+	class SpriteRenderer : public Renderer
+	{
+	public:
+		DYE_COMPONENT_TOSTRING
+	protected:
 		//==========================================
 		//	procedure
 		//==========================================
 		virtual void Init();
-
-		virtual void Awake();
-		virtual void Start();
-		virtual void Update();
-		virtual void LateUpdate();
-
-		// Call by Event
-		virtual void OnEnable();
-		virtual void OnDisable();
-		virtual void OnDestroy();
+		virtual void RegisterRenderer();
 		//==========================================
 		//	method
 		//==========================================
@@ -41,11 +32,12 @@ namespace DYE
 		//==========================================
 		//	opeartor
 		//==========================================
+	public:
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		Sprite();
-		~Sprite();
+		SpriteRenderer();
+		~SpriteRenderer();
 		
 	};
 }

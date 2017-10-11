@@ -16,6 +16,7 @@ void testResource()
 int main()
 {
 	BaseApplication* app = new BaseApplication();
+	app->SetWindowName("Demo Game");
 	app->Run();
 
 	system("PAUSE");

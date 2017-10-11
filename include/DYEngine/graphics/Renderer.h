@@ -1,20 +1,26 @@
 #pragma once
 
 #include <DYEngine\interfaces\IComponent.h>
-#include <DYEngine\System.h>
 
 namespace DYE
 {
 
-	class IComponent;
-
+	//====================================================================================
+	//	Renderer: basic renderer component
+	//====================================================================================
 	class Renderer : public IComponent
 	{
-		friend class ISystem;
+	public:
+		// must added macro
+		DYE_COMPONENT_TOSTRING
+
+			friend class RendererSystem;
 		//==========================================
 		//	procedure
 		//==========================================
-	protected: 
-		virtual void registerRenderUnit();		// call by RendererSystem, to register renderUnit to Scene RenderUnitList.
+	protected:
+		virtual void RegisterRenderer();		// call by RendererSystem, to register renderUnit to Scene RenderUnitList.
+		virtual void Init();
+		virtual void Update();
 	};
 }

@@ -1,5 +1,8 @@
 #include <DYEngine\System.h>
 
+#include <DYEngine\graphics\RendererSystem.h>
+#include <DYEngine\graphics\Renderer.h>
+
 #include <cassert>
 #include <algorithm>
 #include <queue>
@@ -30,47 +33,74 @@ namespace DYE
 
 	void ISystem::Awake() 
 	{
-		// TO DO:
 		for (auto const& comp : m_ComponentsList)
 		{
 			IComponent* ptr = comp.second;
-			// if (ptr->Get)
+			if (ptr->IsEnabled())
+			{
+				ptr->Awake();
+			}
 		}
 	}
 
 	void ISystem::Start() 
 	{
-		
+		for (auto const& comp : m_ComponentsList)
+		{
+			IComponent* ptr = comp.second;
+			if (ptr->IsEnabled())
+			{
+				ptr->Start();
+			}
+		}
 	}
 
 	void ISystem::EarlyUpdate() 
 	{
-		// TO DO:
 		for (auto const& comp : m_ComponentsList)
 		{
 			IComponent* ptr = comp.second;
+			if (ptr->IsEnabled())
+			{
+				ptr->EarlyUpdate();
+			}
 		}
 	}
 
 	void ISystem::Update() 
 	{
-		// TO DO:
 		for (auto const& comp : m_ComponentsList)
 		{
 			IComponent* ptr = comp.second;
 			if (ptr->IsEnabled())
+			{
 				ptr->Update();
+			}
 		}
 	}
 
 	void ISystem::LateUpdate() 
 	{
-
+		for (auto const& comp : m_ComponentsList)
+		{
+			IComponent* ptr = comp.second;
+			if (ptr->IsEnabled())
+			{
+				ptr->LateUpdate();
+			}
+		}
 	}
 
 	void ISystem::FixedUpdate() 
 	{
-	
+		for (auto const& comp : m_ComponentsList)
+		{
+			IComponent* ptr = comp.second;
+			if (ptr->IsEnabled())
+			{
+				ptr->FixedUpdate();
+			}
+		}
 	}
 
 	//====================================================================================
@@ -82,6 +112,20 @@ namespace DYE
 	{
 		assert(s_pInstance != nullptr);
 		return s_pInstance;
+	}
+
+	void SystemManager::init()
+	{
+		// init transform system
+		m_uniqueTransformSystem = std::make_unique<TransformSystem>();
+		m_pTransformSystem = m_uniqueTransformSystem.get();
+
+		// init graphics system
+		m_uniqueRendererSystem = std::make_unique<RendererSystem>();
+		m_pRendererSystem = m_uniqueRendererSystem.get();
+
+		// TO DO: init other specialized systems
+
 	}
 
 	void SystemManager::Awake()
@@ -158,17 +202,25 @@ namespace DYE
 		}
 	}
 
+	void SystemManager::RegisterRenderer()
+	{
+		m_pRendererSystem->RegisterRenderer();
+	}
+
 	void SystemManager::releaseAllSystems()
 	{
 		m_SystemList.clear();
 	}
 
-	SystemManager::SystemManager(IApplication* _app) : m_pApplication(_app), m_NextSystemIDCounter(0)
+	SystemManager::SystemManager(IApplication* _app) : 
+		m_pApplication(_app),
+		m_NextSystemIDCounter(0), 
+
+		m_pTransformSystem(nullptr),
+		m_pRendererSystem(nullptr)	// TO DO: add more system init
 	{
 		if (s_pInstance == nullptr)
 			s_pInstance = this;
-
-		m_pTransformSystem = nullptr;
 	}
 
 	SystemManager::~SystemManager()
@@ -183,28 +235,18 @@ namespace DYE
 	template <>
 	void SystemManager::RegisterComponent<Transform>(Transform* _pComp)
 	{
-		ISystem* system = addSystem<Transform>();
+		ISystem* system = m_pTransformSystem;
 		system->registerComponent(_pComp);
 
 		// set every transform's parent to Root
 		_pComp->SetParent(TransformSystem::GetRoot());
 	}
 
-	//====================================================================================
-	//	addSystem: Explicit Specialization
-	//====================================================================================
-	template<>
-	ISystem* SystemManager::addSystem<Transform>()
+	template <>
+	void SystemManager::RegisterComponent<Renderer>(Renderer* _pComp)
 	{
-		std::type_index typeId = typeid(Transform);
-
-		if (m_pTransformSystem == nullptr)
-		{
-			m_uniqueTransformSystem = std::make_unique<TransformSystem>();
-			m_pTransformSystem = m_uniqueTransformSystem.get();
-		}
-
-		return m_pTransformSystem;
+		ISystem* system = m_pRendererSystem;
+		system->registerComponent(_pComp);
 	}
 
 	//====================================================================================
@@ -212,6 +254,12 @@ namespace DYE
 	//====================================================================================
 	template <>
 	bool SystemManager::HasSystem<Transform>() const
+	{
+		return true;
+	}
+
+	template <>
+	bool SystemManager::HasSystem<Renderer>() const
 	{
 		return true;
 	}

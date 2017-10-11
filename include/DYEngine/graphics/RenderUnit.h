@@ -1,6 +1,5 @@
 #pragma once
 
-#include <DYEngine\Graphics.h>
 
 namespace DYE
 {

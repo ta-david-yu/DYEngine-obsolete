@@ -89,6 +89,11 @@ namespace DYE
 		m_IsLoadingNextScene = true;
 	}
 
+	void SceneManager::init()
+	{
+		// TO DO:
+	}
+
 	void SceneManager::loadNextScene()
 	{
 		loadScene(m_NextSceneID);

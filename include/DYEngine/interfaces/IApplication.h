@@ -5,6 +5,10 @@
 
 #include <iostream>
 
+#define DEBUG
+
+struct GLFWwindow;
+
 namespace DYE
 {
 	class Core;
@@ -20,10 +24,13 @@ namespace DYE
 		//==========================================
 	protected:
 		Core* m_pCore;
+		GLFWwindow* m_pWindow;
+		std::string m_WindowName = "DYE";
 		//==========================================
 		//	flag
 		//==========================================
-
+	protected:
+		bool m_IsRunning;
 		//==========================================
 		//	procedure
 		//==========================================
@@ -36,7 +43,19 @@ namespace DYE
 		void release();
 
 	protected:
+		virtual void initGL();
+		virtual void releaseGL();
+		virtual bool checkIfWindowClosed();
+		virtual void render();
+
 		virtual void setupScenes() = 0;		// setup scene, need to implement
+		
+		//==========================================
+		//	event
+		//==========================================
+	protected:
+		virtual void onNextSceneLoaded();
+		virtual void onRelease();
 
 		//==========================================
 		//	method
@@ -46,15 +65,20 @@ namespace DYE
 		{
 			return m_pCore->m_pSceneManager->createScene(buildFunc);
 		}
-
+	private:
+#ifdef DEBUG
+		void debugGLSetup();
+		int shaderProgram;
+		unsigned int VBO, VAO, EBO;
+#endif // DEBUG
 		//==========================================
 		//	getter
 		//==========================================
-
+	public:
 		//==========================================
 		//	setter
 		//==========================================
-
+		void SetWindowName(std::string _name);
 		//==========================================
 		//	constructor/destructor
 		//==========================================

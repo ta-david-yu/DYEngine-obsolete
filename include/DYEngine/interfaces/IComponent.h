@@ -79,6 +79,7 @@ namespace DYE
 		virtual void Awake() {}
 		virtual void Start() {}
 		virtual void EarlyUpdate() {}
+		virtual void FixedUpdate() {}
 		virtual void Update() = 0;
 		virtual void LateUpdate() {}
 
@@ -221,6 +222,7 @@ namespace DYE
 		~Transform() {}
 	};
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//====================================================================================
 	//	IReusable: Resuable base class that can be managed by ReusablePool
 	//====================================================================================
@@ -298,7 +300,7 @@ namespace DYE
 		int LoopCount = 400;
 	public:
 		virtual void Init() {}
-		virtual void Update() 
+		virtual void Update()
 		{
 			int c = LoopCount;
 			while (c--)

@@ -61,6 +61,7 @@ namespace DYE
 		}
 	protected:
 		virtual void release() = 0;							// Need to be implemented for derived class, called on destruction loop
+
 	public:
 		//==========================================
 		//	getter
