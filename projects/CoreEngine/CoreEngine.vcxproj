@@ -171,6 +171,7 @@
     <ClCompile Include="..\..\src\glad.c" />
     <ClCompile Include="..\..\src\IComponent.cpp" />
     <ClCompile Include="..\..\src\Logger.cpp" />
+    <ClCompile Include="..\..\src\Material.cpp" />
     <ClCompile Include="..\..\src\Math.cpp" />
     <ClCompile Include="..\..\src\Mesh.cpp" />
     <ClCompile Include="..\..\src\MeshRenderer.cpp" />

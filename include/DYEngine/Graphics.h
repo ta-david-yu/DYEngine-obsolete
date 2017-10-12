@@ -7,3 +7,4 @@
 #include <DYEngine\graphics\RendererSystem.h>
 #include <DYEngine\graphics\Uniform.h>
 #include <DYEngine\graphics\Shader.h>
+#include <DYEngine\graphics\Material.h>
