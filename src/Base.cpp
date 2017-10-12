@@ -1,6 +1,7 @@
 #include <DYEngine\Base.h>
 #include <DYEngine\Entity.h>
 #include <DYEngine\interfaces\IComponent.h>
+#include <DYEngine\utilities\Logger.h>
 
 #include <typeinfo>
 #include <typeindex>
@@ -72,7 +73,7 @@ namespace DYE
 			else
 			{
 				// TO DO: error log
-				printf("ERROR BASE OBJECT CASTING\n");
+				LogError("Illegal base object casting");
 			}
 		}
 

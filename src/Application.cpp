@@ -1,5 +1,6 @@
 #include <DYEngine\interfaces\IApplication.h>
 #include <DYEngine\Time.h>
+#include <DYEngine\utilities\Logger.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -16,6 +17,7 @@ namespace DYE
 
 	void IApplication::init()
 	{
+		LogInfo("Init app");
 		m_pCore = new Core(this);
 		m_pCore->init();
 
@@ -26,6 +28,7 @@ namespace DYE
 
 	void IApplication::gameLoop()
 	{
+		LogInfo("Start game loop");
 		// create scene, load scene function into each scene
 		setupScenes();
 
@@ -50,14 +53,13 @@ namespace DYE
 				do
 				{
 #ifdef DEBUG
-
 					////// FPS //////
 					framesCounter++;
 					timeAccumulator += TIME->frameDuration();
 					if (timeAccumulator > 1.0f)
 					{
 						double fps = framesCounter / timeAccumulator;
-						printf("FPS: %f  %f\n", fps, timeAccumulator);
+						LogDebug("FPS: %f  %f", fps, timeAccumulator);
 
 						timeAccumulator = 0;
 						framesCounter = 0;
@@ -114,6 +116,8 @@ namespace DYE
 
 	void IApplication::initGL()
 	{
+		LogInfo("Init GL");
+
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -121,7 +125,7 @@ namespace DYE
 
 		GLFWmonitor* monitor = NULL;//glfwGetPrimaryMonitor();
 
-		m_pWindow = glfwCreateWindow(1600, 900, m_WindowName.c_str(), NULL, NULL);
+		m_pWindow = glfwCreateWindow(640, 480, m_WindowName.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(m_pWindow);
 
 		// glad: load all OpenGL function pointers
@@ -141,7 +145,7 @@ namespace DYE
 
 	bool IApplication::checkIfWindowClosed()
 	{
-		return glfwWindowShouldClose(m_pWindow);
+		return glfwWindowShouldClose(m_pWindow) == 1;
 	}
 
 	void IApplication::render()
@@ -404,10 +408,10 @@ namespace DYE
 		
 		// Base::printAllBaseObj();
 
-		printf("%s\n", root->ToString());
+		//printf("%s\n", root->ToString());
 
 		SYSTEM_MGR->EarlyUpdate();
 
-		printf("\n%s\n", root->ToString());
+		//printf("%s\n", root->ToString());
 	}
 }

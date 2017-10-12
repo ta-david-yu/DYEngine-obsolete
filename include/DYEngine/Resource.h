@@ -139,7 +139,7 @@ namespace DYE
 	public:
 		void ReleaseAll();
 		template <class T>
-		Resource<T>* Load(const std::string& filename, int argc = 0, void *args = nullptr);
+		T* Load(const std::string& filename, int argc = 0, void *args = nullptr);
 		bool Unload(const std::string& filename);
 		//==========================================
 		//	getter
@@ -187,20 +187,20 @@ namespace DYE
 	// TO DO: Resource specialization (Text, Material, Mesh, Shader, Texture)
 	// Manager keeps seperate list
 	template <class T>
-	Resource<T>* ResourceManager::Load(const std::string& filename, int argc, void *args)
+	T* ResourceManager::Load(const std::string& filename, int argc, void *args)
 	{
 		// TO DO: do error handling
 		ResourceMapItr itr = m_ResourceMap.find(filename);
 		if (itr != m_ResourceMap.end())
 		{
 			itr->second->incRef();
-			return static_cast<Resource<T>*>(itr->second);
+			return static_cast<Resource<T>*>(itr->second)->GetValue();
 		}
 
 		// not yet loaded
 		Resource<T>* resrc = new Resource<T>(filename, argc, args);
 		resrc->incRef();
 		m_ResourceMap.insert(ResourcePair(filename, resrc));
-		return resrc;
+		return resrc->GetValue();
 	}
 }

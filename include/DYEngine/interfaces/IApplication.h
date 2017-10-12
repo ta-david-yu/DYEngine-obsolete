@@ -5,8 +5,6 @@
 
 #include <iostream>
 
-#define DEBUG
-
 struct GLFWwindow;
 
 namespace DYE

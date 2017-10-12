@@ -1,4 +1,5 @@
 #include <DYEngine\Scene.h>
+#include <DYEngine\utilities\Logger.h>
 
 #include <functional>
 
@@ -102,6 +103,7 @@ namespace DYE
 
 	IScene* SceneManager::loadScene(SceneID id)
 	{
+		LogInfo("Loading scene : (%3d)", id);
 		IScene* currScene = getScene(m_CurrSceneID);
 		if (currScene->IsLoaded())
 			currScene->release();

@@ -3,6 +3,7 @@
 #include <DYEngine\graphics\Renderer.h>
 #include <DYEngine\graphics\SpriteRenderer.h>
 #include <DYEngine\graphics\MeshRenderer.h>
+#include <DYEngine\utilities\Logger.h>
 
 #include <type_traits>
 
@@ -141,7 +142,7 @@ namespace DYE
 	IComponent* Entity::AddComponent<IComponent>()
 	{
 		// TO DO: error log evil
-		printf("ADDING ILLEGAL COMPONENT\n");
+		LogError("Adding illegal component");
 		assert(false);
 		return nullptr;
 	}
