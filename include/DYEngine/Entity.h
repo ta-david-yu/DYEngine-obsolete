@@ -35,10 +35,10 @@ namespace DYE
 		friend class IScene;
 		friend class Base;
 	public:
-		typedef std::pair<InstanceID, std::unique_ptr<IComponent>> ComponentListPair;
-		typedef std::vector<ComponentListPair> ComponentList;
-		typedef ComponentList::iterator ComponentItr;
-		typedef ComponentList::const_iterator ComponentConstItr;
+		using ComponentListPair = std::pair<InstanceID, std::unique_ptr<IComponent>>;
+		using ComponentList = std::vector<ComponentListPair>;
+		using ComponentItr = ComponentList::iterator;
+		using ComponentConstItr = ComponentList::const_iterator;
 
 	protected:
 		//==========================================

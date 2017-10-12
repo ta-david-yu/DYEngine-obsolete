@@ -110,8 +110,6 @@ namespace DYE
 		this->GetTransform()->copyFrom(other->GetTransform());	// copy transform state
 		for (auto const& comp : other->m_Components)			// copy component state
 		{
-			// TO DO: fix auto dynamic type casting
-			
 			// add comp, copy comp
 			/*
 			using ComponentType = std::remove_reference_t< decltype(comp.second.get()->DynamicCast()) >;
