@@ -168,10 +168,11 @@
     <ClCompile Include="..\..\src\Core.cpp" />
     <ClCompile Include="..\..\src\Delegate.cpp" />
     <ClCompile Include="..\..\src\Entity.cpp" />
-    <ClCompile Include="..\..\src\glad.c" />
+    <ClCompile Include="..\..\src\glad\glad.c" />
     <ClCompile Include="..\..\src\IComponent.cpp" />
     <ClCompile Include="..\..\src\Logger.cpp" />
     <ClCompile Include="..\..\src\Material.cpp" />
+    <ClCompile Include="..\..\src\MaterialAttribute.cpp" />
     <ClCompile Include="..\..\src\Math.cpp" />
     <ClCompile Include="..\..\src\Mesh.cpp" />
     <ClCompile Include="..\..\src\MeshRenderer.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="..\..\src\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
     <ClCompile Include="..\..\src\Time.cpp" />
+    <ClCompile Include="..\..\src\tinyxml2-5.0.1\tinyxml2.cpp" />
     <ClCompile Include="..\..\src\Uniform.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>

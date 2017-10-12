@@ -1,4 +1,6 @@
 #include <DYEngine\graphics\Shader.h>
+#include <DYEngine\utilities\XMLParser.h>
+#include <DYEngine\utilities\Logger.h>
 
 
 namespace DYE
@@ -6,16 +8,25 @@ namespace DYE
 	//====================================================================================
 	//	Shader
 	//====================================================================================
-	void Shader::Init(const std::string& filename, ShaderType type)
+	void Shader::Init(const std::string& filename, ShaderType type, bool isSource)
 	{
 		m_Type = type;
 
 		// gl create
 		createShader();
 
-		std::string source = loadSource(filename);
+		// TO DO: add global uniform (MVP matrix, light positions...)
 
-		compileShaderFromSource(source);
+		if (!isSource)
+		{
+			std::string source = loadSource(filename);
+
+			compileShaderFromSource(source);
+		}
+		else
+		{
+			compileShaderFromSource(filename);
+		}
 	}
 
 	void Shader::createShader()
@@ -102,19 +113,57 @@ namespace DYE
 	//====================================================================================
 	ShaderProgram* ShaderProgram::s_pCurrentShaderProgram = nullptr;
 	
-	void ShaderProgram::loadFromFile(const std::string& filename, int argc, void *args)
+	bool ShaderProgram::loadFromFile(const std::string& filename, int argc, void *args)
 	{
-		init(filename);
+		return parseShaderFile(filename);
 	}
 
-	void ShaderProgram::init(const std::string& filename)
+	bool ShaderProgram::parseShaderFile(const std::string& filename)
 	{
 		createShaderProgram();
 
-		addShaders(filename + ".vs", Shader::ShaderType::VERTEX_SHADER);
-		addShaders(filename + ".fs", Shader::ShaderType::FRAGMENT_SHADER);
+		XMLDocument shaderDoc;
+		shaderDoc.LoadFile(filename.c_str());
+
+		XMLElement* pRoot = shaderDoc.FirstChildElement("shaderprogram");
+
+		if (pRoot == nullptr)
+		{
+			LogError("Error while loading shader program file %-15s : Root node not found.", filename);
+			return false;
+		}
+
+		for (auto element = pRoot->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+		{
+			std::string type = element->Name();
+			const char* shaderFileName = element->Attribute("filename");
+
+			Shader::ShaderType typeEnum;
+			if (type == "vert")
+				typeEnum = Shader::ShaderType::VERTEX_SHADER;
+			else if (type == "geom")
+				typeEnum = Shader::ShaderType::GEOMETRY_SHADER;
+			else if (type == "frag")
+				typeEnum = Shader::ShaderType::FRAGMENT_SHADER;
+			else
+				continue;
+
+			if (shaderFileName != nullptr)
+			{
+				// load from file
+				addShaders(shaderFileName, typeEnum, false);
+			}
+			else
+			{
+				// is source
+				std::string source = element->GetText();
+				addShaders(shaderFileName, typeEnum, true);
+			}
+		}
 
 		linkShaders();
+
+		return true;
 	}
 
 	ShaderProgram* ShaderProgram::GetCurrentShaderProgram()
@@ -135,10 +184,10 @@ namespace DYE
 		m_ProgramID = glCreateProgram();
 	}
 
-	Shader* ShaderProgram::addShaders(const std::string& filename, Shader::ShaderType type)
+	Shader* ShaderProgram::addShaders(const std::string& filename, Shader::ShaderType type, bool isSource)
 	{
 		Shader* shader = new Shader();
-		shader->Init(filename, type);
+		shader->Init(filename, type, isSource);
 
 		m_Shaders[type] = shader;
 		return shader;
@@ -146,6 +195,7 @@ namespace DYE
 
 	void ShaderProgram::linkShaders()
 	{
+		// TO DO: link to default pipeline if shader is not complete
 		// link shader to program
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{

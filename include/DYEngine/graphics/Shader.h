@@ -41,7 +41,7 @@ namespace DYE
 		//	method
 		//==========================================
 	public:
-		void Init(const std::string& filename, ShaderType type);
+		void Init(const std::string& filename, ShaderType type, bool isSource = false);
 	private:
 		void createShader();
 	public:
@@ -70,7 +70,7 @@ namespace DYE
 	//====================================================================================
 	//	ShaderProgram: Resource. Each shaders in the same program is assumed to have
 	//====================================================================================
-	class ShaderProgram : IResourceValue
+	class ShaderProgram : public IResourceValue
 	{
 		friend class Resource<ShaderProgram>;
 		//==========================================
@@ -86,14 +86,14 @@ namespace DYE
 		//	method
 		//==========================================
 		// TO DO: add defulat value unlit
-		void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override;
-		void init(const std::string& filename = "unlit");
+		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override;
+		bool parseShaderFile(const std::string& filename = "unlit");
 	public:
 		static ShaderProgram* GetCurrentShaderProgram();
 		void Bind();
 	private:
 		void createShaderProgram();
-		Shader* addShaders(const std::string& filename, Shader::ShaderType type);	// can be called multiple times for different shaders of different stages
+		Shader* addShaders(const std::string& filename, Shader::ShaderType type, bool isSource = false);	// can be called multiple times for different shaders of different stages
 		void linkShaders();
 		void destroyShaderProgram();
 		//==========================================

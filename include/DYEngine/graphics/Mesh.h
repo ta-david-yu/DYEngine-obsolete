@@ -23,7 +23,7 @@ namespace DYE
 		std::vector<Vector2f> m_UVCoords;
 		std::vector<uint32_t> m_Triangles;
 	protected:
-		void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override; // TO DO:
+		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override; // TO DO:
 		//==========================================
 		//	flag
 		//==========================================

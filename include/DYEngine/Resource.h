@@ -32,8 +32,12 @@ namespace DYE
 	{
 		friend class ResourceBase;
 	protected:
+		std::string m_ResourceFileName;
 		// TO DO: check if file exists
-		virtual void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) = 0;
+		virtual bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) = 0;
+	public:
+		void SetResourceFileName(const std::string& name);
+		std::string GetResourceFileName() const;
 	};
 
 	//====================================================================================
@@ -107,7 +111,12 @@ namespace DYE
 			// bool isTypeValue = std::is_base_of<IResourceValue, RType>::value;
 			// assert(isTypeValue);
 			m_pResourceObject = new RType();
-			m_pResourceObject->loadFromFile(filename);
+			bool isLoaded = m_pResourceObject->loadFromFile(filename, argc, args);
+
+			m_pResourceObject->SetResourceFileName(filename);
+
+			if (!isLoaded)
+				LogError("Error while loading resource file : %10s", filename);
 		}
 	};
 
@@ -164,7 +173,7 @@ namespace DYE
 		//==========================================
 		friend class Resource<Text>;
 	protected:
-		void loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override {} // TO DO:
+		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override {} // TO DO:
 	private:
 
 		//==========================================

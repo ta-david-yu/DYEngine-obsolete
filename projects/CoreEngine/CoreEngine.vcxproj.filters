@@ -16,11 +16,11 @@
     <Filter Include="Source Files\DYEngine">
       <UniqueIdentifier>{a2a65552-5e64-44cc-92d8-9fa3f7a880be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\3rd-party library">
+      <UniqueIdentifier>{e1e3f895-5ba2-4405-a88d-1144a65bdcb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Base.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
@@ -85,6 +85,15 @@
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\Material.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tinyxml2-5.0.1\tinyxml2.cpp">
+      <Filter>Source Files\3rd-party library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\glad\glad.c">
+      <Filter>Source Files\3rd-party library</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MaterialAttribute.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
   </ItemGroup>

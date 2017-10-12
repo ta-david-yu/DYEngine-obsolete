@@ -5,6 +5,20 @@
 
 namespace DYE
 {
+
+	//====================================================================================
+	//	IResourceValue
+	//====================================================================================
+	void IResourceValue::SetResourceFileName(const std::string& name)
+	{
+		m_ResourceFileName = name;
+	}
+
+	std::string IResourceValue::GetResourceFileName() const
+	{
+		return m_ResourceFileName;
+	}
+
 	//====================================================================================
 	//	ResourceBase: base class for manager to maintain
 	//====================================================================================

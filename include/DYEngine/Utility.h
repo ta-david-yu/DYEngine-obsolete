@@ -1,5 +1,6 @@
 #pragma once
 
+#include <DYEngine\utilities\XMLParser.h>
 #include <DYEngine\utilities\Math.h>
 #include <DYEngine\utilities\Debug.h>
 #include <DYEngine\utilities\Logger.h>

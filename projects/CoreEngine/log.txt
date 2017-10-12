@@ -1,0 +1,5 @@
+INFO     \src\Application.cpp(  20)    Init app
+INFO     \src\Application.cpp( 119)    Init GL
+INFO     \src\Application.cpp(  31)    Start game loop
+INFO     ..\..\src\Scene.cpp ( 106)    Loading scene : (  0)
+DEBUG    \src\Application.cpp(  62)    FPS: 52.315231  1.108664
