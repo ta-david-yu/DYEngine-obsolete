@@ -7,7 +7,7 @@ using namespace DYE;
 
 void testResource()
 {
-	Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("", 0, nullptr);
+	Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
 	Mesh* mesh = RMesh;
 
 	printf("test passed!\n");
@@ -15,6 +15,8 @@ void testResource()
 
 int main()
 {
+	// testResource();
+
 	// create log file
 	FILE* logFile = fopen("log.txt", "w+");
 	LOG->SetOutputFile(logFile);

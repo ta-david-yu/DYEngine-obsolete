@@ -1,6 +1,8 @@
 #include <DYEngine\interfaces\IApplication.h>
 #include <DYEngine\Time.h>
 #include <DYEngine\utilities\Logger.h>
+#include <DYEngine\Resource.h>
+#include <DYEngine\graphics\Mesh.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -412,6 +414,8 @@ namespace DYE
 
 		SYSTEM_MGR->EarlyUpdate();
 
+		Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
+		Mesh* mesh = RMesh;
 		//printf("%s\n", root->ToString());
 	}
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 
 #define LOG Logger::GetInstance()
@@ -47,19 +49,19 @@ namespace DYE
 #define LogError( ... )															\
   do																			\
   {																				\
-    LOG->Print(Logger::LogType::Error, __FILE__, __LINE__, __VA_ARGS__ ); \
+    LOG->Print(Logger::LogType::Error, __FILE__, __LINE__, __VA_ARGS__ );		\
   } while(false)							
 
 #define LogDebug( ... )															\
   do																			\
   {																				\
-    LOG->Print(Logger::LogType::Debug, __FILE__, __LINE__, __VA_ARGS__ ); \
+    LOG->Print(Logger::LogType::Debug, __FILE__, __LINE__, __VA_ARGS__ );		\
   } while(false)							
 
 #define LogInfo( ... )															\
   do																			\
   {																				\
-    LOG->Print(Logger::LogType::Info, __FILE__, __LINE__, __VA_ARGS__ ); \
+    LOG->Print(Logger::LogType::Info, __FILE__, __LINE__, __VA_ARGS__ );		\
   } while(false)							
 
 #define LogWarning( ... )														\

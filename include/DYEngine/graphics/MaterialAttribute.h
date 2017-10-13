@@ -1,3 +1,5 @@
+#pragma once
+
 #include <DYEngine\graphics\Uniform.h>
 
 #include <GLFW\glfw3.h>
@@ -62,7 +64,7 @@ namespace DYE
 
 		bool IsEnabled = false;
 		AttribFunc Func = AttribFunc::Less;
-		StencilOp Op = StencilOp::GL_REPLACE;
+		StencilOp Op = StencilOp::Replace;
 		GLint Ref = 0x00000000;
 		GLint Msk = 0xFFFFFFFF;
 	};

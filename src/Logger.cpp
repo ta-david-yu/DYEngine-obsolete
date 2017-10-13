@@ -12,7 +12,10 @@ namespace DYE
 	Logger* Logger::GetInstance()
 	{
 		if (s_pInstance == nullptr)
+		{
 			s_pInstance = new Logger();
+			s_pInstance->SetOutputFile(NULL);
+		}
 		
 		assert(s_pInstance != nullptr);
 		return s_pInstance;
@@ -35,7 +38,7 @@ namespace DYE
 		};
 		
 
-		const int BufferSize = 1024;
+		const int BufferSize = 2048;
 		char formattedMsg[BufferSize];
 
 		// Print out the file and line in visual studio format so the error can be
@@ -53,14 +56,14 @@ namespace DYE
 			va_start(args, msg);
 			vsnprintf(formattedMsg + offset, BufferSize, msg, args);
 
-			if (m_pFile != nullptr)
+			if (m_pFile != NULL)
 				vfprintf(m_pFile, formattedMsg, args);
 
 			vfprintf(stderr, formattedMsg, args);
 			va_end(args);
 		}
 
-		if (m_pFile != nullptr)
+		if (m_pFile != NULL)
 			fprintf(m_pFile, "\n");
 
 		fprintf(stderr, "\n");

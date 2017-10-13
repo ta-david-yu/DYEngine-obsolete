@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine\utilities\Logger.h>
+
 #include <vector>
 #include <map>
 #include <string>
@@ -116,7 +118,10 @@ namespace DYE
 			m_pResourceObject->SetResourceFileName(filename);
 
 			if (!isLoaded)
-				LogError("Error while loading resource file : %10s", filename);
+				LogError("Error loading resource file : %-10s", filename.c_str());
+			else
+				LogInfo("Load resource file: %10s", filename.c_str());
+				
 		}
 	};
 

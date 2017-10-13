@@ -123,13 +123,14 @@ namespace DYE
 		createShaderProgram();
 
 		XMLDocument shaderDoc;
+		const char* filename_c = filename.c_str();
 		shaderDoc.LoadFile(filename.c_str());
 
 		XMLElement* pRoot = shaderDoc.FirstChildElement("shaderprogram");
 
 		if (pRoot == nullptr)
 		{
-			LogError("Error while loading shader program file %-15s : Root node not found.", filename);
+			LogError("Error while loading shader program file %-15s : Root node not found.", filename_c);
 			return false;
 		}
 

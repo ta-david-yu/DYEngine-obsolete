@@ -1,3 +1,5 @@
+#pragma once
+
 #include <DYEngine\Resource.h>
 #include <DYEngine\graphics\MaterialAttribute.h>
 
