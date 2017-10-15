@@ -34,12 +34,12 @@ namespace DYE
 
 	ResourceBase::ResourceBase(const std::string& filename, int argc, void *args) : m_ResourceFileName(filename), m_ReferenceCount(0)
 	{
-		// TO DO:
+
 	}
 
 	ResourceBase::~ResourceBase()
 	{
-		// TO DO:
+
 	}
 
 	//====================================================================================

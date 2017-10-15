@@ -131,6 +131,9 @@ namespace DYE
 		~RenderPass();
 	};
 
+	//=========================================================================================
+	//	Utilities Function
+	//=========================================================================================
 	inline AttribFunc StringToAttributFunc(const std::string& funcStr)
 	{
 		if (funcStr == "never")

@@ -15,7 +15,7 @@ namespace DYE
 		// gl create
 		createShader();
 
-		// TO DO: add global uniform (MVP matrix, light positions...)
+		// TO DO: add global uniform to shader (MVP matrix, light positions...)
 
 		if (!isSource)
 		{

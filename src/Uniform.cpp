@@ -7,7 +7,7 @@ namespace DYE
 {
 	IUniform::IUniform(const std::string& _name) : m_UniformName(_name)
 	{
-		// TO DO: 
+
 	}
 
 	std::string IUniform::GetName() const

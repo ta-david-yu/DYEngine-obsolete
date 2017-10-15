@@ -1,0 +1,27 @@
+INFO     \src\Application.cpp(  22)    Init app
+INFO     \src\Application.cpp( 121)    Init GL
+INFO     \src\Application.cpp(  33)    Start game loop
+INFO     ..\..\src\Scene.cpp ( 106)    Loading scene : (  0)
+ERROR    \DYEngine\Resource.h( 121)    Error loading resource file : 123456    
+DEBUG    \src\Application.cpp(  64)    FPS: 60.035954  1.016058
+DEBUG    \src\Application.cpp(  64)    FPS: 59.994816  1.000086
+DEBUG    \src\Application.cpp(  64)    FPS: 51.395637  1.011759
+DEBUG    \src\Application.cpp(  64)    FPS: 40.798184  1.004947
+DEBUG    \src\Application.cpp(  64)    FPS: 59.996762  1.000054
+DEBUG    \src\Application.cpp(  64)    FPS: 59.974504  1.000425
+DEBUG    \src\Application.cpp(  64)    FPS: 57.626337  1.006484
+DEBUG    \src\Application.cpp(  64)    FPS: 59.669024  1.022306
+DEBUG    \src\Application.cpp(  64)    FPS: 55.941917  1.001038
+DEBUG    \src\Application.cpp(  64)    FPS: 57.592653  1.007073
+DEBUG    \src\Application.cpp(  64)    FPS: 59.236964  1.012881
+DEBUG    \src\Application.cpp(  64)    FPS: 54.919722  1.001462
+DEBUG    \src\Application.cpp(  64)    FPS: 58.119036  1.015158
+DEBUG    \src\Application.cpp(  64)    FPS: 58.874703  1.002128
+DEBUG    \src\Application.cpp(  64)    FPS: 60.123449  1.014579
+DEBUG    \src\Application.cpp(  64)    FPS: 59.373263  1.010556
+DEBUG    \src\Application.cpp(  64)    FPS: 59.633402  1.006148
+DEBUG    \src\Application.cpp(  64)    FPS: 58.460222  1.026339
+DEBUG    \src\Application.cpp(  64)    FPS: 60.571463  1.007075
+DEBUG    \src\Application.cpp(  64)    FPS: 58.995644  1.017024
+DEBUG    \src\Application.cpp(  64)    FPS: 59.034061  1.016362
+DEBUG    \src\Application.cpp(  64)    FPS: 57.933117  1.001154

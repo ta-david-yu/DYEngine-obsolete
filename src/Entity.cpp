@@ -141,7 +141,6 @@ namespace DYE
 	template <>
 	IComponent* Entity::AddComponent<IComponent>()
 	{
-		// TO DO: error log evil
 		LogError("Adding illegal component");
 		assert(false);
 		return nullptr;

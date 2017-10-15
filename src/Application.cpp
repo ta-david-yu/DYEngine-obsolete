@@ -152,10 +152,10 @@ namespace DYE
 
 	void IApplication::render()
 	{
+		// TO DO:											// Render (Camera Loop)
+
 		glClearColor(1.0f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		// TO DO:											// Render (Camera Loop)
 
 #ifdef DEBUG
 		glUseProgram(shaderProgram);
@@ -171,12 +171,12 @@ namespace DYE
 
 	void IApplication::onNextSceneLoaded()
 	{
-		// dummy TO DO:
+		LogInfo("Next scene loaded");
 	}
 
 	void IApplication::onRelease()
 	{
-		// dummy TO DO:
+		LogInfo("Shuting down application");
 	}
 
 	void IApplication::SetWindowName(std::string _name)

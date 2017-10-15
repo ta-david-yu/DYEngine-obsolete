@@ -56,14 +56,14 @@ namespace DYE
 			va_start(args, msg);
 			vsnprintf(formattedMsg + offset, BufferSize, msg, args);
 
-			if (m_pFile != NULL)
+			if (m_pFile != nullptr)
 				vfprintf(m_pFile, formattedMsg, args);
 
 			vfprintf(stderr, formattedMsg, args);
 			va_end(args);
 		}
 
-		if (m_pFile != NULL)
+		if (m_pFile != nullptr)
 			fprintf(m_pFile, "\n");
 
 		fprintf(stderr, "\n");

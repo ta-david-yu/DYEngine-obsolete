@@ -57,88 +57,85 @@ namespace DYE
 			pass.pProgram = program;
 
 			// load attribute (depth, stencil, blend)
+			XMLElement* pAttriElement = pShaderElement->FirstChildElement("attributes");
+			for (auto element = pAttriElement->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
 			{
-				XMLElement* pAttriElement = pShaderElement->FirstChildElement("attributes");
-				for (auto element = pAttriElement->FirstChildElement(); element != nullptr; element = element->NextSiblingElement())
+				std::string type = element->Name();
+				if (type == "depth")
 				{
-					std::string type = element->Name();
-					if (type == "depth")
+					DepthAttribute& attr = pass.DepthAttr;
+					attr.IsEnabled = true;
+
+					// loading function
+					const char* funcType = element->Attribute("func");
+					if (funcType != nullptr)
 					{
-						DepthAttribute& attr = pass.DepthAttr;
-						attr.IsEnabled = true;
-
-						// loading function
-						const char* funcType = element->Attribute("func");
-						if (funcType != nullptr)
-						{
-							std::string funcStr = funcType;
-							AttribFunc func = StringToAttributFunc(funcStr);
-							if (func == AttribFunc::ErrorFunc)
-								LogWarning("Warning while loading material file %-15s : DepthFunc is invalid.", filename_c);
-						}
+						std::string funcStr = funcType;
+						AttribFunc func = StringToAttributFunc(funcStr);
+						if (func == AttribFunc::ErrorFunc)
+							LogWarning("Warning while loading material file %-15s : DepthFunc is invalid.", filename_c);
 					}
-					else if (type == "stencil")
-					{
-						StencilAttribute& attr = pass.StencilAttr;
-						attr.IsEnabled = true;
-
-						// loading function
-						const char* funcType = element->Attribute("func");
-						if (funcType != nullptr)
-						{
-							std::string funcStr = funcType;
-							AttribFunc func = StringToAttributFunc(funcStr);
-							if (func == AttribFunc::ErrorFunc)
-								LogWarning("Warning while loading material file %-15s : StencilFunc is invalid.", filename_c);
-						}
-
-						// loading operation
-						const char* opType = element->Attribute("op");
-						if (opType != nullptr)
-						{
-							std::string opStr = opType;
-							StencilAttribute::StencilOp op = StringToStencilOp(opStr);
-							if (op == StencilAttribute::StencilOp::ErrorOp)
-								LogWarning("Warning while loading material file %-15s : StencilOp is invalid.", filename_c);
-						}
-
-
-						// loading reference value
-						attr.Ref = element->IntAttribute("ref", 0);
-
-						// loading mask value
-						attr.Msk = element->IntAttribute("msk", 0xFFFFFFFF);
-						
-					}
-					else if (type == "blend")
-					{
-						BlendAttribute& attr = pass.BlendAttr;
-						attr.IsEnabled = true;
-
-						// loading src factor
-						const char* srcType = element->Attribute("src");
-						if (srcType != nullptr)
-						{
-							std::string srcStr = srcType;
-							BlendAttribute::BlendFactor srcFactor = StringToBlendFactor(srcStr);
-							if (srcFactor == BlendAttribute::BlendFactor::ErrorFactor)
-								LogWarning("Warning while loading material file %-15s : SrcFactor is invalid.", filename_c);
-						}
-
-						// loading dst factor
-						const char* dstType = element->Attribute("dst");
-						if (dstType != nullptr)
-						{
-							std::string dstStr = dstType;
-							BlendAttribute::BlendFactor dstFactor = StringToBlendFactor(dstStr);
-							if (dstFactor == BlendAttribute::BlendFactor::ErrorFactor)
-								LogWarning("Warning while loading material file %-15s : DstFactor is invalid.", filename_c);
-						}
-					}
-					else
-						LogWarning("Warning while loading material file %-15s : Attribute type is invalid.", filename_c);
-
 				}
+				else if (type == "stencil")
+				{
+					StencilAttribute& attr = pass.StencilAttr;
+					attr.IsEnabled = true;
+
+					// loading function
+					const char* funcType = element->Attribute("func");
+					if (funcType != nullptr)
+					{
+						std::string funcStr = funcType;
+						AttribFunc func = StringToAttributFunc(funcStr);
+						if (func == AttribFunc::ErrorFunc)
+							LogWarning("Warning while loading material file %-15s : StencilFunc is invalid.", filename_c);
+					}
+
+					// loading operation
+					const char* opType = element->Attribute("op");
+					if (opType != nullptr)
+					{
+						std::string opStr = opType;
+						StencilAttribute::StencilOp op = StringToStencilOp(opStr);
+						if (op == StencilAttribute::StencilOp::ErrorOp)
+							LogWarning("Warning while loading material file %-15s : StencilOp is invalid.", filename_c);
+					}
+
+
+					// loading reference value
+					attr.Ref = element->IntAttribute("ref", 0);
+
+					// loading mask value
+					attr.Msk = element->IntAttribute("msk", 0xFFFFFFFF);
+					
+				}
+				else if (type == "blend")
+				{
+					BlendAttribute& attr = pass.BlendAttr;
+					attr.IsEnabled = true;
+
+					// loading src factor
+					const char* srcType = element->Attribute("src");
+					if (srcType != nullptr)
+					{
+						std::string srcStr = srcType;
+						BlendAttribute::BlendFactor srcFactor = StringToBlendFactor(srcStr);
+						if (srcFactor == BlendAttribute::BlendFactor::ErrorFactor)
+							LogWarning("Warning while loading material file %-15s : SrcFactor is invalid.", filename_c);
+					}
+
+					// loading dst factor
+					const char* dstType = element->Attribute("dst");
+					if (dstType != nullptr)
+					{
+						std::string dstStr = dstType;
+						BlendAttribute::BlendFactor dstFactor = StringToBlendFactor(dstStr);
+						if (dstFactor == BlendAttribute::BlendFactor::ErrorFactor)
+							LogWarning("Warning while loading material file %-15s : DstFactor is invalid.", filename_c);
+					}
+				}
+				else
+					LogWarning("Warning while loading material file %-15s : Attribute type is invalid.", filename_c);
 			}
 
 
