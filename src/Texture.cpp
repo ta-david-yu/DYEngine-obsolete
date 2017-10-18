@@ -28,11 +28,11 @@ namespace DYE
 		
 		*/
 
-		this->glInitialize();
+		this->glInitializeTexture();
 		return true;
 	}
 
-	void Texture::glInitialize()
+	void Texture::glInitializeTexture()
 	{
 		createTexture();
 

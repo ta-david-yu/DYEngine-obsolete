@@ -56,7 +56,7 @@ namespace DYE
 	protected:
 		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override;
 
-		void glInitialize();			// initialize gl texture object based on Texture member data
+		void glInitializeTexture();			// initialize gl texture object based on Texture member data
 
 		void createTexture();
 		void bindTexture();
