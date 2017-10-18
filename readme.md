@@ -1,3 +1,4 @@
+/*
 <Solution Folder>
 |
 +---Solution Files
@@ -29,7 +30,7 @@
 +---<docs>
 |	
 +---<src> : The third-party library source file folder for game engine (need to be added to proj file manually)
-
+*/
 
 	//====================================================================================
 	//	($ClassName)
