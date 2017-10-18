@@ -1,0 +1,82 @@
+
+//////////////////////// MATERIAL EXAMPLE ////////////////////////////////////////////////////
+
+<?xml version="1.0" encoding="utf-8"?>
+<material name="test_mat">
+	<order value="1000"/>
+	<pass>
+		<shaderprogram filename="test.shader">
+			<attributes>
+				<blend src="src_alpha" dst="one_minus_src_alpha"/>
+				<depth func="less"/>
+				<stencil func="gequal" op="" ref="0" msk="0xffffffff"/>
+			</attributes>
+			<uniforms>
+				<uniform name="aFloat" type="float" value="1"/>
+				<uniform name="aVec4" type="vec4" value="1 1 1 1"/>
+				<uniform name="aVec3" type="vec3" value="1 1 1"/>
+				<uniform name="aVec2" type="vec2" value="1 1"/>
+				<uniform name="aMat4x4" type="mat4x4" value=""/>
+				<uniform name="aSampler2D" type="sampler2D" value="test_tex.texture"/>
+			</uniforms>
+		</shaderprogram>
+	</pass>
+	<pass>
+		...
+	</pass>
+</material>
+
+//////////////////////// SHADER PROGRAM EXAMPLE ////////////////////////////////////////////////////
+
+<?xml version="1.0" encoding="utf-8"?>
+<shaderprogram name="test_shader">
+		<vert filename="vert.vs"/>
+		<geom>
+#version 150 compatibility
+
+//out vec3 normal;
+
+void main()
+{
+	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
+}
+		</geom>
+		<frag filename="frag.fs"/>
+</shaderprogram>
+
+/////////////////////// TEXTURE EXAMPLE //////////////////////////////
+
+<?xml version="1.0" encoding="utf-8"?>
+<texture name="test_tex">
+	<image filename="test_img.png"/>
+	<type value="tex2D"/>
+	<filter value="linear"/>
+	<warpping value="repeat"/>
+	<mipmap use="true" level="0"/>
+</texture>
+
+/////////////////////////////////////////////////////////////////////////////
+
+every <RenderUnit> is composed of one <Material> and one <Mesh>.
+
+each Render has one <Material> and one <Mesh>
+
+For SpriteRenderer, <Material> is a Texture2D of rect, mesh is also a rect.
+
+<Material> has a shader program, Material has a list of Uniform for shaders.
+
+read Material 
+-> load ShaderProgram(Two shader) 
+-> create Uniforms from Material file 
+-> attach Uniforms to ShaderProgram (get location from program)
+
+each render Loop
+-> RenderUnit
+	-> Material
+		-> Bind ShaderProgram
+		-> Bind Uniform
+		-> Setup Render settings (BLEND, ALPHA, STENCIL, DEPTH TEST)
+	-> Mesh
+		-> Bind VBO, VAO, ELEMENT
+		
+		
