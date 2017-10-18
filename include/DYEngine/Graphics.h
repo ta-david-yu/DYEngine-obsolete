@@ -9,3 +9,5 @@
 #include <DYEngine\graphics\Shader.h>
 #include <DYEngine\graphics\MaterialAttribute.h>
 #include <DYEngine\graphics\Material.h>
+#include <DYEngine\graphics\Image.h>
+#include <DYEngine\graphics\Texture.h>

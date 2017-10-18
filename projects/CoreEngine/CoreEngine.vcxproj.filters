@@ -96,5 +96,11 @@
     <ClCompile Include="..\..\src\MaterialAttribute.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Texture.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Image.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

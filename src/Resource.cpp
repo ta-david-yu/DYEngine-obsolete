@@ -9,6 +9,11 @@ namespace DYE
 	//====================================================================================
 	//	IResourceValue
 	//====================================================================================
+	bool IResourceValue::IsLoaded() const
+	{
+		return m_pResourceBase->IsProperlyLoaded();
+	}
+
 	void IResourceValue::SetResourceFileName(const std::string& name)
 	{
 		m_ResourceFileName = name;
@@ -22,6 +27,11 @@ namespace DYE
 	//====================================================================================
 	//	ResourceBase: base class for manager to maintain
 	//====================================================================================
+	void ResourceBase::AttachResourceValue(IResourceValue* value)
+	{
+		value->m_pResourceBase = this;
+	}
+
 	std::string ResourceBase::GetResourceFileName() const
 	{
 		return m_ResourceFileName;

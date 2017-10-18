@@ -34,10 +34,13 @@ namespace DYE
 	{
 		friend class ResourceBase;
 	protected:
+		ResourceBase* m_pResourceBase;
+
 		std::string m_ResourceFileName;
 		// TO DO: check if file exists
 		virtual bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) = 0;
 	public:
+		bool IsLoaded() const;
 		void SetResourceFileName(const std::string& name);
 		std::string GetResourceFileName() const;
 	};
@@ -54,6 +57,7 @@ namespace DYE
 	private:
 		int m_ReferenceCount;
 	protected:
+		bool m_IsProperlyLoaded = false;
 		std::string m_ResourceFileName;
 
 		//==========================================
@@ -67,13 +71,14 @@ namespace DYE
 		void incRef() { m_ReferenceCount++; }
 		void decRef() { m_ReferenceCount--; }
 
-		// static ResourceBase* CreateResource(ResourceType type, );
+		// static ResourceBase* CreateResource(ResourceType type, );	 TO DO
 	protected:
-
+		void AttachResourceValue(IResourceValue* value);
 		//==========================================
 		//	getter
 		//==========================================
 	public:
+		bool IsProperlyLoaded() const { return m_IsProperlyLoaded; }
 		std::string GetResourceFileName() const;
 		int GetReferenceCount() const;
 		//==========================================
@@ -99,12 +104,12 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		RType* m_pResourceObject;
+		RType* m_pResourceValue;
 		//==========================================
 		//	getter
 		//==========================================
 	public:
-		RType* GetValue() const { return m_pResourceObject; }
+		RType* GetValue() const { return m_pResourceValue; }
 	
 	protected:
 		Resource(const std::string& filename, int argc = 0, void *args = nullptr) : ResourceBase(filename, argc, args)
@@ -112,16 +117,16 @@ namespace DYE
 			// TO DO: new RType, 
 			// bool isTypeValue = std::is_base_of<IResourceValue, RType>::value;
 			// assert(isTypeValue);
-			m_pResourceObject = new RType();
-			bool isLoaded = m_pResourceObject->loadFromFile(filename, argc, args);
+			m_pResourceValue = new RType();
+			m_IsProperlyLoaded = m_pResourceValue->loadFromFile(filename, argc, args);
 
-			m_pResourceObject->SetResourceFileName(filename);
+			AttachResourceValue(m_pResourceValue);
+			m_pResourceValue->SetResourceFileName(filename);
 
-			if (!isLoaded)
+			if (!m_IsProperlyLoaded)
 				LogError("Error loading resource file : %-10s", filename.c_str());
 			else
 				LogInfo("Load resource file: %10s", filename.c_str());
-				
 		}
 	};
 

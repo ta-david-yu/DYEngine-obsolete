@@ -170,6 +170,7 @@
     <ClCompile Include="..\..\src\Entity.cpp" />
     <ClCompile Include="..\..\src\glad\glad.c" />
     <ClCompile Include="..\..\src\IComponent.cpp" />
+    <ClCompile Include="..\..\src\Image.cpp" />
     <ClCompile Include="..\..\src\Logger.cpp" />
     <ClCompile Include="..\..\src\Material.cpp" />
     <ClCompile Include="..\..\src\MaterialAttribute.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="..\..\src\Shader.cpp" />
     <ClCompile Include="..\..\src\SpriteRenderer.cpp" />
     <ClCompile Include="..\..\src\System.cpp" />
+    <ClCompile Include="..\..\src\Texture.cpp" />
     <ClCompile Include="..\..\src\Time.cpp" />
     <ClCompile Include="..\..\src\tinyxml2-5.0.1\tinyxml2.cpp" />
     <ClCompile Include="..\..\src\Uniform.cpp" />
