@@ -13,7 +13,9 @@ namespace DYE
 	//====================================================================================
 	class Texture : public IResourceValue
 	{
-
+		friend class Resource<Texture>;
+	public:
+		DYE_RESOURCE_PATH(TEXTURE_PATH)
 	public:
 		enum TextureType
 		{
@@ -40,8 +42,6 @@ namespace DYE
 
 			ErrorWrappingType
 		};
-
-		friend class Resource<Texture>;
 		//==========================================
 		//	memeber/variable
 		//==========================================

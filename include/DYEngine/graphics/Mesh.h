@@ -13,6 +13,8 @@ namespace DYE
 	{
 		friend class Resource<Mesh>;
 		friend struct RenderUnit;
+	public:
+		DYE_RESOURCE_PATH("mesh/");
 		//==========================================
 		//	memeber/variable
 		//==========================================

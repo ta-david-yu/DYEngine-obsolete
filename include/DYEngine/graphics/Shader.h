@@ -36,6 +36,8 @@ namespace DYE
 	private:
 		GLuint m_ShaderID;
 		ShaderType m_Type;
+		Text* m_pSourceText;
+		std::string m_Name;
 
 		//==========================================
 		//	method
@@ -63,7 +65,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		Shader();
+		Shader(const std::string& shadername);
 		~Shader();
 	};
 
@@ -73,6 +75,8 @@ namespace DYE
 	class ShaderProgram : public IResourceValue
 	{
 		friend class Resource<ShaderProgram>;
+	public:
+		DYE_RESOURCE_PATH(SHADER_PATH)
 		//==========================================
 		//	memeber/variable
 		//==========================================

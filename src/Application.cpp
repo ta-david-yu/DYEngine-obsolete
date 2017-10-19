@@ -2,7 +2,10 @@
 #include <DYEngine\Time.h>
 #include <DYEngine\utilities\Logger.h>
 #include <DYEngine\Resource.h>
+
 #include <DYEngine\graphics\Mesh.h>
+#include <DYEngine\graphics\Texture.h>
+#include <DYEngine\graphics\Material.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -424,6 +427,10 @@ namespace DYE
 
 		Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
 		Mesh* mesh = RMesh;
+		
+		Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
+		Text* RText = RESOURCE_MGR->Load<Text>("test.txt");
+		Material* RMat = RESOURCE_MGR->Load<Material>("test_material.material", 0, nullptr);
 		//printf("%s\n", root->ToString());
 	}
 }

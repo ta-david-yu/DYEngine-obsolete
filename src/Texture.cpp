@@ -10,13 +10,19 @@ namespace DYE
 		const char* filename_c = filename.c_str();
 
 		XMLDocument xmlDoc;
-		xmlDoc.LoadFile(filename_c);
+		XMLError xmlError = xmlDoc.LoadFile(filename_c);
+
+		if (xmlError != XMLError::XML_SUCCESS)
+		{
+			LogError("Error while loading texture file \"%-15s\" : Failed to load file.", filename_c);
+			return false;
+		}
 
 		XMLElement* pRoot = xmlDoc.FirstChildElement("texture");
 
 		if (pRoot == nullptr)
 		{
-			LogError("Error while loading texture file %-15s : Root node not found.", filename_c);
+			LogError("Error while loading texture file \"%-15s\" : Root node not found.", filename_c);
 			return false;
 		}
 
@@ -25,22 +31,22 @@ namespace DYE
 			XMLElement* pImageNode = pRoot->FirstChildElement("image");
 			if (pImageNode == nullptr)
 			{
-				LogError("Error while loading texture file %-15s : Image node not found.", filename_c);
+				LogError("Error while loading texture file \"%-15s\" : Image node not found.", filename_c);
 				return false;
 			}
 
 			const char* imageFileName = pImageNode->Attribute("filename");
 			if (imageFileName == nullptr)
 			{
-				LogError("Error while loading texture file %-15s : Image filename not specified.", filename_c);
+				LogError("Error while loading texture file \"%-15s\" : Image filename not specified.", filename_c);
 				return false;
 			}
 
 			m_pImage = RESOURCE_MGR->Load<Image>(imageFileName);
 
-			if (!m_pImage->IsLoaded())
+			if (m_pImage == nullptr)
 			{
-				LogError("Error while loading texture file %-15s : Image file is not properly loaded.", filename_c);
+				LogError("Error while loading texture file \"%-15s\" : Image file is not properly loaded.", filename_c);
 				return false;
 			}
 		}
@@ -54,7 +60,7 @@ namespace DYE
 
 			if (pTypeNode == nullptr)
 			{
-				LogWarning("Warning while loading texture file %-15s : TextureType not specified.", filename_c);
+				LogWarning("Warning while loading texture file \"%-15s\" : TextureType not specified.", filename_c);
 			}
 			else
 			{
@@ -64,17 +70,17 @@ namespace DYE
 					std::string texTypeStr = texType;
 					Texture::TextureType type = StringToTextureType(texTypeStr);
 					if (type == Texture::TextureType::ErrorTextureType)
-						LogWarning("Warning while loading texture file %-15s : TextureType is invalid.", filename_c);
+						LogWarning("Warning while loading texture file \"%-15s\" : TextureType is invalid.", filename_c);
 					else
 						m_TextureType = type;
 				}
 				else
-					LogWarning("Warning while loading texture file %-15s : TextureType value not specified.", filename_c);
+					LogWarning("Warning while loading texture file \"%-15s\" : TextureType value not specified.", filename_c);
 			}
 
 			if (pFilterNode == nullptr)
 			{
-				LogWarning("Warning while loading texture file %-15s : FilterType not specified.", filename_c);
+				LogWarning("Warning while loading texture file \"%-15s\" : FilterType not specified.", filename_c);
 			}
 			else
 			{
@@ -84,17 +90,17 @@ namespace DYE
 					std::string filterTypeStr = filterType;
 					Texture::FilteringType type = StringToFilteringType(filterTypeStr);
 					if (type == Texture::FilteringType::ErrorFilteringType)
-						LogWarning("Warning while loading texture file %-15s : FilteringType is invalid.", filename_c);
+						LogWarning("Warning while loading texture file \"%-15s\" : FilteringType is invalid.", filename_c);
 					else
 						m_FilteringType = type;
 				}
 				else
-					LogWarning("Warning while loading texture file %-15s : FilteringType value not specified.", filename_c);
+					LogWarning("Warning while loading texture file \"%-15s\" : FilteringType value not specified.", filename_c);
 			}
 
 			if (pWrapNode == nullptr)
 			{
-				LogWarning("Warning while loading texture file %-15s : WrappingType not specified.", filename_c);
+				LogWarning("Warning while loading texture file \"%-15s\" : WrappingType not specified.", filename_c);
 			}
 			else
 			{
@@ -104,17 +110,17 @@ namespace DYE
 					std::string wrapTypeStr = wrapType;
 					Texture::WrappingType type = StringToWrappingType(wrapTypeStr);
 					if (type == Texture::WrappingType::ErrorWrappingType)
-						LogWarning("Warning while loading texture file %-15s : WrappingType is invalid.", filename_c);
+						LogWarning("Warning while loading texture file \"%-15s\" : WrappingType is invalid.", filename_c);
 					else
 						m_WrappingType = type;
 				}
 				else
-					LogWarning("Warning while loading texture file %-15s : WrappingType value not specified.", filename_c);
+					LogWarning("Warning while loading texture file \"%-15s\" : WrappingType value not specified.", filename_c);
 			}
 
 			if (pMipMapNode == nullptr)
 			{
-				LogWarning("Warning while loading texture file %-15s : MipmapSettings not specified.", filename_c);
+				LogWarning("Warning while loading texture file \"%-15s\" : MipmapSettings not specified.", filename_c);
 			}
 			else
 			{

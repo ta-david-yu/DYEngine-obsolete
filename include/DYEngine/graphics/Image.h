@@ -11,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	class Image : public IResourceValue
 	{
-
+		friend class Resource<Image>;
 	public:
 		enum ChannelType
 		{
@@ -24,8 +24,8 @@ namespace DYE
 
 			Error
 		};
-
-		friend class Resource<Image>;
+	public:
+		DYE_RESOURCE_PATH(IMAGE_PATH)
 		//==========================================
 		//	memeber/variable
 		//==========================================

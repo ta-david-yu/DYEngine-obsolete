@@ -95,17 +95,38 @@ namespace DYE
 		return false;
 	}
 
+	bool ResourceManager::Unload(IResourceValue* resrcValue)
+	{
+		return Unload(resrcValue->GetResourceFileName());
+	}
+
 	std::size_t ResourceManager::ResourceCount() const
 	{
 		return m_ResourceMap.size();
 	}
 
+	//====================================================================================
+	//	Text: text file, stored as string
+	//====================================================================================
 	bool Text::loadFromFile(const std::string& filename, int argc, void *args)
 	{
-		std::ifstream fileStream(filename);
+		const char* filename_c = filename.c_str();
+
+		std::ifstream fileStream(filename_c);
+
+		if ( !fileStream )
+		{
+			LogError("Error while loading text file \"%-15s\" : Failed to load file.", filename_c);
+			return false;
+		}
 
 		m_Data = std::string((std::istreambuf_iterator<char>(fileStream)),
 							  std::istreambuf_iterator<char>());
+	}
+
+	std::string& Text::GetText()
+	{
+		return m_Data;
 	}
 
 }

@@ -10,13 +10,19 @@ namespace DYE
 		const char* filename_c = filename.c_str();
 
 		XMLDocument xmlDoc;
-		xmlDoc.LoadFile(filename_c);
+		XMLError xmlError = xmlDoc.LoadFile(filename_c);
+
+		if (xmlError != XMLError::XML_SUCCESS)
+		{
+			LogError("Error while loading material file \"%-15s\" : Failed to load file.", filename_c);
+			return false;
+		}
 
 		XMLElement* pRoot = xmlDoc.FirstChildElement("material");
 
 		if (pRoot == nullptr)
 		{
-			LogError("Error while loading material file %-15s : Root node not found.", filename_c);
+			LogError("Error while loading material file \"%-15s\" : Root node not found.", filename_c);
 			return false;
 		}
 
@@ -25,7 +31,7 @@ namespace DYE
 			XMLElement* pOrderElement = pRoot->FirstChildElement("order");
 			if (pOrderElement == nullptr)
 			{
-				LogError("Error while loading material file %-15s : Order node not found.", filename_c);
+				LogError("Error while loading material file \"%-15s\" : Order node not found.", filename_c);
 				return false;
 			}
 
@@ -35,17 +41,17 @@ namespace DYE
 		// parse each pass shader settings
 		for (auto element = pRoot->FirstChildElement("pass"); element != nullptr; element = element->NextSiblingElement())
 		{
-			XMLElement* pShaderElement = pRoot->FirstChildElement("shaderprogram");
+			XMLElement* pShaderElement = element->FirstChildElement("shaderprogram");
 			if (pShaderElement == nullptr)
 			{
-				LogError("Error while loading material file %-15s : Shaderprogram node not found.", filename_c);
+				LogError("Error while loading material file \"%-15s\" : Shader program node not found.", filename_c);
 				return false;
 			}
 
 			const char* shaderProgramFileName = pShaderElement->Attribute("filename");
 			if (shaderProgramFileName == nullptr)
 			{
-				LogError("Error while loading material file %-15s : Shaderprogram filename not found.", filename_c);
+				LogError("Error while loading material file \"%-15s\" : Shader program filename not found.", filename_c);
 				return false;
 			}
 
@@ -54,7 +60,8 @@ namespace DYE
 			RenderPass& pass = m_RenderPasses.back();
 
 			// create shader program
-			ShaderProgram* program = RESOURCE_MGR->Load<ShaderProgram>(shaderProgramFileName);
+			std::string shaderProgramFileNameStr(shaderProgramFileName);
+			ShaderProgram* program = RESOURCE_MGR->Load<ShaderProgram>(shaderProgramFileNameStr);
 			pass.pProgram = program;
 
 			// load attribute (depth, stencil, blend)
@@ -74,7 +81,7 @@ namespace DYE
 						std::string funcStr = funcType;
 						AttribFunc func = StringToAttributFunc(funcStr);
 						if (func == AttribFunc::ErrorFunc)
-							LogWarning("Warning while loading material file %-15s : DepthFunc is invalid.", filename_c);
+							LogWarning("Warning while loading material file \"%-15s\" : DepthFunc is invalid.", filename_c);
 						else
 							attr.Func = func;
 					}
@@ -91,7 +98,7 @@ namespace DYE
 						std::string funcStr = funcType;
 						AttribFunc func = StringToAttributFunc(funcStr);
 						if (func == AttribFunc::ErrorFunc)
-							LogWarning("Warning while loading material file %-15s : StencilFunc is invalid.", filename_c);
+							LogWarning("Warning while loading material file \"%-15s\" : StencilFunc is invalid.", filename_c);
 						else
 							attr.Func = func;
 					}
@@ -103,7 +110,7 @@ namespace DYE
 						std::string opStr = opType;
 						StencilAttribute::StencilOp op = StringToStencilOp(opStr);
 						if (op == StencilAttribute::StencilOp::ErrorOp)
-							LogWarning("Warning while loading material file %-15s : StencilOp is invalid.", filename_c);
+							LogWarning("Warning while loading material file \"%-15s\" : StencilOp is invalid.", filename_c);
 						else
 							attr.Op = op;
 					}
@@ -128,7 +135,7 @@ namespace DYE
 						std::string srcStr = srcType;
 						BlendAttribute::BlendFactor srcFactor = StringToBlendFactor(srcStr);
 						if (srcFactor == BlendAttribute::BlendFactor::ErrorFactor)
-							LogWarning("Warning while loading material file %-15s : SrcFactor is invalid.", filename_c);
+							LogWarning("Warning while loading material file \"%-15s\" : SrcFactor is invalid.", filename_c);
 						else
 							attr.SrcFactor = srcFactor;
 					}
@@ -140,13 +147,13 @@ namespace DYE
 						std::string dstStr = dstType;
 						BlendAttribute::BlendFactor dstFactor = StringToBlendFactor(dstStr);
 						if (dstFactor == BlendAttribute::BlendFactor::ErrorFactor)
-							LogWarning("Warning while loading material file %-15s : DstFactor is invalid.", filename_c);
+							LogWarning("Warning while loading material file \"%-15s\" : DstFactor is invalid.", filename_c);
 						else
 							attr.DstFactor = dstFactor;
 					}
 				}
 				else
-					LogWarning("Warning while loading material file %-15s : Attribute type is invalid.", filename_c);
+					LogWarning("Warning while loading material file \"%-15s\" : Attribute type is invalid.", filename_c);
 			}
 
 
@@ -155,13 +162,14 @@ namespace DYE
 				
 			}
 		}
+		return true;
 	}
 
 	Material::~Material()
 	{
 		for (auto const& pass : m_RenderPasses)
 		{
-			RESOURCE_MGR->Unload( pass.pProgram->GetResourceFileName() );
+			RESOURCE_MGR->Unload( pass.pProgram );
 		}
 	}
 }

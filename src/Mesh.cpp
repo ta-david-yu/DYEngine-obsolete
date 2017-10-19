@@ -5,7 +5,9 @@ namespace DYE
 	// load from .obj file
 	bool Mesh::loadFromFile(const std::string& filename, int argc, void *args)
 	{
-		// TO DO:
+		const char* filename_c = filename.c_str();
+
+		//TO DO:
 		return false;
 	}
 }

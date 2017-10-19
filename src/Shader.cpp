@@ -19,7 +19,7 @@ namespace DYE
 
 		if (!isSource)
 		{
-			std::string source = loadSource(filename);
+			std::string source = loadSource(SHADER_PATH + filename);
 
 			compileShaderFromSource(source);
 		}
@@ -55,8 +55,12 @@ namespace DYE
 
 	std::string Shader::loadSource(const std::string& filename)
 	{
-		// TO DO: load file
-		return std::string();
+		m_pSourceText = RESOURCE_MGR->Load<Text>(filename);
+
+		if (m_pSourceText == nullptr)
+			return std::string();
+		else
+			return m_pSourceText->GetText();
 	}
 
 	void Shader::compileShaderFromSource(const std::string& source)
@@ -70,7 +74,6 @@ namespace DYE
 		glGetShaderiv(m_ShaderID, GL_COMPILE_STATUS, &statusCode);
 		if (statusCode != GL_TRUE)
 		{
-			// TO DO: print error log to logger
 			if (m_ShaderID != 0)
 			{
 				GLint infoLogSize;
@@ -81,6 +84,8 @@ namespace DYE
 				glGetShaderInfoLog(m_ShaderID, infoLogSize, &length, infoLog);
 
 				std::string errorLog(infoLog);
+
+				LogError("Shader \"%s\" compile error : %s", m_Name.c_str(), errorLog.c_str());
 
 				delete[] infoLog;
 			}
@@ -97,14 +102,15 @@ namespace DYE
 		return m_Type;
 	}
 
-	Shader::Shader() : m_ShaderID(-1)
+	Shader::Shader(const std::string& shadername) : m_ShaderID(-1), m_Name(shadername)
 	{
 		
 	}
 
 	Shader::~Shader()
 	{
-
+		if (m_pSourceText != nullptr)
+			RESOURCE_MGR->Unload(m_pSourceText);
 	}
 
 
@@ -120,17 +126,24 @@ namespace DYE
 
 	bool ShaderProgram::parseShaderFile(const std::string& filename)
 	{
+		const char* filename_c = filename.c_str();
+
 		createShaderProgram();
 
 		XMLDocument shaderDoc;
-		const char* filename_c = filename.c_str();
-		shaderDoc.LoadFile(filename.c_str());
+		XMLError xmlError = shaderDoc.LoadFile(filename_c);
+
+		if (xmlError != XMLError::XML_SUCCESS)
+		{
+			LogError("Error while loading shaderprogram file \"%-15s\" : Failed to load file.", filename_c);
+			return false;
+		}
 
 		XMLElement* pRoot = shaderDoc.FirstChildElement("shaderprogram");
 
 		if (pRoot == nullptr)
 		{
-			LogError("Error while loading shader program file %-15s : Root node not found.", filename_c);
+			LogError("Error while loading shader program file \"%-15s\" : Root node not found.", filename_c);
 			return false;
 		}
 
@@ -152,13 +165,14 @@ namespace DYE
 			if (shaderFileName != nullptr)
 			{
 				// load from file
-				addShaders(shaderFileName, typeEnum, false);
+				std::string shaderFileNameStr(shaderFileName);
+				addShaders(shaderFileNameStr, typeEnum, false);
 			}
 			else
 			{
 				// is source
 				std::string source = element->GetText();
-				addShaders(shaderFileName, typeEnum, true);
+				addShaders(source, typeEnum, true);
 			}
 		}
 
@@ -187,7 +201,7 @@ namespace DYE
 
 	Shader* ShaderProgram::addShaders(const std::string& filename, Shader::ShaderType type, bool isSource)
 	{
-		Shader* shader = new Shader();
+		Shader* shader = new Shader( (isSource)? this->GetResourceFileName() : filename );
 		shader->Init(filename, type, isSource);
 
 		m_Shaders[type] = shader;

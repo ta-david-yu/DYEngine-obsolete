@@ -17,9 +17,9 @@ namespace DYE
 	//====================================================================================
 	class Material : public IResourceValue
 	{
-
-	public:
 		friend class Resource<Material>;
+	public:
+		DYE_RESOURCE_PATH(MATERIAL_PATH)
 		//==========================================
 		//	memeber/variable
 		//==========================================

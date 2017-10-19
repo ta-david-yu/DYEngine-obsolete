@@ -1,41 +1,20 @@
-INFO     \src\Application.cpp(  22)    Init app
-INFO     \src\Application.cpp( 125)    Init GL
-INFO     \src\Application.cpp(  33)    Start game loop
+INFO     \src\Application.cpp(  25)    Init app
+INFO     \src\Application.cpp( 128)    Init GL
+INFO     \src\Application.cpp(  36)    Start game loop
 INFO     ..\..\src\Scene.cpp ( 106)    Loading scene : (  0)
-ERROR    \DYEngine\Resource.h( 127)    Error loading resource file : 123456    
-DEBUG    \src\Application.cpp(  64)    FPS: 45.331475  1.014747
-DEBUG    \src\Application.cpp(  64)    FPS: 56.836451  1.002878
-DEBUG    \src\Application.cpp(  64)    FPS: 58.138759  1.014814
-DEBUG    \src\Application.cpp(  64)    FPS: 59.070312  1.015739
-DEBUG    \src\Application.cpp(  64)    FPS: 57.113251  1.015526
-DEBUG    \src\Application.cpp(  64)    FPS: 59.125405  1.014792
-DEBUG    \src\Application.cpp(  64)    FPS: 60.540809  1.007585
-DEBUG    \src\Application.cpp(  64)    FPS: 60.269961  1.012113
-DEBUG    \src\Application.cpp(  64)    FPS: 60.665648  1.005511
-DEBUG    \src\Application.cpp(  64)    FPS: 60.125023  1.014553
-DEBUG    \src\Application.cpp(  64)    FPS: 60.768991  1.003801
-DEBUG    \src\Application.cpp(  64)    FPS: 60.773263  1.003731
-DEBUG    \src\Application.cpp(  64)    FPS: 60.255281  1.012359
-DEBUG    \src\Application.cpp(  64)    FPS: 60.622808  1.006222
-DEBUG    \src\Application.cpp(  64)    FPS: 60.504964  1.008182
-DEBUG    \src\Application.cpp(  64)    FPS: 60.643602  1.005877
-DEBUG    \src\Application.cpp(  64)    FPS: 60.028704  1.016181
-DEBUG    \src\Application.cpp(  64)    FPS: 60.423798  1.009536
-DEBUG    \src\Application.cpp(  64)    FPS: 60.447823  1.009135
-DEBUG    \src\Application.cpp(  64)    FPS: 60.628296  1.006131
-DEBUG    \src\Application.cpp(  64)    FPS: 60.385271  1.010180
-DEBUG    \src\Application.cpp(  64)    FPS: 59.956094  1.000732
-DEBUG    \src\Application.cpp(  64)    FPS: 59.045462  1.016166
-DEBUG    \src\Application.cpp(  64)    FPS: 57.284269  1.012494
-DEBUG    \src\Application.cpp(  64)    FPS: 60.460580  1.008922
-DEBUG    \src\Application.cpp(  64)    FPS: 60.713656  1.004716
-DEBUG    \src\Application.cpp(  64)    FPS: 60.299805  1.011612
-DEBUG    \src\Application.cpp(  64)    FPS: 59.193535  1.013624
-DEBUG    \src\Application.cpp(  64)    FPS: 60.987765  1.000201
-DEBUG    \src\Application.cpp(  64)    FPS: 58.673331  1.005568
-DEBUG    \src\Application.cpp(  64)    FPS: 60.341185  1.010918
-DEBUG    \src\Application.cpp(  64)    FPS: 60.596718  1.006655
-DEBUG    \src\Application.cpp(  64)    FPS: 60.547416  1.007475
-DEBUG    \src\Application.cpp(  64)    FPS: 60.421638  1.009572
-DEBUG    \src\Application.cpp(  64)    FPS: 58.493203  1.008664
-DEBUG    \src\Application.cpp(  64)    FPS: 59.470342  1.008906
+ERROR    \DYEngine\Resource.h( 162)    Error loading resource file : resources/mesh/123456
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/image/link.png
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/texture/test_texture.texture
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/test.txt
+ERROR    \..\src\Material.cpp(  17)    Error while loading material file "resources/material/test_material.material" : Failed to load file.
+ERROR    \DYEngine\Resource.h( 162)    Error loading resource file : resources/material/test_material.material
+DEBUG    \src\Application.cpp(  67)    FPS: 61.734190  1.004306
+DEBUG    \src\Application.cpp(  67)    FPS: 59.988242  1.000196
+DEBUG    \src\Application.cpp(  67)    FPS: 60.010260  1.016493
+DEBUG    \src\Application.cpp(  67)    FPS: 59.997870  1.016703
+DEBUG    \src\Application.cpp(  67)    FPS: 59.997616  1.016707
+DEBUG    \src\Application.cpp(  67)    FPS: 59.997835  1.000036
+DEBUG    \src\Application.cpp(  67)    FPS: 59.999531  1.016675
+DEBUG    \src\Application.cpp(  67)    FPS: 60.000840  1.016652
+DEBUG    \src\Application.cpp(  67)    FPS: 59.994836  1.000086
+DEBUG    \src\Application.cpp(  67)    FPS: 60.001602  1.016640

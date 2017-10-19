@@ -11,6 +11,38 @@
 
 #define RESOURCE_MGR ResourceManager::GetInstance()
 
+// every resource value should have this macro declared
+// note that u can specified certain kind of resource to be only put under a certain path
+#define DYE_RESOURCE_PATH(X) static std::string SpecificFilePath()						\
+		{																				\
+			std::string str = X;														\
+			return str;																	\
+		}
+
+#ifndef RESOURCE_PATH
+	#define RESOURCE_PATH "resources/"
+#endif // !RESOURCE_PATH
+
+#ifndef MATERIAL_PATH
+	#define MATERIAL_PATH "material/"
+#endif // !MATERIAL_PATH
+
+#ifndef TEXTURE_PATH
+	#define TEXTURE_PATH "texture/"
+#endif // !TEXTURE_PATH
+
+#ifndef IMAGE_PATH
+	#define IMAGE_PATH "image/"
+#endif // !IMAGE_PATH
+
+#ifndef SHADER_PATH
+	#define SHADER_PATH "shader/"
+#endif // !SHADER_PATH
+
+#ifndef MESH_PATH
+	#define MESH_PATH "mesh/"
+#endif // !MESH_PATH
+
 namespace DYE
 {
 	class IResourceValue;
@@ -23,6 +55,7 @@ namespace DYE
 		SHADER,
 		MATERIAL,
 		TEXTURE,
+		IMAGE,
 		MESH,
 	};
 
@@ -33,6 +66,9 @@ namespace DYE
 	class IResourceValue
 	{
 		friend class ResourceBase;
+	public:
+		DYE_RESOURCE_PATH("")
+
 	protected:
 		ResourceBase* m_pResourceBase;
 
@@ -114,19 +150,18 @@ namespace DYE
 	protected:
 		Resource(const std::string& filename, int argc = 0, void *args = nullptr) : ResourceBase(filename, argc, args)
 		{
-			// TO DO: new RType, 
-			// bool isTypeValue = std::is_base_of<IResourceValue, RType>::value;
-			// assert(isTypeValue);
+			// create value
 			m_pResourceValue = new RType();
 			m_IsProperlyLoaded = m_pResourceValue->loadFromFile(filename, argc, args);
 
+			// attach value
 			AttachResourceValue(m_pResourceValue);
 			m_pResourceValue->SetResourceFileName(filename);
 
 			if (!m_IsProperlyLoaded)
 				LogError("Error loading resource file : %-10s", filename.c_str());
 			else
-				LogInfo("Load resource file: %10s", filename.c_str());
+				LogInfo("Load resource file: %-10s", filename.c_str());
 		}
 	};
 
@@ -146,6 +181,7 @@ namespace DYE
 
 		static ResourceManager* s_pInstance;
 		ResourceMap m_ResourceMap;
+
 		//==========================================
 		//	flag
 		//==========================================
@@ -157,13 +193,17 @@ namespace DYE
 		std::size_t ResourceCount() const;
 	public:
 		void ReleaseAll();
+
 		template <class T>
 		T* Load(const std::string& filename, int argc = 0, void *args = nullptr);
 		bool Unload(const std::string& filename);
+		bool Unload(IResourceValue* resrcValue);
+
 		//==========================================
 		//	getter
 		//==========================================
 		static ResourceManager* GetInstance();
+
 		//==========================================
 		//	setter
 		//==========================================
@@ -178,11 +218,13 @@ namespace DYE
 	//====================================================================================
 	class Text : public IResourceValue
 	{
+		friend class Resource<Text>;
 	public:
+		DYE_RESOURCE_PATH("")
+
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		friend class Resource<Text>;
 	private:
 		std::string m_Data;
 
@@ -190,11 +232,13 @@ namespace DYE
 		//	method
 		//==========================================
 	protected:
-		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override {} // TO DO:
+		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override;
 
 		//==========================================
 		//	getter
 		//==========================================
+	public:
+		std::string& GetText();
 
 		//==========================================
 		//	setter
@@ -205,23 +249,36 @@ namespace DYE
 		//==========================================
 	};
 
-	// TO DO: Resource specialization (Text, Material, Mesh, Shader, Texture)
-	// Manager keeps seperate list
+	// Manager keeps seperate list TO DO: maybe
 	template <class T>
 	T* ResourceManager::Load(const std::string& filename, int argc, void *args)
 	{
-		// TO DO: do error handling
-		ResourceMapItr itr = m_ResourceMap.find(filename);
+		// get full file path
+		std::string fullPathFileName = RESOURCE_PATH;
+		fullPathFileName += T::SpecificFilePath() + filename;
+
+		// find if already loaded
+		ResourceMapItr itr = m_ResourceMap.find(fullPathFileName);
 		if (itr != m_ResourceMap.end())
 		{
 			itr->second->incRef();
 			return static_cast<Resource<T>*>(itr->second)->GetValue();
 		}
 
-		// not yet loaded
-		Resource<T>* resrc = new Resource<T>(filename, argc, args);
+		// load new resources
+		Resource<T>* resrc = new Resource<T>(fullPathFileName, argc, args);
+
+		// return null if is not properly loaded
+		if (!resrc->IsProperlyLoaded())
+		{
+			delete resrc;
+			return nullptr;
+		}
+
 		resrc->incRef();
-		m_ResourceMap.insert(ResourcePair(filename, resrc));
+
+		// add to the resource map
+		m_ResourceMap.insert(ResourcePair(fullPathFileName, resrc));
 		return resrc->GetValue();
 	}
 }

@@ -13,17 +13,17 @@ namespace DYE
 
 		int numOfChannel;
 
-		m_pData = stbi_load(filename.c_str(), &m_Width, &m_Height, &numOfChannel, 0);
+		m_pData = stbi_load(filename_c, &m_Width, &m_Height, &numOfChannel, 0);
 
 		if (m_pData == NULL)
 		{
-			LogError("Error while loading image file %-15s : image file not found.", filename_c);
+			LogError("Error while loading image file \"%-15s\" : Image file not found.", filename_c);
 			return false;
 		}
 
 		if (numOfChannel >= ChannelType::Error)
 		{
-			LogError("Error while loading image file %-15s : channel components are invalid (%d).", filename_c, numOfChannel);
+			LogError("Error while loading image file \"%-15s\" : Channel components are invalid (%d).", filename_c, numOfChannel);
 			return false;
 		}
 
