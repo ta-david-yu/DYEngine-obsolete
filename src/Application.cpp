@@ -67,6 +67,10 @@ namespace DYE
 						framesCounter = 0;
 					}
 					////// FPS //////
+
+					move_timer += TIME->DeltaTime();
+					if (move_timer > move_max)
+						move_timer = 0.0f;
 #endif // DEBUG
 
 					////// IN FRAME //////
@@ -154,7 +158,7 @@ namespace DYE
 	{
 		// TO DO:											// Render (Camera Loop)
 
-		glClearColor(1.0f, 0.3f, 0.3f, 1.0f);
+		glClearColor(1.0f, 0.3f, move_timer, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 #ifdef DEBUG

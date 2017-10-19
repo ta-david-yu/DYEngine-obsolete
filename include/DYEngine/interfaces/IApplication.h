@@ -24,6 +24,7 @@ namespace DYE
 		Core* m_pCore;
 		GLFWwindow* m_pWindow;
 		std::string m_WindowName = "DYE";
+
 		//==========================================
 		//	flag
 		//==========================================
@@ -68,6 +69,8 @@ namespace DYE
 		void debugGLSetup();
 		int shaderProgram;
 		unsigned int VBO, VAO, EBO;
+		float move_timer = 0.0f;
+		float move_max = 1.0f;
 #endif // DEBUG
 		//==========================================
 		//	getter
