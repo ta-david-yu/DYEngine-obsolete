@@ -178,17 +178,19 @@ namespace DYE
 	//====================================================================================
 	class Text : public IResourceValue
 	{
+	public:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		friend class Resource<Text>;
-	protected:
-		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override {} // TO DO:
 	private:
+		std::string m_Data;
 
 		//==========================================
 		//	method
 		//==========================================
+	protected:
+		bool loadFromFile(const std::string& filename, int argc = 0, void *args = nullptr) override {} // TO DO:
 
 		//==========================================
 		//	getter

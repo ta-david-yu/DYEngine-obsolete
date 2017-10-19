@@ -1,7 +1,9 @@
-
 #include <DYEngine\Resource.h>
 
 #include <cassert>
+#include <string>
+#include <fstream>
+#include <streambuf>
 
 namespace DYE
 {
@@ -97,4 +99,13 @@ namespace DYE
 	{
 		return m_ResourceMap.size();
 	}
+
+	bool Text::loadFromFile(const std::string& filename, int argc, void *args)
+	{
+		std::ifstream fileStream(filename);
+
+		m_Data = std::string((std::istreambuf_iterator<char>(fileStream)),
+							  std::istreambuf_iterator<char>());
+	}
+
 }
