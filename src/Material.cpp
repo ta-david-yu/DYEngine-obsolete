@@ -7,8 +7,9 @@ namespace DYE
 {
 	bool Material::loadFromFile(const std::string& filename, int argc, void *args)
 	{
-		XMLDocument xmlDoc;
 		const char* filename_c = filename.c_str();
+
+		XMLDocument xmlDoc;
 		xmlDoc.LoadFile(filename_c);
 
 		XMLElement* pRoot = xmlDoc.FirstChildElement("material");
@@ -74,6 +75,8 @@ namespace DYE
 						AttribFunc func = StringToAttributFunc(funcStr);
 						if (func == AttribFunc::ErrorFunc)
 							LogWarning("Warning while loading material file %-15s : DepthFunc is invalid.", filename_c);
+						else
+							attr.Func = func;
 					}
 				}
 				else if (type == "stencil")
@@ -89,6 +92,8 @@ namespace DYE
 						AttribFunc func = StringToAttributFunc(funcStr);
 						if (func == AttribFunc::ErrorFunc)
 							LogWarning("Warning while loading material file %-15s : StencilFunc is invalid.", filename_c);
+						else
+							attr.Func = func;
 					}
 
 					// loading operation
@@ -99,6 +104,8 @@ namespace DYE
 						StencilAttribute::StencilOp op = StringToStencilOp(opStr);
 						if (op == StencilAttribute::StencilOp::ErrorOp)
 							LogWarning("Warning while loading material file %-15s : StencilOp is invalid.", filename_c);
+						else
+							attr.Op = op;
 					}
 
 
@@ -122,6 +129,8 @@ namespace DYE
 						BlendAttribute::BlendFactor srcFactor = StringToBlendFactor(srcStr);
 						if (srcFactor == BlendAttribute::BlendFactor::ErrorFactor)
 							LogWarning("Warning while loading material file %-15s : SrcFactor is invalid.", filename_c);
+						else
+							attr.SrcFactor = srcFactor;
 					}
 
 					// loading dst factor
@@ -132,6 +141,8 @@ namespace DYE
 						BlendAttribute::BlendFactor dstFactor = StringToBlendFactor(dstStr);
 						if (dstFactor == BlendAttribute::BlendFactor::ErrorFactor)
 							LogWarning("Warning while loading material file %-15s : DstFactor is invalid.", filename_c);
+						else
+							attr.DstFactor = dstFactor;
 					}
 				}
 				else

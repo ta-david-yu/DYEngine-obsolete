@@ -9,24 +9,115 @@ namespace DYE
 	{
 		const char* filename_c = filename.c_str();
 
-		// load image name from xml
-		m_pImage = RESOURCE_MGR->Load<Image>("temp.png");
+		XMLDocument xmlDoc;
+		xmlDoc.LoadFile(filename_c);
 
-		if (!m_pImage->IsLoaded())
+		XMLElement* pRoot = xmlDoc.FirstChildElement("texture");
+
+		if (pRoot == nullptr)
 		{
-			LogError("Error while loading texture file %-15s : image file is not properly loaded.", filename_c);
+			LogError("Error while loading texture file %-15s : Root node not found.", filename_c);
 			return false;
 		}
 
-		// TO DO: load texture file (which is a xml file)
-		/*
-		
-		// load image name from xml
-		m_pImage = RESOURCE_MGR->Load<Image>("temp.png");	
+		// load image file
+		{
+			XMLElement* pImageNode = pRoot->FirstChildElement("image");
+			if (pImageNode == nullptr)
+			{
+				LogError("Error while loading texture file %-15s : Image node not found.", filename_c);
+				return false;
+			}
 
-		
-		
-		*/
+			const char* imageFileName = pImageNode->Attribute("filename");
+			if (imageFileName == nullptr)
+			{
+				LogError("Error while loading texture file %-15s : Image filename not specified.", filename_c);
+				return false;
+			}
+
+			m_pImage = RESOURCE_MGR->Load<Image>(imageFileName);
+
+			if (!m_pImage->IsLoaded())
+			{
+				LogError("Error while loading texture file %-15s : Image file is not properly loaded.", filename_c);
+				return false;
+			}
+		}
+
+		// load texture type and parameters
+		{
+			XMLElement* pTypeNode = pRoot->FirstChildElement("type");
+			XMLElement* pFilterNode = pRoot->FirstChildElement("filter");
+			XMLElement* pWrapNode = pRoot->FirstChildElement("wrapping");
+			XMLElement* pMipMapNode = pRoot->FirstChildElement("mipmap");
+
+			if (pTypeNode == nullptr)
+			{
+				LogWarning("Warning while loading texture file %-15s : TextureType not specified.", filename_c);
+			}
+			else
+			{
+				const char* texType = pTypeNode->Attribute("value");
+				if (texType != nullptr)
+				{
+					std::string texTypeStr = texType;
+					Texture::TextureType type = StringToTextureType(texTypeStr);
+					if (type == Texture::TextureType::Error)
+						LogWarning("Warning while loading texture file %-15s : TextureType is invalid.", filename_c);
+					else
+						m_TextureType = type;
+				}
+				else
+					LogWarning("Warning while loading texture file %-15s : TextureType value not specified.", filename_c);
+			}
+
+			if (pFilterNode == nullptr)
+			{
+				LogWarning("Warning while loading texture file %-15s : FilterType not specified.", filename_c);
+			}
+			else
+			{
+				const char* filterType = pFilterNode->Attribute("value");
+				if (filterType != nullptr)
+				{
+					std::string filterTypeStr = filterType;
+					Texture::FilteringType type = StringToFilteringType(filterTypeStr);
+					if (type == Texture::FilteringType::Error)
+						LogWarning("Warning while loading texture file %-15s : FilteringType is invalid.", filename_c);
+					else
+						m_FilteringType = type;
+				}
+				else
+					LogWarning("Warning while loading texture file %-15s : FilteringType value not specified.", filename_c);
+			}
+
+			if (pWrapNode == nullptr)
+			{
+				LogWarning("Warning while loading texture file %-15s : WrappingType not specified.", filename_c);
+			}
+			else
+			{
+				const char* wrapType = pWrapNode->Attribute("value");
+				if (wrapType != nullptr)
+				{
+					std::string wrapTypeStr = wrapType;
+					Texture::WrappingType type = StringToWrappingType(wrapTypeStr);
+					if (type == Texture::WrappingType::Error)
+						LogWarning("Warning while loading texture file %-15s : WrappingType is invalid.", filename_c);
+					else
+						m_WrappingType = type;
+				}
+				else
+					LogWarning("Warning while loading texture file %-15s : WrappingType value not specified.", filename_c);
+			}
+
+			if (pMipMapNode == nullptr)
+			{
+				// TO DO:
+				LogWarning("Warning while loading texture file %-15s : MipmapSettings not specified.", filename_c);
+			}
+		}
 
 		this->glInitializeTexture();
 		return true;

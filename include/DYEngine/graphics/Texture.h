@@ -17,14 +17,18 @@ namespace DYE
 	public:
 		enum TextureType
 		{
-			Texture2D = GL_TEXTURE_2D
+			Texture2D = GL_TEXTURE_2D,
+
+			Error
 			// TO DO: add more texture type
 		};
 
 		enum FilteringType
 		{
 			Nearest = GL_NEAREST,
-			Linear = GL_LINEAR
+			Linear = GL_LINEAR,
+
+			Error
 		};
 
 		enum WrappingType
@@ -32,7 +36,9 @@ namespace DYE
 			Repeat = GL_REPEAT,
 			ClampToBorder = GL_CLAMP_TO_BORDER,
 			ClampToEdge = GL_CLAMP_TO_EDGE,
-			MirroredRepeat = GL_MIRRORED_REPEAT
+			MirroredRepeat = GL_MIRRORED_REPEAT,
+
+			Error
 		};
 
 		friend class Resource<Texture>;
@@ -80,4 +86,40 @@ namespace DYE
 		//==========================================
 		~Texture();
 	};
+
+	//=========================================================================================
+	//	Utilities Function
+	//=========================================================================================
+	inline Texture::TextureType StringToTextureType(const std::string& texStr)
+	{
+		if (texStr == "tex2d")
+			return Texture::TextureType::Texture2D;
+		else
+			return Texture::TextureType::Error;
+	}
+
+	inline Texture::FilteringType StringToFilteringType(const std::string& filterStr)
+	{
+		if (filterStr == "nearest")
+			return Texture::FilteringType::Nearest;
+		else if (filterStr == "linear")
+			return Texture::FilteringType::Linear;
+		else
+			return Texture::FilteringType::Error;
+	}
+
+	inline Texture::WrappingType StringToWrappingType(const std::string& wrapStr)
+	{
+		if (wrapStr == "repeat")
+			return Texture::WrappingType::Repeat;
+		else if (wrapStr == "clamp_to_border")
+			return Texture::WrappingType::ClampToBorder;
+		else if (wrapStr == "clamp_to_edge")
+			return Texture::WrappingType::ClampToEdge;
+		else if (wrapStr == "mirrored_repeat")
+			return Texture::WrappingType::MirroredRepeat;
+		else
+			return Texture::WrappingType::Error;
+	}
+	
 }

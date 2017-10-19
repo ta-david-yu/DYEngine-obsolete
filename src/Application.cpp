@@ -158,7 +158,11 @@ namespace DYE
 	{
 		// TO DO:											// Render (Camera Loop)
 
+		glClearColor(1.0f, 0.3f, 0.7f, 1.0f);
+#ifdef DEBUG
 		glClearColor(1.0f, 0.3f, move_timer, 1.0f);
+#endif // DEBUG
+
 		glClear(GL_COLOR_BUFFER_BIT);
 
 #ifdef DEBUG

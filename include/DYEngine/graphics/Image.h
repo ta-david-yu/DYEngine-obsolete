@@ -32,7 +32,7 @@ namespace DYE
 	private:
 		unsigned char* m_pData;
 		int m_Width, m_Height;
-		ChannelType m_ChannelType;
+		ChannelType m_ChannelType = ChannelType::Error;
 
 		//==========================================
 		//	method
