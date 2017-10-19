@@ -19,7 +19,7 @@ namespace DYE
 		{
 			Texture2D = GL_TEXTURE_2D,
 
-			Error
+			ErrorTextureType
 			// TO DO: add more texture type
 		};
 
@@ -28,7 +28,7 @@ namespace DYE
 			Nearest = GL_NEAREST,
 			Linear = GL_LINEAR,
 
-			Error
+			ErrorFilteringType
 		};
 
 		enum WrappingType
@@ -38,7 +38,7 @@ namespace DYE
 			ClampToEdge = GL_CLAMP_TO_EDGE,
 			MirroredRepeat = GL_MIRRORED_REPEAT,
 
-			Error
+			ErrorWrappingType
 		};
 
 		friend class Resource<Texture>;
@@ -95,7 +95,7 @@ namespace DYE
 		if (texStr == "tex2d")
 			return Texture::TextureType::Texture2D;
 		else
-			return Texture::TextureType::Error;
+			return Texture::TextureType::ErrorTextureType;
 	}
 
 	inline Texture::FilteringType StringToFilteringType(const std::string& filterStr)
@@ -105,7 +105,7 @@ namespace DYE
 		else if (filterStr == "linear")
 			return Texture::FilteringType::Linear;
 		else
-			return Texture::FilteringType::Error;
+			return Texture::FilteringType::ErrorFilteringType;
 	}
 
 	inline Texture::WrappingType StringToWrappingType(const std::string& wrapStr)
@@ -119,7 +119,7 @@ namespace DYE
 		else if (wrapStr == "mirrored_repeat")
 			return Texture::WrappingType::MirroredRepeat;
 		else
-			return Texture::WrappingType::Error;
+			return Texture::WrappingType::ErrorWrappingType;
 	}
 	
 }

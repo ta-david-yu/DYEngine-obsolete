@@ -63,7 +63,7 @@ namespace DYE
 				{
 					std::string texTypeStr = texType;
 					Texture::TextureType type = StringToTextureType(texTypeStr);
-					if (type == Texture::TextureType::Error)
+					if (type == Texture::TextureType::ErrorTextureType)
 						LogWarning("Warning while loading texture file %-15s : TextureType is invalid.", filename_c);
 					else
 						m_TextureType = type;
@@ -83,7 +83,7 @@ namespace DYE
 				{
 					std::string filterTypeStr = filterType;
 					Texture::FilteringType type = StringToFilteringType(filterTypeStr);
-					if (type == Texture::FilteringType::Error)
+					if (type == Texture::FilteringType::ErrorFilteringType)
 						LogWarning("Warning while loading texture file %-15s : FilteringType is invalid.", filename_c);
 					else
 						m_FilteringType = type;
@@ -103,7 +103,7 @@ namespace DYE
 				{
 					std::string wrapTypeStr = wrapType;
 					Texture::WrappingType type = StringToWrappingType(wrapTypeStr);
-					if (type == Texture::WrappingType::Error)
+					if (type == Texture::WrappingType::ErrorWrappingType)
 						LogWarning("Warning while loading texture file %-15s : WrappingType is invalid.", filename_c);
 					else
 						m_WrappingType = type;
@@ -114,8 +114,12 @@ namespace DYE
 
 			if (pMipMapNode == nullptr)
 			{
-				// TO DO:
 				LogWarning("Warning while loading texture file %-15s : MipmapSettings not specified.", filename_c);
+			}
+			else
+			{
+				m_UseMipMap = pMipMapNode->BoolAttribute("use");
+				m_MipMapLevel = pMipMapNode->IntAttribute("level");
 			}
 		}
 
