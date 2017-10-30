@@ -183,6 +183,11 @@ namespace DYE
 		glDeleteTextures(1, &m_TextureID);
 	}
 
+	void Texture::unloadImage()
+	{
+		RESOURCE_MGR->Unload(m_pImage);
+	}
+
 	Image* Texture::GetImage() const
 	{
 		return m_pImage;
@@ -201,5 +206,6 @@ namespace DYE
 	Texture::~Texture()
 	{
 		deleteTexture();
+		unloadImage();
 	}
 }

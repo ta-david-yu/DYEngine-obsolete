@@ -69,6 +69,7 @@ namespace DYE
 		void setTextureImage();
 
 		void deleteTexture();
+		void unloadImage();
 
 		//==========================================
 		//	getter
