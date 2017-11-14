@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <texture name="test_tex">
-	<image filename="link.png"/>
+	<image filename="link.png" channel="rgba"/>
 	<type value="tex2d"/>
 	<filter value="linear"/>
-	<wrapping value="repeat"/>
-	<mipmap use="true" level="0"/>
+	<wrapping value="clamp_to_border"/>
+	<mipmap use="true" level="5"/>
 </texture>

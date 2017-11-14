@@ -1,8 +1,7 @@
 #pragma once
 
 #include <DYEngine\Resource.h>
-
-#include <glad\glad.h>
+#include <DYEngine\utilities\OpenGL.h>
 
 #include <vector>
 #include <map>
@@ -36,6 +35,7 @@ namespace DYE
 	private:
 		GLuint m_ShaderID;
 		ShaderType m_Type;
+		bool m_HasCompiledError = false;
 		Text* m_pSourceText;
 		std::string m_Name;
 
@@ -58,6 +58,8 @@ namespace DYE
 	public:
 		GLuint GetShaderID() const;
 		ShaderType GetShaderType() const;
+		inline bool HasCompileError() const { return m_HasCompiledError; }
+
 		//==========================================
 		//	setter
 		//==========================================

@@ -74,8 +74,13 @@ namespace DYE
 	}
 
 	void ResourceManager::ReleaseAll()
-	{
+	{	
+		// TO DO:
+	}
 
+	bool ResourceManager::Unload(IResourceValue* resrcValue)
+	{
+		return Unload(resrcValue->GetResourceFileName());
 	}
 
 	bool ResourceManager::Unload(const std::string& filename)
@@ -93,11 +98,6 @@ namespace DYE
 			return true;
 		}
 		return false;
-	}
-
-	bool ResourceManager::Unload(IResourceValue* resrcValue)
-	{
-		return Unload(resrcValue->GetResourceFileName());
 	}
 
 	std::size_t ResourceManager::ResourceCount() const

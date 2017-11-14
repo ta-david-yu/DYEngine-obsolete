@@ -177,6 +177,7 @@
     <ClCompile Include="..\..\src\Math.cpp" />
     <ClCompile Include="..\..\src\Mesh.cpp" />
     <ClCompile Include="..\..\src\MeshRenderer.cpp" />
+    <ClCompile Include="..\..\src\OpenGL.cpp" />
     <ClCompile Include="..\..\src\Renderer.cpp" />
     <ClCompile Include="..\..\src\RendererSystem.cpp" />
     <ClCompile Include="..\..\src\RenderUnit.cpp" />

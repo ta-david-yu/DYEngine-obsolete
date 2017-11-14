@@ -5,6 +5,7 @@
 #include <glm\gtx\quaternion.hpp>
 #include <glm\gtc\epsilon.hpp>
 #include <glm\gtx\transform.hpp>
+#include <glm\gtc\type_ptr.hpp>
 
 #include <string>
 
@@ -274,6 +275,12 @@ namespace DYE
 		operator glm::mat2() const;
 
 		operator glm::mat2();
+
+		//==========================================
+		//	getter
+		//==========================================
+		const float* GetValuePtr() const;
+
 	};
 
 	//====================================================================================
@@ -324,6 +331,11 @@ namespace DYE
 		operator glm::mat3() const;
 
 		operator glm::mat3();
+		//==========================================
+		//	getter
+		//==========================================
+		const float* GetValuePtr() const;
+
 	};
 
 	//====================================================================================
@@ -376,6 +388,12 @@ namespace DYE
 		operator glm::mat4() const;
 
 		operator glm::mat4();
+
+		//==========================================
+		//	getter
+		//==========================================
+		const float* GetValuePtr() const;
+
 	};
 
 	//====================================================================================

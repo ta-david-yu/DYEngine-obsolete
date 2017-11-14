@@ -15,7 +15,7 @@ namespace DYE
 		// gl create
 		createShader();
 
-		// TO DO: add global uniform to shader (MVP matrix, light positions...)
+		// TO DO: add global uniform to shader (MVP matrix, light positions...) NEXT
 
 		if (!isSource)
 		{
@@ -50,7 +50,7 @@ namespace DYE
 
 	void Shader::DestroyShader()
 	{
-		glDeleteShader(m_ShaderID);
+		glCall(glDeleteShader(m_ShaderID));
 	}
 
 	std::string Shader::loadSource(const std::string& filename)
@@ -66,8 +66,8 @@ namespace DYE
 	void Shader::compileShaderFromSource(const std::string& source)
 	{
 		const char* src = source.c_str();
-		glShaderSource(m_ShaderID, 1, &src, 0);
-		glCompileShader(m_ShaderID);
+		glCall(glShaderSource(m_ShaderID, 1, &src, 0));
+		glCall(glCompileShader(m_ShaderID));
 
 		// error handling
 		GLint statusCode;
@@ -88,6 +88,8 @@ namespace DYE
 				LogError("Shader \"%s\" compile error : %s", m_Name.c_str(), errorLog.c_str());
 
 				delete[] infoLog;
+
+				m_HasCompiledError = true;
 			}
 		}
 	}
@@ -191,7 +193,7 @@ namespace DYE
 		s_pCurrentShaderProgram = this;
 
 		//gl bind
-		glUseProgram(m_ProgramID);
+		glCall(glUseProgram(m_ProgramID));
 	}
 
 	void ShaderProgram::createShaderProgram()
@@ -204,29 +206,37 @@ namespace DYE
 		Shader* shader = new Shader( (isSource)? this->GetResourceFileName() : filename );
 		shader->Init(filename, type, isSource);
 
+		if (shader->HasCompileError())
+		{
+			delete shader;
+			shader = nullptr;
+		}
+
 		m_Shaders[type] = shader;
 		return shader;
 	}
 
 	void ShaderProgram::linkShaders()
 	{
-		// TO DO: link to default pipeline if shader is not complete
+		// TO DO: link to default pipeline if shader is not complete NEXT
 		// link shader to program
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{
 			Shader* shader = m_Shaders[i];
 			if (shader != nullptr)
-				glAttachShader(m_ProgramID, shader->GetShaderID());
+				glCall(glAttachShader(m_ProgramID, shader->GetShaderID()));
 		}
 
-		glLinkProgram(m_ProgramID);
+		glCall(glLinkProgram(m_ProgramID));
 
 		// release shader
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{
 			Shader* shader = m_Shaders[i];
 			if (shader != nullptr)
+			{
 				shader->DestroyShader();
+			}
 		}
 	}
 
@@ -236,7 +246,7 @@ namespace DYE
 		if (GetCurrentShaderProgram() == this)
 		{
 			s_pCurrentShaderProgram = nullptr;
-			glUseProgram(0);
+			glCall(glUseProgram(0));
 		}
 
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
@@ -247,7 +257,7 @@ namespace DYE
 				delete shader;
 			}
 		}
-		glDeleteProgram(m_ProgramID);
+		glCall(glDeleteProgram(m_ProgramID));
 	}
 
 	GLuint ShaderProgram::GetProgramID() const

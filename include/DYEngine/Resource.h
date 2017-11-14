@@ -196,8 +196,8 @@ namespace DYE
 
 		template <class T>
 		T* Load(const std::string& filename, int argc = 0, void *args = nullptr);
-		bool Unload(const std::string& filename);
 		bool Unload(IResourceValue* resrcValue);
+		bool Unload(const std::string& filename);
 
 		//==========================================
 		//	getter
@@ -211,6 +211,50 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
+	};
+	//====================================================================================
+	//	ScopeBasedResourceHandler: Unload resource pointer when Handler is destroyed
+	//====================================================================================
+	template<class Resrc>
+	class ScopeBasedResourceHandler
+	{
+		//==========================================
+		//	memeber/variable
+		//==========================================
+		Resrc* m_pResource = nullptr;
+
+		//==========================================
+		//	getter/setter
+		//==========================================
+	public:
+		inline Resrc* GetResourcePtr() { return m_pResource; }
+		inline void SetResourcePtr(Resrc* _resrc) { m_pResource = _resrc; }
+		inline void SetResourcePtr(const Resrc* _resrc) { m_pResource = _resrc; }
+
+		inline Resrc& operator*() { return *m_pResource; }
+		inline Resrc& operator*() const { return *m_pResource; }
+
+		inline Resrc* operator->() { return m_pResource; }
+		inline Resrc* operator->() const { return m_pResource; }
+
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+		ScopeBasedResourceHandler()
+		{
+
+		}
+
+		ScopeBasedResourceHandler(Resrc* resrc) : m_pResource(resrc)
+		{
+			static_assert(std::is_base_of<IResourceValue, Resrc>::value, "Invalid resource type for ResourceHandler.");
+		}
+
+		~ScopeBasedResourceHandler()
+		{
+			if (m_pResource != nullptr)
+				RESOURCE_MGR->Unload(m_pResource);
+		}
 	};
 
 	//====================================================================================
@@ -253,6 +297,8 @@ namespace DYE
 	template <class T>
 	T* ResourceManager::Load(const std::string& filename, int argc, void *args)
 	{
+		static_assert(std::is_base_of<IResourceValue, T>::value, "Invalid resource type for ResourceManager::Load.");
+
 		// get full file path
 		std::string fullPathFileName = RESOURCE_PATH;
 		fullPathFileName += T::SpecificFilePath() + filename;

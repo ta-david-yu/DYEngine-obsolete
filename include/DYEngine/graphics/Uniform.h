@@ -1,11 +1,13 @@
 #pragma once
 
-#include <glad\glad.h>
+#include <DYEngine\utilities\OpenGL.h>
 
 #include <string>
 
 namespace DYE
 {
+	class Texture;
+
 	//====================================================================================
 	//	IUniform: interface for uniformVariable
 	//====================================================================================
@@ -54,27 +56,80 @@ namespace DYE
 		//==========================================
 	protected:
 		Type m_Data;
-	public:
+
 		//==========================================
 		//	method
 		//==========================================
-		// TO DO:
-		virtual void Bind();
 	public:
+		virtual void Bind();
+
 		//==========================================
 		//	getter
 		//==========================================
-		Type& GetData() { return m_Data; }
+	public:
+		inline virtual Type GetData() { return m_Data; }
+
 		//==========================================
 		//	setter
 		//==========================================
-		void SetData(const Type& _data) { m_Data = _data; }
+		inline virtual void SetData(const Type& _data) { m_Data = _data; }
+
 		//==========================================
 		//	constructor/destructor
 		//==========================================
 		UniformVariable(const std::string& _name) : IUniform(_name), m_Data() {}
-		~UniformVariable() {}
+		~UniformVariable();
 	};
-	// TO DO: Texture specialization
-	// TO DO: specialization for Bind
+
+
+	//====================================================================================
+	//	Texture Specialization Uniform
+	//====================================================================================
+	template<>
+	class UniformVariable<Texture*> : public IUniform
+	{
+		//==========================================
+		//	memeber/variable
+		//==========================================
+	protected:
+		Texture* m_Data;
+
+		//==========================================
+		//	method
+		//==========================================
+	public:
+		virtual void Bind();
+
+		//==========================================
+		//	getter
+		//==========================================
+	public:
+		inline virtual Texture* GetData() { return m_Data; }
+
+		//==========================================
+		//	setter
+		//==========================================
+		inline virtual void SetData(Texture* const& _data) { m_Data = _data; }
+
+		//==========================================
+		//	constructor/destructor
+		//==========================================
+	public:
+		UniformVariable(const std::string& _name) : IUniform(_name), m_Data() {}
+		~UniformVariable();
+	};
+
+	template<>
+	class UniformVariable<Texture> : public UniformVariable<Texture*>
+	{
+	public:
+		UniformVariable(const std::string& _name) : UniformVariable<Texture*>(_name) {}
+		
+	};
+
+	//template<>
+	//UniformVariable<Texture*>::~UniformVariable()
+	//{
+		//RESOURCE_MGR->Unload(m_Data);
+	//}
 }

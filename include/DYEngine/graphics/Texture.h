@@ -1,12 +1,13 @@
 #pragma once
 
 #include <DYEngine\Resource.h>
-
-#include <glad\glad.h>
+#include <DYEngine\utilities\OpenGL.h>
 
 namespace DYE
 {
 	class Image;
+
+	template <typename> class UniformVariable;
 
 	//====================================================================================
 	//	Texture: texture file
@@ -14,9 +15,20 @@ namespace DYE
 	class Texture : public IResourceValue
 	{
 		friend class Resource<Texture>;
+		friend class UniformVariable<Texture*>;
+		// template<Texture*> friend class UniformVariable;
 	public:
 		DYE_RESOURCE_PATH(TEXTURE_PATH)
 	public:
+		enum TextureFormat
+		{
+			FormatBlue = GL_BLUE,
+			FormatRGB = GL_RGB,
+			FormatRGBA = GL_RGBA,
+
+			FormatError
+		};
+
 		enum TextureType
 		{
 			Texture2D = GL_TEXTURE_2D,
@@ -45,11 +57,12 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-	private:
+	public:
 		Image* m_pImage;
 		GLuint m_TextureID;
 		GLuint m_TextureUnit;
 
+		TextureFormat m_TextureChannelFormat = TextureFormat::FormatRGBA;
 		TextureType m_TextureType = TextureType::Texture2D;
 		FilteringType m_FilteringType = FilteringType::Linear;
 		WrappingType m_WrappingType = WrappingType::Repeat;
@@ -91,6 +104,34 @@ namespace DYE
 	//=========================================================================================
 	//	Utilities Function
 	//=========================================================================================
+	inline Texture::TextureFormat StringToTextureFormat(const std::string& formStr)
+	{
+		if (formStr == "grey")
+			return Texture::TextureFormat::FormatBlue;
+		else if (formStr == "r")
+			return Texture::TextureFormat::FormatBlue;
+		else if (formStr == "g")
+			return Texture::TextureFormat::FormatBlue;
+		else if (formStr == "b")
+			return Texture::TextureFormat::FormatBlue;
+		else if (formStr == "rgb")
+			return Texture::TextureFormat::FormatRGB;
+		else if (formStr == "rgba")
+			return Texture::TextureFormat::FormatRGBA;
+		else
+			return Texture::TextureFormat::FormatError;
+	}
+
+	inline int TextureFormatToChannelNumber(Texture::TextureFormat format)
+	{
+		if (format == Texture::TextureFormat::FormatBlue)
+			return 1;
+		else if (format == Texture::TextureFormat::FormatRGB)
+			return 3;
+		else if (format == Texture::TextureFormat::FormatRGBA)
+			return 4;
+	}
+
 	inline Texture::TextureType StringToTextureType(const std::string& texStr)
 	{
 		if (texStr == "tex2d")

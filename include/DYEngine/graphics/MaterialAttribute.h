@@ -2,8 +2,6 @@
 
 #include <DYEngine\graphics\Uniform.h>
 
-#include <GLFW\glfw3.h>
-
 #include <vector>
 #include <memory>
 
@@ -113,6 +111,7 @@ namespace DYE
 		BlendAttribute BlendAttr;
 
 		UniformList Uniforms;
+
 		//==========================================
 		//	method
 		//==========================================
@@ -123,7 +122,11 @@ namespace DYE
 			ptr->SetData(_data);
 
 			Uniforms.push_back(ptr);
+
+			// get uniform location from shader program.
+			ptr->AttachToShader(pProgram->GetProgramID()); 
 		}
+
 		//==========================================
 		//	constructor/destructor
 		//==========================================
@@ -199,4 +202,6 @@ namespace DYE
 		else
 			return BlendAttribute::BlendFactor::ErrorFactor;
 	}
+
+	std::vector<std::string> StringTokenizer(std::string str, std::string delim, bool igEmptyTok = true);
 }

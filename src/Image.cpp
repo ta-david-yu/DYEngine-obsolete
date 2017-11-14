@@ -13,7 +13,7 @@ namespace DYE
 
 		int numOfChannel;
 
-		m_pData = stbi_load(filename_c, &m_Width, &m_Height, &numOfChannel, 0);
+		m_pData = stbi_load(filename_c, &m_Width, &m_Height, &numOfChannel, argc);
 
 		if (m_pData == NULL)
 		{

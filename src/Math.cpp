@@ -476,6 +476,10 @@ namespace DYE
 		return main;
 	}
 
+	const float* Mat2x2::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
+	}
 
 	//====================================================================================
 	//	Mat3x3: Matric of float with 3 rows and 3 cols
@@ -549,6 +553,10 @@ namespace DYE
 		return main;
 	}
 
+	const float* Mat3x3::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
+	}
 
 	//====================================================================================
 	//	Mat4x4: Matric of float with 4 rows and 4 cols
@@ -625,6 +633,10 @@ namespace DYE
 		return main;
 	}
 
+	const float* Mat4x4::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
+	}
 
 	//====================================================================================
 	//	Quaternion: Core rotation presentation
@@ -646,7 +658,7 @@ namespace DYE
 
 	Quaternion Quaternion::RotationBetweenVectors(const Vector3f& from, const Vector3f to)
 	{
-		// TO DO:
+		// TO DO: NEXT
 		return Quaternion();
 	}
 

@@ -2,6 +2,10 @@
 #include <DYEngine\utilities\XMLParser.h>
 #include <DYEngine\utilities\Logger.h>
 #include <DYEngine\graphics\Shader.h>
+#include <DYEngine\graphics\Texture.h>
+#include <DYEngine\utilities\Math.h>
+
+#include <stdexcept>
 
 namespace DYE
 {
@@ -157,9 +161,161 @@ namespace DYE
 			}
 
 
-			// TO DO: load uniform
+			// load uniform data
+			XMLElement* pUniformElement = pShaderElement->FirstChildElement("uniforms");
+			for (auto element = pUniformElement->FirstChildElement("uniform"); element != nullptr; element = element->NextSiblingElement())
 			{
-				
+				// loading uniform name
+				std::string name(element->Attribute("name"));
+
+				// loading uniform type
+				std::string typeS(element->Attribute("type"));
+
+				// loading uniform value
+				std::string valueS(element->Attribute("value"));
+
+				if (typeS == "float")
+				{
+					float f;
+					try
+					{
+						f = std::stof(valueS);
+					}
+					catch (...)
+					{
+						f = 0.0f;
+						LogWarning("Warning while loading material file \"%-15s\" : Float uniform %s has an invalid value.", filename_c, name.c_str());
+					}
+
+					pass.AddUniform(name, f);
+				}
+				else if (typeS == "vec2")
+				{
+					size_t numOfComp = 2;
+
+					Vector2f vec;
+					auto toks = StringTokenizer(valueS, " ");
+
+					size_t index = 0;
+					for (auto& tok : toks)
+					{
+						if (index >= numOfComp)
+						{
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too much components.", filename_c, name.c_str());
+
+							break;
+						}
+
+						float f;
+						try
+						{
+							f = std::stof(tok);
+						}
+						catch ( ... )
+						{
+							f = 0.0f;
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has an invalid component.", filename_c, name.c_str());
+						}
+						vec[index] = f;
+						index++;
+					}
+
+					if (index < numOfComp)
+					{
+						LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too few components.", filename_c, name.c_str());
+					}
+
+					pass.AddUniform(name, vec);
+				}
+				else if (typeS == "vec3")
+				{
+					size_t numOfComp = 3;
+
+					Vector3f vec;
+					auto toks = StringTokenizer(valueS, " ");
+
+					size_t index = 0;
+					for (auto& tok : toks)
+					{
+						if (index >= numOfComp)
+						{
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too much components.", filename_c, name.c_str());
+
+							break;
+						}
+
+						float f;
+						try
+						{
+							f = std::stof(tok);
+						}
+						catch (...)
+						{
+							f = 0.0f;
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has an invalid component.", filename_c, name.c_str());
+						}
+						vec[index] = f;
+						index++;
+					}
+
+					if (index < numOfComp)
+					{
+						LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too few components.", filename_c, name.c_str());
+					}
+
+					pass.AddUniform(name, vec);
+				}
+				else if (typeS == "vec4")
+				{
+					size_t numOfComp = 4;
+
+					Vector3f vec;
+					auto toks = StringTokenizer(valueS, " ");
+
+					size_t index = 0;
+					for (auto& tok : toks)
+					{
+						if (index >= numOfComp)
+						{
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too much components.", filename_c, name.c_str());
+
+							break;
+						}
+
+						float f;
+						try
+						{
+							f = std::stof(tok);
+						}
+						catch (...)
+						{
+							f = 0.0f;
+							LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has an invalid component.", filename_c, name.c_str());
+						}
+						vec[index] = f;
+						index++;
+					}
+
+					if (index < numOfComp)
+					{
+						LogWarning("Warning while loading material file \"%-15s\" : Vec2 uniform %s has too few components.", filename_c, name.c_str());
+					}
+
+					pass.AddUniform(name, vec);
+				}
+				else if (typeS == "sampler2D")
+				{
+					Texture* texture = RESOURCE_MGR->Load<Texture>(valueS);
+
+					if (texture == nullptr)
+					{
+						LogWarning("Warning while loading material file \"%-15s\" : Sampler2D uniform %s is not properly loaded: %s.", filename_c, name.c_str(), valueS.c_str());
+					}
+					else
+					{
+						pass.AddUniform(name, texture);
+					}
+				}
 			}
 		}
 		return true;
@@ -170,6 +326,11 @@ namespace DYE
 		for (auto const& pass : m_RenderPasses)
 		{
 			RESOURCE_MGR->Unload( pass.pProgram );
+
+			for (auto const& uniform : pass.Uniforms)
+			{
+				// TO DO Unload Texture
+			}
 		}
 	}
 }

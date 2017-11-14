@@ -42,13 +42,27 @@ namespace DYE
 				return false;
 			}
 
-			m_pImage = RESOURCE_MGR->Load<Image>(imageFileName);
+			const char* desiredChannelType = pImageNode->Attribute("channel");
+			if (desiredChannelType != nullptr)
+			{
+				std::string texFormatTypeStr = desiredChannelType;
+				Texture::TextureFormat type = StringToTextureFormat(texFormatTypeStr);
+				if (type == Texture::TextureFormat::FormatError)
+					LogWarning("Warning while loading texture file \"%-15s\" : TextureChannel is invalid.", filename_c);
+				else
+					m_TextureChannelFormat = type;
+			}
+			else
+				LogWarning("Warning while loading texture file \"%-15s\" : TextureChannel value not specified.", filename_c);
+
+			m_pImage = RESOURCE_MGR->Load<Image>(imageFileName, TextureFormatToChannelNumber(m_TextureChannelFormat));
 
 			if (m_pImage == nullptr)
 			{
 				LogError("Error while loading texture file \"%-15s\" : Image file is not properly loaded.", filename_c);
 				return false;
 			}
+
 		}
 
 		// load texture type and parameters
@@ -139,48 +153,48 @@ namespace DYE
 
 		bindTexture();
 
-		glTexParameteri(m_TextureType, GL_TEXTURE_MIN_FILTER, m_FilteringType);
-		glTexParameteri(m_TextureType, GL_TEXTURE_MAG_FILTER, m_FilteringType);
+		glCall(glTexParameteri(m_TextureType, GL_TEXTURE_MIN_FILTER, m_FilteringType));
+		glCall(glTexParameteri(m_TextureType, GL_TEXTURE_MAG_FILTER, m_FilteringType));
 
-		glTexParameteri(m_TextureType, GL_TEXTURE_WRAP_T, m_WrappingType);
-		glTexParameteri(m_TextureType, GL_TEXTURE_WRAP_S, m_WrappingType);
+		glCall(glTexParameteri(m_TextureType, GL_TEXTURE_WRAP_T, m_WrappingType));
+		glCall(glTexParameteri(m_TextureType, GL_TEXTURE_WRAP_S, m_WrappingType));
 
 		setTextureImage();
 	}
 
 	void Texture::createTexture()
 	{
-		glGenTextures(1, &m_TextureID);
+		glCall(glGenTextures(1, &m_TextureID));
 	}
 
 	void Texture::bindTexture()
 	{
-		glActiveTexture(GL_TEXTURE0 + m_TextureUnit);
-		glBindTexture(m_TextureType, m_TextureID);
+		glCall(glActiveTexture(GL_TEXTURE0 + m_TextureUnit));
+		glCall(glBindTexture(m_TextureType, m_TextureID));
 	}
 
 	void Texture::setTextureImage()
 	{
 		// TO DO: add more texture type
-		glTexImage2D(
+		glCall(glTexImage2D(
 			m_TextureType,
 			m_MipMapLevel,
-			m_pImage->GetChannelType(),
+			m_pImage->GetChannelType() - Image::ChannelType::Base,
 			m_pImage->GetWidth(),
 			m_pImage->GetHeight(),
 			0,
-			m_pImage->GetChannelType(),
+			m_TextureChannelFormat,
 			GL_UNSIGNED_BYTE,
 			m_pImage->GetImageData()
-		);
+		));
 
 		if (m_UseMipMap)
-			glGenerateMipmap(m_TextureType);
+			glCall(glGenerateMipmap(m_TextureType));
 	}
 
 	void Texture::deleteTexture()
 	{
-		glDeleteTextures(1, &m_TextureID);
+		glCall(glDeleteTextures(1, &m_TextureID));
 	}
 
 	void Texture::unloadImage()

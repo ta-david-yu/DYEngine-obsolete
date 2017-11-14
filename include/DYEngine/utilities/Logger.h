@@ -36,6 +36,8 @@ namespace DYE
 		void SetOutputFile(FILE* file);
 
 		void Print(LogType type, const char* file, int line, const char* msg, ...);
+		void CustomPrint(const char* type, const char* file, int line, const char* msg, ...);
+
 		//==========================================
 		//	flag
 		//==========================================
@@ -43,7 +45,9 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
+
 	};
+
 #ifdef DEBUG
 
 #define LogError( ... )															\
@@ -70,12 +74,19 @@ namespace DYE
     LOG->Print(Logger::LogType::Warning, __FILE__, __LINE__, __VA_ARGS__ );		\
   } while(false)							
 
+#define LogGL( ... )															\
+  do																			\
+  {																				\
+    LOG->CustomPrint("OPENGL", __FILE__, __LINE__, __VA_ARGS__ );				\
+  } while(false)
+
 #else
 
 #define LogError( ... )		__VA_ARGS__
 #define LogDebug( ... )     __VA_ARGS__
 #define LogInfo( ... )		__VA_ARGS__
 #define LogWarning( ... )   __VA_ARGS__
+#define Log( TYPE, ... )    __VA_ARGS__
 
 #endif // DEBUG
 }

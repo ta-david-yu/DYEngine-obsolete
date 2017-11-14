@@ -385,8 +385,8 @@ namespace DYE
 
 		Vector3f rotRight = fToR * forward;
 
-		printf("ori: %s\n", right.ToString());
-		printf("rot: %s\n", rotRight.ToString());
+		printf("ori: %s\n", right.ToString().c_str());
+		printf("rot: %s\n", rotRight.ToString().c_str());
 		assert(rotRight == right);
 
 		printf("test passed!\n");
@@ -429,8 +429,17 @@ namespace DYE
 		Mesh* mesh = RMesh;
 		
 		Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
+		assert(RTex->m_TextureType == Texture::TextureType::Texture2D);
+		assert(RTex->m_FilteringType == Texture::FilteringType::Linear);
+		assert(RTex->m_WrappingType == Texture::WrappingType::ClampToBorder);
+		assert(RTex->m_UseMipMap == true);
+		assert(RTex->m_MipMapLevel == 5);
+
 		Text* RText = RESOURCE_MGR->Load<Text>("test.txt");
+
 		Material* RMat = RESOURCE_MGR->Load<Material>("test_material.material", 0, nullptr);
+
+
 		//printf("%s\n", root->ToString());
 	}
 }

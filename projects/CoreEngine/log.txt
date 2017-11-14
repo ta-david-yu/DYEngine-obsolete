@@ -4,17 +4,11 @@ INFO     \src\Application.cpp(  36)    Start game loop
 INFO     ..\..\src\Scene.cpp ( 106)    Loading scene : (  0)
 ERROR    \DYEngine\Resource.h( 162)    Error loading resource file : resources/mesh/123456
 INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/image/link.png
+OPENGL   .\..\src\Texture.cpp( 189)    glTexImage2D( m_TextureType, m_MipMapLevel, m_pImage->GetChannelType() - Image::ChannelType::Base, m_pImage->GetWidth(), m_pImage->GetHeight(), 0, m_TextureChannelFormat, GL_UNSIGNED_BYTE, m_pImage->GetImageData() ):   GL_INVALID_VALUE
 INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/texture/test_texture.texture
 INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/test.txt
-ERROR    \..\src\Material.cpp(  17)    Error while loading material file "resources/material/test_material.material" : Failed to load file.
-ERROR    \DYEngine\Resource.h( 162)    Error loading resource file : resources/material/test_material.material
-DEBUG    \src\Application.cpp(  67)    FPS: 61.734190  1.004306
-DEBUG    \src\Application.cpp(  67)    FPS: 59.988242  1.000196
-DEBUG    \src\Application.cpp(  67)    FPS: 60.010260  1.016493
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997870  1.016703
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997616  1.016707
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997835  1.000036
-DEBUG    \src\Application.cpp(  67)    FPS: 59.999531  1.016675
-DEBUG    \src\Application.cpp(  67)    FPS: 60.000840  1.016652
-DEBUG    \src\Application.cpp(  67)    FPS: 59.994836  1.000086
-DEBUG    \src\Application.cpp(  67)    FPS: 60.001602  1.016640
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/shader/unlit.vert
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/shader/test_shader.shader
+INFO     \DYEngine\Resource.h( 164)    Load resource file: resources/material/test_material.material
+DEBUG    \src\Application.cpp(  67)    FPS: 61.105889  1.014632
+DEBUG    \src\Application.cpp(  67)    FPS: 59.996742  1.000054

@@ -21,7 +21,7 @@ namespace DYE
 			GreyA = STBI_grey_alpha,
 			RGB = STBI_rgb,
 			RGBA = STBI_rgb_alpha,
-
+			
 			Error
 		};
 	public:
