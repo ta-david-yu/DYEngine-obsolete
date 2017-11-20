@@ -161,6 +161,11 @@ namespace DYE
 		return main;
 	}
 
+	const float* Vector2f::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
+	}
+
 	//====================================================================================
 	//	Vector3f: 3 components float
 	//====================================================================================
@@ -290,6 +295,11 @@ namespace DYE
 		return main;
 	}
 
+	const float* Vector3f::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
+	}
+
 	//====================================================================================
 	//	Vector4f: 4 components float
 	//====================================================================================
@@ -411,6 +421,11 @@ namespace DYE
 	Vector4f::operator glm::vec4()
 	{
 		return main;
+	}
+
+	const float* Vector4f::GetValuePtr() const
+	{
+		return glm::value_ptr<float>(main);
 	}
 
 	//====================================================================================

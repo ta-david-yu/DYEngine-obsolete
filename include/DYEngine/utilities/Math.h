@@ -99,6 +99,8 @@ namespace DYE
 
 		operator glm::vec2() const;
 		operator glm::vec2();
+
+		const float* GetValuePtr() const;
 	};
 
 	//====================================================================================
@@ -163,6 +165,8 @@ namespace DYE
 
 		operator glm::vec3() const;
 		operator glm::vec3();
+
+		const float* GetValuePtr() const;
 	};
 
 	//====================================================================================
@@ -229,6 +233,8 @@ namespace DYE
 
 		operator glm::vec4() const;
 		operator glm::vec4();
+
+		const float* GetValuePtr() const;
 	};
 
 	//====================================================================================
@@ -280,7 +286,6 @@ namespace DYE
 		//	getter
 		//==========================================
 		const float* GetValuePtr() const;
-
 	};
 
 	//====================================================================================
