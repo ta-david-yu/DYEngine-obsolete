@@ -155,9 +155,9 @@ namespace DYE
 	Mat4x4 Transform::GetModelMatrix() const
 	{
 		// Translate * Rotation * Scale
-		auto pos = this->GetPosition();
-		auto scale = this->GetScale();
-		auto rot = this->GetRotation();
+		auto& pos = this->GetPosition();
+		auto& scale = this->GetScale();
+		auto& rot = this->GetRotation();
 
 		Mat4x4 modelMatrix = 
 			pos.ToTranslateMatrix() * rot.ToMat4x4() * scale.ToScaleMatrix();
