@@ -5,6 +5,7 @@
 #include <glm\gtx\quaternion.hpp>
 #include <glm\gtc\epsilon.hpp>
 #include <glm\gtx\transform.hpp>
+#include <glm\gtx\euler_angles.hpp>
 #include <glm\gtc\type_ptr.hpp>
 
 #include <string>
@@ -152,6 +153,7 @@ namespace DYE
 		Vector3f Normalized() const;
 		Mat4x4 ToTranslateMatrix() const;
 		Mat4x4 ToScaleMatrix() const;
+		Mat4x4 ToRotationMatrix() const;
 
 		std::string ToString() const;
 

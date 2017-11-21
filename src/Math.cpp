@@ -243,6 +243,11 @@ namespace DYE
 		return glm::scale(main);
 	}
 
+	Mat4x4 Vector3f::ToRotationMatrix() const
+	{
+		return glm::eulerAngleXYZ(main.x, main.y, main.z);
+	}
+
 	std::string Vector3f::ToString() const
 	{
 		return std::string("(" + std::to_string(main.x) + ", " + std::to_string(main.y) + ", " + std::to_string(main.z) + ")");
