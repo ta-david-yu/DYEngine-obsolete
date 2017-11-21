@@ -682,8 +682,9 @@ namespace DYE
 	Quaternion::Quaternion(const glm::quat& q) : main(q) {}
 	Quaternion::Quaternion(Vector3f& euler)
 	{
-		glm::vec3 rad(glm::radians(euler.x()), glm::radians(euler.y()), glm::radians(euler.z()));
-		main = glm::quat(rad);
+		//glm::vec3 rad(glm::radians(euler.x()), glm::radians(euler.y()), glm::radians(euler.z()));
+		//main = glm::quat(rad);
+		SetEulerAngles(euler);
 	}
 
 	Quaternion::Quaternion(const Mat3x3& _mat3)
