@@ -428,17 +428,23 @@ namespace DYE
 		Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
 		Mesh* mesh = RMesh;
 		
+		
 		Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
 		assert(RTex->m_TextureType == Texture::TextureType::Texture2D);
 		assert(RTex->m_FilteringType == Texture::FilteringType::Linear);
 		assert(RTex->m_WrappingType == Texture::WrappingType::ClampToBorder);
 		assert(RTex->m_UseMipMap == true);
 		assert(RTex->m_MipMapLevel == 5);
+		
 
 		Text* RText = RESOURCE_MGR->Load<Text>("test.txt");
 
 		Material* RMat = RESOURCE_MGR->Load<Material>("test_material.material", 0, nullptr);
 
+		RESOURCE_MGR->Unload(RMat);
+		RESOURCE_MGR->Unload(RTex);
+
+		//delete RMat;
 
 		//printf("%s\n", root->ToString());
 	}

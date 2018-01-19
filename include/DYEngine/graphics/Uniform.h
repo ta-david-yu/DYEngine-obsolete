@@ -41,7 +41,7 @@ namespace DYE
 		//==========================================
 	public:
 		IUniform(const std::string& _name);
-		~IUniform() {}
+		virtual ~IUniform() {}
 	};
 
 	//====================================================================================
@@ -78,7 +78,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 		UniformVariable(const std::string& _name) : IUniform(_name), m_Data() {}
-		~UniformVariable();
+		~UniformVariable() { }
 	};
 
 

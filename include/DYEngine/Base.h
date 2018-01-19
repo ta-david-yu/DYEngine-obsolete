@@ -91,6 +91,6 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 		Base();
-		~Base();
+		virtual ~Base();
 	};
 }

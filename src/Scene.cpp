@@ -13,6 +13,7 @@ namespace DYE
 	{
 		std::unique_ptr<Entity> uniPtr = std::make_unique<Entity>(this);
 		Entity* ptr = uniPtr.get();
+		ptr->SetName("Entity(" + std::to_string(ptr->GetInstanceID()) + ")");
 
 		m_EntityList.push_back(EntityListPair(ptr->GetInstanceID(), std::move(uniPtr)));
 

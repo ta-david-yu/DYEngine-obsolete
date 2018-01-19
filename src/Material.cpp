@@ -326,11 +326,6 @@ namespace DYE
 		for (auto const& pass : m_RenderPasses)
 		{
 			RESOURCE_MGR->Unload( pass.pProgram );
-
-			for (auto const& uniform : pass.Uniforms)
-			{
-				// TO DO Unload Texture
-			}
 		}
 	}
 }

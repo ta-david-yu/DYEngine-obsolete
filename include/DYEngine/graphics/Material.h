@@ -43,6 +43,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
+	public:
 		~Material();									// unload each shader program for passes
 	};
 }

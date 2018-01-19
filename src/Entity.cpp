@@ -9,7 +9,7 @@
 
 #define ACTIVE_SIGN "[@]"
 #define INACTIVE_SIGN "[ ]"
-#define INDIVIDUAL true
+#define SHOW_LOCAL_ENABLE true
 
 namespace DYE
 {
@@ -73,7 +73,7 @@ namespace DYE
 		std::string ret;
 		std::string activeSign;
 
-		if (INDIVIDUAL)
+		if (SHOW_LOCAL_ENABLE)
 			activeSign = (GetTransform()->m_IsLocalEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
 		else
 			activeSign = (IsActive()) ? ACTIVE_SIGN : INACTIVE_SIGN;
@@ -81,7 +81,7 @@ namespace DYE
 		ret += activeSign + prefix + "____" + "(" + std::to_string(GetInstanceID()) + ") " + this->GetName() + "\n";
 
 		// print component list
-		if (INDIVIDUAL)
+		if (SHOW_LOCAL_ENABLE)
 			activeSign = (GetTransform()->m_IsLocalEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
 		else
 			activeSign = (IsActive()) ? ACTIVE_SIGN : INACTIVE_SIGN;
@@ -89,7 +89,7 @@ namespace DYE
 		ret += activeSign + prefix + "________" + "(" + std::to_string(this->GetTransform()->GetInstanceID()) + ") " + this->GetTransform()->ToString() + "\n";
 		for (auto const& comp : this->m_Components)
 		{
-			if (INDIVIDUAL)
+			if (SHOW_LOCAL_ENABLE)
 				activeSign = (comp.second->m_IsEnabled) ? ACTIVE_SIGN : INACTIVE_SIGN;
 			else
 				activeSign = (comp.second->IsEnabled())? ACTIVE_SIGN : INACTIVE_SIGN;

@@ -79,6 +79,8 @@ namespace DYE
 		bool IsLoaded() const;
 		void SetResourceFileName(const std::string& name);
 		std::string GetResourceFileName() const;
+
+		virtual ~IResourceValue() { }
 	};
 
 	//====================================================================================
@@ -126,7 +128,7 @@ namespace DYE
 		//==========================================
 	protected:
 		ResourceBase(const std::string& filename, int argc = 0, void *args = nullptr);
-		~ResourceBase();
+		virtual ~ResourceBase();
 	};
 
 	//====================================================================================
@@ -163,6 +165,8 @@ namespace DYE
 			else
 				LogInfo("Load resource file: %-10s", filename.c_str());
 		}
+
+		virtual ~Resource() { delete m_pResourceValue; }
 	};
 
 	//====================================================================================
@@ -174,10 +178,10 @@ namespace DYE
 		//	memeber/variable
 		//==========================================
 	private:
-		typedef std::pair<std::string, ResourceBase*> ResourcePair;
-		typedef std::unordered_map<std::string, ResourceBase*> ResourceMap;
-		typedef ResourceMap::iterator ResourceMapItr;
-		typedef ResourceMap::const_iterator ResourceMapConstItr;
+		using ResourcePair = std::pair<std::string, ResourceBase*>;
+		using ResourceMap = std::unordered_map<std::string, ResourceBase*>;
+		using ResourceMapItr = ResourceMap::iterator;
+		using ResourceMapConstItr = ResourceMap::const_iterator;
 
 		static ResourceManager* s_pInstance;
 		ResourceMap m_ResourceMap;

@@ -1,0 +1,15 @@
+INFO     \src\application.cpp(  25)    Init app
+INFO     \src\application.cpp( 128)    Init GL
+INFO     \src\application.cpp(  36)    Start game loop
+INFO     engine\src\scene.cpp( 107)    Loading scene : (  0)
+ERROR    \dyengine\resource.h( 164)    Error loading resource file : resources/mesh/123456
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/image/link.png
+OPENGL   gine\src\texture.cpp( 189)    glTexImage2D( m_TextureType, m_MipMapLevel, m_pImage->GetChannelType() - Image::ChannelType::Base, m_pImage->GetWidth(), m_pImage->GetHeight(), 0, m_TextureChannelFormat, GL_UNSIGNED_BYTE, m_pImage->GetImageData() ):   GL_INVALID_VALUE
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/texture/test_texture.texture
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/test.txt
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/shader/unlit.vert
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/shader/test_shader.shader
+INFO     \dyengine\resource.h( 166)    Load resource file: resources/material/test_material.material
+DEBUG    gine\src\texture.cpp( 224)    RV Removed
+DEBUG    \src\application.cpp(  67)    FPS: 24.458319  1.022147
+DEBUG    \src\application.cpp(  67)    FPS: 23.440995  1.023847
