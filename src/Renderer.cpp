@@ -5,7 +5,7 @@ namespace DYE
 {
 	void Renderer::RegisterRenderer()
 	{
-		// TO DO: add renderer to graphics engine
+		// TODO: add renderer to graphics engine
 	}
 
 	void Renderer::Init()

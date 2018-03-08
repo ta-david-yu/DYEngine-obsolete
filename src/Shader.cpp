@@ -15,7 +15,7 @@ namespace DYE
 		// gl create
 		createShader();
 
-		// TO DO: add global uniform to shader (MVP matrix, light positions...) NEXT
+		// UNDONE: add global uniform to shader (MVP matrix, light positions...)
 
 		if (!isSource)
 		{
@@ -218,7 +218,7 @@ namespace DYE
 
 	void ShaderProgram::linkShaders()
 	{
-		// TO DO: link to default pipeline if shader is not complete NEXT
+		// UNDONE: link to default pipeline if shader is not complete NEXT
 		// link shader to program
 		for (unsigned int i = 0; i < Shader::SHADER_TYPE_MAX; i++)
 		{

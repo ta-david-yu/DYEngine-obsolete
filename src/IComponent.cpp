@@ -89,7 +89,7 @@ namespace DYE
 			}
 		}
 
-		// TO DO: deferred update, update state according to parent position, flag
+		// TODO: deferred update, update state according to parent position, flag
 
 		// reset dirty flag
 		resetDirtyState();

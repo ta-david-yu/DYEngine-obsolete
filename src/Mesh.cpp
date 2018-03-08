@@ -7,7 +7,7 @@ namespace DYE
 	{
 		const char* filename_c = filename.c_str();
 
-		//TO DO:
+		//TODO: loading mesh file
 		return false;
 	}
 }

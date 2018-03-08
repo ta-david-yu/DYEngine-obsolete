@@ -175,7 +175,7 @@ namespace DYE
 
 	void Texture::setTextureImage()
 	{
-		// TO DO: add more texture type
+		// UNDONE: add more texture type
 		glCall(glTexImage2D(
 			m_TextureType,
 			m_MipMapLevel,

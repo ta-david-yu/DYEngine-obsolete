@@ -46,7 +46,7 @@ namespace DYE
 	Base* Base::Instantiate(const Base* _pOriginal)
 	{
 		// assert(false);
-		// TO DO: this is evil, still need some tweaking
+		// TODO: this is evil, still need some tweaking
 
 		Entity* clone = nullptr;
 		const Entity* ent = dynamic_cast<const Entity*>(_pOriginal);
@@ -72,7 +72,7 @@ namespace DYE
 			}
 			else
 			{
-				// TO DO: error log
+				// TODO: error log
 				LogError("Illegal base object casting");
 			}
 		}

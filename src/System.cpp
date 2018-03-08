@@ -124,7 +124,7 @@ namespace DYE
 		m_uniqueRendererSystem = std::make_unique<RendererSystem>();
 		m_pRendererSystem = m_uniqueRendererSystem.get();
 
-		// TO DO: init other specialized systems
+		// UNDONE: init other specialized systems
 
 	}
 
@@ -217,7 +217,7 @@ namespace DYE
 		m_NextSystemIDCounter(0), 
 
 		m_pTransformSystem(nullptr),
-		m_pRendererSystem(nullptr)	// TO DO: add more system init
+		m_pRendererSystem(nullptr)	// TODO: add more system init
 	{
 		if (s_pInstance == nullptr)
 			s_pInstance = this;

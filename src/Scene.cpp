@@ -93,7 +93,7 @@ namespace DYE
 
 	void SceneManager::init()
 	{
-		// TO DO:
+		// TODO: init scene manager
 	}
 
 	void SceneManager::loadNextScene()

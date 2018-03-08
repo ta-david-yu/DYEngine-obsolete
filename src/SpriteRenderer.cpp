@@ -19,6 +19,6 @@ namespace DYE
 
 	void SpriteRenderer::RegisterRenderer()
 	{
-		// TO DO:
+		// TODO: register renderer to pipeline
 	}
 }

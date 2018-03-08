@@ -678,7 +678,7 @@ namespace DYE
 
 	Quaternion Quaternion::RotationBetweenVectors(const Vector3f& from, const Vector3f to)
 	{
-		// TO DO: NEXT
+		// TODO: implement
 		return Quaternion();
 	}
 

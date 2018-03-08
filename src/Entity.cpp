@@ -107,7 +107,7 @@ namespace DYE
 
 	void Entity::copyFrom(const Entity* other)
 	{
-		// TO DO: set other states (layers, tags...), (evil)
+		// TODO: set other states (layers, tags...), (evil)
 		this->GetTransform()->copyFrom(other->GetTransform());	// copy transform state
 		for (auto const& comp : other->m_Components)			// copy component state
 		{
@@ -127,7 +127,7 @@ namespace DYE
 		IComponent* clone = comp->clone();
 		clone->AttachTo(this);
 
-		// TO DO: evil
+		// TODO: evil
 		// SystemManager
 		// std::unique_ptr<IComponent> uniPtr{ new IComp }
 

@@ -23,7 +23,6 @@ namespace DYE
 	void IUniform::AttachToShader(GLuint programID)
 	{
 		m_UniformLocation = glGetUniformLocation(programID, m_UniformName.c_str());
-		// TO DO: get location, program id
 	}
 
 	//====================================================================================

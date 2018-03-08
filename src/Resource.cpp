@@ -75,7 +75,7 @@ namespace DYE
 
 	void ResourceManager::ReleaseAll()
 	{	
-		// TO DO:
+		// TODO: release all loaded resource
 	}
 
 	bool ResourceManager::Unload(IResourceValue* resrcValue)
