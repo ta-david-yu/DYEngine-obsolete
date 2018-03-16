@@ -187,7 +187,7 @@ namespace DYE
 
 	void IApplication::onRelease()
 	{
-		LogInfo("Shuting down application");
+		LogInfo("Shutting down application");
 	}
 
 	void IApplication::SetWindowName(std::string _name)

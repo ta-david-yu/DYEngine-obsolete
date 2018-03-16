@@ -11,3 +11,4 @@
 #include <DYEngine\graphics\Material.h>
 #include <DYEngine\graphics\Image.h>
 #include <DYEngine\graphics\Texture.h>
+#include <DYEngine\graphics\Camera.h>

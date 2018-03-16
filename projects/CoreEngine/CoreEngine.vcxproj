@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp" />
     <ClCompile Include="..\..\src\Base.cpp" />
+    <ClCompile Include="..\..\src\Camera.cpp" />
     <ClCompile Include="..\..\src\Core.cpp" />
     <ClCompile Include="..\..\src\Delegate.cpp" />
     <ClCompile Include="..\..\src\Entity.cpp" />
