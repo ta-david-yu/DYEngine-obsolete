@@ -2,6 +2,12 @@
 
 namespace DYE
 {
+
+	bool Rect::Contains(Vector2f& point) const
+	{
+		return (point.x() <= GetMax().x() && point.x() >= GetMin().x()) && (point.y() <= GetMax().y() && point.y() >= GetMin().y());
+	}
+
 	Vector2f Rect::GetPosition() const
 	{
 		return m_Position;
@@ -26,6 +32,11 @@ namespace DYE
 	Vector2f Rect::GetMin() const
 	{
 		return m_Position;
+	}
+
+	Vector2f Rect::GetCenter() const
+	{
+		return (GetMax() + GetMin()) / 2.0f;
 	}
 
 	void Rect::SetPosition(const Vector2f& pos)
@@ -68,6 +79,12 @@ namespace DYE
 	{
 		SetPosition(Vector2f(0, 0));
 		SetSize(Vector2f(0, 0));
+	}
+
+	Rect::Rect(const Rect& rect)
+	{
+		SetPosition(rect.GetPosition());
+		SetSize(rect.GetSize());
 	}
 
 	Rect::Rect(float x, float y, float width, float height)

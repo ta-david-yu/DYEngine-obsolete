@@ -20,6 +20,8 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
+	public:
+		bool Contains(Vector2f& point) const;
 		//==========================================
 		//	getter
 		//==========================================
@@ -34,6 +36,8 @@ namespace DYE
 
 		Vector2f GetMax() const;
 		Vector2f GetMin() const;
+
+		Vector2f GetCenter() const;
 
 		//==========================================
 		//	setter
@@ -55,6 +59,7 @@ namespace DYE
 		//==========================================
 	public:
 		Rect();
+		Rect(const Rect& rect);
 		Rect(float x, float y, float width, float height);
 		Rect(Vector2f pivot, Vector2f size);
 

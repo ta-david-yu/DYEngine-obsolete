@@ -78,9 +78,14 @@ namespace DYE
 		return *this;
 	}
 
-	Vector2f Vector2f::operator*(const float& scalar) const
+	Vector2f Vector2f::operator*(float scalar) const
 	{
 		return main * scalar;
+	}
+
+	Vector2f Vector2f::operator/(float scalar) const
+	{
+		return main / scalar;
 	}
 
 	bool Vector2f::operator==(const Vector2f& other) const
@@ -217,9 +222,14 @@ namespace DYE
 		return *this;
 	}
 
-	Vector3f Vector3f::operator*(const float& scalar) const
+	Vector3f Vector3f::operator*(float scalar) const
 	{
 		return main * scalar;
+	}
+
+	Vector3f Vector3f::operator/(float scalar) const
+	{
+		return main / scalar;
 	}
 
 	bool Vector3f::operator==(const Vector3f& other) const
@@ -345,9 +355,14 @@ namespace DYE
 		return *this;
 	}
 
-	Vector4f Vector4f::operator*(const float& scalar) const
+	Vector4f Vector4f::operator*(float scalar) const
 	{
 		return main * scalar;
+	}
+
+	Vector4f Vector4f::operator/(float scalar) const
+	{
+		return main / scalar;
 	}
 
 	bool Vector4f::operator==(const Vector4f& other) const

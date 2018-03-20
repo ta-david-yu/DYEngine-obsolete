@@ -1,6 +1,7 @@
 #pragma once
 
 #include <DYEngine\utilities\OpenGL.h>
+#include <DYEngine\utilities\Rect.h>
 #include <DYEngine\interfaces\IComponent.h>
 
 namespace DYE
@@ -18,7 +19,6 @@ namespace DYE
 	public:
 		DYE_COMPONENT_TOSTRING
 
-			// TODO: implement Camera
 		enum Projection
 		{
 			Perspective,
@@ -35,7 +35,7 @@ namespace DYE
 		float m_FarZ = 1000.0f;
 		float m_Depth = -1;
 		// TODO: Add render target RenderTexture* TargetTexture = null, or TargetWindow / Display
-		// Viewport Rect
+		Rect m_ViewportRect = Rect(0, 0, 1, 1);
 
 		//==========================================
 		//	method
@@ -50,6 +50,8 @@ namespace DYE
 		inline float GetFarZ() const { return m_FarZ; }
 		inline float GetDepth() const { return m_Depth; }
 		inline bool IsOrthographic() const { return m_ProjectionType == Projection::Orthographic; }
+
+		inline Rect& GetRect() { return m_ViewportRect; }
 
 		//==========================================
 		//	setter

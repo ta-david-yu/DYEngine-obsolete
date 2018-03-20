@@ -10,9 +10,5 @@ INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/test.txt
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/shader/unlit.vert
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/shader/test_shader.shader
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/material/test_material.material
-DEBUG    \src\Application.cpp(  67)    FPS: 57.689644  1.005380
-DEBUG    \src\Application.cpp(  67)    FPS: 60.004846  1.016585
-DEBUG    \src\Application.cpp(  67)    FPS: 59.758761  1.004037
-DEBUG    \src\Application.cpp(  67)    FPS: 60.241437  1.012592
-DEBUG    \src\Application.cpp(  67)    FPS: 59.991261  1.000146
-DEBUG    \src\Application.cpp(  67)    FPS: 60.001680  1.016638
+DEBUG    \src\Application.cpp(  67)    FPS: 61.066016  1.015295
+DEBUG    \src\Application.cpp(  67)    FPS: 60.007660  1.016537

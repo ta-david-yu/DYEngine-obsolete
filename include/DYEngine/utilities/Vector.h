@@ -68,7 +68,8 @@ namespace DYE
 
 		float& operator[](std::size_t i);
 		Vector2f& operator=(const Vector2f& other);
-		Vector2f operator*(const float& scalar) const;
+		Vector2f operator*(float scalar) const;
+		Vector2f operator/(float scalar) const;
 		bool operator==(const Vector2f& other) const;
 		bool operator!=(const Vector2f& other) const;
 		Vector2f operator+(const Vector2f& other) const;
@@ -135,7 +136,8 @@ namespace DYE
 
 		float& operator[](std::size_t i);
 		Vector3f& operator=(const Vector3f& other);
-		Vector3f operator*(const float& scalar) const;
+		Vector3f operator*(float scalar) const;
+		Vector3f operator/(float scalar) const;
 		bool operator==(const Vector3f& other) const;
 		bool operator!=(const Vector3f& other) const;
 		Vector3f operator+(const Vector3f& other) const;
@@ -203,7 +205,8 @@ namespace DYE
 
 		float& operator[](std::size_t i);
 		Vector4f& operator=(const Vector4f& other);
-		Vector4f operator*(const float& scalar) const;
+		Vector4f operator*(float scalar) const;
+		Vector4f operator/(float scalar) const;
 		bool operator==(const Vector4f& other) const;
 		bool operator!=(const Vector4f& other) const;
 		Vector4f operator+(const Vector4f& other) const;
