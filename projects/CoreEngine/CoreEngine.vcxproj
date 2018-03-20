@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\src\Mesh.cpp" />
     <ClCompile Include="..\..\src\MeshRenderer.cpp" />
     <ClCompile Include="..\..\src\OpenGL.cpp" />
+    <ClCompile Include="..\..\src\Rect.cpp" />
     <ClCompile Include="..\..\src\Renderer.cpp" />
     <ClCompile Include="..\..\src\RendererSystem.cpp" />
     <ClCompile Include="..\..\src\RenderUnit.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="..\..\src\Time.cpp" />
     <ClCompile Include="..\..\src\tinyxml2-5.0.1\tinyxml2.cpp" />
     <ClCompile Include="..\..\src\Uniform.cpp" />
+    <ClCompile Include="..\..\src\Vector.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

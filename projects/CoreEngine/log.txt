@@ -10,32 +10,9 @@ INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/test.txt
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/shader/unlit.vert
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/shader/test_shader.shader
 INFO     \DYEngine\Resource.h( 166)    Load resource file: resources/material/test_material.material
-DEBUG    \src\Application.cpp(  67)    FPS: 52.602278  1.007561
-DEBUG    \src\Application.cpp(  67)    FPS: 59.996663  1.000056
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997656  1.000039
-DEBUG    \src\Application.cpp(  67)    FPS: 59.999901  1.000002
-DEBUG    \src\Application.cpp(  67)    FPS: 59.994577  1.000090
-DEBUG    \src\Application.cpp(  67)    FPS: 60.006195  1.016562
-DEBUG    \src\Application.cpp(  67)    FPS: 59.996921  1.000051
-DEBUG    \src\Application.cpp(  67)    FPS: 59.987230  1.000213
-DEBUG    \src\Application.cpp(  67)    FPS: 60.009967  1.016498
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997537  1.000041
-DEBUG    \src\Application.cpp(  67)    FPS: 59.998252  1.000029
-DEBUG    \src\Application.cpp(  67)    FPS: 59.625103  1.006288
-DEBUG    \src\Application.cpp(  67)    FPS: 60.369324  1.010447
-DEBUG    \src\Application.cpp(  67)    FPS: 59.998232  1.000029
-DEBUG    \src\Application.cpp(  67)    FPS: 59.998431  1.000026
-DEBUG    \src\Application.cpp(  67)    FPS: 59.999364  1.000011
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997974  1.000034
-DEBUG    \src\Application.cpp(  67)    FPS: 59.998768  1.000021
-DEBUG    \src\Application.cpp(  67)    FPS: 59.996921  1.000051
-DEBUG    \src\Application.cpp(  67)    FPS: 59.999424  1.000010
-DEBUG    \src\Application.cpp(  67)    FPS: 59.996933  1.016719
-DEBUG    \src\Application.cpp(  67)    FPS: 59.995858  1.016737
-DEBUG    \src\Application.cpp(  67)    FPS: 59.984331  1.000261
-DEBUG    \src\Application.cpp(  67)    FPS: 60.014326  1.016424
-DEBUG    \src\Application.cpp(  67)    FPS: 60.001446  1.016642
-DEBUG    \src\Application.cpp(  67)    FPS: 59.998669  1.000022
-DEBUG    \src\Application.cpp(  67)    FPS: 59.995917  1.016736
-DEBUG    \src\Application.cpp(  67)    FPS: 59.999629  1.016673
-DEBUG    \src\Application.cpp(  67)    FPS: 59.997120  1.000048
+DEBUG    \src\Application.cpp(  67)    FPS: 57.689644  1.005380
+DEBUG    \src\Application.cpp(  67)    FPS: 60.004846  1.016585
+DEBUG    \src\Application.cpp(  67)    FPS: 59.758761  1.004037
+DEBUG    \src\Application.cpp(  67)    FPS: 60.241437  1.012592
+DEBUG    \src\Application.cpp(  67)    FPS: 59.991261  1.000146
+DEBUG    \src\Application.cpp(  67)    FPS: 60.001680  1.016638

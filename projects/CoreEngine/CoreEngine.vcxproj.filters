@@ -108,5 +108,11 @@
     <ClCompile Include="..\..\src\Camera.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Rect.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Vector.cpp">
+      <Filter>Source Files\DYEngine</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
