@@ -15,7 +15,7 @@ namespace DYE
 		}
 	}
 
-	std::vector<std::string> StringTokenizer(std::string str, std::string delim, bool igEmptyTok)
+	std::vector<std::string> StringTokenizer(std::string str, std::string delim, bool ignoreEmptyTok)
 	{
 		std::vector<std::string> ret;
 		size_t start = 0;
@@ -24,7 +24,7 @@ namespace DYE
 		while ((end = str.find_first_of(delim.c_str(), start)) != std::string::npos)
 		{
 			std::string sub = str.substr(start, end - start);
-			if (sub == "" && igEmptyTok)
+			if (sub == "" && ignoreEmptyTok)
 				;
 			else
 				ret.push_back(sub);
@@ -32,7 +32,7 @@ namespace DYE
 		}
 
 		std::string sub = str.substr(start, end);
-		if (sub == "" && igEmptyTok)
+		if (sub == "" && ignoreEmptyTok)
 			;
 		else
 			ret.push_back(sub);
