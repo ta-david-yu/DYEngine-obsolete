@@ -10,7 +10,6 @@
 			</attributes>
 			<uniforms>
 				<uniform name="aFloat" type="float" value="1"/>
-				<uniform name="aSampler2D" type="sampler2D" value="test_texture.texture"/>
 			</uniforms>
 		</shaderprogram>
 	</pass>
