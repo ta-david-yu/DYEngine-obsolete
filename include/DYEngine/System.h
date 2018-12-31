@@ -1,7 +1,7 @@
 #pragma once
 
-#include <DYEngine\interfaces\IComponent.h>
-#include <DYEngine\Entity.h>
+#include <DYEngine/interfaces/IComponent.h>
+#include <DYEngine/Entity.h>
 
 #include <vector>
 #include <list>
@@ -11,7 +11,6 @@
 #include <memory>
 #include <algorithm>
 
-#define SYSTEM_MGR DYE::SystemManager::GetInstance()
 #define MAX_COMPONENT_SYSTEM 1024;
 
 namespace DYE
@@ -76,7 +75,7 @@ namespace DYE
 	class SystemManager
 	{
 		friend class IApplication;
-		friend class Core;
+		friend class GameCore;
 
 	public:
 		using SystemListPair = std::pair<std::type_index, std::unique_ptr<ISystem>>;
@@ -88,10 +87,6 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		static SystemManager* s_pInstance;
-
-		IApplication* m_pApplication;
-
 		SystemList m_SystemList;
 		std::size_t m_NextSystemIDCounter;
 
@@ -105,11 +100,10 @@ namespace DYE
 		RendererSystem* m_pRendererSystem;
 
 	public:
-		static SystemManager* GetInstance();
 		//==========================================
 		//	procedure
 		//==========================================
-		void init();					// allocate specialized system (transform, graphics, physics, audio...)
+		void Init();					// allocate specialized system (transform, graphics, physics, audio...)
 
 		void Awake();
 		void Start();
@@ -179,7 +173,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		SystemManager(IApplication* _app);
+		SystemManager();
 		~SystemManager();				   
 	};
 

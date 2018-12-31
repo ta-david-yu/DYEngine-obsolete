@@ -1,8 +1,10 @@
 #pragma once
 
-#include <DYEngine\Base.h>
-#include <DYEngine\Entity.h>
-#include <DYEngine\utilities\Math.h>
+#include <DYEngine/utilities/Macro.h>
+
+#include <DYEngine/Base.h>
+#include <DYEngine/Entity.h>
+#include <DYEngine/utilities/Math.h>
 
 #include <vector>
 #include <map>

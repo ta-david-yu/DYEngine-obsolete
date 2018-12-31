@@ -1,7 +1,7 @@
-#include <DYEngine\graphics\Uniform.h>
+#include <DYEngine/graphics/Uniform.h>
 
-#include <DYEngine\graphics\Texture.h>
-#include <DYEngine\Utility.h>
+#include <DYEngine/graphics/Texture.h>
+#include <DYEngine/Utility.h>
 
 namespace DYE
 {

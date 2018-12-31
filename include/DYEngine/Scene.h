@@ -1,20 +1,18 @@
 #pragma once
 
-#include <DYEngine\Entity.h>
-#include <DYEngine\Core.h>
-#include <DYEngine\utilities\Delegate.h>
+#include <DYEngine/Entity.h>
+#include <DYEngine/utilities\Delegate.h>
 
 #include <vector>
 #include <string>
 #include <memory>
 #include <functional>
 
-#define SCENE_MGR DYE::SceneManager::GetInstance()
-
 namespace DYE
 {
 	class Entity;
 	class IApplication;
+	class IScene;
 
 	using SceneID = int;
 	using BuildSceneFunc = Delegate<void, IScene*>;
@@ -109,7 +107,7 @@ namespace DYE
 	class SceneManager
 	{
 		friend class IApplication;
-		friend class Core;
+		friend class GameCore;
 
 	public:
 		using SceneListPair = std::pair<SceneID, std::unique_ptr<IScene>>;
@@ -119,8 +117,6 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		static SceneManager* s_pInstance;
-
 		SceneID m_SceneIDCounter = 0;
 		SceneID m_CurrSceneID = 0;
 		SceneID m_NextSceneID = -1;
@@ -134,18 +130,16 @@ namespace DYE
 		//==========================================
 
 		//==========================================
-		//	procedure
-		//==========================================
-		void init();
-		void loadNextScene();
-
-		//==========================================
 		//	method
 		//==========================================
 	public:
-		static SceneManager* GetInstance();
-
 		void LoadScene(SceneID id);									// delay load for gmae logic
+
+		//==========================================
+		//	procedure
+		//==========================================
+		void Init();
+		void LoadNextScene();
 
 	private:
 		template <typename TApp>

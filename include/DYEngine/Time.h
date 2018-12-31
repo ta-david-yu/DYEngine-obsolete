@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine\interfaces\IApplication.h>
+#include <DYEngine/interfaces/IApplication.h>
 
 #include <chrono>
 #include <thread>

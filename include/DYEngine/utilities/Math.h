@@ -1,7 +1,7 @@
 #pragma once
 
-#include <DYEngine\utilities\Rect.h>
-#include <DYEngine\utilities\Vector.h>
+#include <DYEngine/utilities/Rect.h>
+#include <DYEngine/utilities/Vector.h>
 
 #define GLM_FORCE_RADIANS
 

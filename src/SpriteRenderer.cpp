@@ -1,4 +1,4 @@
-#include <DYEngine\graphics\SpriteRenderer.h>
+#include <DYEngine/graphics/SpriteRenderer.h>
 
 namespace DYE
 {

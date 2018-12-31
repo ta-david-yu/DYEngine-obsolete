@@ -1,7 +1,7 @@
-#include <DYEngine\graphics\Texture.h>
-#include <DYEngine\utilities\XMLParser.h>
-#include <DYEngine\utilities\Logger.h>
-#include <DYEngine\graphics\Image.h>
+#include <DYEngine/graphics/Texture.h>
+#include <DYEngine/utilities/XMLParser.h>
+#include <DYEngine/utilities/Logger.h>
+#include <DYEngine/graphics/Image.h>
 
 namespace DYE
 {

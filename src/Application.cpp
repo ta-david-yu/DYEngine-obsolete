@@ -1,11 +1,11 @@
-#include <DYEngine\interfaces\IApplication.h>
-#include <DYEngine\Time.h>
-#include <DYEngine\utilities\Logger.h>
-#include <DYEngine\Resource.h>
+#include <DYEngine/interfaces/IApplication.h>
+#include <DYEngine/Time.h>
+#include <DYEngine/utilities/Logger.h>
+#include <DYEngine/Resource.h>
 
-#include <DYEngine\graphics\Mesh.h>
-#include <DYEngine\graphics\Texture.h>
-#include <DYEngine\graphics\Material.h>
+#include <DYEngine/graphics/Mesh.h>
+#include <DYEngine/graphics/Texture.h>
+#include <DYEngine/graphics/Material.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -23,8 +23,8 @@ namespace DYE
 	void IApplication::init()
 	{
 		LogInfo("Init app");
-		m_pCore = new Core(this);
-		m_pCore->init();
+		m_pCore = new GameCore(this);
+		m_pCore->Init();
 
 		initGL();
 
@@ -103,14 +103,14 @@ namespace DYE
 					if (checkIfWindowClosed())
 						m_IsRunning = false;
 
-				} while ( !SCENE_MGR->IsLoadingNextScene() && m_IsRunning );
+				} while (!SCENE_MGR->IsLoadingNextScene() && m_IsRunning );
 
 				if (!m_IsRunning)
 					break;
 
-				if ( SCENE_MGR->IsLoadingNextScene())
+				if (SCENE_MGR->IsLoadingNextScene())
 				{
-					SCENE_MGR->loadNextScene();
+					SCENE_MGR->LoadNextScene();
 					onNextSceneLoaded();
 				}
 			}

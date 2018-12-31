@@ -1,35 +1,45 @@
-#include <DYEngine\Core.h>
+#include <DYEngine/Core.h>
 
 #include <cassert>
 #include <memory>
 
 namespace DYE
 {
-	Core* Core::s_pInstance = nullptr;
+	GameCore* GameCore::s_pInstance = nullptr;
 
-	void Core::init()
+	void GameCore::Init()
 	{
 		m_pSceneManager = new SceneManager(m_pApplication);
-		m_pSceneManager->init();
-		m_pSystemManager = new SystemManager(m_pApplication);
-		m_pSystemManager->init();
+		m_pSceneManager->Init();
+		m_pSystemManager = new SystemManager();
+		m_pSystemManager->Init();
 	}
 
-	Core::Core(IApplication* app) : m_pApplication(app)
+	GameCore::GameCore(IApplication* app) : m_pApplication(app)
 	{
 		if (s_pInstance == nullptr)
 			s_pInstance = this;
 	}
 
-	Core::~Core()
+	GameCore::~GameCore()
 	{
 		if (s_pInstance == this)
 			s_pInstance = nullptr;
 	}
 
-	Core* Core::GetInstance()
+	GameCore* GameCore::GetInstance()
 	{
 		assert(s_pInstance != nullptr);
 		return s_pInstance;
+	}
+
+	SystemManager* GameCore::GetSystemManager() const
+	{
+		return m_pSystemManager;
+	}
+
+	SceneManager* GameCore::GetSceneManager() const
+	{
+		return m_pSceneManager;
 	}
 }

@@ -1,6 +1,6 @@
-#include <DYEngine\graphics\Image.h>
-#include <DYEngine\utilities\XMLParser.h>
-#include <DYEngine\utilities\Logger.h>
+#include <DYEngine/graphics/Image.h>
+#include <DYEngine/utilities/XMLParser.h>
+#include <DYEngine/utilities/Logger.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb\stb_image.h>

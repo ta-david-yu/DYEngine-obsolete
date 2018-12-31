@@ -1,7 +1,7 @@
 #pragma once
 
-#include <DYEngine\Resource.h>
-#include <DYEngine\utilities\OpenGL.h>
+#include <DYEngine/Resource.h>
+#include <DYEngine/utilities/OpenGL.h>
 
 namespace DYE
 {

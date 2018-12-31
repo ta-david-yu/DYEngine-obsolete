@@ -1,7 +1,7 @@
 #pragma once
 
-#include <DYEngine\Core.h>
-#include <DYEngine\Time.h>
+#include <DYEngine/Core.h>
+#include <DYEngine/Time.h>
 
 #include <iostream>
 
@@ -21,7 +21,7 @@ namespace DYE
 		//	memeber/variable
 		//==========================================
 	protected:
-		Core* m_pCore;
+		GameCore* m_pCore;
 		GLFWwindow* m_pWindow;
 		std::string m_WindowName = "DYE";
 

@@ -1,7 +1,7 @@
-#include <DYEngine\System.h>
+#include <DYEngine/System.h>
 
-#include <DYEngine\graphics\RendererSystem.h>
-#include <DYEngine\graphics\Renderer.h>
+#include <DYEngine/graphics/RendererSystem.h>
+#include <DYEngine/graphics/Renderer.h>
 
 #include <cassert>
 #include <algorithm>
@@ -106,15 +106,7 @@ namespace DYE
 	//====================================================================================
 	//	SystemManager: manage all components
 	//====================================================================================
-	SystemManager* SystemManager::s_pInstance = nullptr;
-
-	SystemManager* SystemManager::GetInstance()
-	{
-		assert(s_pInstance != nullptr);
-		return s_pInstance;
-	}
-
-	void SystemManager::init()
+	void SystemManager::Init()
 	{
 		// init transform system
 		m_uniqueTransformSystem = std::make_unique<TransformSystem>();
@@ -212,21 +204,16 @@ namespace DYE
 		m_SystemList.clear();
 	}
 
-	SystemManager::SystemManager(IApplication* _app) : 
-		m_pApplication(_app),
+	SystemManager::SystemManager() :
 		m_NextSystemIDCounter(0), 
 
 		m_pTransformSystem(nullptr),
 		m_pRendererSystem(nullptr)	// TODO: add more system init
 	{
-		if (s_pInstance == nullptr)
-			s_pInstance = this;
 	}
 
 	SystemManager::~SystemManager()
 	{
-		if (s_pInstance == this)
-			s_pInstance = nullptr;
 	}
 
 	//====================================================================================

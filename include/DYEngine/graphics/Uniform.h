@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine\utilities\OpenGL.h>
+#include <DYEngine/utilities/OpenGL.h>
 
 #include <string>
 

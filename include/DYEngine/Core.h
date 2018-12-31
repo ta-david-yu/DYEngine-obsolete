@@ -1,12 +1,15 @@
 #pragma once
 
-#include <DYEngine\Scene.h>
-#include <DYEngine\utilities\Delegate.h>
+#include <DYEngine/Scene.h>
+#include <DYEngine/System.h>
+#include <DYEngine/utilities/Delegate.h>
 
 #include <functional>
 #include <memory>
 
-#define CORE Core::GetInstance()
+#define GAME_CORE GameCore::GetInstance()
+#define SYSTEM_MGR GAME_CORE->GetSystemManager()
+#define SCENE_MGR GAME_CORE->GetSceneManager()
 
 namespace DYE
 {
@@ -18,7 +21,7 @@ namespace DYE
 	//====================================================================================
 	//	Core: core class for managing scenes and systems
 	//====================================================================================
-	class Core
+	class GameCore
 	{
 		friend class IApplication;
 		friend class IScene;
@@ -26,7 +29,7 @@ namespace DYE
 		//==========================================
 		//	memeber/variable
 		//==========================================
-		static Core* s_pInstance;
+		static GameCore* s_pInstance;
 		IApplication* m_pApplication;
 
 		//==========================================
@@ -38,18 +41,26 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-		void init();
 
 		//==========================================
 		//	method
 		//==========================================
 	public:
-		static Core* GetInstance();
+		static GameCore* GetInstance();
+
+		SceneManager* GetSceneManager() const;
+		SystemManager* GetSystemManager() const;
+
+		//==========================================
+		//	procedure
+		//==========================================
+		void Init();
+
 		//==========================================
 		//	constructor/destructor
 		//==========================================
 	private:
-		Core(IApplication* app);
-		~Core();
+		GameCore(IApplication* app);
+		~GameCore();
 	};
 }

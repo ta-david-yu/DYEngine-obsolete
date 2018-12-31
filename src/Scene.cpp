@@ -1,5 +1,5 @@
-#include <DYEngine\Scene.h>
-#include <DYEngine\utilities\Logger.h>
+#include <DYEngine/Scene.h>
+#include <DYEngine/utilities/Logger.h>
 
 #include <functional>
 
@@ -77,26 +77,18 @@ namespace DYE
 	//====================================================================================
 	//	SceneManager: Used to manage scene operation
 	//====================================================================================
-	SceneManager* SceneManager::s_pInstance = nullptr;
-
-	SceneManager* SceneManager::GetInstance()
-	{
-		assert(s_pInstance != nullptr);
-		return s_pInstance;
-	}
-
 	void SceneManager::LoadScene(SceneID id)
 	{
 		m_NextSceneID = id;
 		m_IsLoadingNextScene = true;
 	}
 
-	void SceneManager::init()
+	void SceneManager::Init()
 	{
 		// TODO: init scene manager
 	}
 
-	void SceneManager::loadNextScene()
+	void SceneManager::LoadNextScene()
 	{
 		loadScene(m_NextSceneID);
 		m_IsLoadingNextScene = false;
@@ -131,13 +123,9 @@ namespace DYE
 
 	SceneManager::SceneManager(IApplication* app)
 	{
-		if (s_pInstance == nullptr)
-			s_pInstance = this;
 	}
 
 	SceneManager::~SceneManager()
 	{
-		if (s_pInstance == this)
-			s_pInstance = nullptr;
 	}
 }

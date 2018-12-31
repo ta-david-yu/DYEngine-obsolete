@@ -1,6 +1,6 @@
-#include <DYEngine\graphics\Shader.h>
-#include <DYEngine\utilities\XMLParser.h>
-#include <DYEngine\utilities\Logger.h>
+#include <DYEngine/graphics/Shader.h>
+#include <DYEngine/utilities/XMLParser.h>
+#include <DYEngine/utilities/Logger.h>
 
 
 namespace DYE

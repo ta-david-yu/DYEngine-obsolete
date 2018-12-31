@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine\utilities\Logger.h>
+#include <DYEngine/utilities/Logger.h>
 
-#include <glad\glad.h>
-#include <GLFW\glfw3.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 #include <string>
 

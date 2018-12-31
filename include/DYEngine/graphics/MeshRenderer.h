@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine\graphics\Renderer.h>
+#include <DYEngine/graphics/Renderer.h>
 
 namespace DYE
 {

@@ -1,9 +1,8 @@
 #pragma once
 
-#include <DYEngine\Base.h>
-#include <DYEngine\interfaces\IComponent.h>
-#include <DYEngine\System.h>
-#include <DYEngine\Scene.h>
+#include <DYEngine/Base.h>
+#include <DYEngine/interfaces\IComponent.h>
+#include <DYEngine/Core.h>
 
 #include <vector>
 #include <map>
@@ -78,7 +77,7 @@ namespace DYE
 			ptr->AttachTo(this);
 
 			// Insert component ptr to system list
-			SystemManager::GetInstance()->RegisterComponent<TComp>(ptr);
+			GameCore::GetInstance()->GetSystemManager()->RegisterComponent<TComp>(ptr);
 
 			// Move unique component ptr to object list
 			std::type_index typeId = typeid(TComp);

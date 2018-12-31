@@ -1,4 +1,4 @@
-#include <DYEngine\interfaces\IComponent.h>
+#include <DYEngine/interfaces/IComponent.h>
 
 #include <type_traits>
 

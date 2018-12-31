@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine\Resource.h>
+#include <DYEngine/Resource.h>
 
 #include <stb\stb_image.h>
 
