@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<material name="test_mat">
+	<order value="1000"/>
+	<pass>
+		<shaderprogram filename="test_shader.shader">
+			<attributes>
+				<blend src="src_alpha" dst="one_minus_src_alpha"/>
+				<depth func="less"/>
+				<stencil func="gequal" op="keep" ref="0" msk="0xffffffff"/>
+			</attributes>
+			<uniforms>
+				<uniform name="aFloat" type="float" value="1"/>
+			</uniforms>
+		</shaderprogram>
+	</pass>
+</material>
