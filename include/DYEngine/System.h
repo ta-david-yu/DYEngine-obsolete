@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/interfaces/IComponent.h>
 #include <DYEngine/Entity.h>
 
@@ -27,7 +29,7 @@ namespace DYE
 	//====================================================================================
 	//	ISystem: manage all components
 	//====================================================================================
-	class ISystem
+	class DYE_API ISystem : public NonCopyable
 	{
 		friend class IComponent;
 		friend class SystemManager;
@@ -72,7 +74,7 @@ namespace DYE
 	//====================================================================================
 	//	SystemManager: manage all user-created components systems
 	//====================================================================================
-	class SystemManager
+	class DYE_API SystemManager : public NonCopyable
 	{
 		friend class IApplication;
 		friend class GameCore;
@@ -195,7 +197,7 @@ namespace DYE
 	//====================================================================================
 	//	TransformSystem: 
 	//====================================================================================
-	class TransformSystem : public ISystem
+	class DYE_API TransformSystem : public ISystem
 	{
 		friend class Transform;
 		friend class SystemManager;

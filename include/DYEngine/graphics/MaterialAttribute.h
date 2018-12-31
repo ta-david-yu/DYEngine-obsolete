@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/graphics/Uniform.h>
 
 #include <vector>
@@ -37,7 +39,7 @@ namespace DYE
 	//====================================================================================
 	//	DepthAttribute
 	//====================================================================================
-	struct DepthAttribute
+	struct DYE_API DepthAttribute
 	{
 		bool IsEnabled = true;
 		AttribFunc Func = AttribFunc::Less;
@@ -46,7 +48,7 @@ namespace DYE
 	//====================================================================================
 	//	StencilAttribute
 	//====================================================================================
-	struct StencilAttribute
+	struct DYE_API StencilAttribute
 	{
 		enum StencilOp
 		{
@@ -70,7 +72,7 @@ namespace DYE
 	//====================================================================================
 	//	BlendAttribute
 	//====================================================================================
-	struct BlendAttribute
+	struct DYE_API BlendAttribute
 	{
 		enum BlendFactor
 		{
@@ -96,7 +98,7 @@ namespace DYE
 	//=========================================================================================
 	//	RenderPass: representing one pass for a material. Keep shader, attributes and uniforms
 	//=========================================================================================
-	class RenderPass
+	class DYE_API RenderPass
 	{
 
 	public:

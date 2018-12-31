@@ -1,4 +1,4 @@
-#include <DYEngine/Core.h>
+#include <DYEngine/GameCore.h>
 
 #include <cassert>
 #include <memory>

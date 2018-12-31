@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Resource.h>
 #include <DYEngine/utilities/OpenGL.h>
 
@@ -12,7 +14,7 @@ namespace DYE
 	//====================================================================================
 	//	Texture: texture file
 	//====================================================================================
-	class Texture : public IResourceValue
+	class DYE_API Texture : public IResourceValue
 	{
 		friend class Resource<Texture>;
 		friend class UniformVariable<Texture*>;

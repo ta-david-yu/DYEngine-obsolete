@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/graphics/Renderer.h>
 
 namespace DYE
@@ -9,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	//	MeshRenderer: 3d renderer component, take a mesh and a material
 	//====================================================================================
-	class MeshRenderer : public Renderer
+	class DYE_API MeshRenderer : public Renderer
 	{
 	public:
 		DYE_COMPONENT_TOSTRING

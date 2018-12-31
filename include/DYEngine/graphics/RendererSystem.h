@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/System.h>
 
 #include <vector>
@@ -17,7 +19,7 @@ namespace DYE
 	//====================================================================================
 	//	RendererSystem: keep track of every Renderers, 
 	//====================================================================================
-	class RendererSystem : public ISystem
+	class DYE_API RendererSystem : public ISystem
 	{
 
 	public:

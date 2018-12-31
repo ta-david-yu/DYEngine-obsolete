@@ -13,7 +13,7 @@ namespace DYE
 	bool glCheckError(const char* functionName);
 }
 
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 
 // glGetError to clear previous buffered error
 #define glCall(glFunction)						\

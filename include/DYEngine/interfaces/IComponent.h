@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine/utilities/Macro.h>
+#include <DYEngine/Core.h>
 
 #include <DYEngine/Base.h>
 #include <DYEngine/Entity.h>
@@ -48,7 +48,7 @@ namespace DYE
 	//====================================================================================
 	//	IComponent
 	//====================================================================================
-	class IComponent : public Base
+	class DYE_API IComponent : public Base
 	{
 	public:
 		// must added macro
@@ -131,7 +131,7 @@ namespace DYE
 	//====================================================================================
 	//	Transform: Basic component for every entity
 	//====================================================================================
-	class Transform : public IComponent
+	class DYE_API Transform : public IComponent
 	{
 	public:
 		// must added macro
@@ -228,7 +228,7 @@ namespace DYE
 	//====================================================================================
 	//	IReusable: Resuable base class that can be managed by ReusablePool
 	//====================================================================================
-	class IReusableComponent : public IComponent
+	class DYE_API IReusableComponent : public IComponent
 	{
 	public:
 		// must added macro
@@ -247,7 +247,7 @@ namespace DYE
 	//====================================================================================
 	//	ReusablePool: Reusable Entity Management
 	//====================================================================================
-	class ReusablePool : public IComponent
+	class DYE_API ReusablePool : public IComponent
 	{
 	public:
 		// must added macro
@@ -293,7 +293,7 @@ namespace DYE
 	//====================================================================================
 	//	DummyComponent: Test Component
 	//====================================================================================
-	class DebugCPUComponent : public IComponent
+	class DYE_API DebugCPUComponent : public IComponent
 	{
 	public:
 		// must added macro

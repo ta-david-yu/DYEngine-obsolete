@@ -191,12 +191,12 @@ namespace DYE
 				}
 				else if (typeS == "vec2")
 				{
-					size_t numOfComp = 2;
+					int numOfComp = 2;
 
 					Vector2f vec;
 					auto toks = StringTokenizer(valueS, " ");
 
-					size_t index = 0;
+					int index = 0;
 					for (auto& tok : toks)
 					{
 						if (index >= numOfComp)
@@ -229,12 +229,12 @@ namespace DYE
 				}
 				else if (typeS == "vec3")
 				{
-					size_t numOfComp = 3;
+					int numOfComp = 3;
 
 					Vector3f vec;
 					auto toks = StringTokenizer(valueS, " ");
 
-					size_t index = 0;
+					int index = 0;
 					for (auto& tok : toks)
 					{
 						if (index >= numOfComp)
@@ -267,12 +267,12 @@ namespace DYE
 				}
 				else if (typeS == "vec4")
 				{
-					size_t numOfComp = 4;
+					int numOfComp = 4;
 
 					Vector3f vec;
 					auto toks = StringTokenizer(valueS, " ");
 
-					size_t index = 0;
+					int index = 0;
 					for (auto& tok : toks)
 					{
 						if (index >= numOfComp)

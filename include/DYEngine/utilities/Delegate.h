@@ -1,12 +1,14 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 namespace DYE
 {
 	//====================================================================================
 	//	ICallback: Base callback
 	//====================================================================================
 	template <typename Ret, typename Param0>
-	class ICallback
+	class DYE_API ICallback
 	{
 	public:
 		virtual Ret Invoke(Param0 param0) = 0;
@@ -16,7 +18,7 @@ namespace DYE
 	//	StaticFunctionCallback: static function pointer
 	//====================================================================================
 	template <typename Ret, typename Param0>
-	class StaticFunctionCallback : public ICallback<Ret, Param0>
+	class DYE_API StaticFunctionCallback : public ICallback<Ret, Param0>
 	{
 	private:
 		//==========================================
@@ -46,7 +48,7 @@ namespace DYE
 	//	MethodCallback : member function pointer
 	//====================================================================================
 	template <typename Ret, typename Param0, typename T, typename Method>
-	class MethodCallback : public ICallback<Ret, Param0>
+	class DYE_API MethodCallback : public ICallback<Ret, Param0>
 	{
 	private:
 		//==========================================
@@ -79,7 +81,7 @@ namespace DYE
 	//	Delegate : function delegate
 	//====================================================================================
 	template <typename Ret, typename Param0>
-	class Delegate
+	class DYE_API Delegate
 	{
 	private:
 		ICallback<Ret, Param0>* m_Callback;

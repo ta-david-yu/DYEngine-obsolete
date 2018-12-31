@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/utilities/Logger.h>
 
 #include <vector>
@@ -63,7 +65,7 @@ namespace DYE
 	//====================================================================================
 	//	ResourceValue: representing a resource that can be loaded from the hardware
 	//====================================================================================
-	class IResourceValue
+	class DYE_API IResourceValue
 	{
 		friend class ResourceBase;
 	public:
@@ -86,7 +88,7 @@ namespace DYE
 	//====================================================================================
 	//	ResourceBase: base class for manager to maintain
 	//====================================================================================
-	class ResourceBase
+	class DYE_API ResourceBase
 	{
 		friend class ResourceManager;
 		//==========================================
@@ -135,7 +137,7 @@ namespace DYE
 	//	Resource: resource are objects that could be reused in many places
 	//====================================================================================
 	template <class RType>
-	class Resource : public ResourceBase
+	class DYE_API Resource : public ResourceBase
 	{
 		friend class ResourceManager;
 	private:
@@ -172,7 +174,7 @@ namespace DYE
 	//====================================================================================
 	//	ResourceManager: managing resources loaded from the hardware
 	//====================================================================================
-	class ResourceManager
+	class DYE_API ResourceManager
 	{
 		//==========================================
 		//	memeber/variable
@@ -220,7 +222,7 @@ namespace DYE
 	//	ScopeBasedResourceHandler: Unload resource pointer when Handler is destroyed
 	//====================================================================================
 	template<class Resrc>
-	class ScopeBasedResourceHandler
+	class DYE_API ScopeBasedResourceHandler
 	{
 		//==========================================
 		//	memeber/variable
@@ -264,7 +266,7 @@ namespace DYE
 	//====================================================================================
 	//	Text: text file
 	//====================================================================================
-	class Text : public IResourceValue
+	class DYE_API Text : public IResourceValue
 	{
 		friend class Resource<Text>;
 	public:

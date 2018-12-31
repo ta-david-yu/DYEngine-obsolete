@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/graphics/Renderer.h>
 
 namespace DYE
@@ -9,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	//	SpriteRenderer: 3d renderer component, take a material, drawn as rect
 	//====================================================================================
-	class SpriteRenderer : public Renderer
+	class DYE_API SpriteRenderer : public Renderer
 	{
 	public:
 		DYE_COMPONENT_TOSTRING

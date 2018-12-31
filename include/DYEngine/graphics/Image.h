@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Resource.h>
 
 #include <stb\stb_image.h>
@@ -9,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	//	Image: native image file
 	//====================================================================================
-	class Image : public IResourceValue
+	class DYE_API Image : public IResourceValue
 	{
 		friend class Resource<Image>;
 	public:

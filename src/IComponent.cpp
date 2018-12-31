@@ -361,7 +361,7 @@ namespace DYE
 
 	void ReusablePool::ResizePool(std::size_t _size)
 	{
-		int diff = _size - m_MaxSize;
+		long long diff = _size - m_MaxSize;
 		if (diff > 0)
 		{
 			expandPool(diff);

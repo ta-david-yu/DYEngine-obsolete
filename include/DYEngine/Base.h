@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <string>
 #include <set>
 #include <vector>
@@ -14,7 +16,7 @@ namespace DYE
 	//====================================================================================
 	//	NonCopyable: Restrict copy constructor and assign operator
 	//====================================================================================
-	class NonCopyable
+	class DYE_API NonCopyable
 	{
 	public:
 		NonCopyable() = default;
@@ -25,7 +27,7 @@ namespace DYE
 	//====================================================================================
 	//	Base: Base class that component and entity are derived from
 	//====================================================================================
-	class Base : public NonCopyable
+	class DYE_API Base : public NonCopyable
 	{
 	private:
 		//==========================================

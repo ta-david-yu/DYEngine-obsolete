@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/utilities/OpenGL.h>
 
 #include <string>
@@ -11,7 +13,7 @@ namespace DYE
 	//====================================================================================
 	//	IUniform: interface for uniformVariable
 	//====================================================================================
-	class IUniform
+	class DYE_API IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -49,7 +51,7 @@ namespace DYE
 	//====================================================================================
 
 	template <class Type>
-	class UniformVariable : public IUniform
+	class DYE_API UniformVariable : public IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -86,7 +88,7 @@ namespace DYE
 	//	Texture Specialization Uniform
 	//====================================================================================
 	template<>
-	class UniformVariable<Texture*> : public IUniform
+	class DYE_API UniformVariable<Texture*> : public IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -120,7 +122,7 @@ namespace DYE
 	};
 
 	template<>
-	class UniformVariable<Texture> : public UniformVariable<Texture*>
+	class DYE_API UniformVariable<Texture> : public UniformVariable<Texture*>
 	{
 	public:
 		UniformVariable(const std::string& _name) : UniformVariable<Texture*>(_name) {}

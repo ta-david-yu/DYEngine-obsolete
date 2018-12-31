@@ -1,12 +1,14 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <iostream>
 
 #define LOG Logger::GetInstance()
 
 namespace DYE
 {
-	class Logger
+	class DYE_API Logger
 	{
 	public:
 		enum LogType
@@ -48,7 +50,7 @@ namespace DYE
 
 	};
 
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 
 #define LogError( ... )															\
   do																			\

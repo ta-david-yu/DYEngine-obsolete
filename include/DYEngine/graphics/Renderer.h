@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/interfaces/IComponent.h>
 
 namespace DYE
@@ -8,7 +10,7 @@ namespace DYE
 	//====================================================================================
 	//	Renderer: basic renderer component
 	//====================================================================================
-	class Renderer : public IComponent
+	class DYE_API Renderer : public IComponent
 	{
 	public:
 		// must added macro

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Resource.h>
 #include <DYEngine/graphics/MaterialAttribute.h>
 
@@ -15,7 +17,7 @@ namespace DYE
 	//====================================================================================
 	//	Material: material file
 	//====================================================================================
-	class Material : public IResourceValue
+	class DYE_API Material : public IResourceValue
 	{
 		friend class Resource<Material>;
 	public:

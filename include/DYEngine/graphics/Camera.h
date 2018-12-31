@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/utilities/OpenGL.h>
 #include <DYEngine/utilities/Rect.h>
 #include <DYEngine/interfaces/IComponent.h>
@@ -9,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	//	Shader: Managed by Shader Program, have many types
 	//====================================================================================
-	class Camera : public IComponent
+	class DYE_API Camera : public IComponent
 	{
 	public:
 		DYE_COMPONENT_TOSTRING

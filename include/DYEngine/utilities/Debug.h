@@ -1,10 +1,12 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <type_traits>
 
 namespace DYE
 {
-	struct Debug
+	struct DYE_API Debug
 	{
 		template <class Type>
 		static std::string ClassName()

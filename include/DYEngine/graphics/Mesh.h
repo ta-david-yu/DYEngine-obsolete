@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Resource.h>
 #include <DYEngine/utilities/Math.h>
 #include <DYEngine/graphics/RenderUnit.h>
@@ -9,7 +11,7 @@ namespace DYE
 	//====================================================================================
 	//	Mesh: vertices, normals, faces
 	//====================================================================================
-	class Mesh : public IResourceValue
+	class DYE_API Mesh : public IResourceValue
 	{
 		friend class Resource<Mesh>;
 		friend struct RenderUnit;

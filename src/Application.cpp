@@ -57,7 +57,7 @@ namespace DYE
 
 				do
 				{
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 					////// FPS //////
 					framesCounter++;
 					timeAccumulator += TIME->frameDuration();
@@ -142,7 +142,7 @@ namespace DYE
 		{
 			std::cout << "Failed to initialize GLAD" << std::endl;
 		}
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 		debugGLSetup();
 #endif // DEBUG
 	}
@@ -162,13 +162,13 @@ namespace DYE
 		// TODO: Render (Camera Loop)
 
 		glClearColor(1.0f, 0.3f, 0.7f, 1.0f);
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 		glClearColor(1.0f, 0.3f, move_timer, 1.0f);
 #endif // DEBUG
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 		glUseProgram(shaderProgram);
 		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
 								//glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -195,7 +195,7 @@ namespace DYE
 		m_WindowName = _name;
 	}
 
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 	void IApplication::debugGLSetup()
 	{
 		const char *vertexShaderSource = "#version 330 core\n"

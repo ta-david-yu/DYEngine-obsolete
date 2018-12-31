@@ -1,8 +1,10 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Base.h>
 #include <DYEngine/interfaces\IComponent.h>
-#include <DYEngine/Core.h>
+#include <DYEngine/GameCore.h>
 
 #include <vector>
 #include <map>
@@ -28,7 +30,7 @@ namespace DYE
 	//====================================================================================
 	//	Entity: Base Entity class as game object
 	//====================================================================================
-	class Entity : public Base
+	class DYE_API Entity : public Base
 	{
 		friend class IComponent;
 		friend class IScene;

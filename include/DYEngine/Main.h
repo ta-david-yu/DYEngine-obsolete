@@ -9,6 +9,6 @@
 #include <DYEngine/Entity.h>
 #include <DYEngine/Scene.h>
 #include <DYEngine/Graphics.h>
-#include <DYEngine/Core.h>
+#include <DYEngine/GameCore.h>
 
 //class SystemManager;

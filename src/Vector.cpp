@@ -67,7 +67,7 @@ namespace DYE
 		return std::string("(" + std::to_string(main.x) + ", " + std::to_string(main.y) + ")");
 	}
 
-	float& Vector2f::operator[](std::size_t i)
+	float& Vector2f::operator[](int i)
 	{
 		return main.operator[](i);
 	}
@@ -211,7 +211,7 @@ namespace DYE
 		return std::string("(" + std::to_string(main.x) + ", " + std::to_string(main.y) + ", " + std::to_string(main.z) + ")");
 	}
 
-	float& Vector3f::operator[](std::size_t i)
+	float& Vector3f::operator[](int i)
 	{
 		return main.operator[](i);
 	}
@@ -344,7 +344,7 @@ namespace DYE
 		return std::string("(" + std::to_string(main.x) + ", " + std::to_string(main.y) + ", " + std::to_string(main.z) + ", " + std::to_string(main.w) + ")");
 	}
 
-	float& Vector4f::operator[](std::size_t i)
+	float& Vector4f::operator[](int i)
 	{
 		return main.operator[](i);
 	}

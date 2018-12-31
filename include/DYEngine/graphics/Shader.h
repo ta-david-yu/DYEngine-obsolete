@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Resource.h>
 #include <DYEngine/utilities/OpenGL.h>
 
@@ -17,7 +19,7 @@ namespace DYE
 	//====================================================================================
 	//	Shader: Managed by Shader Program, have many types
 	//====================================================================================
-	class Shader
+	class DYE_API Shader
 	{
 	public:
 		enum ShaderType
@@ -74,7 +76,7 @@ namespace DYE
 	//====================================================================================
 	//	ShaderProgram: Resource. Each shaders in the same program is assumed to have
 	//====================================================================================
-	class ShaderProgram : public IResourceValue
+	class DYE_API ShaderProgram : public IResourceValue
 	{
 		friend class Resource<ShaderProgram>;
 	public:

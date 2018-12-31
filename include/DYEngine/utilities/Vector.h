@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
@@ -23,13 +25,18 @@ namespace DYE
 	//====================================================================================
 	//	Vector2f: 2 components float
 	//====================================================================================
-	struct Vector2f
+	struct DYE_API Vector2f
 	{
+		friend struct Vector3f;
+		friend struct Vector4f;
+		friend struct Mat2x2;
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::vec2 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -66,7 +73,7 @@ namespace DYE
 
 		std::string ToString() const;
 
-		float& operator[](std::size_t i);
+		float& operator[](int i);
 		Vector2f& operator=(const Vector2f& other);
 		Vector2f operator*(float scalar) const;
 		Vector2f operator/(float scalar) const;
@@ -84,13 +91,18 @@ namespace DYE
 	//====================================================================================
 	//	Vector3f: 3 components float
 	//====================================================================================
-	struct Vector3f
+	struct DYE_API Vector3f
 	{
+		friend struct Vector4f;
+		friend struct Mat3x3;
+		friend struct Quaternion;
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::vec3 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -134,7 +146,7 @@ namespace DYE
 
 		std::string ToString() const;
 
-		float& operator[](std::size_t i);
+		float& operator[](int i);
 		Vector3f& operator=(const Vector3f& other);
 		Vector3f operator*(float scalar) const;
 		Vector3f operator/(float scalar) const;
@@ -152,13 +164,16 @@ namespace DYE
 	//====================================================================================
 	//	Vector4f: 4 components float
 	//====================================================================================
-	struct Vector4f
+	struct DYE_API Vector4f
 	{
+		friend struct Mat4x4;
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::vec4 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -203,7 +218,7 @@ namespace DYE
 
 		std::string ToString() const;
 
-		float& operator[](std::size_t i);
+		float& operator[](int i);
 		Vector4f& operator=(const Vector4f& other);
 		Vector4f operator*(float scalar) const;
 		Vector4f operator/(float scalar) const;
@@ -221,13 +236,15 @@ namespace DYE
 	//====================================================================================
 	//	Mat2x2: Matric of float with 2 rows and 2 cols
 	//====================================================================================
-	struct Mat2x2
+	struct DYE_API Mat2x2
 	{
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::mat2 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -272,13 +289,15 @@ namespace DYE
 	//====================================================================================
 	//	Mat3x3: Matric of float with 3 rows and 3 cols
 	//====================================================================================
-	struct Mat3x3
+	struct DYE_API Mat3x3
 	{
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::mat3 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -327,13 +346,15 @@ namespace DYE
 	//====================================================================================
 	//	Mat4x4: Matric of float with 4 rows and 4 cols
 	//====================================================================================
-	struct Mat4x4
+	struct DYE_API Mat4x4
 	{
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::mat4 main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================
@@ -385,13 +406,15 @@ namespace DYE
 	//====================================================================================
 	//	Quaternion: Core rotation presentation
 	//====================================================================================
-	struct Quaternion
+	struct DYE_API Quaternion
 	{
+	private:
 		//==========================================
 		//	memeber/variable
 		//==========================================
 		glm::quat main;
 
+	public:
 		//==========================================
 		//	static method
 		//==========================================

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/Entity.h>
 #include <DYEngine/utilities\Delegate.h>
 
@@ -19,7 +21,7 @@ namespace DYE
 	//====================================================================================
 	//	Scene: managing objects
 	//====================================================================================
-	class IScene
+	class DYE_API IScene : public NonCopyable
 	{
 		friend class Entity;
 		friend class IApplication;
@@ -76,7 +78,7 @@ namespace DYE
 	//	Scene: managing objects
 	//====================================================================================
 	template <typename TApp>
-	class Scene : public IScene
+	class DYE_API Scene : public IScene
 	{
 		friend class SceneManager;
 	private:
@@ -104,7 +106,7 @@ namespace DYE
 	//====================================================================================
 	//	SceneManager: Used to manage scene operation
 	//====================================================================================
-	class SceneManager
+	class DYE_API SceneManager : public NonCopyable
 	{
 		friend class IApplication;
 		friend class GameCore;

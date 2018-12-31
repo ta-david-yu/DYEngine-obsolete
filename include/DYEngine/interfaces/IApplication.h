@@ -1,6 +1,8 @@
 #pragma once
 
 #include <DYEngine/Core.h>
+
+#include <DYEngine/GameCore.h>
 #include <DYEngine/Time.h>
 
 #include <iostream>
@@ -14,7 +16,7 @@ namespace DYE
 	//====================================================================================
 	//	IApp: user interface for game engine
 	//====================================================================================
-	class IApplication
+	class DYE_API IApplication
 	{
 	public:
 		//==========================================
@@ -65,7 +67,7 @@ namespace DYE
 			return m_pCore->m_pSceneManager->createScene(buildFunc);
 		}
 	private:
-#ifdef DEBUG
+#ifdef DYE_DEBUG
 		void debugGLSetup();
 		int shaderProgram;
 		unsigned int VBO, VAO, EBO;
@@ -91,7 +93,7 @@ namespace DYE
 	//====================================================================================
 	//	BaseApp: example application
 	//====================================================================================
-	class BaseApplication : public IApplication
+	class DYE_API BaseApplication : public IApplication
 	{
 	public:
 		BaseApplication() {}

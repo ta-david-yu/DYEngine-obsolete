@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/utilities/Rect.h>
 #include <DYEngine/utilities/Vector.h>
 
@@ -10,7 +12,7 @@ namespace DYE
 	//====================================================================================
 	//	Math: provide with some basic math functions
 	//====================================================================================
-	struct Math
+	struct DYE_API Math
 	{
 		static const float Rad2Degf; //360.0f / (glm::pi<float>() * 2);
 		static const float Deg2Radf; //(glm::pi<float>() * 2) / 360.0f;

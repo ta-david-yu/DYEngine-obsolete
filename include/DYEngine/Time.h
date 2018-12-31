@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/interfaces/IApplication.h>
 
 #include <chrono>
@@ -13,7 +15,7 @@ namespace DYE
 	//====================================================================================
 	//	Time: global Time updator
 	//====================================================================================
-	class Time
+	class DYE_API Time
 	{
 		friend class IApplication;
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <DYEngine/Core.h>
+
 #include <DYEngine/utilities/Vector.h>
 
 namespace DYE
@@ -7,7 +9,7 @@ namespace DYE
 	//====================================================================================
 	//	Rect
 	//====================================================================================
-	class Rect
+	class DYE_API Rect
 	{
 		//==========================================
 		//	memeber/variable
