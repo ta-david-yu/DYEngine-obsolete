@@ -4,7 +4,7 @@ void SandboxApplication::setupScenes()
 {
 	//m_pTutScene = createScene(&BaseApplication::buildTutScene);
 	//m_pTestScene0 = createScene(&BaseApplication::buildTestScene0);
-	m_pTestScene1 = createScene();
+	m_pScene00 = SCENE_MGR->CreateScene<Scene00>(); // createScene();
 
 }
 
@@ -147,4 +147,57 @@ void SandboxApplication::buildTestScene1(IScene* scene)
 	//delete RMat;
 
 	//printf("%s\n", root->ToString());
+}
+
+void Scene00::load()
+{
+	// prototype
+	Entity* root = this->CreateEntity("Root");
+	root->AddComponent<DebugCPUComponent>()->Init();
+	root->GetTransform()->SetPosition(Vector3f(0, 0, 0));
+	root->GetTransform()->SetLocalScale(Vector3f(0, 0, 0));
+
+
+	Entity* ent0 = this->CreateEntity("Nod0");
+	ent0->GetTransform()->SetParent(root->GetTransform());
+	ent0->GetTransform()->SetPosition(Vector3f(1, 1, 1));
+	ent0->GetTransform()->SetLocalScale(Vector3f(0, 90, 0));
+
+	ent0->SetActive(false);
+
+	// clone
+	Entity* cEnt[4];
+
+	for (int i = 0; i < 4; i++)
+	{
+		cEnt[i] = dynamic_cast<Entity*>(Base::Instantiate(root));
+		cEnt[i]->GetTransform()->SetParent(ent0->GetTransform());
+	}
+
+	cEnt[2]->GetTransform()->SetParent(cEnt[3]->GetTransform());
+
+	// Base::printAllBaseObj();
+
+	//printf("%s\n", root->ToString());
+
+	SYSTEM_MGR->EarlyUpdate();
+
+	Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
+	Mesh* mesh = RMesh;
+
+
+	Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
+	assert(RTex->m_TextureType == Texture::TextureType::Texture2D);
+	assert(RTex->m_FilteringType == Texture::FilteringType::Linear);
+	assert(RTex->m_WrappingType == Texture::WrappingType::ClampToBorder);
+	assert(RTex->m_UseMipMap == true);
+	assert(RTex->m_MipMapLevel == 5);
+
+
+	Text* RText = RESOURCE_MGR->Load<Text>("test.txt");
+
+	Material* RMat = RESOURCE_MGR->Load<Material>("test_material.material", 0, nullptr);
+
+	RESOURCE_MGR->Unload(RMat);
+	RESOURCE_MGR->Unload(RTex);
 }

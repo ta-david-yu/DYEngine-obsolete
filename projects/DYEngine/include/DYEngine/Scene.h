@@ -9,6 +9,9 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <type_traits>
+
+#define DYE_SCENE_CLASS friend class SceneManager;
 
 namespace DYE
 {
@@ -67,7 +70,7 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		IScene(SceneID id = 0);
+		IScene();
 		~IScene();
 	};
 
@@ -92,8 +95,6 @@ namespace DYE
 		SceneID m_NextSceneID = -1;
 		bool m_IsLoadingNextScene = false;
 
-		IApplication* m_pApplication;
-
 		SceneList m_Scenes;
 		//==========================================
 		//	flag
@@ -111,8 +112,25 @@ namespace DYE
 		void Init();
 		void LoadNextScene();
 
+		template <class TScene>
+		IScene* CreateScene()										// create a ptr to scene and add it to the list
+		{
+			bool isDerivedFromIScene = std::is_base_of<IScene, TScene>::value;
+
+			assert(isDerivedFromIScene);
+
+			IScene* ptr = new TScene();
+
+			ptr->m_SceneID = m_SceneIDCounter;
+
+			m_Scenes.push_back(SceneListPair(m_SceneIDCounter, std::unique_ptr<IScene>(ptr)));
+
+			m_SceneIDCounter++;
+
+			return m_Scenes.back().second.get();
+		}
+
 	private:
-		IScene* createScene();										// create a ptr to scene and add it to the list
 		IScene* loadScene(SceneID id);								// instant load scene
 
 		//==========================================
@@ -130,7 +148,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	private:
-		SceneManager(IApplication* app);
+		SceneManager();
 		~SceneManager();
 	};
 }

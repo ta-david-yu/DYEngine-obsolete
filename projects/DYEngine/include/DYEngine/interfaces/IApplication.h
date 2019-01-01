@@ -61,7 +61,6 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
-		IScene* createScene();
 	private:
 #ifdef DYE_DEBUG
 		void debugGLSetup();

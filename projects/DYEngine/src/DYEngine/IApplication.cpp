@@ -190,11 +190,6 @@ namespace DYE
 		LogInfo("Shutting down application");
 	}
 
-	IScene* IApplication::createScene()
-	{
-		return m_pCore->m_pSceneManager->createScene();
-	}
-
 	void IApplication::SetWindowName(std::string _name)
 	{
 		m_WindowName = _name;
