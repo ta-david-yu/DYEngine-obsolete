@@ -16,19 +16,29 @@ public:
 private:
 	// user define function
 	IScene* m_pScene00;
+	IScene* m_pScene01;
+	IScene* m_pScene02;
 
 	virtual void setupScenes();
-
-	void buildTutScene(IScene* scene);
-
-	void buildTestScene0(IScene* scene);
-
-	void buildTestScene1(IScene* scene);
 };
 
 class Scene00 : public IScene
 {
 	DYE_SCENE_CLASS
 	Scene00() : IScene() {}
+	virtual void load();
+};
+
+class Scene01 : public IScene
+{
+	DYE_SCENE_CLASS
+	Scene01() : IScene() {}
+	virtual void load();
+};
+
+class Scene02 : public IScene
+{
+	DYE_SCENE_CLASS
+	Scene02() : IScene() {}
 	virtual void load();
 };

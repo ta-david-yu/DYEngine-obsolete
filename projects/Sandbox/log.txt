@@ -6,8 +6,7 @@ ERROR    \DYEngine/Resource.h( 166)    Error loading resource file : resources/m
 INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/image/link.png
 OPENGL   DYEngine\Texture.cpp( 189)    glTexImage2D( m_TextureType, m_MipMapLevel, m_pImage->GetChannelType() - Image::ChannelType::Base, m_pImage->GetWidth(), m_pImage->GetHeight(), 0, m_TextureChannelFormat, GL_UNSIGNED_BYTE, m_pImage->GetImageData() ):   GL_INVALID_VALUE
 INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/texture/test_texture.texture
-ERROR    \DYEngine/Resource.h( 166)    Error loading resource file : resources/test.txt
-ERROR    \DYEngine/Resource.h( 166)    Error loading resource file : resources/shader/unlit.vert
+INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/test.txt
+INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/shader/unlit.vert
 INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/shader/test_shader.shader
 INFO     \DYEngine/Resource.h( 168)    Load resource file: resources/material/test_material.material
-DEBUG    ine\IApplication.cpp(  67)    FPS: 55.896201  1.001857
