@@ -22,7 +22,7 @@ int main()
 	LOG->SetOutputFile(logFile);
 
 	BaseApplication* app = new BaseApplication();
-	app->SetWindowName("Demo Game");
+	app->SetWindowName("Sandbox " + TIME->GetDateString());
 	app->Run();
 
 	fclose(logFile);
