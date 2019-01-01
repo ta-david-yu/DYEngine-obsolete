@@ -99,6 +99,17 @@ namespace DYE
 		m_IsLoadingNextScene = false;
 	}
 
+	IScene* SceneManager::createScene()		// create a ptr to scene and add it to the list
+	{
+		IScene* ptr = new IScene(m_SceneIDCounter);
+
+		m_Scenes.push_back(SceneListPair(m_SceneIDCounter, std::unique_ptr<IScene>(ptr)));
+
+		m_SceneIDCounter++;
+
+		return m_Scenes.back().second.get();
+	}
+
 	IScene* SceneManager::loadScene(SceneID id)
 	{
 		LogInfo("Loading scene : (%3d)", id);

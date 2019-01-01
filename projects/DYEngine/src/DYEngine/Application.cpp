@@ -311,7 +311,7 @@ namespace DYE
 	{
 		//m_pTutScene = createScene(&BaseApplication::buildTutScene);
 		//m_pTestScene0 = createScene(&BaseApplication::buildTestScene0);
-		//m_pTestScene1 = createScene();
+		m_pTestScene1 = createScene();
 
 	}
 
