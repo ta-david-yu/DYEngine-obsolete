@@ -1,4 +1,5 @@
-INFO     gine\Application.cpp(  25)    Init app
-INFO     gine\Application.cpp( 128)    Init GL
-INFO     gine\Application.cpp(  36)    Start game loop
+INFO     ine\IApplication.cpp(  25)    Init app
+INFO     ine\IApplication.cpp( 128)    Init GL
+INFO     ine\IApplication.cpp(  36)    Start game loop
 INFO     c\DYEngine\Scene.cpp( 115)    Loading scene : (  0)
+DEBUG    ine\IApplication.cpp(  67)    FPS: 61.594025  1.006591

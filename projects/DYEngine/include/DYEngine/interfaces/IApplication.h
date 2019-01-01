@@ -85,28 +85,4 @@ namespace DYE
 		IApplication();
 		virtual ~IApplication();
 	};
-
-	//====================================================================================
-	//	BaseApp: example application
-	//====================================================================================
-	class DYE_API BaseApplication : public IApplication
-	{
-	public:
-		BaseApplication() {}
-		~BaseApplication() {}
-
-	private:
-		// user define function
-		IScene* m_pTutScene;
-		IScene* m_pTestScene0;
-		IScene* m_pTestScene1;
-
-		virtual void setupScenes();
-
-		void buildTutScene(IScene* scene);
-
-		void buildTestScene0(IScene* scene);
-
-		void buildTestScene1(IScene* scene);
-	};
 }

@@ -130,21 +130,21 @@ namespace DYE
 	//====================================================================================
 
 	template <>
-	IComponent* Entity::AddComponent<IComponent>();
+	DYE_API IComponent* Entity::AddComponent<IComponent>();
 
 	template <>
-	Transform* Entity::AddComponent<Transform>();
+	DYE_API Transform* Entity::AddComponent<Transform>();
 
 	template <>
-	Renderer* Entity::AddComponent<Renderer>();
+	DYE_API Renderer* Entity::AddComponent<Renderer>();
 
 	template <>
-	MeshRenderer* Entity::AddComponent<MeshRenderer>();
+	DYE_API MeshRenderer* Entity::AddComponent<MeshRenderer>();
 
 	template <>
-	SpriteRenderer* Entity::AddComponent<SpriteRenderer>();
+	DYE_API SpriteRenderer* Entity::AddComponent<SpriteRenderer>();
 
 	template <>
-	Transform* Entity::GetComponent<Transform>() const;
+	DYE_API Transform* Entity::GetComponent<Transform>() const;
 
 }
