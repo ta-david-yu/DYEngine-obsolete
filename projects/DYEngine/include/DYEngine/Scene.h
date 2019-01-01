@@ -12,12 +12,9 @@
 
 namespace DYE
 {
-	class Entity;
 	class IApplication;
-	class IScene;
 
 	using SceneID = int;
-	using BuildSceneFunc = Delegate<void, IScene*>;
 	//====================================================================================
 	//	Scene: managing objects
 	//====================================================================================
@@ -45,7 +42,7 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-		virtual void load() = 0;						// create object and comps, call build function
+		virtual void load();						// create object and comps, call build function
 		void release();									// called when destroyed
 		//==========================================
 		//	method
@@ -72,35 +69,6 @@ namespace DYE
 		//==========================================
 		IScene(SceneID id = 0);
 		~IScene();
-	};
-
-	//====================================================================================
-	//	Scene: managing objects
-	//====================================================================================
-	template <typename TApp>
-	class DYE_API Scene : public IScene
-	{
-		friend class SceneManager;
-	private:
-		BuildSceneFunc m_BuildFunction;
-
-	protected:
-		virtual void load()
-		{
-			// build scene out of the build function
-			m_BuildFunction(this);
-
-			m_IsLoaded = true;
-		}
-	public:
-		//==========================================
-		//	constructor/destructor
-		//==========================================
-		Scene(SceneID id, TApp* owner,void (TApp::*buildFunc)(IScene*)) : IScene(id), m_BuildFunction(owner, buildFunc)
-		{ }
-
-		~Scene()
-		{ }
 	};
 
 	//====================================================================================
@@ -144,10 +112,9 @@ namespace DYE
 		void LoadNextScene();
 
 	private:
-		template <typename TApp>
-		IScene* createScene(void (TApp::*buildFunc)(IScene*))		// create a ptr to scene and add it to the list
+		IScene* createScene()		// create a ptr to scene and add it to the list
 		{
-			IScene* ptr = new Scene<TApp>(m_SceneIDCounter, dynamic_cast<TApp*>(m_pApplication), buildFunc);
+			IScene* ptr = new IScene(m_SceneIDCounter);
 
 			m_Scenes.push_back(SceneListPair(m_SceneIDCounter, std::unique_ptr<IScene>(ptr)));
 

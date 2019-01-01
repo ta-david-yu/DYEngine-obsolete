@@ -61,11 +61,7 @@ namespace DYE
 		//==========================================
 		//	method
 		//==========================================
-		template <typename TApp>
-		IScene* createScene(void (TApp::*buildFunc)(IScene*))
-		{
-			return m_pCore->m_pSceneManager->createScene(buildFunc);
-		}
+		IScene* createScene();
 	private:
 #ifdef DYE_DEBUG
 		void debugGLSetup();

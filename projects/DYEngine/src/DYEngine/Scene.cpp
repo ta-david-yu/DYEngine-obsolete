@@ -45,6 +45,11 @@ namespace DYE
 		return m_IsLoaded;
 	}
 
+	void IScene::load()
+	{
+		m_IsLoaded = true;
+	}
+
 	void IScene::release()
 	{
 		m_EntityList.clear();
