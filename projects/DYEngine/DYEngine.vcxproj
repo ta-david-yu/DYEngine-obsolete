@@ -318,7 +318,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\DYEngine\Application.cpp" />
+    <ClCompile Include="src\DYEngine\IApplication.cpp" />
     <ClCompile Include="src\DYEngine\Base.cpp" />
     <ClCompile Include="src\DYEngine\Camera.cpp" />
     <ClCompile Include="src\DYEngine\Delegate.cpp" />

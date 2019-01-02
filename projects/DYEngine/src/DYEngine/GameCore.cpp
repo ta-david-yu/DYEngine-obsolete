@@ -9,7 +9,7 @@ namespace DYE
 
 	void GameCore::Init()
 	{
-		m_pSceneManager = new SceneManager(m_pApplication);
+		m_pSceneManager = new SceneManager();
 		m_pSceneManager->Init();
 		m_pSystemManager = new SystemManager();
 		m_pSystemManager->Init();

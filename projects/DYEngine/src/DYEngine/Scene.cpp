@@ -45,6 +45,11 @@ namespace DYE
 		return m_IsLoaded;
 	}
 
+	void IScene::load()
+	{
+		m_IsLoaded = true;
+	}
+
 	void IScene::release()
 	{
 		m_EntityList.clear();
@@ -64,7 +69,7 @@ namespace DYE
 		}
 	}
 
-	IScene::IScene(SceneID id) : m_SceneID(id)
+	IScene::IScene()
 	{
 
 	}
@@ -121,7 +126,7 @@ namespace DYE
 		return m_IsLoadingNextScene;
 	}
 
-	SceneManager::SceneManager(IApplication* app)
+	SceneManager::SceneManager()
 	{
 	}
 

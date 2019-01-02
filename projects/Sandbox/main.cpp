@@ -1,28 +1,20 @@
 #include <DYEngine\Main.h>
 
+#include "SandboxApplication.h"
+
 #include <iostream>
 #include <cassert>
 
 using namespace DYE;
 
-void testResource()
-{
-	Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
-	Mesh* mesh = RMesh;
-
-	printf("test passed!\n");
-}
-
 int main()
 {
-	// testResource();
-
 	// create log file
 	FILE* logFile = fopen("log.txt", "w+");
 	LOG->SetOutputFile(logFile);
 
-	BaseApplication* app = new BaseApplication();
-	app->SetWindowName("Demo Game");
+	SandboxApplication* app = new SandboxApplication();
+	app->SetWindowName("Sandbox " + TIME->GetDateString());
 	app->Run();
 
 	fclose(logFile);

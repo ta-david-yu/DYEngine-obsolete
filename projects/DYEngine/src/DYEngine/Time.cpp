@@ -65,4 +65,11 @@ namespace DYE
 	{ 
 		m_TimeScale = _scale; 
 	}
+
+	std::string Time::GetDateString() const
+	{
+		auto now = std::chrono::system_clock::now();
+		std::time_t now_t = std::chrono::system_clock::to_time_t(now);
+		return std::string(std::ctime(&now_t));
+	}
 }

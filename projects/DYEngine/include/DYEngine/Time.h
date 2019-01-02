@@ -66,5 +66,7 @@ namespace DYE
 		float UnScaled_FixedDeltaTime() const;
 
 		void SetTimeScale(float _scale);
+
+		std::string GetDateString() const;	// TODO: implement a date struct
 	};
 }

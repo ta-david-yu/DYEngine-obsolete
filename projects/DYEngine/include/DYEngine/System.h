@@ -183,16 +183,16 @@ namespace DYE
 	//	Explicit specialization declaration
 	//====================================================================================
 	template <>
-	void SystemManager::RegisterComponent<Transform>(Transform* _pComp);	// Register a component
+	DYE_API void SystemManager::RegisterComponent<Transform>(Transform* _pComp);	// Register a component
 
 	template <>
-	bool SystemManager::HasSystem<Transform>() const;
+	DYE_API bool SystemManager::HasSystem<Transform>() const;
 
 	template <>
-	void SystemManager::RegisterComponent<Renderer>(Renderer* _pComp);	// Register a component
+	DYE_API void SystemManager::RegisterComponent<Renderer>(Renderer* _pComp);	// Register a component
 
 	template <>
-	bool SystemManager::HasSystem<Renderer>() const;
+	DYE_API bool SystemManager::HasSystem<Renderer>() const;
 
 	//====================================================================================
 	//	TransformSystem: 

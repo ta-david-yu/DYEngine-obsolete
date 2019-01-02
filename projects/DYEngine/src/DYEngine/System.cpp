@@ -258,9 +258,6 @@ namespace DYE
 
 	Transform* TransformSystem::GetRoot()
 	{
-		if (s_pRoot == nullptr)
-			s_pRoot = new Transform();
-
 		return s_pRoot;
 	}
 
@@ -287,10 +284,12 @@ namespace DYE
 
 	TransformSystem::TransformSystem()
 	{
+		if (s_pRoot == nullptr)
+			s_pRoot = new Transform();
 	}
 
 	TransformSystem::~TransformSystem()
 	{
-
+		delete s_pRoot;
 	}
 }

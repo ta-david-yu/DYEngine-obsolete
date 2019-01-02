@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\DYEngine\Application.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
     <ClCompile Include="src\DYEngine\Base.cpp">
       <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
@@ -110,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="src\vendor\tinyxml2-5.0.1\tinyxml2.cpp">
       <Filter>Source Files\vendor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\IApplication.cpp">
+      <Filter>Source Files\DYEngine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

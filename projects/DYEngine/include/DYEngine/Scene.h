@@ -9,15 +9,15 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <type_traits>
+
+#define DYE_SCENE_CLASS friend class SceneManager;
 
 namespace DYE
 {
-	class Entity;
 	class IApplication;
-	class IScene;
 
 	using SceneID = int;
-	using BuildSceneFunc = Delegate<void, IScene*>;
 	//====================================================================================
 	//	Scene: managing objects
 	//====================================================================================
@@ -45,7 +45,7 @@ namespace DYE
 		//==========================================
 		//	procedure
 		//==========================================
-		virtual void load() = 0;						// create object and comps, call build function
+		virtual void load();						// create object and comps, call build function
 		void release();									// called when destroyed
 		//==========================================
 		//	method
@@ -70,37 +70,8 @@ namespace DYE
 		//==========================================
 		//	constructor/destructor
 		//==========================================
-		IScene(SceneID id = 0);
+		IScene();
 		~IScene();
-	};
-
-	//====================================================================================
-	//	Scene: managing objects
-	//====================================================================================
-	template <typename TApp>
-	class DYE_API Scene : public IScene
-	{
-		friend class SceneManager;
-	private:
-		BuildSceneFunc m_BuildFunction;
-
-	protected:
-		virtual void load()
-		{
-			// build scene out of the build function
-			m_BuildFunction(this);
-
-			m_IsLoaded = true;
-		}
-	public:
-		//==========================================
-		//	constructor/destructor
-		//==========================================
-		Scene(SceneID id, TApp* owner,void (TApp::*buildFunc)(IScene*)) : IScene(id), m_BuildFunction(owner, buildFunc)
-		{ }
-
-		~Scene()
-		{ }
 	};
 
 	//====================================================================================
@@ -124,8 +95,6 @@ namespace DYE
 		SceneID m_NextSceneID = -1;
 		bool m_IsLoadingNextScene = false;
 
-		IApplication* m_pApplication;
-
 		SceneList m_Scenes;
 		//==========================================
 		//	flag
@@ -143,11 +112,16 @@ namespace DYE
 		void Init();
 		void LoadNextScene();
 
-	private:
-		template <typename TApp>
-		IScene* createScene(void (TApp::*buildFunc)(IScene*))		// create a ptr to scene and add it to the list
+		template <class TScene>
+		IScene* CreateScene()										// create a ptr to scene and add it to the list
 		{
-			IScene* ptr = new Scene<TApp>(m_SceneIDCounter, dynamic_cast<TApp*>(m_pApplication), buildFunc);
+			bool isDerivedFromIScene = std::is_base_of<IScene, TScene>::value;
+
+			assert(isDerivedFromIScene);
+
+			IScene* ptr = new TScene();
+
+			ptr->m_SceneID = m_SceneIDCounter;
 
 			m_Scenes.push_back(SceneListPair(m_SceneIDCounter, std::unique_ptr<IScene>(ptr)));
 
@@ -156,7 +130,9 @@ namespace DYE
 			return m_Scenes.back().second.get();
 		}
 
+	private:
 		IScene* loadScene(SceneID id);								// instant load scene
+
 		//==========================================
 		//	getter
 		//==========================================
@@ -172,7 +148,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	private:
-		SceneManager(IApplication* app);
+		SceneManager();
 		~SceneManager();
 	};
 }
