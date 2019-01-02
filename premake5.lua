@@ -4,13 +4,25 @@ workspace "DYEngine"
     startproject "Sandbox"
     defines { "_CRT_SECURE_NO_WARNINGS", "_CRT_NONSTDC_NO_DEPRECATE" }
     
+-- architecture specification 
 filter "platforms:x86"
     architecture "x86"
     
 filter "platforms:x86_64"
     architecture "x86_64"
-    
+
+-- build output directory
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["glad"] = "DYEngine/vendor/glad/include"
+IncludeDir["GLFW"] = "DYEngine/vendor/GLFW/include"
+IncludeDir["glm"] = "DYEngine/vendor/glm/include"
+IncludeDir["KHR"] = "DYEngine/vendor/KHR/include"
+IncludeDir["stb"] = "DYEngine/vendor/stb/include"
+IncludeDir["tinyxml2-5.0.1"] = "DYEngine/vendor/tinyxml2-5.0.1/include"
+
 
 project "DYEngine"
 	location "DYEngine"
