@@ -122,8 +122,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -133,13 +133,13 @@
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dll_Debug|Win32'">
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -148,12 +148,12 @@
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -163,13 +163,13 @@
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='dll_Release|Win32'">
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
@@ -178,8 +178,8 @@
     <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin-int\</IntDir>
-    <OutDir>$(ProjectDir)output\$(Configuration)\$(Platform)\bin\</OutDir>
+    <IntDir>..\bin-int\$(Configuration)-$(Platform)\$(ProjectName)</IntDir>
+    <OutDir>..\bin\$(Configuration)-$(Platform)\$(ProjectName)</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
