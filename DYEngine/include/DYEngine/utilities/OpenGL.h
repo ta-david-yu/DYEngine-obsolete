@@ -35,7 +35,7 @@ namespace DYE
 
 #else
 
-#define glCheckCall(glFunction) glFunction
+#define glCall(glFunction) glFunction
 #define glCheckAfterCall(glFunction)
 
 #endif // DEBUG

@@ -1,225 +1,306 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="include\DYEngine">
+      <UniqueIdentifier>{CB661CEE-B75F-3B40-E091-20C5CCE91A4C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="include\DYEngine\graphics">
+      <UniqueIdentifier>{8B9FFE9A-F761-3225-4012-C1B1AC130B03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\DYEngine">
-      <UniqueIdentifier>{a2a65552-5e64-44cc-92d8-9fa3f7a880be}</UniqueIdentifier>
+    <Filter Include="include\DYEngine\interfaces">
+      <UniqueIdentifier>{5E3A86DC-CA47-B4C2-532E-B0ADBF3A8079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\vendor">
-      <UniqueIdentifier>{e1e3f895-5ba2-4405-a88d-1144a65bdcb7}</UniqueIdentifier>
+    <Filter Include="include\DYEngine\utilities">
+      <UniqueIdentifier>{16E5B990-02F5-6561-6BAE-CA7F57DD54FA}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\DYEngine\Base.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Camera.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Delegate.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Entity.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\GameCore.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\IComponent.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Image.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Logger.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Material.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\MaterialAttribute.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Math.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Mesh.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\MeshRenderer.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\OpenGL.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Rect.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Renderer.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\RendererSystem.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\RenderUnit.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Resource.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Scene.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Shader.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\SpriteRenderer.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\System.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Texture.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Time.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Uniform.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\Vector.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\vendor\glad\glad.c">
-      <Filter>Source Files\vendor</Filter>
-    </ClCompile>
-    <ClCompile Include="src\vendor\tinyxml2-5.0.1\tinyxml2.cpp">
-      <Filter>Source Files\vendor</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DYEngine\IApplication.cpp">
-      <Filter>Source Files\DYEngine</Filter>
-    </ClCompile>
+    <Filter Include="include\vendor">
+      <UniqueIdentifier>{C651CA71-B21F-BE77-9BB3-2E9E87209ADC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\GLFW">
+      <UniqueIdentifier>{C5183DE3-317A-1AF1-BAE7-60A3264851B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\KHR">
+      <UniqueIdentifier>{3AD3A40E-26B7-6564-8F17-60B77B1A50E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\glad">
+      <UniqueIdentifier>{8D304FE3-F991-2CF1-82FF-72A3EE5F63B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\glm">
+      <UniqueIdentifier>{154FA50E-0133-6664-6A93-60B7569650E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\glm\simd">
+      <UniqueIdentifier>{9160DE79-FD97-2611-06A2-8A3472584D0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\stb">
+      <UniqueIdentifier>{1E83A50E-0A67-6664-73C7-60B75FCA50E6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vendor\tinyxml2-5.0.1">
+      <UniqueIdentifier>{FB859E88-679E-85B2-304B-154C9C221A4C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\DYEngine">
+      <UniqueIdentifier>{EFBA9DD9-DB1D-2D7E-84A3-653470E5F800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vendor">
+      <UniqueIdentifier>{EA4CE07F-D604-22CD-3F0C-FB282BE3BCBD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vendor\glad">
+      <UniqueIdentifier>{31C253D9-9D4D-C19D-A65E-449212691D9E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vendor\tinyxml2-5.0.1">
+      <UniqueIdentifier>{9F74B0C5-0B37-E44F-54E7-72DCC0E8BC2D}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DYEngine\Base.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Core.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Entity.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\GameCore.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Graphics.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Interface.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Main.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Resource.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Scene.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\System.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Time.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Utility.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Camera.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Image.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Material.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\MaterialAttribute.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Mesh.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\MeshRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\graphics\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\graphics\RendererSystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\RenderUnit.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DYEngine\graphics\Renderer.h">
+      <Filter>include\DYEngine\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DYEngine\graphics\RendererSystem.h">
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Shader.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\SpriteRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Texture.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Uniform.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\interfaces\IApplication.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\interfaces\IComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\interfaces</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Debug.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Delegate.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Logger.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Macro.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Math.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\OpenGL.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Rect.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\Vector.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\utilities\XMLParser.h">
-      <Filter>Header Files</Filter>
+      <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
+    <ClInclude Include="include\vendor\GLFW\glfw3.h">
+      <Filter>include\vendor\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\GLFW\glfw3native.h">
+      <Filter>include\vendor\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\KHR\khrplatform.h">
+      <Filter>include\vendor\KHR</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glad\glad.h">
+      <Filter>include\vendor\glad</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\common.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\exponential.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\geometric.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\integer.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\matrix.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\packing.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\platform.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\trigonometric.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\glm\simd\vector_relational.h">
+      <Filter>include\vendor\glm\simd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\stb\stb_image.h">
+      <Filter>include\vendor\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\tinyxml2-5.0.1\tinyxml2.h">
+      <Filter>include\vendor\tinyxml2-5.0.1</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DYEngine\Base.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Camera.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Delegate.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Entity.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\GameCore.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\IApplication.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\IComponent.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Image.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Logger.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Material.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\MaterialAttribute.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Math.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Mesh.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\MeshRenderer.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\OpenGL.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Rect.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\RenderUnit.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Renderer.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\RendererSystem.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Resource.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Scene.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Shader.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\SpriteRenderer.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\System.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Texture.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Time.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Uniform.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DYEngine\Vector.cpp">
+      <Filter>src\DYEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vendor\glad\glad.c">
+      <Filter>src\vendor\glad</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vendor\tinyxml2-5.0.1\tinyxml2.cpp">
+      <Filter>src\vendor\tinyxml2-5.0.1</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

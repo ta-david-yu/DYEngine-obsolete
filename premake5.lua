@@ -1,7 +1,15 @@
 workspace "DYEngine"
-	architecture "x86_64"
 	configurations { "Debug", "Release" }
-
+    platforms { "x86", "x86_64" }
+    startproject "Sandbox"
+    defines { "_CRT_SECURE_NO_WARNINGS", "_CRT_NONSTDC_NO_DEPRECATE" }
+    
+filter "platforms:x86"
+    architecture "x86"
+    
+filter "platforms:x86_64"
+    architecture "x86_64"
+    
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "DYEngine"
@@ -18,7 +26,7 @@ project "DYEngine"
 		"%{prj.name}/src/**.c",
 		"%{prj.name}/include/**.h"
 	}
-
+    
 	includedirs
 	{
 		"%{prj.name}/include",
@@ -47,7 +55,7 @@ project "DYEngine"
 		{
 			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
-
+    
 	filter "configurations:Debug"
 		defines "DYE_DEBUG"
 		symbols "On"
@@ -91,7 +99,7 @@ project "Sandbox"
 		{
 			"DYE_PLATFORM_WINDOWS"
 		}
-
+        
 	filter "configurations:Debug"
 		defines "DYE_DEBUG"
 		symbols "On"
