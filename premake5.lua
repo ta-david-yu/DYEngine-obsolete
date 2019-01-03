@@ -60,7 +60,8 @@ project "DYEngine"
 		defines
 		{
 			"DYE_PLATFORM_WINDOWS",
-			"DYE_BUILD_DLL"
+			"DYE_BUILD_DLL",
+            "DYE_ENABLE_ASSERT"
 		}
 		
 		postbuildcommands
@@ -111,14 +112,15 @@ project "Sandbox"
 
 		defines
 		{
-			"DYE_PLATFORM_WINDOWS"
+			"DYE_PLATFORM_WINDOWS",
+            "DYE_ENABLE_ASSERT"
 		}
         
 	filter "configurations:Debug"
-		defines "DYE_DEBUG"
+		defines { "DYE_DEBUG" }
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "DYE_DEBUG"
+		defines { "DYE_DEBUG" }
 		optimize "On"
         

@@ -1,5 +1,7 @@
 #include <DYEngine/interfaces/IComponent.h>
 
+#include <DYEngine/utilities/Logger.h>
+
 #include <type_traits>
 
 namespace DYE
@@ -62,6 +64,11 @@ namespace DYE
 	void IComponent::copyFrom(IComponent* other)
 	{
 		this->m_IsEnabled = other->m_IsEnabled;
+	}
+
+	IComponent* IComponent::clone() 
+	{ 
+		DYE_ASSERT(false, "Component cloning is not implemented!"); return nullptr;
 	}
 
 	//====================================================================================
@@ -185,7 +192,7 @@ namespace DYE
 		if (this == TransformSystem::GetRoot())
 		{
 			// cant set the parent of Root node
-			assert(false);
+			DYE_ASSERT(false, "Setting the parent of Root Node is not allowed.");
 			return;
 		}
 

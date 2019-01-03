@@ -217,9 +217,15 @@ namespace DYE
 		return m_TextureUnit;
 	}
 
+	Texture::Texture() : m_pImage(nullptr)
+	{
+
+	}
+
 	Texture::~Texture()
 	{
 		deleteTexture();
-		unloadImage();
+		if (m_pImage != nullptr)
+			unloadImage();
 	}
 }

@@ -40,6 +40,8 @@ namespace DYE
 		void Print(LogType type, const char* file, int line, const char* msg, ...);
 		void CustomPrint(const char* type, const char* file, int line, const char* msg, ...);
 
+		void ForceFlush();
+
 		//==========================================
 		//	flag
 		//==========================================
@@ -52,35 +54,35 @@ namespace DYE
 
 #ifdef DYE_DEBUG
 
-#define LogError( ... )															\
-  do																			\
-  {																				\
-    LOG->Print(Logger::LogType::Error, __FILE__, __LINE__, __VA_ARGS__ );		\
-  } while(false)							
+#define LogError( ... )																\
+	do																				\
+	{																				\
+		LOG->Print(Logger::LogType::Error, __FILE__, __LINE__, __VA_ARGS__ );		\
+	} while(false)							
 
-#define LogDebug( ... )															\
-  do																			\
-  {																				\
-    LOG->Print(Logger::LogType::Debug, __FILE__, __LINE__, __VA_ARGS__ );		\
-  } while(false)							
+#define LogDebug( ... )																\
+	do																				\
+	{																				\
+		LOG->Print(Logger::LogType::Debug, __FILE__, __LINE__, __VA_ARGS__ );		\
+	} while(false)							
 
-#define LogInfo( ... )															\
-  do																			\
-  {																				\
-    LOG->Print(Logger::LogType::Info, __FILE__, __LINE__, __VA_ARGS__ );		\
-  } while(false)							
+#define LogInfo( ... )																\
+	do																				\
+	{																				\
+		LOG->Print(Logger::LogType::Info, __FILE__, __LINE__, __VA_ARGS__ );		\
+	} while(false)							
 
-#define LogWarning( ... )														\
-  do																			\
-  {																				\
-    LOG->Print(Logger::LogType::Warning, __FILE__, __LINE__, __VA_ARGS__ );		\
-  } while(false)							
+#define LogWarning( ... )															\
+	do																				\
+	{																				\
+		LOG->Print(Logger::LogType::Warning, __FILE__, __LINE__, __VA_ARGS__ );		\
+	} while(false)							
 
-#define LogGL( ... )															\
-  do																			\
-  {																				\
-    LOG->CustomPrint("OPENGL", __FILE__, __LINE__, __VA_ARGS__ );				\
-  } while(false)
+#define LogGL( ... )																\
+	do																				\
+	{																				\
+		LOG->CustomPrint("OPENGL", __FILE__, __LINE__, __VA_ARGS__ );				\
+	} while(false)
 
 #else
 

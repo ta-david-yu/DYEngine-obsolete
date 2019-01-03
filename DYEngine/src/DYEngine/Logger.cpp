@@ -101,4 +101,10 @@ namespace DYE
 
 		fprintf(stderr, "\n");
 	}
+
+	void Logger::ForceFlush()
+	{
+		if (m_pFile != nullptr)
+			fflush(m_pFile);
+	}
 }

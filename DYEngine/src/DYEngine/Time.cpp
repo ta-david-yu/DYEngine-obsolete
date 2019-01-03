@@ -1,5 +1,7 @@
 #include <DYEngine/Time.h>
 
+#include <DYEngine/utilities/Logger.h>
+
 namespace DYE
 {
 	Time* Time::s_pInstance = nullptr;
@@ -9,7 +11,7 @@ namespace DYE
 		if (s_pInstance == nullptr)
 			s_pInstance = new Time();
 
-		assert(s_pInstance != nullptr);
+		DYE_ASSERT(s_pInstance != nullptr, "Instance not found.");
 		return s_pInstance;
 	}
 

@@ -47,11 +47,12 @@ void Scene00::load()
 
 
 	Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
-	assert(RTex->m_TextureType == Texture::TextureType::Texture2D);
-	assert(RTex->m_FilteringType == Texture::FilteringType::Linear);
-	assert(RTex->m_WrappingType == Texture::WrappingType::ClampToBorder);
-	assert(RTex->m_UseMipMap == true);
-	assert(RTex->m_MipMapLevel == 5);
+
+	DYE_ASSERT(RTex->m_TextureType == Texture::TextureType::Texture2D, "");
+	DYE_ASSERT(RTex->m_FilteringType == Texture::FilteringType::Linear, "");
+	DYE_ASSERT(RTex->m_WrappingType == Texture::WrappingType::ClampToBorder, "");
+	DYE_ASSERT(RTex->m_UseMipMap == true, "");
+	DYE_ASSERT(RTex->m_MipMapLevel == 5, "");
 
 
 	Text* RText = RESOURCE_MGR->Load<Text>("test.txt");
@@ -79,23 +80,23 @@ void Scene01::load()
 	Vector3f bigY(0, value, 0);
 	Vector3f bigXY(value, value, 0);
 
-	assert(unitX == normX);
-	assert(unitY == normY);
-	assert(x == normX);
-	assert(y == normY);
-	assert(unitX != normY);
-	assert(unitY != normX);
-	assert(x != normY);
-	assert(y != normX);
-	assert(x == bigX.Normalized());
-	assert(y == bigY.Normalized());
+	DYE_ASSERT(unitX == normX, "");
+	DYE_ASSERT(unitY == normY, "");
+	DYE_ASSERT(x == normX, "");
+	DYE_ASSERT(y == normY, "");
+	DYE_ASSERT(unitX != normY, "");
+	DYE_ASSERT(unitY != normX, "");
+	DYE_ASSERT(x != normY, "");
+	DYE_ASSERT(y != normX, "");
+	DYE_ASSERT(x == bigX.Normalized(), "");
+	DYE_ASSERT(y == bigY.Normalized(), "");
 
-	assert(Math::IsEqual(bigX.Magnitude(), bigY.Magnitude()));
-	assert(bigXY == (bigX + bigY));
+	DYE_ASSERT(Math::IsEqual(bigX.Magnitude(), bigY.Magnitude()), "");
+	DYE_ASSERT(bigXY == (bigX + bigY), "");
 
 	Vector2f x2 = Vector2f::UnitX();
 	Vector2f x2_0 = Vector2f::UnitX();
-	assert(x2 == x2_0);
+	DYE_ASSERT(x2 == x2_0, "");
 
 	Vector3f forward = Vector3f::UnitZ();
 	Vector3f right = Vector3f::UnitX();
@@ -105,7 +106,7 @@ void Scene01::load()
 
 	printf("ori: %s\n", right.ToString().c_str());
 	printf("rot: %s\n", rotRight.ToString().c_str());
-	assert(rotRight == right);
+	DYE_ASSERT(rotRight == right, "");
 
 	printf("test passed!\n");
 }
@@ -119,29 +120,29 @@ void Scene02::load()
 
 	ent00->AddComponent<Transform>();
 
-	assert(SYSTEM_MGR->HasSystem<ReusablePool>());
+	DYE_ASSERT(SYSTEM_MGR->HasSystem<ReusablePool>(), "");
 
-	assert(SYSTEM_MGR->HasSystem<Transform>());
+	DYE_ASSERT(SYSTEM_MGR->HasSystem<Transform>(), "");
 
-	assert(comp00->GetComponent<Transform>() == comp00->GetTransform());
+	DYE_ASSERT(comp00->GetComponent<Transform>() == comp00->GetTransform(), "");
 
-	assert(!SYSTEM_MGR->HasSystem<DebugCPUComponent>());
+	DYE_ASSERT(!SYSTEM_MGR->HasSystem<DebugCPUComponent>(), "");
 
 	ent00->SetName("Obj00_v1");
-	assert(comp00->GetName() == "Obj00_v1");
-	assert(ent00->GetName() == "Obj00_v1");
+	DYE_ASSERT(comp00->GetName() == "Obj00_v1", "");
+	DYE_ASSERT(ent00->GetName() == "Obj00_v1", "");
 
 	comp00->SetName("Obj00_v2");
-	assert(comp00->GetName() == "Obj00_v2");
-	assert(ent00->GetName() == "Obj00_v2");
+	DYE_ASSERT(comp00->GetName() == "Obj00_v2", "");
+	DYE_ASSERT(ent00->GetName() == "Obj00_v2", "");
 
 	ent00->SetName("Obj00_v3");
-	assert(comp00->GetName() == "Obj00_v3");
-	assert(ent00->GetName() == "Obj00_v3");
+	DYE_ASSERT(comp00->GetName() == "Obj00_v3", "");
+	DYE_ASSERT(ent00->GetName() == "Obj00_v3", "");
 
 	comp00->SetName("Obj00_v4");
-	assert(comp00->GetName() == "Obj00_v4");
-	assert(ent00->GetName() == "Obj00_v4");
+	DYE_ASSERT(comp00->GetName() == "Obj00_v4", "");
+	DYE_ASSERT(ent00->GetName() == "Obj00_v4", "");
 
 	printf("test passed!\n");
 }

@@ -101,6 +101,7 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	public:
+		Texture();
 		~Texture();
 	};
 

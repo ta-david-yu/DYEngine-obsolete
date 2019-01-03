@@ -99,7 +99,7 @@ namespace DYE
 		// therefore, m_pSystem and m_pEntity are handled. Derived class's copyFrom must call base.copyFrom(IComponent* _other)
 		virtual void copyFrom(IComponent* _other);
 		// called by AddComponent(IComp), return an identical component pointer.
-		virtual IComponent* clone() { assert(false); return nullptr; }		// TO DO: to abstract
+		virtual IComponent* clone();		// TO DO: to abstract
 	public:
 		virtual void SetName(const std::string& _name);
 	public:

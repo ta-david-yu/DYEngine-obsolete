@@ -69,7 +69,7 @@ namespace DYE
 		{
 			s_pInstance = new ResourceManager();
 		}
-		assert(s_pInstance != nullptr);
+		DYE_ASSERT(s_pInstance != nullptr, "Instance not found.");
 		return s_pInstance;
 	}
 
