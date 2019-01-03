@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F8B723A9-E484-7EB4-0D9E-6C5CF9C9B342}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>DYEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86\DYEngine\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86\DYEngine\</IntDir>
+    <TargetName>DYEngine</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\DYEngine\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\DYEngine\</IntDir>
+    <TargetName>DYEngine</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86\DYEngine\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86\DYEngine\</IntDir>
+    <TargetName>DYEngine</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\DYEngine\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\DYEngine\</IntDir>
+    <TargetName>DYEngine</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Debug-windows-x86\DYEngine\DYEngine.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows-x86\DYEngine\DYEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86\DYEngine\DYEngine.dll ..\bin\Debug-windows-x86\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86\DYEngine\DYEngine.dll ..\bin\Debug-windows-x86\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\DYEngine\DYEngine.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\DYEngine\DYEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\DYEngine\DYEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\DYEngine\DYEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Release-windows-x86\DYEngine\DYEngine.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows-x86\DYEngine\DYEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86\DYEngine\DYEngine.dll ..\bin\Release-windows-x86\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86\DYEngine\DYEngine.dll ..\bin\Release-windows-x86\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/std:c++14 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Release-windows-x86_64\DYEngine\DYEngine.lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\DYEngine\DYEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\DYEngine\DYEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\DYEngine\DYEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\DYEngine\Base.h" />
+    <ClInclude Include="include\DYEngine\Core.h" />
+    <ClInclude Include="include\DYEngine\Entity.h" />
+    <ClInclude Include="include\DYEngine\GameCore.h" />
+    <ClInclude Include="include\DYEngine\Graphics.h" />
+    <ClInclude Include="include\DYEngine\Interface.h" />
+    <ClInclude Include="include\DYEngine\Main.h" />
+    <ClInclude Include="include\DYEngine\Resource.h" />
+    <ClInclude Include="include\DYEngine\Scene.h" />
+    <ClInclude Include="include\DYEngine\System.h" />
+    <ClInclude Include="include\DYEngine\Time.h" />
+    <ClInclude Include="include\DYEngine\Utility.h" />
+    <ClInclude Include="include\DYEngine\graphics\Camera.h" />
+    <ClInclude Include="include\DYEngine\graphics\Image.h" />
+    <ClInclude Include="include\DYEngine\graphics\Material.h" />
+    <ClInclude Include="include\DYEngine\graphics\MaterialAttribute.h" />
+    <ClInclude Include="include\DYEngine\graphics\Mesh.h" />
+    <ClInclude Include="include\DYEngine\graphics\MeshRenderer.h" />
+    <ClInclude Include="include\DYEngine\graphics\RenderUnit.h" />
+    <ClInclude Include="include\DYEngine\graphics\Renderer.h" />
+    <ClInclude Include="include\DYEngine\graphics\RendererSystem.h" />
+    <ClInclude Include="include\DYEngine\graphics\Shader.h" />
+    <ClInclude Include="include\DYEngine\graphics\SpriteRenderer.h" />
+    <ClInclude Include="include\DYEngine\graphics\Texture.h" />
+    <ClInclude Include="include\DYEngine\graphics\Uniform.h" />
+    <ClInclude Include="include\DYEngine\interfaces\IApplication.h" />
+    <ClInclude Include="include\DYEngine\interfaces\IComponent.h" />
+    <ClInclude Include="include\DYEngine\utilities\Debug.h" />
+    <ClInclude Include="include\DYEngine\utilities\Delegate.h" />
+    <ClInclude Include="include\DYEngine\utilities\Logger.h" />
+    <ClInclude Include="include\DYEngine\utilities\Macro.h" />
+    <ClInclude Include="include\DYEngine\utilities\Math.h" />
+    <ClInclude Include="include\DYEngine\utilities\OpenGL.h" />
+    <ClInclude Include="include\DYEngine\utilities\Rect.h" />
+    <ClInclude Include="include\DYEngine\utilities\Vector.h" />
+    <ClInclude Include="include\DYEngine\utilities\XMLParser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\DYEngine\Base.cpp" />
+    <ClCompile Include="src\DYEngine\Camera.cpp" />
+    <ClCompile Include="src\DYEngine\Delegate.cpp" />
+    <ClCompile Include="src\DYEngine\Entity.cpp" />
+    <ClCompile Include="src\DYEngine\GameCore.cpp" />
+    <ClCompile Include="src\DYEngine\IApplication.cpp" />
+    <ClCompile Include="src\DYEngine\IComponent.cpp" />
+    <ClCompile Include="src\DYEngine\Image.cpp" />
+    <ClCompile Include="src\DYEngine\Logger.cpp" />
+    <ClCompile Include="src\DYEngine\Material.cpp" />
+    <ClCompile Include="src\DYEngine\MaterialAttribute.cpp" />
+    <ClCompile Include="src\DYEngine\Math.cpp" />
+    <ClCompile Include="src\DYEngine\Mesh.cpp" />
+    <ClCompile Include="src\DYEngine\MeshRenderer.cpp" />
+    <ClCompile Include="src\DYEngine\OpenGL.cpp" />
+    <ClCompile Include="src\DYEngine\Rect.cpp" />
+    <ClCompile Include="src\DYEngine\RenderUnit.cpp" />
+    <ClCompile Include="src\DYEngine\Renderer.cpp" />
+    <ClCompile Include="src\DYEngine\RendererSystem.cpp" />
+    <ClCompile Include="src\DYEngine\Resource.cpp" />
+    <ClCompile Include="src\DYEngine\Scene.cpp" />
+    <ClCompile Include="src\DYEngine\Shader.cpp" />
+    <ClCompile Include="src\DYEngine\SpriteRenderer.cpp" />
+    <ClCompile Include="src\DYEngine\System.cpp" />
+    <ClCompile Include="src\DYEngine\Texture.cpp" />
+    <ClCompile Include="src\DYEngine\Time.cpp" />
+    <ClCompile Include="src\DYEngine\Uniform.cpp" />
+    <ClCompile Include="src\DYEngine\Vector.cpp" />
+    <ClCompile Include="vendor\include\glad\glad.c" />
+    <ClCompile Include="vendor\include\glm\detail\dummy.cpp" />
+    <ClCompile Include="vendor\include\glm\detail\glm.cpp" />
+    <ClCompile Include="vendor\include\tinyxml2\tinyxml2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
