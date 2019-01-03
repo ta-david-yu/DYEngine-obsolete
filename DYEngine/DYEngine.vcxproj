@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -108,8 +108,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86\DYEngine\DYEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -121,7 +120,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -130,8 +129,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>lib\x86_64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\DYEngine\DYEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -143,7 +141,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -156,8 +154,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86\DYEngine\DYEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -169,7 +166,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;include\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -182,8 +179,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>lib\x86_64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86_64\DYEngine\DYEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -227,21 +223,6 @@
     <ClInclude Include="include\DYEngine\utilities\Rect.h" />
     <ClInclude Include="include\DYEngine\utilities\Vector.h" />
     <ClInclude Include="include\DYEngine\utilities\XMLParser.h" />
-    <ClInclude Include="include\vendor\GLFW\glfw3.h" />
-    <ClInclude Include="include\vendor\GLFW\glfw3native.h" />
-    <ClInclude Include="include\vendor\KHR\khrplatform.h" />
-    <ClInclude Include="include\vendor\glad\glad.h" />
-    <ClInclude Include="include\vendor\glm\simd\common.h" />
-    <ClInclude Include="include\vendor\glm\simd\exponential.h" />
-    <ClInclude Include="include\vendor\glm\simd\geometric.h" />
-    <ClInclude Include="include\vendor\glm\simd\integer.h" />
-    <ClInclude Include="include\vendor\glm\simd\matrix.h" />
-    <ClInclude Include="include\vendor\glm\simd\packing.h" />
-    <ClInclude Include="include\vendor\glm\simd\platform.h" />
-    <ClInclude Include="include\vendor\glm\simd\trigonometric.h" />
-    <ClInclude Include="include\vendor\glm\simd\vector_relational.h" />
-    <ClInclude Include="include\vendor\stb\stb_image.h" />
-    <ClInclude Include="include\vendor\tinyxml2-5.0.1\tinyxml2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DYEngine\Base.cpp" />
@@ -272,8 +253,15 @@
     <ClCompile Include="src\DYEngine\Time.cpp" />
     <ClCompile Include="src\DYEngine\Uniform.cpp" />
     <ClCompile Include="src\DYEngine\Vector.cpp" />
-    <ClCompile Include="src\vendor\glad\glad.c" />
-    <ClCompile Include="src\vendor\tinyxml2-5.0.1\tinyxml2.cpp" />
+    <ClCompile Include="vendor\include\glad\glad.c" />
+    <ClCompile Include="vendor\include\glm\detail\dummy.cpp" />
+    <ClCompile Include="vendor\include\glm\detail\glm.cpp" />
+    <ClCompile Include="vendor\include\tinyxml2\tinyxml2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

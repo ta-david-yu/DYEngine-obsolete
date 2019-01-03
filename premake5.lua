@@ -16,13 +16,9 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["glad"] = "DYEngine/vendor/glad/include"
 IncludeDir["GLFW"] = "DYEngine/vendor/GLFW/include"
-IncludeDir["glm"] = "DYEngine/vendor/glm/include"
-IncludeDir["KHR"] = "DYEngine/vendor/KHR/include"
-IncludeDir["stb"] = "DYEngine/vendor/stb/include"
-IncludeDir["tinyxml2-5.0.1"] = "DYEngine/vendor/tinyxml2-5.0.1/include"
 
+include "DYEngine/vendor/GLFW"
 
 project "DYEngine"
 	location "DYEngine"
@@ -36,21 +32,25 @@ project "DYEngine"
 	{
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/**.c",
-		"%{prj.name}/include/**.h"
+		"%{prj.name}/include/**.h",
+        
+		"%{prj.name}/vendor/include/**.c",
+		"%{prj.name}/vendor/include/**.cpp"
 	}
     
 	includedirs
 	{
 		"%{prj.name}/include",
-		"%{prj.name}/include/vendor"
+		"%{prj.name}/vendor/include",
+        
+        "%{IncludeDir.GLFW}"
 	}
     
-    libdirs 
+    links
     {
-		"%{prj.name}/lib/%{cfg.architecture}"
+        "GLFW",
+        "opengl32.lib"
     }
-    
-	links { "glfw3" }
    
 	filter "system:windows"
 		cppdialect "C++14"
@@ -88,13 +88,15 @@ project "Sandbox"
 	{
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/**.c",
-		"%{prj.name}/include/**.h"
+		"%{prj.name}/include/**.h",
 	}
 
 	includedirs
 	{
+		"%{prj.name}/include",
+        
 		"DYEngine/include",
-		"DYEngine/include/vendor"
+		"DYEngine/vendor/include",
 	}
 
 	links

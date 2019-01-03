@@ -104,7 +104,7 @@ namespace DYE
 		return m_Type;
 	}
 
-	Shader::Shader(const std::string& shadername) : m_ShaderID(-1), m_Name(shadername)
+	Shader::Shader(const std::string& shadername) : m_ShaderID(-1), m_pSourceText(nullptr), m_Name(shadername)
 	{
 		
 	}

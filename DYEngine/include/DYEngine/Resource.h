@@ -137,7 +137,7 @@ namespace DYE
 	//	Resource: resource are objects that could be reused in many places
 	//====================================================================================
 	template <class RType>
-	class DYE_API Resource : public ResourceBase
+	class Resource : public ResourceBase
 	{
 		friend class ResourceManager;
 	private:
@@ -201,7 +201,39 @@ namespace DYE
 		void ReleaseAll();
 
 		template <class T>
-		T* Load(const std::string& filename, int argc = 0, void *args = nullptr);
+		T* Load(const std::string& filename, int argc = 0, void *args = nullptr)
+		{
+			static_assert(std::is_base_of<IResourceValue, T>::value, "Invalid resource type for ResourceManager::Load.");
+
+			// get full file path
+			std::string fullPathFileName = RESOURCE_PATH;
+			fullPathFileName += T::SpecificFilePath() + filename;
+
+			// find if already loaded
+			ResourceMapItr itr = m_ResourceMap.find(fullPathFileName);
+			if (itr != m_ResourceMap.end())
+			{
+				itr->second->incRef();
+				return static_cast<Resource<T>*>(itr->second)->GetValue();
+			}
+
+			// load new resources
+			Resource<T>* resrc = new Resource<T>(fullPathFileName, argc, args);
+
+			// return null if is not properly loaded
+			if (!resrc->IsProperlyLoaded())
+			{
+				delete resrc;
+				return nullptr;
+			}
+
+			resrc->incRef();
+
+			// add to the resource map
+			m_ResourceMap.insert(ResourcePair(fullPathFileName, resrc));
+			return resrc->GetValue();
+		}
+
 		bool Unload(IResourceValue* resrcValue);
 		bool Unload(const std::string& filename);
 
@@ -298,39 +330,4 @@ namespace DYE
 		//	constructor/destructor
 		//==========================================
 	};
-
-	// Manager keeps seperate list TO DO: maybe
-	template <class T>
-	T* ResourceManager::Load(const std::string& filename, int argc, void *args)
-	{
-		static_assert(std::is_base_of<IResourceValue, T>::value, "Invalid resource type for ResourceManager::Load.");
-
-		// get full file path
-		std::string fullPathFileName = RESOURCE_PATH;
-		fullPathFileName += T::SpecificFilePath() + filename;
-
-		// find if already loaded
-		ResourceMapItr itr = m_ResourceMap.find(fullPathFileName);
-		if (itr != m_ResourceMap.end())
-		{
-			itr->second->incRef();
-			return static_cast<Resource<T>*>(itr->second)->GetValue();
-		}
-
-		// load new resources
-		Resource<T>* resrc = new Resource<T>(fullPathFileName, argc, args);
-
-		// return null if is not properly loaded
-		if (!resrc->IsProperlyLoaded())
-		{
-			delete resrc;
-			return nullptr;
-		}
-
-		resrc->incRef();
-
-		// add to the resource map
-		m_ResourceMap.insert(ResourcePair(fullPathFileName, resrc));
-		return resrc->GetValue();
-	}
 }

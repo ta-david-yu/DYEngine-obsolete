@@ -16,44 +16,29 @@
     <Filter Include="include\DYEngine\utilities">
       <UniqueIdentifier>{16E5B990-02F5-6561-6BAE-CA7F57DD54FA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\vendor">
-      <UniqueIdentifier>{C651CA71-B21F-BE77-9BB3-2E9E87209ADC}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\GLFW">
-      <UniqueIdentifier>{C5183DE3-317A-1AF1-BAE7-60A3264851B0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\KHR">
-      <UniqueIdentifier>{3AD3A40E-26B7-6564-8F17-60B77B1A50E6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\glad">
-      <UniqueIdentifier>{8D304FE3-F991-2CF1-82FF-72A3EE5F63B0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\glm">
-      <UniqueIdentifier>{154FA50E-0133-6664-6A93-60B7569650E6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\glm\simd">
-      <UniqueIdentifier>{9160DE79-FD97-2611-06A2-8A3472584D0A}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\stb">
-      <UniqueIdentifier>{1E83A50E-0A67-6664-73C7-60B75FCA50E6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\vendor\tinyxml2-5.0.1">
-      <UniqueIdentifier>{FB859E88-679E-85B2-304B-154C9C221A4C}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\DYEngine">
       <UniqueIdentifier>{EFBA9DD9-DB1D-2D7E-84A3-653470E5F800}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\vendor">
-      <UniqueIdentifier>{EA4CE07F-D604-22CD-3F0C-FB282BE3BCBD}</UniqueIdentifier>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\vendor\glad">
-      <UniqueIdentifier>{31C253D9-9D4D-C19D-A65E-449212691D9E}</UniqueIdentifier>
+    <Filter Include="vendor\include">
+      <UniqueIdentifier>{269ED467-126C-C86D-FBFF-3894E76CA4D2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\vendor\tinyxml2-5.0.1">
-      <UniqueIdentifier>{9F74B0C5-0B37-E44F-54E7-72DCC0E8BC2D}</UniqueIdentifier>
+    <Filter Include="vendor\include\glad">
+      <UniqueIdentifier>{ED389857-599A-7565-E207-BC174E68AC24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\include\glm">
+      <UniqueIdentifier>{75CBBE5F-61AF-7FB5-CA0F-7A08B6126A37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\include\glm\detail">
+      <UniqueIdentifier>{97AD7CBE-0370-B048-4C20-3FD5B8218926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\include\tinyxml2">
+      <UniqueIdentifier>{9CBE30A2-08F6-7839-1100-DD5C7DB69F32}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,51 +150,6 @@
     <ClInclude Include="include\DYEngine\utilities\XMLParser.h">
       <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="include\vendor\GLFW\glfw3.h">
-      <Filter>include\vendor\GLFW</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\GLFW\glfw3native.h">
-      <Filter>include\vendor\GLFW</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\KHR\khrplatform.h">
-      <Filter>include\vendor\KHR</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glad\glad.h">
-      <Filter>include\vendor\glad</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\common.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\exponential.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\geometric.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\integer.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\matrix.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\packing.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\platform.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\trigonometric.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\glm\simd\vector_relational.h">
-      <Filter>include\vendor\glm\simd</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\stb\stb_image.h">
-      <Filter>include\vendor\stb</Filter>
-    </ClInclude>
-    <ClInclude Include="include\vendor\tinyxml2-5.0.1\tinyxml2.h">
-      <Filter>include\vendor\tinyxml2-5.0.1</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DYEngine\Base.cpp">
@@ -296,11 +236,17 @@
     <ClCompile Include="src\DYEngine\Vector.cpp">
       <Filter>src\DYEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\vendor\glad\glad.c">
-      <Filter>src\vendor\glad</Filter>
+    <ClCompile Include="vendor\include\glad\glad.c">
+      <Filter>vendor\include\glad</Filter>
     </ClCompile>
-    <ClCompile Include="src\vendor\tinyxml2-5.0.1\tinyxml2.cpp">
-      <Filter>src\vendor\tinyxml2-5.0.1</Filter>
+    <ClCompile Include="vendor\include\glm\detail\dummy.cpp">
+      <Filter>vendor\include\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\include\glm\detail\glm.cpp">
+      <Filter>vendor\include\glm\detail</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\include\tinyxml2\tinyxml2.cpp">
+      <Filter>vendor\include\tinyxml2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
