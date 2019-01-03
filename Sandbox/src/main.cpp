@@ -4,13 +4,15 @@
 
 #include <iostream>
 #include <cassert>
+#include <direct.h>
 
 using namespace DYE;
 
 int main()
 {
 	// create log file
-	FILE* logFile = fopen("log.txt", "w+");
+	_mkdir("Log");
+	FILE* logFile = fopen("Log/log.txt", "w+");
 	LOG->SetOutputFile(logFile);
 
 	SandboxApplication* app = new SandboxApplication();
