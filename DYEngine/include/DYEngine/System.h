@@ -76,7 +76,6 @@ namespace DYE
 	//====================================================================================
 	class DYE_API SystemManager : public NonCopyable
 	{
-		friend class IApplication;
 		friend class GameCore;
 
 	public:
