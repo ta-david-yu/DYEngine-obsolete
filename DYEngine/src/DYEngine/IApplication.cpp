@@ -1,11 +1,11 @@
-#include <DYEngine/interfaces/IApplication.h>
-#include <DYEngine/Time.h>
-#include <DYEngine/utilities/Logger.h>
-#include <DYEngine/Resource.h>
+#include "DYEngine/IApplication.h"
+#include "DYEngine/Time.h"
+#include "DYEngine/util/Logger.h"
+#include "DYEngine/Resource.h"
 
-#include <DYEngine/graphics/Mesh.h>
-#include <DYEngine/graphics/Texture.h>
-#include <DYEngine/graphics/Material.h>
+#include "DYEngine/graphics/Mesh.h"
+#include "DYEngine/graphics/Texture.h"
+#include "DYEngine/graphics/Material.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

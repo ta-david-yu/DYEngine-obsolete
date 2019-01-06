@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/Resource.h>
+#include "DYEngine/Resource.h"
 
 #include <stb/stb_image.h>
 

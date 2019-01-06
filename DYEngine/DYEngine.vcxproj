@@ -190,20 +190,20 @@
     <ClInclude Include="include\DYEngine\Core.h" />
     <ClInclude Include="include\DYEngine\Entity.h" />
     <ClInclude Include="include\DYEngine\GameCore.h" />
-    <ClInclude Include="include\DYEngine\Graphics.h" />
-    <ClInclude Include="include\DYEngine\Interface.h" />
+    <ClInclude Include="include\DYEngine\IApplication.h" />
+    <ClInclude Include="include\DYEngine\IComponent.h" />
     <ClInclude Include="include\DYEngine\Main.h" />
     <ClInclude Include="include\DYEngine\Resource.h" />
     <ClInclude Include="include\DYEngine\Scene.h" />
     <ClInclude Include="include\DYEngine\System.h" />
     <ClInclude Include="include\DYEngine\Time.h" />
-    <ClInclude Include="include\DYEngine\Utility.h" />
     <ClInclude Include="include\DYEngine\graphics\Camera.h" />
     <ClInclude Include="include\DYEngine\graphics\Image.h" />
     <ClInclude Include="include\DYEngine\graphics\Material.h" />
     <ClInclude Include="include\DYEngine\graphics\MaterialAttribute.h" />
     <ClInclude Include="include\DYEngine\graphics\Mesh.h" />
     <ClInclude Include="include\DYEngine\graphics\MeshRenderer.h" />
+    <ClInclude Include="include\DYEngine\graphics\OpenGL.h" />
     <ClInclude Include="include\DYEngine\graphics\RenderUnit.h" />
     <ClInclude Include="include\DYEngine\graphics\Renderer.h" />
     <ClInclude Include="include\DYEngine\graphics\RendererSystem.h" />
@@ -211,16 +211,13 @@
     <ClInclude Include="include\DYEngine\graphics\SpriteRenderer.h" />
     <ClInclude Include="include\DYEngine\graphics\Texture.h" />
     <ClInclude Include="include\DYEngine\graphics\Uniform.h" />
-    <ClInclude Include="include\DYEngine\interfaces\IApplication.h" />
-    <ClInclude Include="include\DYEngine\interfaces\IComponent.h" />
-    <ClInclude Include="include\DYEngine\utilities\Debug.h" />
-    <ClInclude Include="include\DYEngine\utilities\Delegate.h" />
-    <ClInclude Include="include\DYEngine\utilities\Logger.h" />
-    <ClInclude Include="include\DYEngine\utilities\Macro.h" />
-    <ClInclude Include="include\DYEngine\utilities\Math.h" />
-    <ClInclude Include="include\DYEngine\utilities\OpenGL.h" />
-    <ClInclude Include="include\DYEngine\utilities\Rect.h" />
-    <ClInclude Include="include\DYEngine\utilities\Vector.h" />
+    <ClInclude Include="include\DYEngine\math\Math.h" />
+    <ClInclude Include="include\DYEngine\math\Rect.h" />
+    <ClInclude Include="include\DYEngine\math\Vector.h" />
+    <ClInclude Include="include\DYEngine\util\Debug.h" />
+    <ClInclude Include="include\DYEngine\util\Delegate.h" />
+    <ClInclude Include="include\DYEngine\util\Logger.h" />
+    <ClInclude Include="include\DYEngine\util\Macro.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DYEngine\Base.cpp" />

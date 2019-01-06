@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/Resource.h>
-#include <DYEngine/utilities/OpenGL.h>
+#include "DYEngine/Resource.h"
+#include "DYEngine/graphics/OpenGL.h"
 
 namespace DYE
 {

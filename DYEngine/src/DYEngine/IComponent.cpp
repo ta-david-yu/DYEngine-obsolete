@@ -1,6 +1,6 @@
-#include <DYEngine/interfaces/IComponent.h>
+#include "DYEngine/IComponent.h"
 
-#include <DYEngine/utilities/Logger.h>
+#include "DYEngine/util/Logger.h"
 
 #include <type_traits>
 

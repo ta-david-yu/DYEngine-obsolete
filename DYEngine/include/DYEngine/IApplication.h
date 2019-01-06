@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/GameCore.h>
-#include <DYEngine/Time.h>
+#include "DYEngine/GameCore.h"
+#include "DYEngine/Time.h"
 
 #include <iostream>
 

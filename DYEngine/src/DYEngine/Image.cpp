@@ -1,5 +1,5 @@
-#include <DYEngine/graphics/Image.h>
-#include <DYEngine/utilities/Logger.h>
+#include "DYEngine/graphics/Image.h"
+#include "DYEngine/util/Logger.h"
 
 #include <tinyxml2.h>
 

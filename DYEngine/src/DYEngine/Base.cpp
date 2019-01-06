@@ -1,7 +1,7 @@
-#include <DYEngine/Base.h>
-#include <DYEngine/Entity.h>
-#include <DYEngine/interfaces/IComponent.h>
-#include <DYEngine/utilities/Logger.h>
+#include "DYEngine/Base.h"
+#include "DYEngine/Entity.h"
+#include "DYEngine/IComponent.h"
+#include "DYEngine/util/Logger.h"
 
 #include <typeinfo>
 #include <typeindex>

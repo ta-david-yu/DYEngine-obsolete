@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/utilities/Rect.h>
-#include <DYEngine/utilities/Vector.h>
+#include "DYEngine/math/Rect.h"
+#include "DYEngine/math/Vector.h"
 
 #define GLM_FORCE_RADIANS
 

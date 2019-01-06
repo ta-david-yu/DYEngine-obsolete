@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/utilities/OpenGL.h>
+#include "DYEngine/graphics/OpenGL.h"
 
 #include <string>
 

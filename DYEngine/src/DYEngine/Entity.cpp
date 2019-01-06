@@ -1,9 +1,9 @@
-#include <DYEngine/Entity.h>
+#include "DYEngine/Entity.h"
 
-#include <DYEngine/graphics/Renderer.h>
-#include <DYEngine/graphics/SpriteRenderer.h>
-#include <DYEngine/graphics/MeshRenderer.h>
-#include <DYEngine/utilities/Logger.h>
+#include "DYEngine/graphics/Renderer.h"
+#include "DYEngine/graphics/SpriteRenderer.h"
+#include "DYEngine/graphics/MeshRenderer.h"
+#include "DYEngine/util/Logger.h"
 
 #include <type_traits>
 

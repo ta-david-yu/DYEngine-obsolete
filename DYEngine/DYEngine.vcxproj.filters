@@ -10,11 +10,11 @@
     <Filter Include="include\DYEngine\graphics">
       <UniqueIdentifier>{8B9FFE9A-F761-3225-4012-C1B1AC130B03}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\DYEngine\interfaces">
-      <UniqueIdentifier>{5E3A86DC-CA47-B4C2-532E-B0ADBF3A8079}</UniqueIdentifier>
+    <Filter Include="include\DYEngine\math">
+      <UniqueIdentifier>{A44EE3EA-10BB-9EE5-D9AE-364345DAC04D}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\DYEngine\utilities">
-      <UniqueIdentifier>{16E5B990-02F5-6561-6BAE-CA7F57DD54FA}</UniqueIdentifier>
+    <Filter Include="include\DYEngine\util">
+      <UniqueIdentifier>{1801E8EA-846D-A3E5-4D61-3B43B98CC54D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
@@ -36,10 +36,10 @@
     <ClInclude Include="include\DYEngine\GameCore.h">
       <Filter>include\DYEngine</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\Graphics.h">
+    <ClInclude Include="include\DYEngine\IApplication.h">
       <Filter>include\DYEngine</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\Interface.h">
+    <ClInclude Include="include\DYEngine\IComponent.h">
       <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Main.h">
@@ -55,9 +55,6 @@
       <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\Time.h">
-      <Filter>include\DYEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\Utility.h">
       <Filter>include\DYEngine</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\Camera.h">
@@ -76,6 +73,9 @@
       <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\MeshRenderer.h">
+      <Filter>include\DYEngine\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DYEngine\graphics\OpenGL.h">
       <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\DYEngine\graphics\RenderUnit.h">
@@ -99,35 +99,26 @@
     <ClInclude Include="include\DYEngine\graphics\Uniform.h">
       <Filter>include\DYEngine\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\interfaces\IApplication.h">
-      <Filter>include\DYEngine\interfaces</Filter>
+    <ClInclude Include="include\DYEngine\math\Math.h">
+      <Filter>include\DYEngine\math</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\interfaces\IComponent.h">
-      <Filter>include\DYEngine\interfaces</Filter>
+    <ClInclude Include="include\DYEngine\math\Rect.h">
+      <Filter>include\DYEngine\math</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Debug.h">
-      <Filter>include\DYEngine\utilities</Filter>
+    <ClInclude Include="include\DYEngine\math\Vector.h">
+      <Filter>include\DYEngine\math</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Delegate.h">
-      <Filter>include\DYEngine\utilities</Filter>
+    <ClInclude Include="include\DYEngine\util\Debug.h">
+      <Filter>include\DYEngine\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Logger.h">
-      <Filter>include\DYEngine\utilities</Filter>
+    <ClInclude Include="include\DYEngine\util\Delegate.h">
+      <Filter>include\DYEngine\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Macro.h">
-      <Filter>include\DYEngine\utilities</Filter>
+    <ClInclude Include="include\DYEngine\util\Logger.h">
+      <Filter>include\DYEngine\util</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Math.h">
-      <Filter>include\DYEngine\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\OpenGL.h">
-      <Filter>include\DYEngine\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Rect.h">
-      <Filter>include\DYEngine\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\Vector.h">
-      <Filter>include\DYEngine\utilities</Filter>
+    <ClInclude Include="include\DYEngine\util\Macro.h">
+      <Filter>include\DYEngine\util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

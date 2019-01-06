@@ -1,10 +1,10 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/Base.h>
-#include <DYEngine/interfaces\IComponent.h>
-#include <DYEngine/GameCore.h>
+#include "DYEngine/Base.h"
+#include "DYEngine/IComponent.h"
+#include "DYEngine/GameCore.h"
 
 #include <vector>
 #include <map>

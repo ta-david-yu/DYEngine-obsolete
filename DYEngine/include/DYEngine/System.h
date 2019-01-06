@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/interfaces/IComponent.h>
-#include <DYEngine/Entity.h>
+#include "DYEngine/IComponent.h"
+#include "DYEngine/Entity.h"
 
 #include <vector>
 #include <list>
