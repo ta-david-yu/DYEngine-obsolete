@@ -1,7 +1,5 @@
 #include <DYEngine/utilities/OpenGL.h>
 
-#include <GLFW/glfw3.h>
-
 namespace DYE
 {
 	std::string g_glErrorMessage;

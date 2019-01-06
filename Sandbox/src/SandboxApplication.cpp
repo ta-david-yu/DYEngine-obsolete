@@ -45,6 +45,7 @@ void Scene00::load()
 	Mesh* RMesh = RESOURCE_MGR->Load<Mesh>("123456", 0, nullptr);
 	Mesh* mesh = RMesh;
 
+	ShaderProgram* shader = RESOURCE_MGR->Load<ShaderProgram>("123", 0, nullptr);
 
 	Texture* RTex = RESOURCE_MGR->Load<Texture>("test_texture.texture", 0, nullptr);
 

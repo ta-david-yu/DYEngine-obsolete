@@ -31,10 +31,9 @@ namespace DYE
 			LogGL(glGetErrorMessage().c_str());	\
 	} while (false)
 	
-
 #else
 
 #define glCall(glFunction) glFunction
-#define glCheckAfterCall(glFunction)
+#define glCheckAfterCall(glFunction) glFunction
 
 #endif // DEBUG

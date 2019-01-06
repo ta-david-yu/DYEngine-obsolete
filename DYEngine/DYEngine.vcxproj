@@ -23,7 +23,6 @@
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DYEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -98,8 +97,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;GLFW_INCLUDE_NONE;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;vendor\glad\include;vendor\tinyxml2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -119,8 +118,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;GLFW_INCLUDE_NONE;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;vendor\glad\include;vendor\tinyxml2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -140,8 +139,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;GLFW_INCLUDE_NONE;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;vendor\glad\include;vendor\tinyxml2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -165,8 +164,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;DYE_PLATFORM_WINDOWS;DYE_BUILD_DLL;DYE_ENABLE_ASSERT;GLFW_INCLUDE_NONE;DYE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;vendor\include;vendor\GLFW\include;vendor\glad\include;vendor\tinyxml2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -222,7 +221,6 @@
     <ClInclude Include="include\DYEngine\utilities\OpenGL.h" />
     <ClInclude Include="include\DYEngine\utilities\Rect.h" />
     <ClInclude Include="include\DYEngine\utilities\Vector.h" />
-    <ClInclude Include="include\DYEngine\utilities\XMLParser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DYEngine\Base.cpp" />
@@ -253,14 +251,16 @@
     <ClCompile Include="src\DYEngine\Time.cpp" />
     <ClCompile Include="src\DYEngine\Uniform.cpp" />
     <ClCompile Include="src\DYEngine\Vector.cpp" />
-    <ClCompile Include="vendor\include\glad\glad.c" />
-    <ClCompile Include="vendor\include\glm\detail\dummy.cpp" />
-    <ClCompile Include="vendor\include\glm\detail\glm.cpp" />
-    <ClCompile Include="vendor\include\tinyxml2\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\glad\glad.vcxproj">
+      <Project>{DD62977C-C999-980D-7286-7E105E9C140F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\tinyxml2\tinyxml2.vcxproj">
+      <Project>{8C609325-782D-EE30-A146-DCD88D7223BF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
