@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/Resource.h>
-#include <DYEngine/graphics/MaterialAttribute.h>
+#include "DYEngine/Resource.h"
+#include "DYEngine/graphics/MaterialAttribute.h"
 
 #include <vector>
 

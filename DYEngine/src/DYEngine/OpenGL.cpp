@@ -1,4 +1,4 @@
-#include <DYEngine/utilities/OpenGL.h>
+#include "DYEngine/graphics/OpenGL.h"
 
 namespace DYE
 {

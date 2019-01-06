@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/interfaces/IApplication.h>
+#include "DYEngine/IApplication.h"
 
 #include <chrono>
 #include <thread>

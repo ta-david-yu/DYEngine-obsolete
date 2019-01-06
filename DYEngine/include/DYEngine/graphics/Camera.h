@@ -1,9 +1,9 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/utilities/Rect.h>
-#include <DYEngine/interfaces/IComponent.h>
+#include "DYEngine/math/Rect.h"
+#include "DYEngine/IComponent.h"
 
 namespace DYE
 {

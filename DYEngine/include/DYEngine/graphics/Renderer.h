@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/interfaces/IComponent.h>
+#include "DYEngine/IComponent.h"
 
 namespace DYE
 {

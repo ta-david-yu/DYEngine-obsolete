@@ -1,5 +1,5 @@
-#include <DYEngine/utilities/Vector.h>
-#include <DYEngine/utilities/Math.h>
+#include "DYEngine/math/Vector.h"
+#include "DYEngine/math/Math.h"
 
 namespace DYE
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/utilities/Vector.h>
+#include "DYEngine/math/Vector.h"
 
 namespace DYE
 {

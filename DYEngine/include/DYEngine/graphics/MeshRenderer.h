@@ -1,8 +1,8 @@
 #pragma once
 
-#include <DYEngine/Core.h>
+#include "DYEngine/Core.h"
 
-#include <DYEngine/graphics/Renderer.h>
+#include "DYEngine/graphics/Renderer.h"
 
 namespace DYE
 {

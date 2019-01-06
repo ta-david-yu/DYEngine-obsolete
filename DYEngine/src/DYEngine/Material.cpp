@@ -1,8 +1,8 @@
-#include <DYEngine/graphics/Material.h>
-#include <DYEngine/utilities/Logger.h>
-#include <DYEngine/graphics/Shader.h>
-#include <DYEngine/graphics/Texture.h>
-#include <DYEngine/utilities/Math.h>
+#include "DYEngine/graphics/Material.h"
+#include "DYEngine/util/Logger.h"
+#include "DYEngine/graphics/Shader.h"
+#include "DYEngine/graphics/Texture.h"
+#include "DYEngine/math/Math.h"
 
 #include <tinyxml2.h>
 

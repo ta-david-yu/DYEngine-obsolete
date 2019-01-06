@@ -1,6 +1,6 @@
 #pragma once
 
-#include <DYEngine/utilities/Logger.h>
+#include "DYEngine/util/Logger.h"
 
 #include <glad/glad.h>
 
