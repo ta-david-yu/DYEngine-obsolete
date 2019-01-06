@@ -1,7 +1,9 @@
 #include <DYEngine/graphics/Uniform.h>
 
 #include <DYEngine/graphics/Texture.h>
-#include <DYEngine/Utility.h>
+#include <DYEngine/utilities/Math.h>
+
+#include <glad/glad.h>
 
 namespace DYE
 {

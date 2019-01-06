@@ -22,24 +22,6 @@
     <Filter Include="src\DYEngine">
       <UniqueIdentifier>{EFBA9DD9-DB1D-2D7E-84A3-653470E5F800}</UniqueIdentifier>
     </Filter>
-    <Filter Include="vendor">
-      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\include">
-      <UniqueIdentifier>{269ED467-126C-C86D-FBFF-3894E76CA4D2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\include\glad">
-      <UniqueIdentifier>{ED389857-599A-7565-E207-BC174E68AC24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\include\glm">
-      <UniqueIdentifier>{75CBBE5F-61AF-7FB5-CA0F-7A08B6126A37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\include\glm\detail">
-      <UniqueIdentifier>{97AD7CBE-0370-B048-4C20-3FD5B8218926}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\include\tinyxml2">
-      <UniqueIdentifier>{9CBE30A2-08F6-7839-1100-DD5C7DB69F32}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DYEngine\Base.h">
@@ -147,9 +129,6 @@
     <ClInclude Include="include\DYEngine\utilities\Vector.h">
       <Filter>include\DYEngine\utilities</Filter>
     </ClInclude>
-    <ClInclude Include="include\DYEngine\utilities\XMLParser.h">
-      <Filter>include\DYEngine\utilities</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DYEngine\Base.cpp">
@@ -235,18 +214,6 @@
     </ClCompile>
     <ClCompile Include="src\DYEngine\Vector.cpp">
       <Filter>src\DYEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\include\glad\glad.c">
-      <Filter>vendor\include\glad</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\include\glm\detail\dummy.cpp">
-      <Filter>vendor\include\glm\detail</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\include\glm\detail\glm.cpp">
-      <Filter>vendor\include\glm\detail</Filter>
-    </ClCompile>
-    <ClCompile Include="vendor\include\tinyxml2\tinyxml2.cpp">
-      <Filter>vendor\include\tinyxml2</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

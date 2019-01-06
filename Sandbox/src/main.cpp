@@ -1,10 +1,8 @@
-#include <DYEngine\Main.h>
-
 #include "SandboxApplication.h"
 
 #include <iostream>
 #include <cassert>
-#include <direct.h>
+#include <direct.h>		// _mkdir
 
 using namespace DYE;
 

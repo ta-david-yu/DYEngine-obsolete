@@ -1,11 +1,14 @@
 #include <DYEngine/graphics/Material.h>
-#include <DYEngine/utilities/XMLParser.h>
 #include <DYEngine/utilities/Logger.h>
 #include <DYEngine/graphics/Shader.h>
 #include <DYEngine/graphics/Texture.h>
 #include <DYEngine/utilities/Math.h>
 
+#include <tinyxml2.h>
+
 #include <stdexcept>
+
+using namespace tinyxml2;
 
 namespace DYE
 {

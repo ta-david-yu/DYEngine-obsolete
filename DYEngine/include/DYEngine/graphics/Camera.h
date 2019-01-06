@@ -2,7 +2,6 @@
 
 #include <DYEngine/Core.h>
 
-#include <DYEngine/utilities/OpenGL.h>
 #include <DYEngine/utilities/Rect.h>
 #include <DYEngine/interfaces/IComponent.h>
 

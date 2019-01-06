@@ -13,7 +13,7 @@ namespace DYE
 	//====================================================================================
 	//	IUniform: interface for uniformVariable
 	//====================================================================================
-	class DYE_API IUniform
+	class IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -51,7 +51,7 @@ namespace DYE
 	//====================================================================================
 
 	template <class Type>
-	class DYE_API UniformVariable : public IUniform
+	class UniformVariable : public IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -88,7 +88,7 @@ namespace DYE
 	//	Texture Specialization Uniform
 	//====================================================================================
 	template<>
-	class DYE_API UniformVariable<Texture*> : public IUniform
+	class UniformVariable<Texture*> : public IUniform
 	{
 		//==========================================
 		//	memeber/variable
@@ -122,7 +122,7 @@ namespace DYE
 	};
 
 	template<>
-	class DYE_API UniformVariable<Texture> : public UniformVariable<Texture*>
+	class UniformVariable<Texture> : public UniformVariable<Texture*>
 	{
 	public:
 		UniformVariable(const std::string& _name) : UniformVariable<Texture*>(_name) {}

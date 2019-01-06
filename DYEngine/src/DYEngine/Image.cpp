@@ -1,9 +1,12 @@
 #include <DYEngine/graphics/Image.h>
-#include <DYEngine/utilities/XMLParser.h>
 #include <DYEngine/utilities/Logger.h>
+
+#include <tinyxml2.h>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
+
+using namespace tinyxml2;
 
 namespace DYE
 {

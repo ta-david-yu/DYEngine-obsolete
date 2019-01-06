@@ -1,7 +1,8 @@
 #include <DYEngine/graphics/Shader.h>
-#include <DYEngine/utilities/XMLParser.h>
-#include <DYEngine/utilities/Logger.h>
 
+#include <tinyxml2.h>
+
+using namespace tinyxml2;
 
 namespace DYE
 {

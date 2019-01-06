@@ -17,8 +17,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "DYEngine/vendor/GLFW/include"
+IncludeDir["glad"] = "DYEngine/vendor/glad/include"
+IncludeDir["tinyxml2"] = "DYEngine/vendor/tinyxml2/include"
 
 include "DYEngine/vendor/GLFW"
+include "DYEngine/vendor/glad"
+include "DYEngine/vendor/tinyxml2"
 
 project "DYEngine"
 	location "DYEngine"
@@ -30,12 +34,8 @@ project "DYEngine"
     
 	files
 	{
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.c",
 		"%{prj.name}/include/**.h",
-        
-		"%{prj.name}/vendor/include/**.c",
-		"%{prj.name}/vendor/include/**.cpp"
+		"%{prj.name}/src/**.cpp",
 	}
     
 	includedirs
@@ -43,25 +43,31 @@ project "DYEngine"
 		"%{prj.name}/include",
 		"%{prj.name}/vendor/include",
         
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.glad}",
+        "%{IncludeDir.tinyxml2}"
 	}
     
     links
     {
         "GLFW",
+        "glad",
+        "tinyxml2",
         "opengl32.lib"
     }
    
 	filter "system:windows"
 		cppdialect "C++14"
 		staticruntime "On"
-		systemversion "10.0.10240.0"
+		systemversion "latest"
 
 		defines
 		{
 			"DYE_PLATFORM_WINDOWS",
 			"DYE_BUILD_DLL",
-            "DYE_ENABLE_ASSERT"
+            "DYE_ENABLE_ASSERT",
+            
+            "GLFW_INCLUDE_NONE"
 		}
 		
 		postbuildcommands
@@ -87,9 +93,8 @@ project "Sandbox"
 
 	files
 	{
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.c",
 		"%{prj.name}/include/**.h",
+		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs
@@ -98,6 +103,8 @@ project "Sandbox"
         
 		"DYEngine/include",
 		"DYEngine/vendor/include",
+        
+        "DYEngine/vendor/glad/include"
 	}
 
 	links
@@ -108,7 +115,7 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++14"
 		staticruntime "On"
-		systemversion "10.0.10240.0"
+		systemversion "latest"
 
 		defines
 		{
