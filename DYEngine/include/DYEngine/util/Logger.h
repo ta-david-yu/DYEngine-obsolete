@@ -2,9 +2,12 @@
 
 #include "DYEngine/Core.h"
 
+#include <fstream>
 #include <iostream>
+#include <string>
 
 #define LOG Logger::GetInstance()
+#define LOG_DIR "Log/"
 
 namespace DYE
 {
@@ -27,15 +30,24 @@ namespace DYE
 		//==========================================
 		static Logger* s_pInstance;
 
-		FILE* m_pFile = nullptr;
+		std::ofstream m_FileStream;
+
+		bool m_IsLoggedToFile = false;
 
 		//==========================================
 		//	method
 		//==========================================
+		void customPrint(const char* type, const char* file, int line, const char* msg, va_list args);
+
+		//==========================================
+		//	ctor, dtor
+		//==========================================
+		Logger();
+
 	public:
 		static Logger* GetInstance();
 
-		void SetOutputFile(FILE* file);
+		void SetOutputFile(std::string filename);
 
 		void Print(LogType type, const char* file, int line, const char* msg, ...);
 		void CustomPrint(const char* type, const char* file, int line, const char* msg, ...);
