@@ -21,5 +21,10 @@ project "glad"
         systemversion "latest"
         staticruntime "On"
         
-    filter { "system:windows", "configurations:Release" }
-    buildoptions "/MT"
+	filter "configurations:Debug"
+		buildoptions "/MTd"
+		symbols "On"
+        
+	filter "configurations:Release"
+		buildoptions "/MT"
+		optimize "On"

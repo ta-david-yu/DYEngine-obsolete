@@ -77,10 +77,12 @@ project "DYEngine"
     
 	filter "configurations:Debug"
 		defines "DYE_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DYE_DEBUG"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -125,9 +127,11 @@ project "Sandbox"
         
 	filter "configurations:Debug"
 		defines { "DYE_DEBUG" }
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines { "DYE_DEBUG" }
+		buildoptions "/MD"
 		optimize "On"
         

@@ -18,7 +18,12 @@ project "tinyxml2"
     
 	filter "system:windows"
         systemversion "latest"
-        staticruntime "On"
+		staticruntime "On"
+    
+	filter "configurations:Debug"
+		buildoptions "/MDd"
+		symbols "On"
         
-    filter { "system:windows", "configurations:Release" }
-    buildoptions "/MT"
+	filter "configurations:Release"
+		buildoptions "/MD"
+		optimize "On"

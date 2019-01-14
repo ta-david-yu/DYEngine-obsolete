@@ -134,7 +134,7 @@ namespace DYE
 
 		GLFWmonitor* monitor = NULL;//glfwGetPrimaryMonitor();
 
-		m_pWindow = glfwCreateWindow(640, 480, m_WindowName.c_str(), NULL, NULL);
+		m_pWindow = glfwCreateWindow(1920, 1080, m_WindowName.c_str(), NULL, NULL);
 		glfwMakeContextCurrent(m_pWindow);
 
 		// glad: load all OpenGL function pointers
